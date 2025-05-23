@@ -1,6 +1,6 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 22:43:59
+**Date:** 2025-05-22 23:09:32
 **Total Sentences:** 10
 **Processed Sentences:** 10
 **Skipped Sentences:** 0
@@ -12,27 +12,27 @@
 |--------|-------|
 | Total Sentences Processed | 10 |
 | Total Expected Relations | 72 |
-| Total Generated Relations | 70 |
-| Total Correct Relations | 52 |
-| Total Missing Relations | 20 |
-| Total Over-specified Relations | 18 |
+| Total Generated Relations | 69 |
+| Total Correct Relations | 54 |
+| Total Missing Relations | 18 |
+| Total Over-specified Relations | 15 |
 
 ### Overall Performance
 | Metric | Percentage |
 |--------|------------|
-| **Correct Rate** | **72.2%** |
-| **Missing Rate** | **27.8%** |
-| **Over-specification Rate** | **25.7%** |
+| **Correct Rate** | **75.0%** |
+| **Missing Rate** | **25.0%** |
+| **Over-specification Rate** | **21.7%** |
 
 ### Performance Interpretation
-**Overall Performance:** 🟠 Fair
+**Overall Performance:** 🟡 Good
 
 ### Additional Metrics
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Precision | 74.3% | Percentage of generated relations that are correct |
-| Recall | 72.2% | Percentage of expected relations that were found |
-| F1-Score | 73.2% | Harmonic mean of precision and recall |
+| Precision | 78.3% | Percentage of generated relations that are correct |
+| Recall | 75.0% | Percentage of expected relations that were found |
+| F1-Score | 76.6% | Harmonic mean of precision and recall |
 
 ---
 
@@ -45,12 +45,13 @@
 |--------|-------|------|
 | Expected Relations | 8 | - |
 | Generated Relations | 7 | - |
-| Correct Relations | 6 | 75.0% |
-| Missing Relations | 2 | 25.0% |
-| Over-specified Relations | 1 | 14.3% |
+| Correct Relations | 7 | 87.5% |
+| Missing Relations | 1 | 12.5% |
+| Over-specified Relations | 0 | 0.0% |
 
 **✅ Correct Relations:**
 - boy → is: predicate (subject - verb)
+- boy → sings: predicate (subject - verb)
 - is → friend: predicate (verb/proposition - object)
 - my → friend: constraint
 - the → boy: constraint
@@ -58,11 +59,7 @@
 - who → sings: predicate (subject - verb)
 
 **❌ Missing Relations:**
-- boy → sings: predicate (subject - verb)
 - the → friend: constraint
-
-**➕ Over-specified Relations:**
-- boy → sings: connection
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -80,7 +77,7 @@
 **Generated Relations:**
 - The → boy: Constraint (UD: det)
 - boy → is: Predicate (subject - verb) (UD: nsubj→cop)
-- boy → sings: Connection (UD: acl:relcl)
+- boy → sings: Predicate (subject - verb) (UD: antecedent→relcl_verb(acl:relcl))
 - is → friend: Predicate (verb/proposition - object) (UD: cop→pred_complement)
 - my → friend: Constraint (UD: nmod:poss)
 - who → boy: Connection (UD: rel_pronoun→antecedent(acl:relcl))
@@ -97,23 +94,18 @@
 |--------|-------|------|
 | Expected Relations | 7 | - |
 | Generated Relations | 7 | - |
-| Correct Relations | 6 | 85.7% |
-| Missing Relations | 1 | 14.3% |
-| Over-specified Relations | 1 | 14.3% |
+| Correct Relations | 7 | 100.0% |
+| Missing Relations | 0 | 0.0% |
+| Over-specified Relations | 0 | 0.0% |
 
 **✅ Correct Relations:**
 - artist → is: predicate (subject - verb)
+- artist → painted: predicate (subject - verb)
 - is → famous: predicate (verb/proposition - object)
 - painted → this: predicate (verb/proposition - object)
 - the → artist: constraint
 - who → artist: connection
 - who → painted: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- artist → painted: predicate (subject - verb)
-
-**➕ Over-specified Relations:**
-- artist → painted: connection
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -130,7 +122,7 @@
 **Generated Relations:**
 - The → artist: Constraint (UD: det)
 - artist → is: Predicate (subject - verb) (UD: nsubj→cop)
-- artist → painted: Connection (UD: acl:relcl)
+- artist → painted: Predicate (subject - verb) (UD: antecedent→relcl_verb(acl:relcl))
 - is → famous: Predicate (verb/proposition - object) (UD: cop→pred_complement)
 - painted → this: Predicate (verb/proposition - object) (UD: obj)
 - who → artist: Connection (UD: rel_pronoun→antecedent(acl:relcl))
@@ -162,7 +154,7 @@
 - met → whom: predicate (verb/proposition - object)
 
 **➕ Over-specified Relations:**
-- girl → met: connection
+- met → girl: predicate (verb/proposition - object)
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -179,8 +171,8 @@
 - I → met: Predicate (subject - verb) (UD: nsubj)
 - The → girl: Constraint (UD: det)
 - girl → is: Predicate (subject - verb) (UD: nsubj→cop)
-- girl → met: Connection (UD: acl:relcl)
 - is → nice: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- met → girl: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
 - whom → girl: Connection (UD: appos)
 
 </details>
@@ -209,7 +201,7 @@
 - watched → that: predicate (verb/proposition - object)
 
 **➕ Over-specified Relations:**
-- movie → watched: connection
+- watched → movie: predicate (verb/proposition - object)
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -225,9 +217,9 @@
 **Generated Relations:**
 - The → movie: Constraint (UD: det)
 - movie → was: Predicate (subject - verb) (UD: nsubj→cop)
-- movie → watched: Connection (UD: acl:relcl)
 - that → movie: Connection (UD: appos)
 - was → amazing: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- watched → movie: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
 - we → watched: Predicate (subject - verb) (UD: nsubj)
 
 </details>
@@ -253,7 +245,7 @@
 - whose → man: connection
 
 **➕ Over-specified Relations:**
-- man → broke: connection
+- broke → man: predicate (verb/proposition - object)
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -268,8 +260,8 @@
 **Generated Relations:**
 - The → man: Constraint (UD: det)
 - broke → down: Constraint (UD: compound:prt)
+- broke → man: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
 - car → broke: Predicate (subject - verb) (UD: nsubj)
-- man → broke: Connection (UD: acl:relcl)
 - whose → car: Constraint (UD: nmod:poss)
 - whose → car: Constraint (UD: whose→possessed_noun)
 - whose → man: Connection (UD: whose→antecedent)
@@ -284,10 +276,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 9 | - |
-| Generated Relations | 10 | - |
+| Generated Relations | 9 | - |
 | Correct Relations | 9 | 100.0% |
 | Missing Relations | 0 | 0.0% |
-| Over-specified Relations | 1 | 10.0% |
+| Over-specified Relations | 0 | 0.0% |
 
 **✅ Correct Relations:**
 - a → doctor: constraint
@@ -299,9 +291,6 @@
 - the → boy: constraint
 - whose → boy: connection
 - whose → father: constraint
-
-**➕ Over-specified Relations:**
-- boy → doctor: connection
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -320,7 +309,6 @@
 **Generated Relations:**
 - The → boy: Constraint (UD: det)
 - a → doctor: Constraint (UD: det)
-- boy → doctor: Connection (UD: acl:relcl)
 - boy → is: Predicate (subject - verb) (UD: nsubj→cop)
 - father → is: Predicate (subject - verb) (UD: nsubj→cop)
 - is → classmate: Predicate (verb/proposition - object) (UD: cop→pred_complement)
@@ -465,7 +453,7 @@
 - where → stayed: predicate (verb/proposition - object)
 
 **➕ Over-specified Relations:**
-- place → stayed: connection
+- stayed → place: predicate (verb/proposition - object)
 - where → stayed: constraint
 
 <details>
@@ -483,7 +471,7 @@
 **Generated Relations:**
 - This → is: Predicate (subject - verb) (UD: nsubj→cop)
 - is → place: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- place → stayed: Connection (UD: acl:relcl)
+- stayed → place: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
 - the → place: Constraint (UD: det)
 - we → stayed: Predicate (subject - verb) (UD: nsubj)
 - where → stayed: Constraint (UD: advmod)
@@ -517,8 +505,8 @@
 
 **➕ Over-specified Relations:**
 - do → know: constraint
+- left → reason: predicate (verb/proposition - object)
 - n’t → know: constraint
-- reason → left: connection
 - why → left: constraint
 
 <details>
@@ -539,8 +527,8 @@
 - do → know: Constraint (UD: aux)
 - he → left: Predicate (subject - verb) (UD: nsubj)
 - know → reason: Predicate (verb/proposition - object) (UD: obj)
+- left → reason: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
 - n’t → know: Constraint (UD: advmod)
-- reason → left: Connection (UD: acl:relcl)
 - the → reason: Constraint (UD: det)
 - why → left: Constraint (UD: advmod)
 

@@ -1,6 +1,6 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 22:44:13
+**Date:** 2025-05-22 23:09:47
 **Total Sentences:** 18
 **Processed Sentences:** 18
 **Skipped Sentences:** 0
@@ -13,16 +13,16 @@
 | Total Sentences Processed | 18 |
 | Total Expected Relations | 132 |
 | Total Generated Relations | 131 |
-| Total Correct Relations | 74 |
-| Total Missing Relations | 58 |
-| Total Over-specified Relations | 57 |
+| Total Correct Relations | 75 |
+| Total Missing Relations | 57 |
+| Total Over-specified Relations | 56 |
 
 ### Overall Performance
 | Metric | Percentage |
 |--------|------------|
-| **Correct Rate** | **56.1%** |
-| **Missing Rate** | **43.9%** |
-| **Over-specification Rate** | **43.5%** |
+| **Correct Rate** | **56.8%** |
+| **Missing Rate** | **43.2%** |
+| **Over-specification Rate** | **42.7%** |
 
 ### Performance Interpretation
 **Overall Performance:** 🟠 Fair
@@ -30,9 +30,9 @@
 ### Additional Metrics
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Precision | 56.5% | Percentage of generated relations that are correct |
-| Recall | 56.1% | Percentage of expected relations that were found |
-| F1-Score | 56.3% | Harmonic mean of precision and recall |
+| Precision | 57.3% | Percentage of generated relations that are correct |
+| Recall | 56.8% | Percentage of expected relations that were found |
+| F1-Score | 57.0% | Harmonic mean of precision and recall |
 
 ---
 
@@ -45,20 +45,15 @@
 |--------|-------|------|
 | Expected Relations | 4 | - |
 | Generated Relations | 4 | - |
-| Correct Relations | 3 | 75.0% |
-| Missing Relations | 1 | 25.0% |
-| Over-specified Relations | 1 | 25.0% |
+| Correct Relations | 4 | 100.0% |
+| Missing Relations | 0 | 0.0% |
+| Over-specified Relations | 0 | 0.0% |
 
 **✅ Correct Relations:**
+- said → what: predicate (verb/proposition - object)
 - she → said: predicate (subject - verb)
 - surprised → everyone: predicate (verb/proposition - object)
 - what → surprised: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- said → what: predicate (verb/proposition - object)
-
-**➕ Over-specified Relations:**
-- what → said: connection
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -70,8 +65,8 @@
 - what → surprised: predicate (subject - verb)
 
 **Generated Relations:**
-- What → said: Connection (UD: acl:relcl)
 - What → surprised: Predicate (subject - verb) (UD: nsubj)
+- said → What: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
 - she → said: Predicate (subject - verb) (UD: nsubj)
 - surprised → everyone: Predicate (verb/proposition - object) (UD: obj)
 

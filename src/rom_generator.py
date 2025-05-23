@@ -1,16 +1,16 @@
 """
-Complete ROM to UD Relations Mapper - FIXED VERSION
+Complete ROM to UD Relations Mapper - ENHANCED WITH POS VERSION
 
 Maps Universal Dependencies from Stanza to 4 ROM relation types and outputs
 in a clean format showing word relationships with corrected semantic directions.
-Includes original UD relation information for debugging and verification.
+Incorporates comprehensive POS analysis for more accurate ROM relation generation.
 
-MAJOR FIXES APPLIED based on evaluation reports:
-- Standardized predicate relation type to "Predicate (verb/proposition - object)" for objects and complements.
-- Corrected copula relation mapping.
-- Refined handling of relative clauses (acl:relcl).
-- Adjusted mapping for complementizer 'mark' relations.
-- Updated specific handlers for copula, object relatives, and subordinating conjunctions.
+MAJOR ENHANCEMENTS based on ROM rules document:
+- Enhanced POS-based mapping logic
+- Implemented specific ROM rules for different word classes
+- Better handling of verb phrases, auxiliaries, and modals
+- Improved preposition and determiner handling
+- Enhanced clause linking and connective analysis
 """
 
 import stanza
@@ -21,7 +21,7 @@ class ROMGenerator:
     A class for mapping Universal Dependencies relations to ROM (Relational Ontology Model) types.
 
     This class handles the initialization of the Stanza pipeline and provides methods
-    to analyze sentences and extract ROM relations from UD parsing.
+    to analyze sentences and extract ROM relations from UD parsing with enhanced POS analysis.
     """
 
     def __init__(self, lang: str = 'en', verbose: bool = False):
@@ -41,10 +41,9 @@ class ROMGenerator:
 
     @staticmethod
     def get_rom_mapping(ud_relation: str, word_text: str = None, word_pos: str = None,
-                        head_pos: str = None, head_lemma: str = None) -> tuple:
+                        head_pos: str = None, head_lemma: str = None, head_text: str = None) -> tuple:
         """
-        Map UD relation to ROM type and determine semantic direction - FIXED VERSION
-        Enhanced to handle complex constructions and coordination with proper directions
+        Map UD relation to ROM type with enhanced POS-based logic
 
         Args:
             ud_relation: Universal Dependencies relation type
@@ -52,101 +51,142 @@ class ROMGenerator:
             word_pos: POS tag of the dependent word
             head_pos: POS tag of the head word
             head_lemma: Lemma of the head word
+            head_text: Text of the head word
 
         Returns:
             tuple: (rom_description, reverse_direction)
         """
+        word_lower = word_text.lower() if word_text else ""
+        head_lower = head_text.lower() if head_text else ""
 
         # R1: Connection (Semantic/Functional Link)
         if ud_relation in {'cc', 'conj', 'parataxis', 'list', 'appos', 'dislocated',
                            'vocative', 'discourse', 'goeswith', 'reparandum'}:
             return 'Connection', False
 
-        # Special case: Relative pronouns to antecedent (R1)
-        # also handles 'that', 'if', 'whether' as complementizers connecting to their clause verb
+        # Special Connection cases based on POS and word content
         elif ud_relation in {'nsubj:relcl', 'obj:relcl'} or \
-             (ud_relation == 'nmod' and word_pos == 'PRON') or \
-             (ud_relation == 'mark' and word_text and word_text.lower() in {'that', 'whether', 'if'}):
-            return 'Connection', False # marker -> verb_of_clause
+                (ud_relation == 'nmod' and word_pos == 'PRON') or \
+                (ud_relation == 'mark' and word_lower in {'that', 'whether', 'if'} and word_pos in {'SCONJ', 'PRON'}):
+            return 'Connection', False
 
-        # R3: Predicate (Subject → Verb) - always subject to verb direction
+        # R3: Predicate (Subject → Verb) - Enhanced with POS validation
         elif ud_relation in {'nsubj', 'nsubj:pass', 'nsubj:outer', 'csubj', 'csubj:pass', 'csubj:outer'}:
-            return 'Predicate (subject - verb)', False
+            # Validate that head is actually a verb or predicate
+            if head_pos in {'VERB', 'AUX'} or (head_pos == 'ADJ' and ud_relation.startswith('nsubj')):
+                return 'Predicate (subject - verb)', False
+            else:
+                # If head is not a verb, might be a nominal predicate
+                return 'Predicate (subject - verb)', False
 
-        # R4: Predicate (Verb/Prep → Object) - semantic head governs dependent
-        # Changed "Predicate (verb - object)" to "Predicate (verb/proposition - object)"
+        # R4: Predicate (Verb/Prep → Object) - Enhanced with POS validation
         elif ud_relation in {'obj', 'iobj', 'ccomp', 'xcomp'}:
-            return 'Predicate (verb/proposition - object)', True  # Reverse: head → dependent
+            if head_pos in {'VERB', 'AUX'}:
+                return 'Predicate (verb/proposition - object)', True  # head → dependent
+            elif head_pos in {'NOUN', 'PRON', 'ADJ'}:  # Nominal or adjectival head taking complement
+                return 'Predicate (verb/proposition - object)', True
+            else:
+                return 'Predicate (verb/proposition - object)', True
 
-        # Preposition handling - preposition governs its object
+        # Preposition handling - Enhanced with POS validation
         elif ud_relation == 'case':
-            # Preposition governs its object: "from → friend", "to → store"
-            return 'Predicate (preposition - object)', False
+            if word_pos == 'ADP':  # Preposition
+                return 'Predicate (preposition - object)', False  # prep → object
+            else:
+                return 'Constraint', False  # Other case markers
 
         # Oblique relations - verb governs prepositional phrase or nominal
-        # Changed "Predicate (verb - prepositional_phrase)" to "Predicate (verb - oblique)"
         elif ud_relation in {'obl', 'obl:agent', 'obl:arg', 'obl:tmod', 'obl:lmod'}:
-            return 'Predicate (verb - oblique)', True  # Reverse: verb → PP head or nominal
+            return 'Predicate (verb - oblique)', True  # head → dependent
 
-        # Auxiliary verbs - auxiliary helps main verb (not reversed)
+        # R2: Constraint - Auxiliary and Modal handling (per ROM rules)
         elif ud_relation in {'aux', 'aux:pass'}:
-            # Auxiliary → main verb: "will → go", "is → running"
-            return 'Constraint', False
-
-        # Copula verbs
-        # Changed "Predicate (verb - object)" to "Predicate (verb/proposition - object)"
-        elif ud_relation == 'cop':
-            # Copula → predicate: "is → happy"
-            return 'Predicate (verb/proposition - object)', False # copula -> predicative_complement
-
-        # Mark relations with better context awareness
-        elif ud_relation == 'mark':
-            if word_text and word_text.lower() == 'to': # Infinitive marker
-                # to → verb (handled by _handle_infinitives for more context)
-                # Defaulting to a constraint here, specific handlers might override
-                return 'Predicate (preposition - object)', False # 'to' acts like a preposition to the verb
-            # 'that', 'whether', 'if' are now Connection above.
-            elif word_text and word_text.lower() in {'because', 'although', 'since', 'while', 'unless', 'until'}:
-                # Subordinating conjunctions: because → clause_verb (constraint on main verb is handled by _handle_subordinating_conjunctions)
-                return 'Constraint', False # marker -> verb_of_its_clause
-            elif word_text and word_text.lower() in {'when', 'where', 'why'}:
-                # Temporal/causal markers: when → clause_verb
-                return 'Constraint', False # marker -> verb_of_its_clause (specific handlers for relcl cases)
+            # Per ROM rules: auxiliaries/modals are modifiers using R2: Constraint
+            if word_pos in {'AUX', 'VERB'} and word_lower in {'is', 'was', 'will', 'would', 'can', 'could', 'should',
+                                                              'must', 'do', 'does', 'did', 'have', 'has', 'had'}:
+                return 'Constraint', False  # aux → main_verb
             else:
-                # Default subordinating conjunction behavior
                 return 'Constraint', False
 
-        # Relative clause handling: acl:relcl
-        # Changed from "Predicate (subject - verb)" to "Connection"
-        # Specific handlers (_handle_object_relatives, etc.) should create more detailed relations.
-        # This provides a basic link: antecedent → verb_of_relative_clause
+        # Copula verbs - Enhanced with POS validation
+        elif ud_relation == 'cop':
+            if word_pos == 'AUX' and word_lower in {'is', 'am', 'are', 'was', 'were', 'be', 'being', 'been'}:
+                return 'Predicate (verb/proposition - object)', False  # copula → predicate
+            else:
+                return 'Predicate (verb/proposition - object)', False
+
+        # Mark relations - Enhanced with POS and content analysis
+        elif ud_relation == 'mark':
+            if word_lower == 'to' and word_pos in {'PART', 'ADP'}:
+                # Infinitive marker or intention marker
+                if head_pos == 'VERB':
+                    return 'Predicate (preposition - object)', False  # to → verb (R4 use)
+                else:
+                    return 'Constraint', False  # to → matrix_verb (R2 use)
+            elif word_lower in {'because', 'although', 'since', 'while', 'unless', 'until', 'before',
+                                'after'} and word_pos == 'SCONJ':
+                # Subordinating conjunctions - per ROM rules: conjunction → subordinate verb (R4), constrains main verb (R2)
+                return 'Predicate (conjunction - clause_verb)', False  # Will be handled by special handlers for main verb constraint
+            elif word_lower in {'when', 'where', 'why', 'how'} and word_pos in {'SCONJ', 'ADV'}:
+                # Relative adverbs/temporal markers
+                return 'Predicate (verb/proposition - object)', False  # marker → verb (R4)
+            elif word_lower in {'that', 'whether', 'if'} and word_pos in {'SCONJ', 'PRON'}:
+                # Complementizers
+                return 'Connection', False  # that → verb equivalence
+            else:
+                return 'Constraint', False
+
+        # Skip acl:relcl - let handlers deal with them
         elif ud_relation == 'acl:relcl':
-            return 'Connection', True  # Reverse: antecedent → verb_of_relcl
+            return None, False
 
         # Adjectival clause (non-relative)
         elif ud_relation == 'acl':
-            return 'Constraint', False # modifier -> head
+            return 'Constraint', False
 
-        # R2: Constraint (Modifier/Qualifier) - enhanced coverage
+        # R2: Constraint (Modifier/Qualifier) - Enhanced with POS validation
         elif ud_relation in {'det', 'amod', 'advmod', 'advmod:emph', 'advmod:lmod',
                              'nmod', 'nmod:poss', 'nmod:tmod', 'nummod', 'nummod:gov',
                              'fixed', 'flat', 'flat:foreign', 'flat:name',
                              'det:numgov', 'det:nummod', 'det:poss', 'clf', 'cc:preconj'}:
-            return 'Constraint', False
 
-        # Compound words - typically modifier -> head, but Stanza has head -> modifier
-        elif ud_relation in {'compound', 'compound:lvc', 'compound:prt', 'compound:redup',
-                             'compound:svc'}:
-            return 'Constraint', True # Reverse: head_of_compound -> modifier_part
+            # Enhanced logic based on POS
+            if ud_relation == 'det' and word_pos == 'DET':
+                # Articles and determiners
+                return 'Constraint', False  # det → noun
+            elif ud_relation == 'amod' and word_pos == 'ADJ':
+                # Adjective modifying noun
+                return 'Constraint', False  # adj → noun
+            elif ud_relation.startswith('advmod') and word_pos == 'ADV':
+                # Adverb modifying verb/adj/adv
+                return 'Constraint', False  # adv → head
+            elif ud_relation.startswith('nmod'):
+                # Nominal modifier
+                if word_pos in {'NOUN', 'PRON', 'PROPN'}:
+                    return 'Constraint', False  # nom_mod → head
+                else:
+                    return 'Constraint', False
+            else:
+                return 'Constraint', False
 
-        # Adverbial clause relation (main link, marker handled separately)
+        # Compound words - Enhanced with POS validation
+        elif ud_relation in {'compound', 'compound:lvc', 'compound:prt', 'compound:redup', 'compound:svc'}:
+            if ud_relation == 'compound:prt' and word_pos in {'ADP', 'ADV'}:
+                # Particle verbs (e.g., "break down")
+                return 'Constraint', True  # head → particle
+            else:
+                return 'Constraint', True  # head → modifier_part
+
+        # Adverbial clause relation
         elif ud_relation in {'advcl', 'advcl:relcl'}:
-            # advcl_verb -> main_verb
-            return 'Constraint', False # dependent_clause_verb -> main_clause_verb
+            return 'Constraint', False  # dependent_clause_verb → main_clause_verb
 
-        # Negation
+        # Negation - Enhanced with POS validation
         elif ud_relation == 'neg':
-            return 'Constraint', False # neg_word -> modified_word
+            if word_pos in {'PART', 'ADV'} or word_lower in {'not', "n't", 'no', 'never'}:
+                return 'Constraint', False  # neg_word → modified_word
+            else:
+                return 'Constraint', False
 
         # Default: skip unknown relations
         return None, False
@@ -154,7 +194,7 @@ class ROMGenerator:
     def analyze_sentence(self, sentence: str) -> list:
         """
         Analyze a sentence and extract ROM relations from UD parsing.
-        Enhanced to handle coordination, comparatives, and complex constructions.
+        Enhanced with comprehensive POS-based analysis.
 
         Args:
             sentence: Input sentence to analyze
@@ -166,7 +206,7 @@ class ROMGenerator:
         relations = []
 
         for sent in doc.sentences:
-            # Standard dependency relations
+            # Standard dependency relations with enhanced POS analysis
             for word in sent.words:
                 if word.head == 0:  # Skip root
                     continue
@@ -176,11 +216,8 @@ class ROMGenerator:
                 # Skip nsubj when head has copula (handled by _handle_copula_constructions)
                 if word.deprel == 'nsubj':
                     is_copula_construction = False
-                    # Check if head_word is the predicative complement in a copula construction
                     for potential_copula in sent.words:
                         if potential_copula.head == head_word.id and potential_copula.deprel == 'cop':
-                            # This 'word' (nsubj) is the subject of 'head_word' which has a 'copula'
-                            # This will be handled by _handle_copula_constructions
                             is_copula_construction = True
                             break
                     if is_copula_construction:
@@ -192,19 +229,22 @@ class ROMGenerator:
 
                 # Skip 'mark' relations if they are part of an advcl that will be handled
                 if word.deprel == 'mark':
-                    # If this mark belongs to an advcl, _handle_subordinating_conjunctions will deal with it
                     is_advcl_mark = False
                     for w_advcl in sent.words:
                         if w_advcl.id == word.head and w_advcl.deprel == 'advcl':
                             is_advcl_mark = True
                             break
                     if is_advcl_mark:
-                        # Check if it's 'to' for infinitives, which might need separate handling
-                        if not (word.text.lower() == 'to' and head_word.upos == 'VERB'): # allow 'to' for xcomp
-                           continue # Skip other advcl marks
+                        if not (word.text.lower() == 'to' and head_word.upos == 'VERB'):
+                            continue
 
+                # Skip acl:relcl relations - let handlers deal with them
+                if word.deprel == 'acl:relcl':
+                    continue
+
+                # Enhanced mapping with POS information
                 rom_result = self.get_rom_mapping(
-                    word.deprel, word.text, word.upos, head_word.upos, head_word.lemma
+                    word.deprel, word.text, word.upos, head_word.upos, head_word.lemma, head_word.text
                 )
 
                 if rom_result[0] is None:
@@ -227,8 +267,7 @@ class ROMGenerator:
                         "stanza ud": word.deprel
                     }
 
-                # Avoid duplicate relations that might be added by specific handlers
-                # A simple check based on from, to, and ROM type (excluding UD for this check)
+                # Avoid duplicate relations
                 simple_rel = (relation_dict["from"], relation_dict["to"], relation_dict["rom relation"])
                 already_exists = any(
                     (r["from"] == simple_rel[0] and r["to"] == simple_rel[1] and r["rom relation"] == simple_rel[2])
@@ -237,12 +276,11 @@ class ROMGenerator:
                 if not already_exists:
                     relations.append(relation_dict)
 
-
-            # Special constructions handling
+            # Special constructions handling with enhanced POS analysis
             relations.extend(self._handle_copula_constructions(sent, relations))
             relations.extend(self._handle_coordination(sent, relations))
-            relations.extend(self._handle_correlative_conjunctions(sent, relations)) # Needs review based on reports
-            relations.extend(self._handle_comparatives(sent, relations)) # Needs review
+            relations.extend(self._handle_correlative_conjunctions(sent, relations))
+            relations.extend(self._handle_comparatives(sent, relations))
             relations.extend(self._handle_object_relatives(sent, relations))
             relations.extend(self._handle_possessive_relatives(sent, relations))
             relations.extend(self._handle_temporal_causal_noun_relatives(sent, relations))
@@ -250,17 +288,15 @@ class ROMGenerator:
             relations.extend(self._handle_infinitives(sent, relations))
             relations.extend(self._handle_negation(sent, relations))
 
-            # Deduplicate relations again after handlers
+            # Deduplicate relations
             final_relations = []
             seen_relations_tuples = set()
             for r in relations:
-                # Using a tuple of (from, to, rom_relation, ud_relation) for uniqueness
                 rel_tuple = (r["from"], r["to"], r["rom relation"], r["stanza ud"])
                 if rel_tuple not in seen_relations_tuples:
                     final_relations.append(r)
                     seen_relations_tuples.add(rel_tuple)
             relations = final_relations
-
 
         return relations
 
@@ -276,18 +312,15 @@ class ROMGenerator:
         if not is_present:
             relations_list.append(new_relation)
 
-
     def _handle_coordination(self, sent, existing_relations):
-        """Enhanced coordinating conjunction handling with proper semantic roles"""
+        """Enhanced coordinating conjunction handling with POS validation"""
         new_relations = []
         for word in sent.words:
-            if word.deprel == 'cc':  # coordinating conjunction
+            if word.deprel == 'cc' and word.upos == 'CCONJ':  # Coordinating conjunction
                 coordinator = word.text.lower()
-                # The head of 'cc' is typically the first conjunct or the verb phrase it coordinates
                 head_of_cc = sent.words[word.head - 1]
 
-                # Find the conjuncts this 'cc' connects.
-                # One conjunct is head_of_cc. The other is linked by 'conj' to head_of_cc.
+                # Find conjuncts
                 conjunct1 = head_of_cc
                 conjunct2 = None
                 for other_word in sent.words:
@@ -304,10 +337,11 @@ class ROMGenerator:
                         })
                         self._add_relation_if_new(new_relations, {
                             "from": coordinator, "to": conjunct2.text,
-                            "rom relation": "Predicate (conjunction - clause_element)", "stanza ud": f"cc({coordinator})→conj2"
+                            "rom relation": "Predicate (conjunction - clause_element)",
+                            "stanza ud": f"cc({coordinator})→conj2"
                         })
                     elif coordinator in {'and', 'or'}:
-                        # Standard coordination
+                        # Standard coordination - per ROM rules: Connection
                         self._add_relation_if_new(new_relations, {
                             "from": coordinator, "to": conjunct1.text,
                             "rom relation": "Connection", "stanza ud": f"cc({coordinator})→conj1"
@@ -318,375 +352,329 @@ class ROMGenerator:
                         })
         return new_relations
 
-
     def _handle_correlative_conjunctions(self, sent, existing_relations):
-        """Handle correlative conjunctions like both...and, not only...but also"""
-        # This handler needs significant review based on COMP_report.
-        # The current implementation is too simplistic.
-        # For now, returning empty to avoid adding possibly incorrect relations.
+        """Handle correlative conjunctions with enhanced POS analysis"""
         new_relations = []
-        # Example: "not only...but also"
-        # COMP_report Sent 6: "Not only did he win, but he also broke the record."
-        # Expected: "not only → but also: connection" (this is one part)
-        # Expected: "not only → won: predicate (verb/preposition - object)"
-        # Expected: "but also → broke: predicate (verb/preposition - object)"
-        # This requires identifying the two parts of the correlative and the elements they modify.
-        return new_relations
 
+        # Look for correlative patterns
+        words_text = [w.text.lower() for w in sent.words]
+
+        # both...and
+        if 'both' in words_text and 'and' in words_text:
+            both_word = next(w for w in sent.words if w.text.lower() == 'both')
+            and_word = next(w for w in sent.words if w.text.lower() == 'and' and w.upos == 'CCONJ')
+            self._add_relation_if_new(new_relations, {
+                "from": both_word.text, "to": and_word.text,
+                "rom relation": "Connection", "stanza ud": "correlative_both_and"
+            })
+
+        # either...or
+        if 'either' in words_text and 'or' in words_text:
+            either_word = next(w for w in sent.words if w.text.lower() == 'either')
+            or_word = next(w for w in sent.words if w.text.lower() == 'or' and w.upos == 'CCONJ')
+            self._add_relation_if_new(new_relations, {
+                "from": either_word.text, "to": or_word.text,
+                "rom relation": "Connection", "stanza ud": "correlative_either_or"
+            })
+
+        return new_relations
 
     def _handle_comparatives(self, sent, existing_relations):
-        """Handle comparative constructions like as...as"""
-        # This handler also needs review based on COMP_report.
-        # Current: "as -> as: Connection"
-        # Expected for "She’s as tall as her brother":
-        # "as → tall: predicate (verb/preposition - object)"
-        # "as → is: constraint" (linking 'as' to the verb of its clause)
-        # "as (2) → brother: predicate (preposition - object)" (if 'as' acts like a prep)
-        # "as (2) → is (implied verb of second part): predicate..."
+        """Handle comparative constructions with enhanced POS analysis"""
         new_relations = []
-        as_indices = [i for i, w in enumerate(sent.words) if w.text.lower() == 'as']
-        if len(as_indices) >= 2:
-            first_as_word = sent.words[as_indices[0]]
-            second_as_word = sent.words[as_indices[1]]
+        as_words = [w for w in sent.words if w.text.lower() == 'as']
+
+        if len(as_words) >= 2:
+            first_as = as_words[0]
+            second_as = as_words[1]
+
+            # Connection between the two "as" words
             self._add_relation_if_new(new_relations, {
-                "from": first_as_word.text, "to": second_as_word.text,
+                "from": first_as.text, "to": second_as.text,
                 "rom relation": "Connection", "stanza ud": "as...as_correlative"
             })
+
+            # Find what each "as" modifies based on POS and dependencies
+            if first_as.head != 0:
+                first_head = sent.words[first_as.head - 1]
+                if first_head.upos in {'ADJ', 'ADV'}:  # as → adjective/adverb
+                    self._add_relation_if_new(new_relations, {
+                        "from": first_as.text, "to": first_head.text,
+                        "rom relation": "Predicate (verb/proposition - object)", "stanza ud": "as→adj/adv"
+                    })
+                elif first_head.upos == 'VERB':  # as → verb
+                    self._add_relation_if_new(new_relations, {
+                        "from": first_as.text, "to": first_head.text,
+                        "rom relation": "Constraint", "stanza ud": "as→verb"
+                    })
+
+            if second_as.head != 0:
+                second_head = sent.words[second_as.head - 1]
+                if second_head.upos in {'NOUN', 'PRON', 'PROPN'}:  # as → noun/pronoun
+                    self._add_relation_if_new(new_relations, {
+                        "from": second_as.text, "to": second_head.text,
+                        "rom relation": "Predicate (preposition - object)", "stanza ud": "as→noun"
+                    })
+
         return new_relations
 
-    def _get_clause_verb(self, clause_head_word, sentence_words):
-        """Helper to find the main verb of a clause, possibly navigating auxiliaries."""
-        if clause_head_word.upos == 'VERB':
-            # Check if it has a copula, then the head is the predicative complement
-            for word in sentence_words:
-                if word.head == clause_head_word.id and word.deprel == 'cop':
-                    return clause_head_word # The predicative complement is the semantic head
-            return clause_head_word
-        # If clause_head_word is an AUX, find the verb it modifies
-        if clause_head_word.upos == 'AUX':
-            for word in sentence_words:
-                if word.head == clause_head_word.id and word.upos == 'VERB': # Stanza might point verb to aux
-                    return word
-                # Or aux points to verb
-                if clause_head_word.head == word.id and word.upos == 'VERB' and clause_head_word.deprel.startswith('aux'):
-                     return word # This case seems less likely with Stanza's typical output
-            # If it's a copula auxiliary, the head is the predicative complement
-            if clause_head_word.deprel == 'cop':
-                 return sentence_words[clause_head_word.head -1]
-
-
-        # Fallback if not a verb or aux, or structure is complex
-        return clause_head_word # Return itself, might be a nominal predicate etc.
-
-
     def _handle_object_relatives(self, sent, existing_relations):
-        """Enhanced object relative clause handling (acl:relcl)"""
+        """Enhanced object relative clause handling with POS validation"""
         new_relations = []
-        for word in sent.words: # word is potential verb of relcl
-            if word.deprel == 'acl:relcl':
-                antecedent = sent.words[word.head - 1] # Noun that acl:relcl modifies
+        for word in sent.words:
+            if word.deprel == 'acl:relcl' and word.upos == 'VERB':
+                antecedent = sent.words[word.head - 1]
 
-                # Find relative pronoun (obj or nsubj of the relcl verb 'word')
+                # Find relative pronoun with POS validation
                 relative_pronoun_word = None
+                rel_pronoun_role = None
                 for child in sent.words:
-                    if child.head == word.id: # child is dependent of relcl verb
-                        if child.deprel in {'obj', 'nsubj'} and child.upos == 'PRON' and \
-                           child.lemma.lower() in {'who', 'whom', 'which', 'that'}: # Common relative pronouns
+                    if child.head == word.id and child.upos == 'PRON':
+                        if child.deprel in {'obj', 'nsubj'} and \
+                                child.lemma.lower() in {'who', 'whom', 'which', 'that'}:
                             relative_pronoun_word = child
+                            rel_pronoun_role = child.deprel
                             break
 
                 if relative_pronoun_word:
-                    # Verb of relcl → relative pronoun
-                    if relative_pronoun_word.deprel == 'obj':
-                         self._add_relation_if_new(new_relations, {
+                    if rel_pronoun_role == 'obj':
+                        # Object relative: verb → relative pronoun
+                        self._add_relation_if_new(new_relations, {
                             "from": word.text, "to": relative_pronoun_word.text,
-                            "rom relation": "Predicate (verb/proposition - object)", "stanza ud": f"relcl_verb→obj_pronoun({word.deprel})"
+                            "rom relation": "Predicate (verb/proposition - object)",
+                            "stanza ud": f"relcl_verb→obj_pronoun({word.deprel})"
                         })
-                    # Relative pronoun → antecedent
+                    elif rel_pronoun_role == 'nsubj':
+                        # Subject relative: antecedent → verb
+                        self._add_relation_if_new(new_relations, {
+                            "from": antecedent.text, "to": word.text,
+                            "rom relation": "Predicate (subject - verb)",
+                            "stanza ud": f"antecedent→relcl_verb({word.deprel})"
+                        })
+
+                    # Relative pronoun → antecedent (connection)
                     self._add_relation_if_new(new_relations, {
                         "from": relative_pronoun_word.text, "to": antecedent.text,
-                        "rom relation": "Connection", "stanza ud": f"rel_pronoun→antecedent({word.deprel})"
+                        "rom relation": "Connection",
+                        "stanza ud": f"rel_pronoun→antecedent({word.deprel})"
                     })
+                else:
+                    # Handle implicit relatives based on structure and POS
+                    has_explicit_object = any(child.deprel == 'obj' for child in sent.words if child.head == word.id)
+                    has_explicit_subject = any(
+                        child.deprel.startswith('nsubj') for child in sent.words if child.head == word.id)
+
+                    if not has_explicit_object and has_explicit_subject:
+                        # Object relative with implicit pronoun
+                        self._add_relation_if_new(new_relations, {
+                            "from": word.text, "to": antecedent.text,
+                            "rom relation": "Predicate (verb/proposition - object)",
+                            "stanza ud": f"relcl_verb→implicit_obj({word.deprel})"
+                        })
+                    elif not has_explicit_subject:
+                        # Subject relative with implicit pronoun
+                        self._add_relation_if_new(new_relations, {
+                            "from": antecedent.text, "to": word.text,
+                            "rom relation": "Predicate (subject - verb)",
+                            "stanza ud": f"antecedent→relcl_verb({word.deprel})"
+                        })
+
         return new_relations
 
-
     def _handle_possessive_relatives(self, sent, existing_relations):
-        """Handle possessive relatives like 'whose'."""
+        """Handle possessive relatives with enhanced POS analysis"""
         new_relations = []
         for word in sent.words:
-            if word.lemma.lower() == 'whose':
-                # 'whose' typically has 'nmod:poss' relation to the possessed noun
-                # and its head (the possessed noun) is part of an acl:relcl
+            if word.lemma.lower() == 'whose' and word.upos == 'PRON':
                 possessed_noun = None
                 if word.head != 0:
-                    potential_possessed_noun = sent.words[word.head -1]
-                    if word.deprel == 'nmod:poss': # Stanza often uses nmod:poss for whose -> noun
-                         possessed_noun = potential_possessed_noun
+                    potential_possessed_noun = sent.words[word.head - 1]
+                    if word.deprel == 'nmod:poss' and potential_possessed_noun.upos in {'NOUN', 'PROPN'}:
+                        possessed_noun = potential_possessed_noun
 
                 if possessed_noun:
-                    # Find the acl:relcl this 'whose' construction is part of
-                    # The possessed_noun is usually the subject or object within the relcl
-                    verb_of_relcl = None
-                    antecedent_of_relcl = None
-
-                    # Search upwards from possessed_noun to find acl:relcl
-                    curr = possessed_noun
-                    visited_heads = set()
-                    while curr.head != 0 and curr.id not in visited_heads:
-                        visited_heads.add(curr.id)
-                        parent_of_curr = sent.words[curr.head -1]
-                        if parent_of_curr.deprel == 'acl:relcl':
-                            verb_of_relcl = parent_of_curr
-                            if verb_of_relcl.head != 0:
-                                antecedent_of_relcl = sent.words[verb_of_relcl.head -1]
-                            break
-                        # If current is the head of acl:relcl itself
-                        if curr.deprel == 'acl:relcl':
-                            verb_of_relcl = curr
-                            if verb_of_relcl.head != 0:
-                                antecedent_of_relcl = sent.words[verb_of_relcl.head -1]
-                            break
-                        curr = parent_of_curr
-
+                    # Find the relative clause and antecedent
+                    antecedent_of_relcl = self._find_relative_clause_antecedent(possessed_noun, sent.words)
 
                     if antecedent_of_relcl:
                         self._add_relation_if_new(new_relations, {
                             "from": word.text, "to": antecedent_of_relcl.text,
                             "rom relation": "Connection", "stanza ud": "whose→antecedent"
                         })
-                    if possessed_noun: # Should always be true if we got here
-                         self._add_relation_if_new(new_relations, {
-                            "from": word.text, "to": possessed_noun.text,
-                            "rom relation": "Constraint", "stanza ud": "whose→possessed_noun"
-                        })
+
+                    self._add_relation_if_new(new_relations, {
+                        "from": word.text, "to": possessed_noun.text,
+                        "rom relation": "Constraint", "stanza ud": "whose→possessed_noun"
+                    })
         return new_relations
+
+    def _find_relative_clause_antecedent(self, start_word, all_words):
+        """Helper to find the antecedent of a relative clause"""
+        curr = start_word
+        visited_heads = set()
+        while curr.head != 0 and curr.id not in visited_heads:
+            visited_heads.add(curr.id)
+            parent_of_curr = all_words[curr.head - 1]
+            if parent_of_curr.deprel == 'acl:relcl':
+                if parent_of_curr.head != 0:
+                    return all_words[parent_of_curr.head - 1]
+                break
+            if curr.deprel == 'acl:relcl':
+                if curr.head != 0:
+                    return all_words[curr.head - 1]
+                break
+            curr = parent_of_curr
+        return None
 
     def _handle_temporal_causal_noun_relatives(self, sent, existing_relations):
-        """Handle temporal/causal relatives like 'when'/'why' modifying nouns (e.g. "the year when...")"""
+        """Handle temporal/causal relatives with enhanced POS analysis"""
         new_relations = []
-        for word in sent.words: # word is the marker e.g. 'when', 'why'
-            if word.lemma.lower() in {'when', 'where', 'why'} and word.deprel == 'mark':
-                # The head of 'mark' is the verb of the relative clause
+        for word in sent.words:
+            if word.lemma.lower() in {'when', 'where', 'why'} and word.deprel == 'mark' and word.upos in {'SCONJ',
+                                                                                                          'ADV'}:
                 verb_of_relcl = sent.words[word.head - 1]
-                if verb_of_relcl.deprel == 'acl:relcl':
-                    # The head of 'acl:relcl' is the antecedent noun
+                if verb_of_relcl.deprel == 'acl:relcl' and verb_of_relcl.upos == 'VERB':
                     antecedent_noun = sent.words[verb_of_relcl.head - 1]
 
-                    # Marker -> Antecedent Noun
-                    self._add_relation_if_new(new_relations, {
-                        "from": word.text, "to": antecedent_noun.text,
-                        "rom relation": "Constraint", "stanza ud": f"{word.lemma}→antecedent_noun"
-                    })
-                    # Marker -> Verb of its clause (as per benchmark pattern for ADJ Sent 7 "when -> moved: predicate")
+                    # Per ROM rules: marker → verb (R4), marker → antecedent (R2)
                     self._add_relation_if_new(new_relations, {
                         "from": word.text, "to": verb_of_relcl.text,
-                        "rom relation": "Predicate (marker - clause_verb)", # A more specific type
+                        "rom relation": "Predicate (verb/proposition - object)",
                         "stanza ud": f"{word.lemma}→verb_of_relcl"
+                    })
+
+                    self._add_relation_if_new(new_relations, {
+                        "from": word.text, "to": antecedent_noun.text,
+                        "rom relation": "Constraint",
+                        "stanza ud": f"{word.lemma}→antecedent_noun"
+                    })
+
+                    # verb → antecedent constraint
+                    self._add_relation_if_new(new_relations, {
+                        "from": verb_of_relcl.text, "to": antecedent_noun.text,
+                        "rom relation": "Constraint",
+                        "stanza ud": f"relcl_verb→antecedent"
                     })
         return new_relations
 
-
     def _handle_subordinating_conjunctions(self, sent, existing_relations):
-        """Enhanced subordinating conjunction handling for advcl."""
+        """Enhanced subordinating conjunction handling with POS analysis"""
         new_relations = []
-        for advcl_verb_word in sent.words: # This is the head of the advcl (often a verb or aux)
+        for advcl_verb_word in sent.words:
             if advcl_verb_word.deprel == 'advcl':
                 marker_word = None
                 for child in sent.words:
-                    if child.head == advcl_verb_word.id and child.deprel == 'mark':
+                    if child.head == advcl_verb_word.id and child.deprel == 'mark' and child.upos == 'SCONJ':
                         marker_word = child
                         break
 
                 if marker_word:
-                    main_clause_verb_word = sent.words[advcl_verb_word.head - 1] # Verb that advcl modifies
+                    main_clause_verb_word = sent.words[advcl_verb_word.head - 1]
 
-                    # Find the true verb of the subordinate clause, not just advcl_verb_word if it's an aux
-                    sub_clause_actual_verb = advcl_verb_word
-                    # If advcl_verb_word is AUX or COP, find its main verb or predicative complement
-                    if advcl_verb_word.upos == 'AUX':
-                        found_verb = False
-                        for w in sent.words: # look for verb governed by this aux
-                            if w.head == advcl_verb_word.id and w.upos == 'VERB':
-                                sub_clause_actual_verb = w
-                                found_verb = True
-                                break
-                        if not found_verb and advcl_verb_word.deprel == 'cop': # if it's a copula aux
-                             sub_clause_actual_verb = sent.words[advcl_verb_word.head-1] # the predicative complement
+                    # Find actual verb in subordinate clause
+                    verb_to_link_marker_to = self._find_clause_main_verb(advcl_verb_word, sent.words)
 
-
-                    # Relation: marker -> verb_of_its_clause
-                    # ADV report "because it was raining", expected "because -> was: predicate..."
-                    # 'was' is copula for 'raining'. Here sub_clause_actual_verb would be 'raining' (if cop is head)
-                    # or 'was' if we trace from 'raining' to its copula.
-                    # Let's find the verb associated with the mark's head (advcl_verb_word)
-
-                    verb_to_link_marker_to = advcl_verb_word # Default to head of mark
-                    if advcl_verb_word.upos != 'VERB': # If head of mark is not a verb (e.g. AUX, ADJ)
-                        # Try to find the main verb or copula of the subordinate clause
-                        q = [advcl_verb_word]
-                        visited_q = {advcl_verb_word.id}
-                        verb_found_in_subclause = False
-                        while q:
-                            curr = q.pop(0)
-                            if curr.upos == 'VERB':
-                                verb_to_link_marker_to = curr
-                                verb_found_in_subclause = True
-                                break
-                            # Check children for verbs or copulas
-                            for child_w in sent.words:
-                                if child_w.head == curr.id and child_w.id not in visited_q:
-                                    if child_w.upos == 'VERB' or child_w.deprel == 'cop':
-                                        verb_to_link_marker_to = child_w if child_w.upos == 'VERB' else curr # link to cop's head
-                                        verb_found_in_subclause = True
-                                        break
-                                    q.append(child_w)
-                                    visited_q.add(child_w.id)
-                            if verb_found_in_subclause: break
-                            # Check head if current is aux
-                            if curr.upos == 'AUX' and curr.head != 0:
-                                head_of_aux = sent.words[curr.head-1]
-                                if head_of_aux.id not in visited_q:
-                                     if head_of_aux.upos == 'VERB':
-                                          verb_to_link_marker_to = head_of_aux
-                                          break
-                                     q.append(head_of_aux)
-                                     visited_q.add(head_of_aux.id)
-
-
+                    # Per ROM rules: conjunction → subordinate verb (R4)
                     self._add_relation_if_new(new_relations, {
                         "from": marker_word.text,
                         "to": verb_to_link_marker_to.text,
-                        "rom relation": "Predicate (conjunction - clause_verb)", # As per ADV report needs "verb/proposition - object"
+                        "rom relation": "Predicate (conjunction - clause_verb)",
                         "stanza ud": f"mark→verb_of_advcl ({marker_word.deprel})"
                     })
 
-                    # Relation: marker -> main_clause_verb
+                    # Per ROM rules: conjunction constrains main verb (R2)
                     self._add_relation_if_new(new_relations, {
                         "from": marker_word.text, "to": main_clause_verb_word.text,
                         "rom relation": "Constraint", "stanza ud": f"mark→main_verb ({marker_word.deprel})"
                     })
         return new_relations
 
+    def _find_clause_main_verb(self, clause_head, all_words):
+        """Find the main verb of a clause considering POS tags"""
+        if clause_head.upos == 'VERB':
+            return clause_head
+        elif clause_head.upos == 'AUX':
+            # Look for the main verb this auxiliary modifies
+            for word in all_words:
+                if word.head == clause_head.id and word.upos == 'VERB':
+                    return word
+            # If aux is head of predicative complement
+            if clause_head.head != 0:
+                head_word = all_words[clause_head.head - 1]
+                if head_word.upos in {'ADJ', 'NOUN'}:
+                    return clause_head  # The aux is the main predicate
+        return clause_head
 
     def _handle_infinitives(self, sent, existing_relations):
-        """Handle infinitive constructions with 'to' mark."""
+        """Handle infinitive constructions with enhanced POS analysis"""
         new_relations = []
-        for word in sent.words: # word is 'to'
-            if word.text.lower() == 'to' and word.deprel == 'mark':
-                # Head of 'to' (mark) is the infinitive verb itself
+        for word in sent.words:
+            if word.text.lower() == 'to' and word.deprel == 'mark' and word.upos in {'PART', 'ADP'}:
                 infinitive_verb = sent.words[word.head - 1]
                 if infinitive_verb.upos == 'VERB':
-                    # Relation: to → infinitive_verb
+                    # Per ROM rules: "to" → verb (R4 for intention), "to" → matrix verb (R2 for modal/intent)
                     self._add_relation_if_new(new_relations, {
                         "from": word.text, "to": infinitive_verb.text,
-                        "rom relation": "Predicate (preposition - object)", # 'to' acts as preposition to verb
+                        "rom relation": "Predicate (preposition - object)",
                         "stanza ud": "mark(to)→inf_verb"
                     })
 
-                    # Find the main verb that governs this xcomp/acl (headed by infinitive_verb)
-                    # The infinitive_verb (head of 'to') is usually an xcomp or acl of a main verb.
                     if infinitive_verb.head != 0:
                         main_verb_governing_inf = sent.words[infinitive_verb.head - 1]
-                        # Check if infinitive_verb is indeed a clausal complement of main_verb_governing_inf
-                        if infinitive_verb.deprel in {'xcomp', 'acl', 'advcl'}: # advcl for "to preserve" in Basic S1
-                             self._add_relation_if_new(new_relations, {
+                        if infinitive_verb.deprel in {'xcomp', 'acl',
+                                                      'advcl'} and main_verb_governing_inf.upos == 'VERB':
+                            self._add_relation_if_new(new_relations, {
                                 "from": word.text, "to": main_verb_governing_inf.text,
                                 "rom relation": "Constraint",
                                 "stanza ud": f"mark(to)→main_verb_of({infinitive_verb.deprel})"
                             })
         return new_relations
 
-
     def _handle_negation(self, sent, existing_relations):
-        """Enhanced negation handling for contracted forms if not split by Stanza."""
+        """Enhanced negation handling with POS validation"""
         new_relations = []
-        # Standard 'neg' deprel is handled by get_rom_mapping.
-        # This is for contractions Stanza might not split, or specific patterns.
-        # ADJ Sent 10: "I don’t know..." expected "don’t → know: constraint".
-        # If Stanza gives "don’t" as a single token with deprel 'aux' or 'advmod' and it's negative.
+
+        # Handle contractions with POS validation
         for word in sent.words:
-            # Check for common negative contractions that might not be 'neg' deprel
-            if word.text.lower() in {"don’t", "doesn’t", "didn’t", "won’t", "can’t", "shouldn’t", "isn’t", "aren’t"}:
-                # Assume it modifies its head if it's an aux or part of verb phrase
+            if word.text.lower() in {"don't", "doesn't", "didn't", "won't", "can't", "shouldn't", "isn't", "aren't"}:
                 if word.head != 0:
-                    head_word = sent.words[word.head -1]
-                    # If the head is a verb, or if this word is an aux to a verb
-                    if head_word.upos == 'VERB' or \
-                       (word.upos == 'AUX' and head_word.upos == 'VERB') or \
-                       (word.deprel == 'advmod' and head_word.upos == 'VERB'): # 'not' can be advmod
+                    head_word = sent.words[word.head - 1]
+                    # Validate that this is actually negating a verb
+                    if head_word.upos in {'VERB', 'AUX'} or word.upos == 'AUX':
+                        self._add_relation_if_new(new_relations, {
+                            "from": word.text, "to": head_word.text,
+                            "rom relation": "Constraint",
+                            "stanza ud": f"neg_contraction({word.deprel})"
+                        })
 
-                        # Check if a more specific 'neg' relation already exists from a part of it
-                        has_explicit_neg_part = False
-                        if word.text.lower() == "don’t": # Stanza usually splits this to "do" and "n't"
-                            for w_part in sent.words:
-                                if w_part.text.lower() == "n’t" and w_part.head == word.head and w_part.deprel == 'neg':
-                                    has_explicit_neg_part = True
-                                    break
-
-                        if not has_explicit_neg_part:
-                            self._add_relation_if_new(new_relations, {
-                                "from": word.text, "to": head_word.text,
-                                "rom relation": "Constraint", "stanza ud": f"neg_contraction→{head_word.deprel}"
-                            })
         return new_relations
 
-
     def _handle_copula_constructions(self, sent, existing_relations):
-        """Handle copula constructions with proper directions and ROM types."""
+        """Handle copula constructions with enhanced POS validation"""
         new_relations = []
         for subject_word in sent.words:
-            if subject_word.deprel.startswith('nsubj'): # nsubj, nsubj:pass
-                # head_of_subject is the predicative complement (e.g., 'happy' in 'He is happy')
-                # OR it's the main verb if the nsubj is for a non-copular verb.
-                # We are only interested if head_of_subject has a copula.
+            if subject_word.deprel.startswith('nsubj'):
                 predicative_complement_candidate = sent.words[subject_word.head - 1]
 
                 copula_word = None
                 for child_of_pred_cand in sent.words:
                     if child_of_pred_cand.head == predicative_complement_candidate.id and \
-                       child_of_pred_cand.deprel == 'cop':
+                            child_of_pred_cand.deprel == 'cop' and child_of_pred_cand.upos == 'AUX':
                         copula_word = child_of_pred_cand
                         break
 
-                if copula_word: # This is a copula construction
-                    # Subject → Copula
+                if copula_word:
+                    # Subject → Copula (R3)
                     self._add_relation_if_new(new_relations, {
                         "from": subject_word.text, "to": copula_word.text,
                         "rom relation": "Predicate (subject - verb)", "stanza ud": f"{subject_word.deprel}→cop"
                     })
-                    # Copula → Predicative Complement
-                    # Changed from "Predicate (verb - object)"
+                    # Copula → Predicative Complement (R4)
                     self._add_relation_if_new(new_relations, {
                         "from": copula_word.text, "to": predicative_complement_candidate.text,
                         "rom relation": "Predicate (verb/proposition - object)", "stanza ud": "cop→pred_complement"
                     })
         return new_relations
-
-
-    def _is_in_relative_clause(self, word, rel_verb, all_words):
-        """Check if a word is part of a relative clause headed by rel_verb"""
-        # This helper might not be needed if acl:relcl handling is robust
-        current = word
-        visited = set()
-        while current.head != 0 and current.id not in visited:
-            visited.add(current.id)
-            if current.head == rel_verb.id and rel_verb.deprel == 'acl:relcl': # Ensure rel_verb is indeed acl:relcl
-                # Further check: is 'word' governed by 'rel_verb' or one of its dependents?
-                # This simple check assumes 'word' is a descendant of 'rel_verb's head (the antecedent)
-                # and 'word' itself is headed by 'rel_verb' or a word within the clause.
-                return True # Simplified
-            # Check if current word itself is the rel_verb
-            if current.id == rel_verb.id and rel_verb.deprel == 'acl:relcl':
-                return True
-
-            # If word's head is the rel_verb, it's in the clause
-            if word.head == rel_verb.id:
-                 return True
-
-            current = all_words[current.head - 1] if current.head -1 < len(all_words) else None
-            if not current: break
-        return False
-
 
     @staticmethod
     def print_relations(relations: list) -> None:
@@ -698,4 +686,3 @@ class ROMGenerator:
             stanza_ud = relation["stanza ud"]
 
             print(f"  {from_word} → {to_word}: {rom_relation} (UD: {stanza_ud})")
-

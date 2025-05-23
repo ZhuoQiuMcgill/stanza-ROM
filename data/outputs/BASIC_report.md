@@ -1,6 +1,6 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 22:44:05
+**Date:** 2025-05-22 23:09:39
 **Total Sentences:** 21
 **Processed Sentences:** 21
 **Skipped Sentences:** 0
@@ -12,17 +12,17 @@
 |--------|-------|
 | Total Sentences Processed | 21 |
 | Total Expected Relations | 202 |
-| Total Generated Relations | 208 |
-| Total Correct Relations | 92 |
-| Total Missing Relations | 110 |
-| Total Over-specified Relations | 116 |
+| Total Generated Relations | 203 |
+| Total Correct Relations | 94 |
+| Total Missing Relations | 108 |
+| Total Over-specified Relations | 109 |
 
 ### Overall Performance
 | Metric | Percentage |
 |--------|------------|
-| **Correct Rate** | **45.5%** |
-| **Missing Rate** | **54.5%** |
-| **Over-specification Rate** | **55.8%** |
+| **Correct Rate** | **46.5%** |
+| **Missing Rate** | **53.5%** |
+| **Over-specification Rate** | **53.7%** |
 
 ### Performance Interpretation
 **Overall Performance:** 🔴 Needs Improvement
@@ -30,9 +30,9 @@
 ### Additional Metrics
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Precision | 44.2% | Percentage of generated relations that are correct |
-| Recall | 45.5% | Percentage of expected relations that were found |
-| F1-Score | 44.9% | Harmonic mean of precision and recall |
+| Precision | 46.3% | Percentage of generated relations that are correct |
+| Recall | 46.5% | Percentage of expected relations that were found |
+| F1-Score | 46.4% | Harmonic mean of precision and recall |
 
 ---
 
@@ -44,10 +44,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 13 | - |
-| Generated Relations | 16 | - |
+| Generated Relations | 15 | - |
 | Correct Relations | 6 | 46.2% |
 | Missing Relations | 7 | 53.8% |
-| Over-specified Relations | 10 | 62.5% |
+| Over-specified Relations | 9 | 60.0% |
 
 **✅ Correct Relations:**
 - a → journal: constraint
@@ -75,7 +75,6 @@
 - preserve → start: constraint
 - preserve → them: predicate (verb/proposition - object)
 - start → journal: predicate (verb/proposition - object)
-- to → preserve: predicate (conjunction - clause_verb)
 - to → start: constraint
 
 <details>
@@ -110,10 +109,8 @@
 - those → memories: Constraint (UD: det)
 - to → decided: Constraint (UD: mark(to)→main_verb_of(xcomp))
 - to → preserve: Predicate (preposition - object) (UD: mark)
-- to → preserve: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
 - to → preserve: Predicate (preposition - object) (UD: mark(to)→inf_verb)
 - to → start: Predicate (preposition - object) (UD: mark)
-- to → start: Constraint (UD: mark→main_verb (mark))
 - to → start: Predicate (preposition - object) (UD: mark(to)→inf_verb)
 - to → start: Constraint (UD: mark(to)→main_verb_of(advcl))
 
@@ -154,11 +151,11 @@
 - also → emotions: constraint
 - but → emotions: connection
 - described → stories: predicate (verb/proposition - object)
-- emotions → stirred: connection
 - emotions → stories: connection
 - not → stories: constraint
 - only → stories: constraint
-- stories → shared: connection
+- shared → stories: predicate (verb/proposition - object)
+- stirred → emotions: predicate (verb/proposition - object)
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -184,13 +181,13 @@
 - also → emotions: Constraint (UD: advmod)
 - but → emotions: Connection (UD: cc)
 - described → stories: Predicate (verb/proposition - object) (UD: obj)
-- emotions → stirred: Connection (UD: acl:relcl)
 - emotions → stories: Connection (UD: conj)
 - grandmother → shared: Predicate (subject - verb) (UD: nsubj)
 - her → grandmother: Constraint (UD: nmod:poss)
 - not → stories: Constraint (UD: advmod)
 - only → stories: Constraint (UD: advmod)
-- stories → shared: Connection (UD: acl:relcl)
+- shared → stories: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
+- stirred → emotions: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
 - the → emotions: Constraint (UD: det)
 - the → stories: Constraint (UD: det)
 - they → stirred: Predicate (subject - verb) (UD: nsubj)
@@ -206,15 +203,16 @@
 |--------|-------|------|
 | Expected Relations | 18 | - |
 | Generated Relations | 16 | - |
-| Correct Relations | 4 | 22.2% |
-| Missing Relations | 14 | 77.8% |
-| Over-specified Relations | 12 | 75.0% |
+| Correct Relations | 5 | 27.8% |
+| Missing Relations | 13 | 72.2% |
+| Over-specified Relations | 11 | 68.8% |
 
 **✅ Correct Relations:**
 - a → tone: constraint
 - emotions → gave: predicate (subject - verb)
 - heartfelt → tone: constraint
 - that → surprised: predicate (subject - verb)
+- tone → surprised: predicate (subject - verb)
 
 **❌ Missing Relations:**
 - comfort → and: connection
@@ -228,7 +226,6 @@
 - of → love: predicate (verb/preposition - object)
 - of → nostalgia: predicate (verb/preposition - object)
 - surprised → her: predicate (verb/preposition - object)
-- tone → surprised: predicate (subject - verb)
 - tone → that: connection
 - writing → tone: constraint
 
@@ -243,7 +240,6 @@
 - surprised → her: predicate (verb/proposition - object)
 - that → tone: connection
 - the → emotions: constraint
-- tone → surprised: connection
 - writing → tone: predicate (verb/proposition - object)
 
 <details>
@@ -284,7 +280,7 @@
 - surprised → her: Predicate (verb/proposition - object) (UD: obj)
 - that → surprised: Predicate (subject - verb) (UD: nsubj)
 - that → tone: Connection (UD: rel_pronoun→antecedent(acl:relcl))
-- tone → surprised: Connection (UD: acl:relcl)
+- tone → surprised: Predicate (subject - verb) (UD: antecedent→relcl_verb(acl:relcl))
 - writing → tone: Predicate (verb/proposition - object) (UD: obj)
 
 </details>
@@ -298,12 +294,13 @@
 |--------|-------|------|
 | Expected Relations | 16 | - |
 | Generated Relations | 15 | - |
-| Correct Relations | 5 | 31.2% |
-| Missing Relations | 11 | 68.8% |
-| Over-specified Relations | 10 | 66.7% |
+| Correct Relations | 6 | 37.5% |
+| Missing Relations | 10 | 62.5% |
+| Over-specified Relations | 9 | 60.0% |
 
 **✅ Correct Relations:**
 - friends → found: predicate (subject - verb)
+- friends → read: predicate (subject - verb)
 - her → friends: constraint
 - the → journal: constraint
 - vivid → details: constraint
@@ -313,7 +310,6 @@
 - and → vivid: connection
 - details → moved: predicate (subject - verb)
 - found → themselves: predicate (verb - object)
-- friends → read: predicate (subject - verb)
 - friends → who: connection
 - its → details: constraint
 - its → journal: connection
@@ -328,7 +324,6 @@
 - details → sincerity: connection
 - found → moved: predicate (verb/proposition - object)
 - found → themselves: predicate (verb/proposition - object)
-- friends → read: connection
 - its → sincerity: constraint
 - moved → sincerity: predicate (verb - oblique)
 - read → journal: predicate (verb/proposition - object)
@@ -363,7 +358,7 @@
 - found → moved: Predicate (verb/proposition - object) (UD: xcomp)
 - found → themselves: Predicate (verb/proposition - object) (UD: obj)
 - friends → found: Predicate (subject - verb) (UD: nsubj)
-- friends → read: Connection (UD: acl:relcl)
+- friends → read: Predicate (subject - verb) (UD: antecedent→relcl_verb(acl:relcl))
 - its → sincerity: Constraint (UD: nmod:poss)
 - moved → sincerity: Predicate (verb - oblique) (UD: obl:agent)
 - read → journal: Predicate (verb/proposition - object) (UD: obj)
@@ -382,10 +377,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 11 | - |
-| Generated Relations | 13 | - |
+| Generated Relations | 12 | - |
 | Correct Relations | 8 | 72.7% |
 | Missing Relations | 3 | 27.3% |
-| Over-specified Relations | 5 | 38.5% |
+| Over-specified Relations | 4 | 33.3% |
 
 **✅ Correct Relations:**
 - a → book: constraint
@@ -404,7 +399,6 @@
 
 **➕ Over-specified Relations:**
 - consider → pushed: constraint
-- to → consider: predicate (conjunction - clause_verb)
 - to → consider: predicate (preposition - object)
 - to → pushed: constraint
 - turning → book: predicate (verb - oblique)
@@ -435,9 +429,7 @@
 - pushed → Sarah: Predicate (verb/proposition - object) (UD: obj)
 - the → journal: Constraint (UD: det)
 - to → consider: Predicate (preposition - object) (UD: mark)
-- to → consider: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
 - to → consider: Predicate (preposition - object) (UD: mark(to)→inf_verb)
-- to → pushed: Constraint (UD: mark→main_verb (mark))
 - to → pushed: Constraint (UD: mark(to)→main_verb_of(advcl))
 - turning → book: Predicate (verb - oblique) (UD: obl)
 - turning → journal: Predicate (verb/proposition - object) (UD: obj)
@@ -568,10 +560,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 12 | - |
-| Generated Relations | 13 | - |
+| Generated Relations | 12 | - |
 | Correct Relations | 7 | 58.3% |
 | Missing Relations | 5 | 41.7% |
-| Over-specified Relations | 6 | 46.2% |
+| Over-specified Relations | 5 | 41.7% |
 
 **✅ Correct Relations:**
 - about → time: predicate (preposition - object)
@@ -595,7 +587,6 @@
 - built → treehouse: predicate (verb/proposition - object)
 - read → smiled: constraint
 - read → time: predicate (verb - oblique)
-- time → built: connection
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -626,7 +617,6 @@
 - she → read: Predicate (subject - verb) (UD: nsubj)
 - the → time: Constraint (UD: det)
 - they → built: Predicate (subject - verb) (UD: nsubj)
-- time → built: Connection (UD: acl:relcl)
 - together → built: Constraint (UD: advmod)
 
 </details>
@@ -793,10 +783,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 6 | - |
-| Generated Relations | 8 | - |
+| Generated Relations | 7 | - |
 | Correct Relations | 6 | 100.0% |
 | Missing Relations | 0 | 0.0% |
-| Over-specified Relations | 2 | 25.0% |
+| Over-specified Relations | 1 | 14.3% |
 
 **✅ Correct Relations:**
 - a → lie: constraint
@@ -807,7 +797,6 @@
 - you → love: predicate (subject - verb)
 
 **➕ Over-specified Relations:**
-- lie → love: connection
 - love → that: predicate (verb/proposition - object)
 
 <details>
@@ -825,7 +814,6 @@
 - It → is: Predicate (subject - verb) (UD: nsubj→cop)
 - a → lie: Constraint (UD: det)
 - is → lie: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- lie → love: Connection (UD: acl:relcl)
 - love → her: Predicate (verb/proposition - object) (UD: obj)
 - love → that: Predicate (verb/proposition - object) (UD: obj)
 - love → that: Predicate (verb/proposition - object) (UD: relcl_verb→obj_pronoun(acl:relcl))
@@ -1104,7 +1092,7 @@
 - fly → another: predicate (verb - oblique)
 - fly → location: predicate (verb - oblique)
 - from → location: predicate (preposition - object)
-- house → fly: connection
+- house → fly: predicate (subject - verb)
 - house → vacation: constraint
 - that → house: connection
 - to → another: predicate (preposition - object)
@@ -1135,7 +1123,7 @@
 - fly → another: Predicate (verb - oblique) (UD: obl)
 - fly → location: Predicate (verb - oblique) (UD: obl)
 - from → location: Predicate (preposition - object) (UD: case)
-- house → fly: Connection (UD: acl:relcl)
+- house → fly: Predicate (subject - verb) (UD: antecedent→relcl_verb(acl:relcl))
 - house → vacation: Constraint (UD: compound)
 - one → location: Constraint (UD: nummod)
 - that → fly: Predicate (subject - verb) (UD: nsubj)
@@ -1210,10 +1198,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 12 | - |
-| Generated Relations | 14 | - |
+| Generated Relations | 13 | - |
 | Correct Relations | 7 | 58.3% |
 | Missing Relations | 5 | 41.7% |
-| Over-specified Relations | 7 | 50.0% |
+| Over-specified Relations | 6 | 46.2% |
 
 **✅ Correct Relations:**
 - a → system: constraint
@@ -1237,7 +1225,6 @@
 - manage → design: constraint
 - of → journal: predicate (preposition - object)
 - system → web: constraint
-- to → manage: predicate (conjunction - clause_verb)
 - to → manage: predicate (preposition - object)
 
 <details>
@@ -1269,10 +1256,8 @@
 - system → web: Constraint (UD: compound)
 - the → journal: Constraint (UD: det)
 - the → workflow: Constraint (UD: det)
-- to → Design: Constraint (UD: mark→main_verb (mark))
 - to → Design: Constraint (UD: mark(to)→main_verb_of(advcl))
 - to → manage: Predicate (preposition - object) (UD: mark)
-- to → manage: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
 - to → manage: Predicate (preposition - object) (UD: mark(to)→inf_verb)
 
 </details>
