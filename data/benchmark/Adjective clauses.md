@@ -134,7 +134,7 @@
 
 * **Input**
 
-    - This is the place where we stayed
+    - This is the place where we stayed.
 
 * **Output**
 

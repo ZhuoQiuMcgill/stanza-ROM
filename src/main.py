@@ -7,9 +7,11 @@ and extract ROM relations from Universal Dependencies parsing.
 
 import json
 import os.path
+from tqdm import tqdm
 
 from rom_generator import ROMGenerator
 from utils import evaluate_rom, read_txt_lines
+
 
 def main():
     """
@@ -58,12 +60,32 @@ def comparison():
     output_dir = os.path.join(os.getcwd(), 'data', 'outputs')
     benchmark_dir = os.path.join(os.getcwd(), 'data', 'benchmark')
 
-    input_file = os.path.join(input_dir, 'adjective_clauses_sentences_input.txt')
-    output_file = os.path.join(output_dir, 'ADJ_report.md')
-    benchmark_file = os.path.join(benchmark_dir, 'Adjective clauses.md')
-    sentences = read_txt_lines(input_file)
+    input_list = [
+        'adjective_clauses_sentences_input.txt',
+        'adverb_clauses_sentence_input.txt',
+        'basic_sentences_input.txt',
+        'compound_sentences_input.txt',
+        'noun_clauses_sentences_input.txt'
+    ]
+    benchmark_list = [
+        'Adjective clauses.md',
+        'Adverb clauses.md',
+        'Basic Sentences.md',
+        'Compound Sentences.md',
+        'Noun clauses.md'
+    ]
+    output_list = [
+        'ADJ', 'ADV', 'BASIC', 'COMP', 'NOUN'
+    ]
 
-    evaluate_rom(sentences, benchmark_file, save=output_file)
+    for i, input_file_name in enumerate(tqdm(input_list)):
+        benchmark_file_name = benchmark_list[i]
+        input_file = os.path.join(input_dir, input_file_name)
+        output_file = os.path.join(output_dir, output_list[i] + "_report.md")
+        benchmark_file = os.path.join(benchmark_dir, benchmark_file_name)
+        sentences = read_txt_lines(input_file)
+
+        evaluate_rom(sentences, benchmark_file, save=output_file)
 
 
 if __name__ == "__main__":

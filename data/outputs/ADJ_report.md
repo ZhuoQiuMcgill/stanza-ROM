@@ -1,14 +1,9 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 21:42:51
+**Date:** 2025-05-22 22:13:52
 **Total Sentences:** 10
-**Processed Sentences:** 9
-**Skipped Sentences:** 1
-
-## Skipped Sentences
-*(Sentences not found in benchmark)*
-
-- This is the place where we stayed.
+**Processed Sentences:** 10
+**Skipped Sentences:** 0
 
 ## Individual Sentence Results
 
@@ -206,18 +201,16 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 5 | - |
-| Generated Relations | 5 | - |
-| Correct Relations | 4 | 80.0% |
-| Missing Relations | 1 | 20.0% |
-| Over-specified Relations | 1 | 20.0% |
+| Generated Relations | 6 | - |
+| Correct Relations | 5 | 100.0% |
+| Missing Relations | 0 | 0.0% |
+| Over-specified Relations | 1 | 16.7% |
 
 **✅ Correct Relations:**
 - broke → down: constraint
 - car → broke: predicate (subject - verb)
 - the → man: constraint
 - whose → car: constraint
-
-**❌ Missing Relations:**
 - whose → man: connection
 
 **➕ Over-specified Relations:**
@@ -239,6 +232,7 @@
 - man → broke: predicate (subject - verb)
 - the → man: constraint
 - whose → car: constraint
+- whose → man: connection
 
 </details>
 
@@ -250,10 +244,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 9 | - |
-| Generated Relations | 9 | - |
-| Correct Relations | 8 | 88.9% |
-| Missing Relations | 1 | 11.1% |
-| Over-specified Relations | 1 | 11.1% |
+| Generated Relations | 10 | - |
+| Correct Relations | 9 | 100.0% |
+| Missing Relations | 0 | 0.0% |
+| Over-specified Relations | 1 | 10.0% |
 
 **✅ Correct Relations:**
 - a → doctor: constraint
@@ -263,10 +257,8 @@
 - is → doctor: predicate (verb/proposition - object)
 - my → classmate: constraint
 - the → boy: constraint
-- whose → father: constraint
-
-**❌ Missing Relations:**
 - whose → boy: connection
+- whose → father: constraint
 
 **➕ Over-specified Relations:**
 - boy → doctor: predicate (subject - verb)
@@ -294,6 +286,7 @@
 - is → doctor: predicate (verb/proposition - object)
 - my → classmate: constraint
 - the → boy: constraint
+- whose → boy: connection
 - whose → father: constraint
 
 </details>
@@ -408,6 +401,56 @@
 ---
 
 ### Sentence 9
+**Input:** This is the place where we stayed.
+
+| Metric | Count | Rate |
+|--------|-------|------|
+| Expected Relations | 7 | - |
+| Generated Relations | 6 | - |
+| Correct Relations | 4 | 57.1% |
+| Missing Relations | 3 | 42.9% |
+| Over-specified Relations | 2 | 33.3% |
+
+**✅ Correct Relations:**
+- is → place: predicate (verb/proposition - object)
+- the → place: constraint
+- this → is: predicate (subject - verb)
+- we → stayed: predicate (subject - verb)
+
+**❌ Missing Relations:**
+- stayed → place: constraint
+- where → place: constraint
+- where → stayed: predicate (verb/proposition - object)
+
+**➕ Over-specified Relations:**
+- place → stayed: predicate (subject - verb)
+- where → stayed: constraint
+
+<details>
+<summary>Detailed Comparison</summary>
+
+**Expected Relations:**
+- is → place: predicate (verb/proposition - object)
+- stayed → place: constraint
+- the → place: constraint
+- this → is: predicate (subject - verb)
+- we → stayed: predicate (subject - verb)
+- where → place: constraint
+- where → stayed: predicate (verb/proposition - object)
+
+**Generated Relations:**
+- is → place: predicate (verb/proposition - object)
+- place → stayed: predicate (subject - verb)
+- the → place: constraint
+- this → is: predicate (subject - verb)
+- we → stayed: predicate (subject - verb)
+- where → stayed: constraint
+
+</details>
+
+---
+
+### Sentence 10
 **Input:** I don’t know the reason why he left.
 
 | Metric | Count | Rate |
@@ -468,19 +511,19 @@
 ### Summary Statistics
 | Metric | Value |
 |--------|-------|
-| Total Sentences Processed | 9 |
-| Total Expected Relations | 65 |
-| Total Generated Relations | 62 |
-| Total Correct Relations | 49 |
-| Total Missing Relations | 16 |
-| Total Over-specified Relations | 13 |
+| Total Sentences Processed | 10 |
+| Total Expected Relations | 72 |
+| Total Generated Relations | 70 |
+| Total Correct Relations | 55 |
+| Total Missing Relations | 17 |
+| Total Over-specified Relations | 15 |
 
 ### Overall Performance
 | Metric | Percentage |
 |--------|------------|
-| **Correct Rate** | **75.4%** |
-| **Missing Rate** | **24.6%** |
-| **Over-specification Rate** | **21.0%** |
+| **Correct Rate** | **76.4%** |
+| **Missing Rate** | **23.6%** |
+| **Over-specification Rate** | **21.4%** |
 
 ### Performance Interpretation
 **Overall Performance:** 🟡 Good
@@ -488,6 +531,6 @@
 ### Additional Metrics
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Precision | 79.0% | Percentage of generated relations that are correct |
-| Recall | 75.4% | Percentage of expected relations that were found |
-| F1-Score | 77.2% | Harmonic mean of precision and recall |
+| Precision | 78.6% | Percentage of generated relations that are correct |
+| Recall | 76.4% | Percentage of expected relations that were found |
+| F1-Score | 77.5% | Harmonic mean of precision and recall |

@@ -264,7 +264,7 @@
 ### Sentence 18:
 
 * **Input**
-    - Design a vacation house that can fly easily from one location to another
+    - Design a vacation house that can fly easily from one location to another.
 * **Output**
     - Design → house: Predicate (verb/preposition - object)
     - A → house: Constraint
@@ -283,7 +283,7 @@
 ### Sentence 19:
 
 * **Input**
-    - Upscale 5 MW wind turbine_1 to 10 MW wind turbine_2
+    - Upscale 5 MW wind turbine_1 to 10 MW wind turbine_2.
 * **Output**
     - Upscale → turbine: Predicate (verb/preposition - object)
     - wind → turbine_1: Constraint

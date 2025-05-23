@@ -208,22 +208,8 @@
     - As (2) → ran (2): Predicate (verb/preposition - object)
     - As → as (2): Connection
 
+
 ### Sentence 14:
-
-* **Input**
-    - She’s as tall as her brother.
-* **Output**
-    - She → is: Predicate (subject - verb)
-    - Is → tall: Predicate (verb/preposition - object)
-    - As → tall: Predicate (verb/preposition - object)
-    - As → is: Constraint
-    - Her → brother: Constraint
-    - brother → is: Predicate (subject - verb)
-    - As (2) → is (2): Predicate (verb/preposition - object)
-    - As (2)→ tall: Constraint
-    - As → as (2): Connection
-
-### Sentence 15:
 
 * **Input**
     - This task is not as easy as it looks.
@@ -239,7 +225,7 @@
     - It → looks: Predicate (subject - verb)
     - As → as (2): Connection
 
-### Sentence 16:
+### Sentence 15:
 
 * **Input**
     - He doesn’t eat as much chocolate as his brother.
@@ -255,7 +241,7 @@
     - His → brother: Constraint
     - As → as (2): Connection
 
-### Sentence 17:
+### Sentence 16:
 
 * **Input**
     - She enjoys painting as much as she enjoys dancing.
@@ -271,7 +257,7 @@
     - As (2) → enjoys: Predicate (verb/preposition - object)
     - As → as (2): Connection
 
-### Sentence 18:
+### Sentence 17:
 
 * **Input**
     - Just as the moon affects the tides, so does the sun influence them.
@@ -289,7 +275,7 @@
     - Does → influence: Constraint
     - As → so: Connection
 
-### Sentence 19:
+### Sentence 18:
 
 * **Input**
     - Just as honesty builds trust, so does kindness.
@@ -304,7 +290,7 @@
     - Does → builds: Constraint
     - As → so: Connection
 
-### Sentence 20:
+### Sentence 19:
 
 * **Input**
     - Just as we need water to survive, so do plants need sunlight.
@@ -321,7 +307,7 @@
     - Do → need: Constraint
     - As → so: Connection
 
-### Sentence 21:
+### Sentence 20:
 
 * **Input**
     - No sooner had she sat down than the phone rang.
@@ -335,7 +321,7 @@
     - Than → started: Predicate (verb/preposition - object)
     - No sooner → than: Connection
 
-### Sentence 22:
+### Sentence 21:
 
 * **Input**
     - I’d rather read a book than watch TV.
@@ -350,7 +336,7 @@
     - Watch → TV: Predicate (verb/preposition - object)
     - Rather → than: Connection
 
-### Sentence 23:
+### Sentence 22:
 
 * **Input**
     - He chose to walk rather than drive.
@@ -365,7 +351,7 @@
     - He → drive: Predicate (subject - verb)
     - Rather → than: Connection
 
-### Sentence 24:
+### Sentence 23:
 
 * **Input**
     - Rather than complain, she took action.
