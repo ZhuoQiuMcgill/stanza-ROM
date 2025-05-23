@@ -1,6 +1,6 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 22:17:57
+**Date:** 2025-05-22 22:37:10
 **Total Sentences:** 10
 **Processed Sentences:** 10
 **Skipped Sentences:** 0
@@ -8,50 +8,55 @@
 ## 📊 Overall Performance Metrics
 
 ### Summary Statistics
-| Metric | Value |
-|--------|-------|
-| Total Sentences Processed | 10 |
-| Total Expected Relations | 72 |
-| Total Generated Relations | 70 |
-| Total Correct Relations | 55 |
-| Total Missing Relations | 17 |
-| Total Over-specified Relations | 15 |
+
+| Metric                         | Value |
+|--------------------------------|-------|
+| Total Sentences Processed      | 10    |
+| Total Expected Relations       | 72    |
+| Total Generated Relations      | 70    |
+| Total Correct Relations        | 52    |
+| Total Missing Relations        | 20    |
+| Total Over-specified Relations | 18    |
 
 ### Overall Performance
-| Metric | Percentage |
-|--------|------------|
-| **Correct Rate** | **76.4%** |
-| **Missing Rate** | **23.6%** |
-| **Over-specification Rate** | **21.4%** |
+
+| Metric                      | Percentage |
+|-----------------------------|------------|
+| **Correct Rate**            | **72.2%**  |
+| **Missing Rate**            | **27.8%**  |
+| **Over-specification Rate** | **25.7%**  |
 
 ### Performance Interpretation
-**Overall Performance:** 🟡 Good
+
+**Overall Performance:** 🟠 Fair
 
 ### Additional Metrics
-| Metric | Value | Description |
-|--------|-------|-------------|
-| Precision | 78.6% | Percentage of generated relations that are correct |
-| Recall | 76.4% | Percentage of expected relations that were found |
-| F1-Score | 77.5% | Harmonic mean of precision and recall |
+
+| Metric    | Value | Description                                        |
+|-----------|-------|----------------------------------------------------|
+| Precision | 74.3% | Percentage of generated relations that are correct |
+| Recall    | 72.2% | Percentage of expected relations that were found   |
+| F1-Score  | 73.2% | Harmonic mean of precision and recall              |
 
 ---
 
 ## Individual Sentence Results
 
 ### Sentence 1
+
 **Input:** The boy who sings is my friend.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 8 | - |
-| Generated Relations | 7 | - |
-| Correct Relations | 7 | 87.5% |
-| Missing Relations | 1 | 12.5% |
-| Over-specified Relations | 0 | 0.0% |
+| Metric                   | Count | Rate  |
+|--------------------------|-------|-------|
+| Expected Relations       | 8     | -     |
+| Generated Relations      | 7     | -     |
+| Correct Relations        | 6     | 75.0% |
+| Missing Relations        | 2     | 25.0% |
+| Over-specified Relations | 1     | 14.3% |
 
 **✅ Correct Relations:**
+
 - boy → is: predicate (subject - verb)
-- boy → sings: predicate (subject - verb)
 - is → friend: predicate (verb/proposition - object)
 - my → friend: constraint
 - the → boy: constraint
@@ -59,12 +64,19 @@
 - who → sings: predicate (subject - verb)
 
 **❌ Missing Relations:**
+
+- boy → sings: predicate (subject - verb)
 - the → friend: constraint
+
+**➕ Over-specified Relations:**
+
+- boy → sings: connection
 
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - boy → is: predicate (subject - verb)
 - boy → sings: predicate (subject - verb)
 - is → friend: predicate (verb/proposition - object)
@@ -75,8 +87,9 @@
 - who → sings: predicate (subject - verb)
 
 **Generated Relations:**
+
 - boy → is: predicate (subject - verb)
-- boy → sings: predicate (subject - verb)
+- boy → sings: connection
 - is → friend: predicate (verb/proposition - object)
 - my → friend: constraint
 - the → boy: constraint
@@ -88,29 +101,39 @@
 ---
 
 ### Sentence 2
+
 **Input:** The artist who painted this is famous.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 7 | - |
-| Generated Relations | 7 | - |
-| Correct Relations | 7 | 100.0% |
-| Missing Relations | 0 | 0.0% |
-| Over-specified Relations | 0 | 0.0% |
+| Metric                   | Count | Rate  |
+|--------------------------|-------|-------|
+| Expected Relations       | 7     | -     |
+| Generated Relations      | 7     | -     |
+| Correct Relations        | 6     | 85.7% |
+| Missing Relations        | 1     | 14.3% |
+| Over-specified Relations | 1     | 14.3% |
 
 **✅ Correct Relations:**
+
 - artist → is: predicate (subject - verb)
-- artist → painted: predicate (subject - verb)
 - is → famous: predicate (verb/proposition - object)
 - painted → this: predicate (verb/proposition - object)
 - the → artist: constraint
 - who → artist: connection
 - who → painted: predicate (subject - verb)
 
+**❌ Missing Relations:**
+
+- artist → painted: predicate (subject - verb)
+
+**➕ Over-specified Relations:**
+
+- artist → painted: connection
+
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - artist → is: predicate (subject - verb)
 - artist → painted: predicate (subject - verb)
 - is → famous: predicate (verb/proposition - object)
@@ -120,8 +143,9 @@
 - who → painted: predicate (subject - verb)
 
 **Generated Relations:**
+
 - artist → is: predicate (subject - verb)
-- artist → painted: predicate (subject - verb)
+- artist → painted: connection
 - is → famous: predicate (verb/proposition - object)
 - painted → this: predicate (verb/proposition - object)
 - the → artist: constraint
@@ -133,17 +157,19 @@
 ---
 
 ### Sentence 3
+
 **Input:** The girl (whom) I met is nice.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 6 | - |
-| Generated Relations | 6 | - |
-| Correct Relations | 5 | 83.3% |
-| Missing Relations | 1 | 16.7% |
-| Over-specified Relations | 1 | 16.7% |
+| Metric                   | Count | Rate  |
+|--------------------------|-------|-------|
+| Expected Relations       | 6     | -     |
+| Generated Relations      | 6     | -     |
+| Correct Relations        | 5     | 83.3% |
+| Missing Relations        | 1     | 16.7% |
+| Over-specified Relations | 1     | 16.7% |
 
 **✅ Correct Relations:**
+
 - girl → is: predicate (subject - verb)
 - i → met: predicate (subject - verb)
 - is → nice: predicate (verb/proposition - object)
@@ -151,15 +177,18 @@
 - whom → girl: connection
 
 **❌ Missing Relations:**
+
 - met → whom: predicate (verb/proposition - object)
 
 **➕ Over-specified Relations:**
-- girl → met: predicate (subject - verb)
+
+- girl → met: connection
 
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - girl → is: predicate (subject - verb)
 - i → met: predicate (subject - verb)
 - is → nice: predicate (verb/proposition - object)
@@ -168,8 +197,9 @@
 - whom → girl: connection
 
 **Generated Relations:**
+
 - girl → is: predicate (subject - verb)
-- girl → met: predicate (subject - verb)
+- girl → met: connection
 - i → met: predicate (subject - verb)
 - is → nice: predicate (verb/proposition - object)
 - the → girl: constraint
@@ -180,17 +210,19 @@
 ---
 
 ### Sentence 4
+
 **Input:** The movie (that) we watched was amazing.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 6 | - |
-| Generated Relations | 6 | - |
-| Correct Relations | 5 | 83.3% |
-| Missing Relations | 1 | 16.7% |
-| Over-specified Relations | 1 | 16.7% |
+| Metric                   | Count | Rate  |
+|--------------------------|-------|-------|
+| Expected Relations       | 6     | -     |
+| Generated Relations      | 6     | -     |
+| Correct Relations        | 5     | 83.3% |
+| Missing Relations        | 1     | 16.7% |
+| Over-specified Relations | 1     | 16.7% |
 
 **✅ Correct Relations:**
+
 - movie → was: predicate (subject - verb)
 - that → movie: connection
 - the → movie: constraint
@@ -198,15 +230,18 @@
 - we → watched: predicate (subject - verb)
 
 **❌ Missing Relations:**
+
 - watched → that: predicate (verb/proposition - object)
 
 **➕ Over-specified Relations:**
-- movie → watched: predicate (subject - verb)
+
+- movie → watched: connection
 
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - movie → was: predicate (subject - verb)
 - that → movie: connection
 - the → movie: constraint
@@ -215,8 +250,9 @@
 - we → watched: predicate (subject - verb)
 
 **Generated Relations:**
+
 - movie → was: predicate (subject - verb)
-- movie → watched: predicate (subject - verb)
+- movie → watched: connection
 - that → movie: connection
 - the → movie: constraint
 - was → amazing: predicate (verb/proposition - object)
@@ -227,17 +263,19 @@
 ---
 
 ### Sentence 5
+
 **Input:** The man whose car broke down.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 5 | - |
-| Generated Relations | 6 | - |
-| Correct Relations | 5 | 100.0% |
-| Missing Relations | 0 | 0.0% |
-| Over-specified Relations | 1 | 16.7% |
+| Metric                   | Count | Rate   |
+|--------------------------|-------|--------|
+| Expected Relations       | 5     | -      |
+| Generated Relations      | 6     | -      |
+| Correct Relations        | 5     | 100.0% |
+| Missing Relations        | 0     | 0.0%   |
+| Over-specified Relations | 1     | 16.7%  |
 
 **✅ Correct Relations:**
+
 - broke → down: constraint
 - car → broke: predicate (subject - verb)
 - the → man: constraint
@@ -245,12 +283,14 @@
 - whose → man: connection
 
 **➕ Over-specified Relations:**
-- man → broke: predicate (subject - verb)
+
+- man → broke: connection
 
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - broke → down: constraint
 - car → broke: predicate (subject - verb)
 - the → man: constraint
@@ -258,9 +298,10 @@
 - whose → man: connection
 
 **Generated Relations:**
+
 - broke → down: constraint
 - car → broke: predicate (subject - verb)
-- man → broke: predicate (subject - verb)
+- man → broke: connection
 - the → man: constraint
 - whose → car: constraint
 - whose → man: connection
@@ -270,17 +311,19 @@
 ---
 
 ### Sentence 6
+
 **Input:** The boy whose father is a doctor is my classmate.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 9 | - |
-| Generated Relations | 10 | - |
-| Correct Relations | 9 | 100.0% |
-| Missing Relations | 0 | 0.0% |
-| Over-specified Relations | 1 | 10.0% |
+| Metric                   | Count | Rate   |
+|--------------------------|-------|--------|
+| Expected Relations       | 9     | -      |
+| Generated Relations      | 10    | -      |
+| Correct Relations        | 9     | 100.0% |
+| Missing Relations        | 0     | 0.0%   |
+| Over-specified Relations | 1     | 10.0%  |
 
 **✅ Correct Relations:**
+
 - a → doctor: constraint
 - boy → is: predicate (subject - verb)
 - father → is: predicate (subject - verb)
@@ -292,12 +335,14 @@
 - whose → father: constraint
 
 **➕ Over-specified Relations:**
-- boy → doctor: predicate (subject - verb)
+
+- boy → doctor: connection
 
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - a → doctor: constraint
 - boy → is: predicate (subject - verb)
 - father → is: predicate (subject - verb)
@@ -309,8 +354,9 @@
 - whose → father: constraint
 
 **Generated Relations:**
+
 - a → doctor: constraint
-- boy → doctor: predicate (subject - verb)
+- boy → doctor: connection
 - boy → is: predicate (subject - verb)
 - father → is: predicate (subject - verb)
 - is → classmate: predicate (verb/proposition - object)
@@ -325,38 +371,44 @@
 ---
 
 ### Sentence 7
+
 **Input:** 2018 was the year when I moved to Canada.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 9 | - |
-| Generated Relations | 8 | - |
-| Correct Relations | 5 | 55.6% |
-| Missing Relations | 4 | 44.4% |
-| Over-specified Relations | 3 | 37.5% |
+| Metric                   | Count | Rate  |
+|--------------------------|-------|-------|
+| Expected Relations       | 9     | -     |
+| Generated Relations      | 8     | -     |
+| Correct Relations        | 4     | 44.4% |
+| Missing Relations        | 5     | 55.6% |
+| Over-specified Relations | 4     | 50.0% |
 
 **✅ Correct Relations:**
+
 - 2018 → was: predicate (subject - verb)
 - i → moved: predicate (subject - verb)
 - the → year: constraint
-- to → canada: predicate (verb/proposition - object)
 - was → year: predicate (verb/proposition - object)
 
 **❌ Missing Relations:**
+
 - move → year: constraint
 - moved → to: constraint
+- to → canada: predicate (verb/proposition - object)
 - when → moved: predicate (verb/proposition - object)
 - when → year: constraint
 
 **➕ Over-specified Relations:**
-- moved → canada: predicate (verb/proposition - object)
+
+- moved → canada: predicate (verb - oblique)
 - moved → year: constraint
+- to → canada: predicate (preposition - object)
 - when → moved: constraint
 
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - 2018 → was: predicate (subject - verb)
 - i → moved: predicate (subject - verb)
 - move → year: constraint
@@ -368,12 +420,13 @@
 - when → year: constraint
 
 **Generated Relations:**
+
 - 2018 → was: predicate (subject - verb)
 - i → moved: predicate (subject - verb)
-- moved → canada: predicate (verb/proposition - object)
+- moved → canada: predicate (verb - oblique)
 - moved → year: constraint
 - the → year: constraint
-- to → canada: predicate (verb/proposition - object)
+- to → canada: predicate (preposition - object)
 - was → year: predicate (verb/proposition - object)
 - when → moved: constraint
 
@@ -382,28 +435,32 @@
 ---
 
 ### Sentence 8
+
 **Input:** I remember the day when we met.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 7 | - |
-| Generated Relations | 6 | - |
-| Correct Relations | 4 | 57.1% |
-| Missing Relations | 3 | 42.9% |
-| Over-specified Relations | 2 | 33.3% |
+| Metric                   | Count | Rate  |
+|--------------------------|-------|-------|
+| Expected Relations       | 7     | -     |
+| Generated Relations      | 6     | -     |
+| Correct Relations        | 4     | 57.1% |
+| Missing Relations        | 3     | 42.9% |
+| Over-specified Relations | 2     | 33.3% |
 
 **✅ Correct Relations:**
+
 - i → remember: predicate (subject - verb)
 - remember → day: predicate (verb/proposition - object)
 - the → day: constraint
 - we → met: predicate (subject - verb)
 
 **❌ Missing Relations:**
+
 - met → day: constraint
 - when → day: constraint
 - when → met: predicate (verb/proposition - object)
 
 **➕ Over-specified Relations:**
+
 - met → remember: constraint
 - when → met: constraint
 
@@ -411,6 +468,7 @@
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - i → remember: predicate (subject - verb)
 - met → day: constraint
 - remember → day: predicate (verb/proposition - object)
@@ -420,6 +478,7 @@
 - when → met: predicate (verb/proposition - object)
 
 **Generated Relations:**
+
 - i → remember: predicate (subject - verb)
 - met → remember: constraint
 - remember → day: predicate (verb/proposition - object)
@@ -432,35 +491,40 @@
 ---
 
 ### Sentence 9
+
 **Input:** This is the place where we stayed.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 7 | - |
-| Generated Relations | 6 | - |
-| Correct Relations | 4 | 57.1% |
-| Missing Relations | 3 | 42.9% |
-| Over-specified Relations | 2 | 33.3% |
+| Metric                   | Count | Rate  |
+|--------------------------|-------|-------|
+| Expected Relations       | 7     | -     |
+| Generated Relations      | 6     | -     |
+| Correct Relations        | 4     | 57.1% |
+| Missing Relations        | 3     | 42.9% |
+| Over-specified Relations | 2     | 33.3% |
 
 **✅ Correct Relations:**
+
 - is → place: predicate (verb/proposition - object)
 - the → place: constraint
 - this → is: predicate (subject - verb)
 - we → stayed: predicate (subject - verb)
 
 **❌ Missing Relations:**
+
 - stayed → place: constraint
 - where → place: constraint
 - where → stayed: predicate (verb/proposition - object)
 
 **➕ Over-specified Relations:**
-- place → stayed: predicate (subject - verb)
+
+- place → stayed: connection
 - where → stayed: constraint
 
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - is → place: predicate (verb/proposition - object)
 - stayed → place: constraint
 - the → place: constraint
@@ -470,8 +534,9 @@
 - where → stayed: predicate (verb/proposition - object)
 
 **Generated Relations:**
+
 - is → place: predicate (verb/proposition - object)
-- place → stayed: predicate (subject - verb)
+- place → stayed: connection
 - the → place: constraint
 - this → is: predicate (subject - verb)
 - we → stayed: predicate (subject - verb)
@@ -482,38 +547,43 @@
 ---
 
 ### Sentence 10
+
 **Input:** I don’t know the reason why he left.
 
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 8 | - |
-| Generated Relations | 8 | - |
-| Correct Relations | 4 | 50.0% |
-| Missing Relations | 4 | 50.0% |
-| Over-specified Relations | 4 | 50.0% |
+| Metric                   | Count | Rate  |
+|--------------------------|-------|-------|
+| Expected Relations       | 8     | -     |
+| Generated Relations      | 8     | -     |
+| Correct Relations        | 4     | 50.0% |
+| Missing Relations        | 4     | 50.0% |
+| Over-specified Relations | 4     | 50.0% |
 
 **✅ Correct Relations:**
+
 - he → left: predicate (subject - verb)
 - i → know: predicate (subject - verb)
 - know → reason: predicate (verb/proposition - object)
 - the → reason: constraint
 
 **❌ Missing Relations:**
+
 - don’t → know: constraint
 - left → reason: constraint
 - why → left: predicate (verb/proposition - object)
 - why → reason: constraint
 
 **➕ Over-specified Relations:**
-- know → do: constraint
+
+- do → know: constraint
 - n’t → know: constraint
-- reason → left: predicate (subject - verb)
+- reason → left: connection
 - why → left: constraint
 
 <details>
 <summary>Detailed Comparison</summary>
 
 **Expected Relations:**
+
 - don’t → know: constraint
 - he → left: predicate (subject - verb)
 - i → know: predicate (subject - verb)
@@ -524,12 +594,13 @@
 - why → reason: constraint
 
 **Generated Relations:**
+
+- do → know: constraint
 - he → left: predicate (subject - verb)
 - i → know: predicate (subject - verb)
-- know → do: constraint
 - know → reason: predicate (verb/proposition - object)
 - n’t → know: constraint
-- reason → left: predicate (subject - verb)
+- reason → left: connection
 - the → reason: constraint
 - why → left: constraint
 
