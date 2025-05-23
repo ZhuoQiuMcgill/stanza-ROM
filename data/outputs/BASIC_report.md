@@ -1,8 +1,8 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-23 14:13:38
-**Total Sentences:** 21
-**Processed Sentences:** 21
+**Date:** 2025-05-23 15:26:46
+**Total Sentences:** 12
+**Processed Sentences:** 12
 **Skipped Sentences:** 0
 
 ## 📊 Overall Performance Metrics
@@ -10,19 +10,19 @@
 ### Summary Statistics
 | Metric | Value |
 |--------|-------|
-| Total Sentences Processed | 21 |
-| Total Expected Relations | 202 |
-| Total Generated Relations | 197 |
-| Total Correct Relations | 92 |
-| Total Missing Relations | 110 |
-| Total Over-specified Relations | 105 |
+| Total Sentences Processed | 12 |
+| Total Expected Relations | 89 |
+| Total Generated Relations | 89 |
+| Total Correct Relations | 41 |
+| Total Missing Relations | 48 |
+| Total Over-specified Relations | 48 |
 
 ### Overall Performance
 | Metric | Percentage |
 |--------|------------|
-| **Correct Rate** | **45.5%** |
-| **Missing Rate** | **54.5%** |
-| **Over-specification Rate** | **53.3%** |
+| **Correct Rate** | **46.1%** |
+| **Missing Rate** | **53.9%** |
+| **Over-specification Rate** | **53.9%** |
 
 ### Performance Interpretation
 **Overall Performance:** 🔴 Needs Improvement
@@ -30,8 +30,8 @@
 ### Additional Metrics
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Precision | 46.7% | Percentage of generated relations that are correct |
-| Recall | 45.5% | Percentage of expected relations that were found |
+| Precision | 46.1% | Percentage of generated relations that are correct |
+| Recall | 46.1% | Percentage of expected relations that were found |
 | F1-Score | 46.1% | Harmonic mean of precision and recall |
 
 ---
@@ -39,334 +39,6 @@
 ## Individual Sentence Results
 
 ### Sentence 1
-**Input:** Inspired by those cherished memories, Sarah decided to start a journal to preserve them.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 13 | - |
-| Generated Relations | 13 | - |
-| Correct Relations | 5 | 38.5% |
-| Missing Relations | 8 | 61.5% |
-| Over-specified Relations | 8 | 61.5% |
-
-**✅ Correct Relations:**
-- a → journal: constraint
-- those → memories: constraint
-- to → decided: constraint
-- to → preserve: predicate (preposition - object)
-- to → start: predicate (preposition - object)
-
-**❌ Missing Relations:**
-- cherished → memories: predicate (verb - object)
-- inspired → sarah: constraint
-- journal → preserve: predicate (subject - verb)
-- memories → inspired: predicate (subject - verb)
-- sarah → cherished: predicate (subject - verb)
-- sarah → decided: predicate (subject - verb)
-- start → journal: predicate (preposition - object)
-- them → memories: connection
-
-**➕ Over-specified Relations:**
-- by → memories: predicate (preposition - object)
-- decided → start: predicate (verb/proposition - object)
-- inspired → decided: constraint
-- inspired → memories: predicate (verb/preposition - object)
-- preserve → start: constraint
-- preserve → them: predicate (verb/proposition - object)
-- start → journal: predicate (verb/proposition - object)
-- to → start: constraint
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- a → journal: constraint
-- cherished → memories: predicate (verb - object)
-- inspired → sarah: constraint
-- journal → preserve: predicate (subject - verb)
-- memories → inspired: predicate (subject - verb)
-- sarah → cherished: predicate (subject - verb)
-- sarah → decided: predicate (subject - verb)
-- start → journal: predicate (preposition - object)
-- them → memories: connection
-- those → memories: constraint
-- to → decided: constraint
-- to → preserve: predicate (preposition - object)
-- to → start: predicate (preposition - object)
-
-**Generated Relations:**
-- Inspired → decided: Constraint (UD: advcl)
-- Inspired → memories: Predicate (Verb/Preposition - Object) (UD: obl:agent)
-- a → journal: Constraint (UD: det)
-- by → memories: Predicate (Preposition - Object) (UD: case)
-- decided → start: Predicate (Verb/Proposition - Object) (UD: xcomp)
-- preserve → start: Constraint (UD: advcl)
-- preserve → them: Predicate (Verb/Proposition - Object) (UD: obj)
-- start → journal: Predicate (Verb/Proposition - Object) (UD: obj)
-- those → memories: Constraint (UD: det)
-- to → decided: Constraint (UD: mark(to)→main_verb_of(xcomp))
-- to → preserve: Predicate (Preposition - Object) (UD: mark)
-- to → preserve: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
-- to → start: Predicate (Preposition - Object) (UD: mark)
-- to → start: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
-- to → start: Constraint (UD: mark(to)→main_verb_of(advcl))
-
-</details>
-
----
-
-### Sentence 2
-**Input:** She described not only the stories her grandmother shared, but also the emotions they stirred.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 14 | - |
-| Generated Relations | 13 | - |
-| Correct Relations | 6 | 42.9% |
-| Missing Relations | 8 | 57.1% |
-| Over-specified Relations | 7 | 53.8% |
-
-**✅ Correct Relations:**
-- grandmother → shared: predicate (subject - verb)
-- her → grandmother: constraint
-- she → described: predicate (subject - verb)
-- the → emotions: constraint
-- the → stories: constraint
-- they → stirred: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- but also → described: constraint
-- but also → emotions: predicate (verb/preposition - object)
-- described → emotions: predicate (verb/preposition - object)
-- described → stories: predicate (verb/preposition - object)
-- not only → described: constraint
-- not only → stories: predicate (verb/preposition - object)
-- shared → stories: predicate (verb/preposition - object)
-- stirred → emotions: predicate (verb/preposition - object)
-
-**➕ Over-specified Relations:**
-- also → emotions: constraint
-- but → emotions: constraint
-- described → stories: predicate (verb/proposition - object)
-- emotions → stories: connection
-- only → stories: constraint
-- shared → stories: predicate (verb/proposition - object)
-- stirred → emotions: predicate (verb/proposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- but also → described: constraint
-- but also → emotions: predicate (verb/preposition - object)
-- described → emotions: predicate (verb/preposition - object)
-- described → stories: predicate (verb/preposition - object)
-- grandmother → shared: predicate (subject - verb)
-- her → grandmother: constraint
-- not only → described: constraint
-- not only → stories: predicate (verb/preposition - object)
-- shared → stories: predicate (verb/preposition - object)
-- she → described: predicate (subject - verb)
-- stirred → emotions: predicate (verb/preposition - object)
-- the → emotions: constraint
-- the → stories: constraint
-- they → stirred: predicate (subject - verb)
-
-**Generated Relations:**
-- She → described: Predicate (Subject - Verb) (UD: nsubj)
-- also → emotions: Constraint (UD: advmod)
-- but → emotions: Constraint (UD: cc)
-- described → stories: Predicate (Verb/Proposition - Object) (UD: obj)
-- emotions → stories: Connection (UD: conj)
-- grandmother → shared: Predicate (Subject - Verb) (UD: nsubj)
-- her → grandmother: Constraint (UD: nmod:poss)
-- only → stories: Constraint (UD: advmod)
-- shared → stories: Predicate (Verb/Proposition - Object) (UD: relcl_verb→implicit_obj(acl:relcl))
-- stirred → emotions: Predicate (Verb/Proposition - Object) (UD: relcl_verb→implicit_obj(acl:relcl))
-- the → emotions: Constraint (UD: det)
-- the → stories: Constraint (UD: det)
-- they → stirred: Predicate (Subject - Verb) (UD: nsubj)
-
-</details>
-
----
-
-### Sentence 3
-**Input:** The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 18 | - |
-| Generated Relations | 16 | - |
-| Correct Relations | 5 | 27.8% |
-| Missing Relations | 13 | 72.2% |
-| Over-specified Relations | 11 | 68.8% |
-
-**✅ Correct Relations:**
-- a → tone: constraint
-- emotions → gave: predicate (subject - verb)
-- heartfelt → tone: constraint
-- that → surprised: predicate (subject - verb)
-- tone → surprised: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- comfort → and: connection
-- gave → tone: predicate (verb/preposition - object)
-- gave → writing: predicate (verb/preposition - object)
-- her → writing: constraint
-- love → and: connection
-- nostalgia → and: connection
-- of → comfort: predicate (verb/preposition - object)
-- of → emotion: constraint
-- of → love: predicate (verb/preposition - object)
-- of → nostalgia: predicate (verb/preposition - object)
-- surprised → her: predicate (verb/preposition - object)
-- tone → that: connection
-- writing → tone: constraint
-
-**➕ Over-specified Relations:**
-- and → love: connection
-- comfort → nostalgia: connection
-- gave → her: predicate (verb/proposition - object)
-- gave → writing: predicate (verb/proposition - object)
-- love → nostalgia: connection
-- nostalgia → emotions: constraint
-- of → nostalgia: predicate (preposition - object)
-- surprised → her: predicate (verb/proposition - object)
-- that → tone: connection
-- the → emotions: constraint
-- writing → tone: predicate (verb/proposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- a → tone: constraint
-- comfort → and: connection
-- emotions → gave: predicate (subject - verb)
-- gave → tone: predicate (verb/preposition - object)
-- gave → writing: predicate (verb/preposition - object)
-- heartfelt → tone: constraint
-- her → writing: constraint
-- love → and: connection
-- nostalgia → and: connection
-- of → comfort: predicate (verb/preposition - object)
-- of → emotion: constraint
-- of → love: predicate (verb/preposition - object)
-- of → nostalgia: predicate (verb/preposition - object)
-- surprised → her: predicate (verb/preposition - object)
-- that → surprised: predicate (subject - verb)
-- tone → surprised: predicate (subject - verb)
-- tone → that: connection
-- writing → tone: constraint
-
-**Generated Relations:**
-- The → emotions: Constraint (UD: det)
-- a → tone: Constraint (UD: det)
-- and → love: Connection (UD: cc)
-- comfort → nostalgia: Connection (UD: conj)
-- emotions → gave: Predicate (Subject - Verb) (UD: nsubj)
-- gave → her: Predicate (Verb/Proposition - Object) (UD: obj)
-- gave → writing: Predicate (Verb/Proposition - Object) (UD: xcomp)
-- heartfelt → tone: Constraint (UD: amod)
-- love → nostalgia: Connection (UD: conj)
-- nostalgia → emotions: Constraint (UD: nmod)
-- of → nostalgia: Predicate (Preposition - Object) (UD: case)
-- surprised → her: Predicate (Verb/Proposition - Object) (UD: obj)
-- that → surprised: Predicate (Subject - Verb) (UD: nsubj)
-- that → tone: Connection (UD: rel_pronoun→antecedent(acl:relcl))
-- tone → surprised: Predicate (Subject - Verb) (UD: antecedent→relcl_verb(acl:relcl))
-- writing → tone: Predicate (Verb/Proposition - Object) (UD: obj)
-
-</details>
-
----
-
-### Sentence 4
-**Input:** Her friends who read the journal found themselves moved by its sincerity and vivid details.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 16 | - |
-| Generated Relations | 15 | - |
-| Correct Relations | 6 | 37.5% |
-| Missing Relations | 10 | 62.5% |
-| Over-specified Relations | 9 | 60.0% |
-
-**✅ Correct Relations:**
-- friends → found: predicate (subject - verb)
-- friends → read: predicate (subject - verb)
-- her → friends: constraint
-- the → journal: constraint
-- vivid → details: constraint
-- who → read: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- and → vivid: connection
-- details → moved: predicate (subject - verb)
-- found → themselves: predicate (verb - object)
-- friends → who: connection
-- its → details: constraint
-- its → journal: connection
-- moved → friends: predicate (verb - object)
-- read → journal: predicate (verb - object)
-- sincerity → and: connection
-- sincerity → details: constraint
-
-**➕ Over-specified Relations:**
-- and → details: connection
-- by → sincerity: predicate (preposition - object)
-- details → sincerity: connection
-- found → moved: predicate (verb/proposition - object)
-- found → themselves: predicate (verb/proposition - object)
-- its → sincerity: constraint
-- moved → sincerity: predicate (verb/preposition - object)
-- read → journal: predicate (verb/proposition - object)
-- who → friends: connection
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- and → vivid: connection
-- details → moved: predicate (subject - verb)
-- found → themselves: predicate (verb - object)
-- friends → found: predicate (subject - verb)
-- friends → read: predicate (subject - verb)
-- friends → who: connection
-- her → friends: constraint
-- its → details: constraint
-- its → journal: connection
-- moved → friends: predicate (verb - object)
-- read → journal: predicate (verb - object)
-- sincerity → and: connection
-- sincerity → details: constraint
-- the → journal: constraint
-- vivid → details: constraint
-- who → read: predicate (subject - verb)
-
-**Generated Relations:**
-- Her → friends: Constraint (UD: nmod:poss)
-- and → details: Connection (UD: cc)
-- by → sincerity: Predicate (Preposition - Object) (UD: case)
-- details → sincerity: Connection (UD: conj)
-- found → moved: Predicate (Verb/Proposition - Object) (UD: xcomp)
-- found → themselves: Predicate (Verb/Proposition - Object) (UD: obj)
-- friends → found: Predicate (Subject - Verb) (UD: nsubj)
-- friends → read: Predicate (Subject - Verb) (UD: antecedent→relcl_verb(acl:relcl))
-- its → sincerity: Constraint (UD: nmod:poss)
-- moved → sincerity: Predicate (Verb/Preposition - Object) (UD: obl:agent)
-- read → journal: Predicate (Verb/Proposition - Object) (UD: obj)
-- the → journal: Constraint (UD: det)
-- vivid → details: Constraint (UD: amod)
-- who → friends: Connection (UD: rel_pronoun→antecedent(acl:relcl))
-- who → read: Predicate (Subject - Verb) (UD: nsubj)
-
-</details>
-
----
-
-### Sentence 5
 **Input:** Their encouragement pushed Sarah to consider turning the journal into a book.
 
 | Metric | Count | Rate |
@@ -432,7 +104,7 @@
 
 ---
 
-### Sentence 6
+### Sentence 2
 **Input:** Emily received a letter from her best friend last week.
 
 | Metric | Count | Rate |
@@ -488,7 +160,7 @@
 
 ---
 
-### Sentence 7
+### Sentence 3
 **Input:** The letter was filled with stories about their childhood adventures.
 
 | Metric | Count | Rate |
@@ -549,76 +221,7 @@
 
 ---
 
-### Sentence 8
-**Input:** She smiled as she read about the time they built a treehouse together.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 12 | - |
-| Generated Relations | 12 | - |
-| Correct Relations | 7 | 58.3% |
-| Missing Relations | 5 | 41.7% |
-| Over-specified Relations | 5 | 41.7% |
-
-**✅ Correct Relations:**
-- about → time: predicate (preposition - object)
-- as → smiled: constraint
-- she → read: predicate (subject - verb)
-- she → smiled: predicate (subject - verb)
-- the → time: constraint
-- they → built: predicate (subject - verb)
-- together → built: constraint
-
-**❌ Missing Relations:**
-- a → treehouse: constraint (determiner - noun)
-- about → read: constraint
-- as → read: predicate (verb - object)
-- built → treehouse: predicate (verb - object)
-- time → built: constraint
-
-**➕ Over-specified Relations:**
-- a → treehouse: constraint
-- as → read: predicate (conjunction - clause_verb)
-- built → treehouse: predicate (verb/proposition - object)
-- read → smiled: constraint
-- read → time: predicate (verb/preposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- a → treehouse: constraint (determiner - noun)
-- about → read: constraint
-- about → time: predicate (preposition - object)
-- as → read: predicate (verb - object)
-- as → smiled: constraint
-- built → treehouse: predicate (verb - object)
-- she → read: predicate (subject - verb)
-- she → smiled: predicate (subject - verb)
-- the → time: constraint
-- they → built: predicate (subject - verb)
-- time → built: constraint
-- together → built: constraint
-
-**Generated Relations:**
-- She → smiled: Predicate (Subject - Verb) (UD: nsubj)
-- a → treehouse: Constraint (UD: det)
-- about → time: Predicate (Preposition - Object) (UD: case)
-- as → read: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
-- as → smiled: Constraint (UD: mark→main_verb (mark))
-- built → treehouse: Predicate (Verb/Proposition - Object) (UD: obj)
-- read → smiled: Constraint (UD: advcl)
-- read → time: Predicate (Verb/Preposition - Object) (UD: obl)
-- she → read: Predicate (Subject - Verb) (UD: nsubj)
-- the → time: Constraint (UD: det)
-- they → built: Predicate (Subject - Verb) (UD: nsubj)
-- together → built: Constraint (UD: advmod)
-
-</details>
-
----
-
-### Sentence 9
+### Sentence 4
 **Input:** It was one of the happiest moments of her life.
 
 | Metric | Count | Rate |
@@ -674,7 +277,7 @@
 
 ---
 
-### Sentence 10
+### Sentence 5
 **Input:** That memory, like many others, stayed with her even today.
 
 | Metric | Count | Rate |
@@ -732,7 +335,7 @@
 
 ---
 
-### Sentence 11
+### Sentence 6
 **Input:** She was very sad yesterday.
 
 | Metric | Count | Rate |
@@ -772,54 +375,7 @@
 
 ---
 
-### Sentence 12
-**Input:** It is a lie that you love her.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 6 | - |
-| Generated Relations | 7 | - |
-| Correct Relations | 6 | 100.0% |
-| Missing Relations | 0 | 0.0% |
-| Over-specified Relations | 1 | 14.3% |
-
-**✅ Correct Relations:**
-- a → lie: constraint
-- is → lie: predicate (verb/proposition - object)
-- it → is: predicate (subject - verb)
-- love → her: predicate (verb/proposition - object)
-- that → lie: connection
-- you → love: predicate (subject - verb)
-
-**➕ Over-specified Relations:**
-- love → that: predicate (verb/proposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- a → lie: constraint
-- is → lie: predicate (verb/proposition - object)
-- it → is: predicate (subject - verb)
-- love → her: predicate (verb/proposition - object)
-- that → lie: connection
-- you → love: predicate (subject - verb)
-
-**Generated Relations:**
-- It → is: Predicate (Subject - Verb) (UD: nsubj→cop)
-- a → lie: Constraint (UD: det)
-- is → lie: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
-- love → her: Predicate (Verb/Proposition - Object) (UD: obj)
-- love → that: Predicate (Verb/Proposition - Object) (UD: obj)
-- love → that: Predicate (Verb/Proposition - Object) (UD: relcl_verb→obj_pronoun(acl:relcl))
-- that → lie: Connection (UD: rel_pronoun→antecedent(acl:relcl))
-- you → love: Predicate (Subject - Verb) (UD: nsubj)
-
-</details>
-
----
-
-### Sentence 13
+### Sentence 7
 **Input:** That truth broke her heart again.
 
 | Metric | Count | Rate |
@@ -858,7 +414,7 @@
 
 ---
 
-### Sentence 14
+### Sentence 8
 **Input:** Nobody told her the full story.
 
 | Metric | Count | Rate |
@@ -905,64 +461,7 @@
 
 ---
 
-### Sentence 15
-**Input:** She waited by the window, hoping you would return.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 9 | - |
-| Generated Relations | 8 | - |
-| Correct Relations | 5 | 55.6% |
-| Missing Relations | 4 | 44.4% |
-| Over-specified Relations | 3 | 37.5% |
-
-**✅ Correct Relations:**
-- by → window: predicate (preposition - object)
-- hoping → waited: constraint
-- she → waited: predicate (subject - verb)
-- the → window: constraint
-- you → return: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- by → waited: constraint
-- hoping → return: predicate (verb - object)
-- she → hoping: predicate (subject - verb)
-- would → return: constraint (auxiliary - main verb)
-
-**➕ Over-specified Relations:**
-- hoping → return: predicate (verb/proposition - object)
-- waited → window: predicate (verb/preposition - object)
-- would → return: constraint
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- by → waited: constraint
-- by → window: predicate (preposition - object)
-- hoping → return: predicate (verb - object)
-- hoping → waited: constraint
-- she → hoping: predicate (subject - verb)
-- she → waited: predicate (subject - verb)
-- the → window: constraint
-- would → return: constraint (auxiliary - main verb)
-- you → return: predicate (subject - verb)
-
-**Generated Relations:**
-- She → waited: Predicate (Subject - Verb) (UD: nsubj)
-- by → window: Predicate (Preposition - Object) (UD: case)
-- hoping → return: Predicate (Verb/Proposition - Object) (UD: ccomp)
-- hoping → waited: Constraint (UD: advcl)
-- the → window: Constraint (UD: det)
-- waited → window: Predicate (Verb/Preposition - Object) (UD: obl)
-- would → return: Constraint (UD: aux)
-- you → return: Predicate (Subject - Verb) (UD: nsubj)
-
-</details>
-
----
-
-### Sentence 16
+### Sentence 9
 **Input:** But it never happened.
 
 | Metric | Count | Rate |
@@ -995,7 +494,7 @@
 
 ---
 
-### Sentence 17
+### Sentence 10
 **Input:** The pain, like before, settled deep within her.
 
 | Metric | Count | Rate |
@@ -1048,79 +547,7 @@
 
 ---
 
-### Sentence 18
-**Input:** Design a vacation house that can fly easily from one location to another.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 13 | - |
-| Generated Relations | 11 | - |
-| Correct Relations | 4 | 30.8% |
-| Missing Relations | 9 | 69.2% |
-| Over-specified Relations | 7 | 63.6% |
-
-**✅ Correct Relations:**
-- a → house: constraint
-- can → fly: constraint
-- one → location: constraint
-- that → fly: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- another → location: constraint
-- design → house: predicate (verb/preposition - object)
-- from → fly: constraint
-- from → location: predicate (verb/preposition - object)
-- from → to: connection
-- house → that: connection
-- to → fly: constraint
-- to → location: predicate (verb/preposition - object)
-- vacation → house: constraint
-
-**➕ Over-specified Relations:**
-- design → house: predicate (verb/proposition - object)
-- easily → fly: constraint
-- fly → location: predicate (verb/preposition - object)
-- from → location: predicate (preposition - object)
-- house → fly: predicate (subject - verb)
-- house → vacation: constraint
-- that → house: connection
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- a → house: constraint
-- another → location: constraint
-- can → fly: constraint
-- design → house: predicate (verb/preposition - object)
-- from → fly: constraint
-- from → location: predicate (verb/preposition - object)
-- from → to: connection
-- house → that: connection
-- one → location: constraint
-- that → fly: predicate (subject - verb)
-- to → fly: constraint
-- to → location: predicate (verb/preposition - object)
-- vacation → house: constraint
-
-**Generated Relations:**
-- Design → house: Predicate (Verb/Proposition - Object) (UD: obj)
-- a → house: Constraint (UD: det)
-- can → fly: Constraint (UD: aux)
-- easily → fly: Constraint (UD: advmod)
-- fly → location: Predicate (Verb/Preposition - Object) (UD: obl)
-- from → location: Predicate (Preposition - Object) (UD: case)
-- house → fly: Predicate (Subject - Verb) (UD: antecedent→relcl_verb(acl:relcl))
-- house → vacation: Constraint (UD: compound)
-- one → location: Constraint (UD: nummod)
-- that → fly: Predicate (Subject - Verb) (UD: nsubj)
-- that → house: Connection (UD: rel_pronoun→antecedent(acl:relcl))
-
-</details>
-
----
-
-### Sentence 19
+### Sentence 11
 **Input:** Upscale 5 MW wind turbine_1 to 10 MW wind turbine_2.
 
 | Metric | Count | Rate |
@@ -1178,79 +605,7 @@
 
 ---
 
-### Sentence 20
-**Input:** Design a web system to manage the editorial workflow of the JIDPS journal.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 12 | - |
-| Generated Relations | 13 | - |
-| Correct Relations | 7 | 58.3% |
-| Missing Relations | 5 | 41.7% |
-| Over-specified Relations | 6 | 46.2% |
-
-**✅ Correct Relations:**
-- a → system: constraint
-- design → system: predicate (verb/proposition - object)
-- editorial → workflow: constraint
-- manage → workflow: predicate (verb/proposition - object)
-- the → journal: constraint
-- the → workflow: constraint
-- to → design: constraint
-
-**❌ Missing Relations:**
-- jidps → journal: constraint
-- of → journal: predicate (verb/proposition - object)
-- of → workflow: constraint
-- to → manage: predicate (verb/proposition - object)
-- web → system: constraint
-
-**➕ Over-specified Relations:**
-- journal → jidps: constraint
-- journal → workflow: constraint
-- manage → design: constraint
-- of → journal: predicate (preposition - object)
-- system → web: constraint
-- to → manage: predicate (preposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- a → system: constraint
-- design → system: predicate (verb/proposition - object)
-- editorial → workflow: constraint
-- jidps → journal: constraint
-- manage → workflow: predicate (verb/proposition - object)
-- of → journal: predicate (verb/proposition - object)
-- of → workflow: constraint
-- the → journal: constraint
-- the → workflow: constraint
-- to → design: constraint
-- to → manage: predicate (verb/proposition - object)
-- web → system: constraint
-
-**Generated Relations:**
-- Design → system: Predicate (Verb/Proposition - Object) (UD: obj)
-- a → system: Constraint (UD: det)
-- editorial → workflow: Constraint (UD: amod)
-- journal → JIDPS: Constraint (UD: compound)
-- journal → workflow: Constraint (UD: nmod)
-- manage → Design: Constraint (UD: advcl)
-- manage → workflow: Predicate (Verb/Proposition - Object) (UD: obj)
-- of → journal: Predicate (Preposition - Object) (UD: case)
-- system → web: Constraint (UD: compound)
-- the → journal: Constraint (UD: det)
-- the → workflow: Constraint (UD: det)
-- to → Design: Constraint (UD: mark(to)→main_verb_of(advcl))
-- to → manage: Predicate (Preposition - Object) (UD: mark)
-- to → manage: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
-
-</details>
-
----
-
-### Sentence 21
+### Sentence 12
 **Input:** Driver needs to stop and slow down a vehicle effectively and efficiently.
 
 | Metric | Count | Rate |

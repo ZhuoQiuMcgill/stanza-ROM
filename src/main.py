@@ -12,71 +12,26 @@ from tqdm import tqdm
 from rom_generator import ROMGenerator
 from utils import evaluate_rom, read_txt_lines
 from pos_analysis import analyze_pos_ud_rom_relations, analyze_multiple_pos_ud_rom_relations
+from reformat_benchmark import reformat_benchmark
 
-
-def main():
-    """
-    Main function demonstrating ROM analysis with example sentences.
-    """
-    # Initialize the ROM generator
-    print("Initializing ROM Generator...")
-    rom_gen = ROMGenerator(lang='en', verbose=False)
-    print("ROM Generator initialized successfully.\n")
-
-    # Test sentences
-    test_sentences = [
-        "I stayed home because it was raining.",
-        "The man who lives next door is friendly.",
-        "She is a talented musician.",
-        "The book on the table belongs to me.",
-        "They will arrive tomorrow morning."
-    ]
-
-    # Analyze each sentence
-    for i, sentence in enumerate(test_sentences, 1):
-        print("=" * 60)
-        print(f"Example {i}:")
-        print(f"Input: {sentence}")
-        print("\nROM Relations:")
-
-        try:
-            relations = rom_gen.analyze_sentence(sentence)
-
-            if relations:
-                rom_gen.print_relations(relations)
-            else:
-                print("  No ROM relations found.")
-
-        except Exception as e:
-            print(f"  Error analyzing sentence: {e}")
-
-        print()
-
-    print("=" * 60)
-    print("Analysis complete!")
+input_dir = os.path.join(os.getcwd(), 'data', 'inputs')
+output_dir = os.path.join(os.getcwd(), 'data', 'outputs')
+benchmark_dir = os.path.join(os.getcwd(), 'data', 'benchmark')
 
 
 def comparison():
-    input_dir = os.path.join(os.getcwd(), 'data', 'inputs')
-    output_dir = os.path.join(os.getcwd(), 'data', 'outputs')
-    benchmark_dir = os.path.join(os.getcwd(), 'data', 'benchmark')
-
     input_list = [
-        'adjective_clauses_sentences_input.txt',
-        'adverb_clauses_sentence_input.txt',
         'basic_sentences_input.txt',
         'compound_sentences_input.txt',
-        'noun_clauses_sentences_input.txt'
+        'sbar_sentences_input.txt'
     ]
     benchmark_list = [
-        'Adjective clauses.md',
-        'Adverb clauses.md',
         'Basic Sentences.md',
         'Compound Sentences.md',
-        'Noun clauses.md'
+        'SBAR Sentences.md'
     ]
     output_list = [
-        'ADJ', 'ADV', 'BASIC', 'COMP', 'NOUN'
+        'BASIC', 'COMP', 'SBAR'
     ]
 
     for i, input_file_name in enumerate(tqdm(input_list)):
@@ -90,10 +45,6 @@ def comparison():
 
 
 def analys_data():
-    input_dir = os.path.join(os.getcwd(), 'data', 'inputs')
-    output_dir = os.path.join(os.getcwd(), 'data', 'outputs')
-    benchmark_dir = os.path.join(os.getcwd(), 'data', 'benchmark')
-
     input_list = [
         'adjective_clauses_sentences_input.txt',
         'adverb_clauses_sentence_input.txt',
@@ -122,9 +73,6 @@ def analys_data():
 
 
 def batch_analys():
-    input_dir = os.path.join(os.getcwd(), 'data', 'inputs')
-    output_dir = os.path.join(os.getcwd(), 'data', 'outputs')
-    benchmark_dir = os.path.join(os.getcwd(), 'data', 'benchmark')
     input_list = [
         'adjective_clauses_sentences_input.txt',
         'adverb_clauses_sentence_input.txt',
@@ -144,6 +92,27 @@ def batch_analys():
                                           input_dir=input_dir,
                                           benchmark_dir=benchmark_dir,
                                           save=os.path.join(output_dir, 'combined_report.md'))
+
+
+def reformat():
+    input_list = [
+        'adjective_clauses_sentences_input.txt',
+        'adverb_clauses_sentence_input.txt',
+        'basic_sentences_input.txt',
+        'compound_sentences_input.txt',
+        'noun_clauses_sentences_input.txt'
+    ]
+    benchmark_list = [
+        'Adjective clauses.md',
+        'Adverb clauses.md',
+        'Basic Sentences.md',
+        'Compound Sentences.md',
+        'Noun clauses.md'
+    ]
+    reformat_benchmark(input_list=input_list,
+                       benchmark_list=benchmark_list,
+                       input_dir=input_dir,
+                       benchmark_dir=benchmark_dir)
 
 
 if __name__ == "__main__":

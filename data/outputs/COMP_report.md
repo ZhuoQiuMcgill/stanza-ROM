@@ -1,8 +1,8 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-23 14:13:42
-**Total Sentences:** 23
-**Processed Sentences:** 23
+**Date:** 2025-05-23 15:26:49
+**Total Sentences:** 14
+**Processed Sentences:** 14
 **Skipped Sentences:** 0
 
 ## 📊 Overall Performance Metrics
@@ -10,19 +10,19 @@
 ### Summary Statistics
 | Metric | Value |
 |--------|-------|
-| Total Sentences Processed | 23 |
-| Total Expected Relations | 223 |
-| Total Generated Relations | 193 |
-| Total Correct Relations | 60 |
-| Total Missing Relations | 163 |
-| Total Over-specified Relations | 133 |
+| Total Sentences Processed | 14 |
+| Total Expected Relations | 131 |
+| Total Generated Relations | 110 |
+| Total Correct Relations | 39 |
+| Total Missing Relations | 92 |
+| Total Over-specified Relations | 71 |
 
 ### Overall Performance
 | Metric | Percentage |
 |--------|------------|
-| **Correct Rate** | **26.9%** |
-| **Missing Rate** | **73.1%** |
-| **Over-specification Rate** | **68.9%** |
+| **Correct Rate** | **29.8%** |
+| **Missing Rate** | **70.2%** |
+| **Over-specification Rate** | **64.5%** |
 
 ### Performance Interpretation
 **Overall Performance:** 🔴 Needs Improvement
@@ -30,9 +30,9 @@
 ### Additional Metrics
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Precision | 31.1% | Percentage of generated relations that are correct |
-| Recall | 26.9% | Percentage of expected relations that were found |
-| F1-Score | 28.8% | Harmonic mean of precision and recall |
+| Precision | 35.5% | Percentage of generated relations that are correct |
+| Recall | 29.8% | Percentage of expected relations that were found |
+| F1-Score | 32.4% | Harmonic mean of precision and recall |
 
 ---
 
@@ -589,142 +589,6 @@
 ---
 
 ### Sentence 10
-**Input:** I don't know whether he’ll call or text.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 11 | - |
-| Generated Relations | 9 | - |
-| Correct Relations | 2 | 18.2% |
-| Missing Relations | 9 | 81.8% |
-| Over-specified Relations | 7 | 77.8% |
-
-**✅ Correct Relations:**
-- he → call: predicate (subject - verb)
-- i → know: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- don't → know: constraint
-- he → text: predicate (subject - verb)
-- or → know: constraint
-- or → text: predicate (verb/preposition - object)
-- whether → call: predicate (verb/preposition - object)
-- whether → know: constraint
-- whether → or: connection
-- will → call: constraint
-- will → text: constraint
-
-**➕ Over-specified Relations:**
-- do → know: constraint
-- know → call: predicate (verb/proposition - object)
-- n't → know: constraint
-- or → text: connection
-- text → call: connection
-- whether → call: connection
-- ’ll → call: constraint
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- don't → know: constraint
-- he → call: predicate (subject - verb)
-- he → text: predicate (subject - verb)
-- i → know: predicate (subject - verb)
-- or → know: constraint
-- or → text: predicate (verb/preposition - object)
-- whether → call: predicate (verb/preposition - object)
-- whether → know: constraint
-- whether → or: connection
-- will → call: constraint
-- will → text: constraint
-
-**Generated Relations:**
-- I → know: Predicate (Subject - Verb) (UD: nsubj)
-- do → know: Constraint (UD: aux)
-- he → call: Predicate (Subject - Verb) (UD: nsubj)
-- know → call: Predicate (Verb/Proposition - Object) (UD: ccomp)
-- n't → know: Constraint (UD: advmod)
-- or → text: Connection (UD: cc)
-- text → call: Connection (UD: conj)
-- whether → call: Connection (UD: mark)
-- ’ll → call: Constraint (UD: aux)
-
-</details>
-
----
-
-### Sentence 11
-**Input:** She’s unsure whether to accept the job or continue studying.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 12 | - |
-| Generated Relations | 9 | - |
-| Correct Relations | 1 | 8.3% |
-| Missing Relations | 11 | 91.7% |
-| Over-specified Relations | 8 | 88.9% |
-
-**✅ Correct Relations:**
-- the → job: constraint
-
-**❌ Missing Relations:**
-- accept → job: predicate (verb/preposition - object)
-- continue → studying: predicate (verb/preposition - object)
-- is → unsure: predicate (verb/preposition - object)
-- or → continue: predicate (verb/preposition - object)
-- or → is: constraint
-- she → is: predicate (subject - verb)
-- to → accept: predicate (verb/preposition - object)
-- to → continue: predicate (verb/preposition - object)
-- whether → accept: predicate (verb/preposition - object)
-- whether → is: constraint
-- whether → or: connection
-
-**➕ Over-specified Relations:**
-- accept → job: predicate (verb/proposition - object)
-- continue → accept: connection
-- continue → studying: predicate (verb/proposition - object)
-- or → continue: connection
-- she → ’s: predicate (subject - verb)
-- to → accept: predicate (preposition - object)
-- whether → accept: connection
-- ’s → unsure: predicate (verb/proposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- accept → job: predicate (verb/preposition - object)
-- continue → studying: predicate (verb/preposition - object)
-- is → unsure: predicate (verb/preposition - object)
-- or → continue: predicate (verb/preposition - object)
-- or → is: constraint
-- she → is: predicate (subject - verb)
-- the → job: constraint
-- to → accept: predicate (verb/preposition - object)
-- to → continue: predicate (verb/preposition - object)
-- whether → accept: predicate (verb/preposition - object)
-- whether → is: constraint
-- whether → or: connection
-
-**Generated Relations:**
-- She → ’s: Predicate (Subject - Verb) (UD: nsubj→cop)
-- accept → job: Predicate (Verb/Proposition - Object) (UD: obj)
-- continue → accept: Connection (UD: conj)
-- continue → studying: Predicate (Verb/Proposition - Object) (UD: xcomp)
-- or → continue: Connection (UD: cc)
-- the → job: Constraint (UD: det)
-- to → accept: Predicate (Preposition - Object) (UD: mark)
-- to → accept: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
-- whether → accept: Connection (UD: mark)
-- ’s → unsure: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
-
-</details>
-
----
-
-### Sentence 12
 **Input:** She’s as tall as her brother.
 
 | Metric | Count | Rate |
@@ -784,7 +648,7 @@
 
 ---
 
-### Sentence 13
+### Sentence 11
 **Input:** He ran as quickly as a professional athlete.
 
 | Metric | Count | Rate |
@@ -845,69 +709,7 @@
 
 ---
 
-### Sentence 14
-**Input:** This task is not as easy as it looks.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 10 | - |
-| Generated Relations | 8 | - |
-| Correct Relations | 3 | 30.0% |
-| Missing Relations | 7 | 70.0% |
-| Over-specified Relations | 5 | 62.5% |
-
-**✅ Correct Relations:**
-- it → looks: predicate (subject - verb)
-- task → is: predicate (subject - verb)
-- this → task: constraint
-
-**❌ Missing Relations:**
-- as → as (2): connection
-- as → easy: predicate (verb/preposition - object)
-- as → is: constraint
-- as (2) → easy: constraint
-- as (2) → looks: predicate (verb/preposition - object)
-- is → easy: predicate (verb/preposition - object)
-- not → easy: constraint
-
-**➕ Over-specified Relations:**
-- as → as: connection
-- as → easy: constraint
-- as → easy: predicate (verb/proposition - object)
-- as → looks: predicate (conjunction - clause_verb)
-- is → easy: predicate (verb/proposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- as → as (2): connection
-- as → easy: predicate (verb/preposition - object)
-- as → is: constraint
-- as (2) → easy: constraint
-- as (2) → looks: predicate (verb/preposition - object)
-- is → easy: predicate (verb/preposition - object)
-- it → looks: predicate (subject - verb)
-- not → easy: constraint
-- task → is: predicate (subject - verb)
-- this → task: constraint
-
-**Generated Relations:**
-- This → task: Constraint (UD: det)
-- as → as: Connection (UD: as...as_correlative)
-- as → easy: Constraint (UD: advmod)
-- as → easy: Predicate (Verb/Proposition - Object) (UD: as→adj/adv)
-- as → easy: Constraint (UD: mark→main_verb (mark))
-- as → looks: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
-- is → easy: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
-- it → looks: Predicate (Subject - Verb) (UD: nsubj)
-- task → is: Predicate (Subject - Verb) (UD: nsubj→cop)
-
-</details>
-
----
-
-### Sentence 15
+### Sentence 12
 **Input:** He doesn’t eat as much chocolate as his brother.
 
 | Metric | Count | Rate |
@@ -975,393 +777,7 @@
 
 ---
 
-### Sentence 16
-**Input:** She enjoys painting as much as she enjoys dancing.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 10 | - |
-| Generated Relations | 7 | - |
-| Correct Relations | 1 | 10.0% |
-| Missing Relations | 9 | 90.0% |
-| Over-specified Relations | 6 | 85.7% |
-
-**✅ Correct Relations:**
-- she → enjoys: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- as → as (2): connection
-- as → enjoys: constraint
-- as → much: predicate (verb/preposition - object)
-- as (2) → enjoys: predicate (verb/preposition - object)
-- as (2) → much: constraint
-- enjoys → dancing: predicate (verb/preposition - object) (second clause)
-- enjoys → painting: predicate (verb/preposition - object)
-- much → painting: constraint
-- she → enjoys: predicate (subject - verb) (second clause)
-
-**➕ Over-specified Relations:**
-- as → as: connection
-- as → enjoys: predicate (conjunction - clause_verb)
-- as → much: constraint
-- as → much: predicate (verb/proposition - object)
-- enjoys → dancing: predicate (verb/proposition - object)
-- enjoys → painting: predicate (verb/proposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- as → as (2): connection
-- as → enjoys: constraint
-- as → much: predicate (verb/preposition - object)
-- as (2) → enjoys: predicate (verb/preposition - object)
-- as (2) → much: constraint
-- enjoys → dancing: predicate (verb/preposition - object) (second clause)
-- enjoys → painting: predicate (verb/preposition - object)
-- much → painting: constraint
-- she → enjoys: predicate (subject - verb)
-- she → enjoys: predicate (subject - verb) (second clause)
-
-**Generated Relations:**
-- She → enjoys: Predicate (Subject - Verb) (UD: nsubj)
-- as → as: Connection (UD: as...as_correlative)
-- as → enjoys: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
-- as → much: Constraint (UD: advmod)
-- as → much: Predicate (Verb/Proposition - Object) (UD: as→adj/adv)
-- as → much: Constraint (UD: mark→main_verb (mark))
-- enjoys → dancing: Predicate (Verb/Proposition - Object) (UD: obj)
-- enjoys → painting: Predicate (Verb/Proposition - Object) (UD: obj)
-- she → enjoys: Predicate (Subject - Verb) (UD: nsubj)
-
-</details>
-
----
-
-### Sentence 17
-**Input:** Just as the moon affects the tides, so does the sun influence them.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 12 | - |
-| Generated Relations | 13 | - |
-| Correct Relations | 6 | 50.0% |
-| Missing Relations | 6 | 50.0% |
-| Over-specified Relations | 7 | 53.8% |
-
-**✅ Correct Relations:**
-- does → influence: constraint
-- moon → affects: predicate (subject - verb)
-- sun → influence: predicate (subject - verb)
-- the → moon: constraint
-- the → sun: constraint
-- the → tides: constraint
-
-**❌ Missing Relations:**
-- affects → tides: predicate (verb/preposition - object)
-- as → affects: constraint
-- as → so: connection
-- influence → them: predicate (verb/preposition - object)
-- just → as: constraint
-- so → influence: predicate (verb/preposition - object)
-
-**➕ Over-specified Relations:**
-- affects → influence: constraint
-- affects → tides: predicate (verb/proposition - object)
-- as → affects: predicate (conjunction - clause_verb)
-- as → influence: constraint
-- influence → them: predicate (verb/proposition - object)
-- just → affects: constraint
-- so → influence: constraint
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- affects → tides: predicate (verb/preposition - object)
-- as → affects: constraint
-- as → so: connection
-- does → influence: constraint
-- influence → them: predicate (verb/preposition - object)
-- just → as: constraint
-- moon → affects: predicate (subject - verb)
-- so → influence: predicate (verb/preposition - object)
-- sun → influence: predicate (subject - verb)
-- the → moon: constraint
-- the → sun: constraint
-- the → tides: constraint
-
-**Generated Relations:**
-- Just → affects: Constraint (UD: advmod)
-- affects → influence: Constraint (UD: advcl)
-- affects → tides: Predicate (Verb/Proposition - Object) (UD: obj)
-- as → affects: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
-- as → influence: Constraint (UD: mark→main_verb (mark))
-- does → influence: Constraint (UD: aux)
-- influence → them: Predicate (Verb/Proposition - Object) (UD: obj)
-- moon → affects: Predicate (Subject - Verb) (UD: nsubj)
-- so → influence: Constraint (UD: advmod)
-- sun → influence: Predicate (Subject - Verb) (UD: nsubj)
-- the → moon: Constraint (UD: det)
-- the → sun: Constraint (UD: det)
-- the → tides: Constraint (UD: det)
-
-</details>
-
----
-
-### Sentence 18
-**Input:** Just as honesty builds trust, so does kindness.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 9 | - |
-| Generated Relations | 8 | - |
-| Correct Relations | 1 | 11.1% |
-| Missing Relations | 8 | 88.9% |
-| Over-specified Relations | 7 | 87.5% |
-
-**✅ Correct Relations:**
-- honesty → builds: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- as → builds: constraint
-- as → so: connection
-- builds → trust: predicate (verb/preposition - object)
-- builds → trust: predicate (verb/preposition - object) (implied)
-- does → builds: constraint
-- just → so: constraint
-- kindness → builds: predicate (subject - verb)
-- so → builds: predicate (verb/preposition - object)
-
-**➕ Over-specified Relations:**
-- as → builds: predicate (conjunction - clause_verb)
-- as → does: constraint
-- builds → does: constraint
-- builds → trust: predicate (verb/proposition - object)
-- does → kindness: predicate (verb/proposition - object)
-- just → builds: constraint
-- so → does: constraint
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- as → builds: constraint
-- as → so: connection
-- builds → trust: predicate (verb/preposition - object)
-- builds → trust: predicate (verb/preposition - object) (implied)
-- does → builds: constraint
-- honesty → builds: predicate (subject - verb)
-- just → so: constraint
-- kindness → builds: predicate (subject - verb)
-- so → builds: predicate (verb/preposition - object)
-
-**Generated Relations:**
-- Just → builds: Constraint (UD: advmod)
-- as → builds: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
-- as → does: Constraint (UD: mark→main_verb (mark))
-- builds → does: Constraint (UD: advcl)
-- builds → trust: Predicate (Verb/Proposition - Object) (UD: obj)
-- does → kindness: Predicate (Verb/Proposition - Object) (UD: obj)
-- honesty → builds: Predicate (Subject - Verb) (UD: nsubj)
-- so → does: Constraint (UD: advmod)
-
-</details>
-
----
-
-### Sentence 19
-**Input:** Just as we need water to survive, so do plants need sunlight.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 11 | - |
-| Generated Relations | 13 | - |
-| Correct Relations | 4 | 36.4% |
-| Missing Relations | 7 | 63.6% |
-| Over-specified Relations | 9 | 69.2% |
-
-**✅ Correct Relations:**
-- as → need: constraint
-- do → need: constraint
-- plants → need: predicate (subject - verb)
-- we → need: predicate (subject - verb)
-
-**❌ Missing Relations:**
-- as → so: connection
-- just → so: constraint
-- need → sunlight: predicate (verb/preposition - object)
-- need → water: predicate (verb/preposition - object)
-- so → need: predicate (verb/preposition - object)
-- to → survive: constraint
-- water → survive: constraint
-
-**➕ Over-specified Relations:**
-- as → need: predicate (conjunction - clause_verb)
-- just → need: constraint
-- need → need: constraint
-- need → sunlight: predicate (verb/proposition - object)
-- need → survive: predicate (verb/proposition - object)
-- need → water: predicate (verb/proposition - object)
-- so → need: constraint
-- to → need: constraint
-- to → survive: predicate (preposition - object)
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- as → need: constraint
-- as → so: connection
-- do → need: constraint
-- just → so: constraint
-- need → sunlight: predicate (verb/preposition - object)
-- need → water: predicate (verb/preposition - object)
-- plants → need: predicate (subject - verb)
-- so → need: predicate (verb/preposition - object)
-- to → survive: constraint
-- water → survive: constraint
-- we → need: predicate (subject - verb)
-
-**Generated Relations:**
-- Just → need: Constraint (UD: advmod)
-- as → need: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
-- as → need: Constraint (UD: mark→main_verb (mark))
-- do → need: Constraint (UD: aux)
-- need → need: Constraint (UD: advcl)
-- need → sunlight: Predicate (Verb/Proposition - Object) (UD: obj)
-- need → survive: Predicate (Verb/Proposition - Object) (UD: xcomp)
-- need → water: Predicate (Verb/Proposition - Object) (UD: obj)
-- plants → need: Predicate (Subject - Verb) (UD: nsubj)
-- so → need: Constraint (UD: advmod)
-- to → need: Constraint (UD: mark(to)→main_verb_of(xcomp))
-- to → survive: Predicate (Preposition - Object) (UD: mark)
-- to → survive: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
-- we → need: Predicate (Subject - Verb) (UD: nsubj)
-
-</details>
-
----
-
-### Sentence 20
-**Input:** No sooner had she sat down than the phone rang.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 8 | - |
-| Generated Relations | 9 | - |
-| Correct Relations | 0 | 0.0% |
-| Missing Relations | 8 | 100.0% |
-| Over-specified Relations | 9 | 100.0% |
-
-**❌ Missing Relations:**
-- had → arrived: constraint
-- it → started: predicate (subject - verb)
-- no sooner → arrived: constraint
-- no sooner → than: connection
-- than → started: predicate (verb/preposition - object)
-- to → rain: predicate (verb/preposition - object)
-- to → started: constraint
-- we → arrived: predicate (subject - verb)
-
-**➕ Over-specified Relations:**
-- had → sat: constraint
-- phone → rang: predicate (subject - verb)
-- rang → sat: constraint
-- sat → down: constraint
-- she → sat: predicate (subject - verb)
-- sooner → sat: constraint
-- than → rang: predicate (conjunction - clause_verb)
-- than → sat: constraint
-- the → phone: constraint
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- had → arrived: constraint
-- it → started: predicate (subject - verb)
-- no sooner → arrived: constraint
-- no sooner → than: connection
-- than → started: predicate (verb/preposition - object)
-- to → rain: predicate (verb/preposition - object)
-- to → started: constraint
-- we → arrived: predicate (subject - verb)
-
-**Generated Relations:**
-- had → sat: Constraint (UD: aux)
-- phone → rang: Predicate (Subject - Verb) (UD: nsubj)
-- rang → sat: Constraint (UD: advcl)
-- sat → down: Constraint (UD: compound:prt)
-- she → sat: Predicate (Subject - Verb) (UD: nsubj)
-- sooner → sat: Constraint (UD: advmod)
-- than → rang: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
-- than → sat: Constraint (UD: mark→main_verb (mark))
-- the → phone: Constraint (UD: det)
-
-</details>
-
----
-
-### Sentence 21
-**Input:** I’d rather read a book than watch TV.
-
-| Metric | Count | Rate |
-|--------|-------|------|
-| Expected Relations | 9 | - |
-| Generated Relations | 7 | - |
-| Correct Relations | 3 | 33.3% |
-| Missing Relations | 6 | 66.7% |
-| Over-specified Relations | 4 | 57.1% |
-
-**✅ Correct Relations:**
-- a → book: constraint
-- i → read: predicate (subject - verb)
-- rather → read: constraint
-
-**❌ Missing Relations:**
-- i → watch: predicate (subject - verb)
-- rather → than: connection
-- read → book: predicate (verb/preposition - object)
-- than → watch: predicate (verb/preposition - object)
-- watch → tv: predicate (verb/preposition - object)
-- would → read: constraint
-
-**➕ Over-specified Relations:**
-- read → book: predicate (verb/proposition - object)
-- watch → read: constraint
-- watch → tv: predicate (verb/proposition - object)
-- ’d → read: constraint
-
-<details>
-<summary>Detailed Comparison</summary>
-
-**Expected Relations:**
-- a → book: constraint
-- i → read: predicate (subject - verb)
-- i → watch: predicate (subject - verb)
-- rather → read: constraint
-- rather → than: connection
-- read → book: predicate (verb/preposition - object)
-- than → watch: predicate (verb/preposition - object)
-- watch → tv: predicate (verb/preposition - object)
-- would → read: constraint
-
-**Generated Relations:**
-- I → read: Predicate (Subject - Verb) (UD: nsubj)
-- a → book: Constraint (UD: det)
-- rather → read: Constraint (UD: advmod)
-- read → book: Predicate (Verb/Proposition - Object) (UD: obj)
-- watch → TV: Predicate (Verb/Proposition - Object) (UD: obj)
-- watch → read: Constraint (UD: advcl)
-- ’d → read: Constraint (UD: aux)
-
-</details>
-
----
-
-### Sentence 22
+### Sentence 13
 **Input:** He chose to walk rather than drive.
 
 | Metric | Count | Rate |
@@ -1418,7 +834,7 @@
 
 ---
 
-### Sentence 23
+### Sentence 14
 **Input:** Rather than complain, she took action.
 
 | Metric | Count | Rate |

@@ -18,74 +18,7 @@
     - journal → preserve: Predicate (subject - verb)
     - them → memories: Connection
 
-### Sentence 2:
-
-* **Input**
-    - She described not only the stories her grandmother shared, but also the emotions they stirred.
-* **Output**
-    - she → described: Predicate (subject - verb)
-    - described → stories: Predicate (verb/preposition - object)
-    - the → stories: Constraint
-    - her → grandmother: Constraint
-    - grandmother → shared: Predicate (subject - verb)
-    - shared → stories: Predicate (verb/preposition - object)
-    - described → emotions: Predicate (verb/preposition - object)
-    - the → emotions: Constraint
-    - stirred → emotions: Predicate (verb/preposition - object)
-    - they → stirred: Predicate (subject - verb)
-    - not only → described: constraint
-    - not only → stories: Predicate (verb/preposition - object)
-    - but also → described: constraint
-    - but also → emotions: Predicate (verb/preposition - object)
-
-### Sentence 3:
-
-* **Input**
-    - The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her.
-* **Output**
-    - emotions → gave: Predicate (subject - verb)
-    - gave → writing: Predicate (verb/preposition - object)
-    - her → writing: constraint
-    - gave → tone: Predicate (verb/preposition - object)
-    - a→ tone: Constraint
-    - writing → tone: Constraint
-    - heartfelt →tone: Constraint
-    - tone → that: Connection
-    - tone → surprised: Predicate (subject - verb)
-    - that → surprised: Predicate (subject - verb)
-    - surprised → her: Predicate (verb/preposition - object)
-    - of → emotion: constraint
-    - of → nostalgia: Predicate (verb/preposition - object)
-    - of → comfort: Predicate (verb/preposition - object)
-    - of → love: Predicate (verb/preposition - object)
-    - nostalgia → and: Connection
-    - comfort → and: Connection
-    - love → and: Connection
-
-### Sentence 4:
-
-* **Input**
-    - Her friends who read the journal found themselves moved by its sincerity and vivid details.
-* **Output**
-    - Her → friends: Constraint
-    - friends → found: Predicate (subject - verb)
-    - found → themselves: Predicate (verb - object)
-    - moved→ friends: Predicate (verb - object)
-    - details →moved: Predicate (subject - verb)
-    - its → details: Constraint
-    - sincerity → and: Connection
-    - sincerity → details: Constraint
-    - and → vivid: connection
-    - vivid → details: Constraint
-    - who → read: Predicate (subject - verb)
-    - friends →read: Predicate (subject - verb)
-    - friends →who: connection
-    - read → journal: Predicate (verb - object)
-    - the → journal: Constraint
-    - its →journal: connection
-
-### Sentence 5:
-
+### Sentence 1:
 * **Input**
     - Their encouragement pushed Sarah to consider turning the journal into a book.
 * **Output**
@@ -101,8 +34,7 @@
     - into → book: Predicate (preposition - object)
     - a → book: Constraint
 
-### Sentence 6:
-
+### Sentence 2:
 * **Input**
     - Emily received a letter from her best friend last week.
 * **Output**
@@ -114,8 +46,7 @@
     - week → received: Constraint
     - last→week: Constraint
 
-### Sentence 7:
-
+### Sentence 3:
 * **Input**
     - The letter was filled with stories about their childhood adventures.
 * **Output**
@@ -129,26 +60,7 @@
     - their → childhood: Constraint
     - childhood → adventures: Constraint
 
-### Sentence 8:
-
-* **Input**
-    - She smiled as she read about the time they built a treehouse together.
-* **Output**
-    - She → smiled: Predicate (subject - verb)
-    - she → read: Predicate (subject - verb)
-    - about → read: constraint
-    - about → time: Predicate (preposition - object)
-    - The → time: constraint
-    - time → built: constraint
-    - they → built: Predicate (subject - verb)
-    - built → treehouse: Predicate (verb - object)
-    - together → built: constraint
-    - a → treehouse: Constraint (determiner - noun)
-    - as → read: Predicate (verb - object)
-    - as → smiled: Constraint
-
-### Sentence 9:
-
+### Sentence 4:
 * **Input**
     - It was one of the happiest moments of her life.
 * **Output**
@@ -162,8 +74,7 @@
     - of → life: Predicate (preposition - object)
     - her → life: Constraint
 
-### Sentence 10:
-
+### Sentence 5:
 * **Input**
     - That memory, like many others, stayed with her even today.
 * **Output**
@@ -177,8 +88,7 @@
     - Like → others: Predicate (verb/proposition - object)
     - Many → others: constraint
 
-### Sentence 11:
-
+### Sentence 6:
 * **Input**
     - She was very sad yesterday.
 * **Output**
@@ -188,21 +98,7 @@
     - very → sad: Constraint
     - yesterday → was: Constraint
 
-### Sentence 12:
-
-* **Input**
-    - It is a lie that you love her.
-* **Output**
-
-    - It → is: Predicate (subject - verb)
-    - Is → lie: Predicate (verb/proposition - object)
-    - a → lie: Constraint
-    - that → lie: connection
-    - you → love: Predicate (subject - verb)
-    - love → her: Predicate (verb/proposition - object)
-
-### Sentence 13:
-
+### Sentence 7:
 * **Input**
     - That truth broke her heart again.
 * **Output**
@@ -212,8 +108,7 @@
     - her → heart: Constraint
     - again→ broke: Constraint
 
-### Sentence 14:
-
+### Sentence 8:
 * **Input**
     - Nobody told her the full story.
 * **Output**
@@ -224,23 +119,7 @@
     - the → story: Constraint
     - full → story: Constraint
 
-### Sentence 15:
-
-* **Input**
-    - She waited by the window, hoping you would return.
-* **Output**
-    - She → waited: Predicate (subject - verb)
-    - by → waited: constraint
-    - by → window: Predicate (preposition - object)
-    - The → window: constraint
-    - She → hoping: Predicate (subject - verb)
-    - hoping → return: Predicate (verb - object)
-    - hoping → waited: constraint
-    - you→ return: Predicate (subject - verb)
-    - would → return: Constraint (auxiliary - main verb)
-
-### Sentence 16:
-
+### Sentence 9:
 * **Input**
     - But it never happened.
 * **Output**
@@ -248,8 +127,7 @@
     - it → happened: Predicate (subject - verb)
     - Never → happened: constraint
 
-### Sentence 17:
-
+### Sentence 10:
 * **Input**
     - The pain, like before, settled deep within her.
 * **Output**
@@ -261,27 +139,7 @@
     - within → settled: constraint
     - within → her: Predicate (prep - object)
 
-### Sentence 18:
-
-* **Input**
-    - Design a vacation house that can fly easily from one location to another.
-* **Output**
-    - Design → house: Predicate (verb/preposition - object)
-    - A → house: Constraint
-    - Vacation → House: Constraint
-    - House → that: Connection
-    - That → fly: Predicate (subject - verb)
-    - Can → fly: Constraint
-    - from → Fly: Constraint
-    - From → location: Predicate (verb/preposition - object)
-    - One → location: Constraint
-    - To → fly: Constraint
-    - To → location: Predicate (verb/preposition - object)
-    - Another → location: Constraint
-    - From → to: Connection
-
-### Sentence 19:
-
+### Sentence 11:
 * **Input**
     - Upscale 5 MW wind turbine_1 to 10 MW wind turbine_2.
 * **Output**
@@ -293,28 +151,7 @@
     - To → turbine_2: Predicate (verb/preposition - object)
     - 10 MW → turbine_2: Constraint
 
-### Sentence 20:
-
-* **Input**
-    - Design a web system to manage the editorial workflow of the JIDPS journal.
-
-* **Output**
-
-    - Design → system: Predicate (verb/proposition - object)
-    - A → system: Constraint
-    - Web → system: Constraint
-    - To → design: Constraint
-    - To → manage: Predicate (verb/proposition - object)
-    - Manage → workflow: Predicate (verb/proposition - object)
-    - Editorial → workflow: Constraint
-    - The → workflow: Constraint
-    - of →Workflow: Constraint
-    - Of → journal: Predicate (verb/proposition - object)
-    - JIDPS → journal: Constraint
-    - The → journal: Constraint
-
-### Sentence 21:
-
+### Sentence 12:
 * **Input**
     - Driver needs to stop and slow down a vehicle effectively and efficiently.
 * **Output**
@@ -332,3 +169,4 @@
     - Stop → vehicle: Predicate (verb/proposition - object)
     - slow → vehicle: Predicate (verb/proposition - object)
     - A → vehicle: Constraint
+
