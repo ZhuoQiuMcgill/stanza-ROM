@@ -1,6 +1,6 @@
 # Combined POS-based UD vs ROM Relations Analysis Report
 
-**Date:** 2025-05-23 00:11:03
+**Date:** 2025-05-23 11:58:16
 **Total Files Processed:** 5
 **Total Sentences Processed:** 74
 **Total Sentences Skipped:** 0
@@ -31,955 +31,79 @@
 | Common POS Pairs | 18 |
 | POS Pair Overlap Rate | 19.8% |
 
-## 🔍 Detailed POS Pair Analysis (Combined)
+### Global Overlap Rates (Mathematical Formula)
+| Pattern | Overlap Rate | Description |
+|---------|--------------|-------------|
+| Forward Matching (Pattern 1) | 0.000 | ROM pairs match UD pairs in same direction |
+| Reverse Matching (Pattern 2) | 0.000 | ROM pairs match UD pairs in reverse direction |
+| **Maximum Overall Overlap** | **0.000** | **Best matching pattern globally** |
 
-This section shows for each POS pair what UD relations and ROM relations appeared across all files.
+## 🔍 Detailed POS Pair Analysis (Combined) - Bidirectional
 
-### ADJ → ADJ
+This section shows bidirectional POS pair analysis with overlap rates calculated using mathematical formula:
+**overlap_rate_k = (∑_{i ∈ M_k} 1(R_i = U_{j(i)})) / |M_k|**
+- Pattern 1 (Forward): M₁ = {i : ∃j, (A_i, B_i) = (A_j', B_j')}
+- Pattern 2 (Reverse): M₂ = {i : ∃j, (A_i, B_i) = (B_j', A_j')}
+- **Max Overlap Rate = max{overlap_rate_1, overlap_rate_2}**
+Blocks are sorted by maximum overlap rate (highest first).
 
-**UD Relations:**
-- conj (2 occurrences)
+### DET ↔ NOUN (Max Overlap Rate: 0.000)
 
-**Examples:**
-*UD Examples:*
-  - **conj**: smart → creative in "She is both smart and creative." (compound_sentences_input.txt)
-  - **conj**: long → boring in "The movie was not only long but also boring." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 2
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADJ → ADV
-
-**UD Relations:**
-- advmod (9 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **advmod**: sad → very in "She was very sad yesterday." (basic_sentences_input.txt)
-  - **advmod**: smart → both in "She is both smart and creative." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 9
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADJ → AUX
-
-**UD Relations:**
-- cop (16 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **cop**: famous → is in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **cop**: nice → is in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 16
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADJ → CCONJ
-
-**UD Relations:**
-- cc (2 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **cc**: creative → and in "She is both smart and creative." (compound_sentences_input.txt)
-  - **cc**: boring → but in "The movie was not only long but also boring." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 2
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADJ → NOUN
-
-**UD Relations:**
-- nsubj (6 occurrences)
-- obl:unmarked (1 occurrences)
-- obl (1 occurrences)
-
+#### DET → NOUN
 **ROM Relations:**
-- Constraint (10 occurrences)
-- constraint (1 occurrences)
+- Constraint (64 occurrences)
+- Constraint (Determiner - Noun) (1 occurrences)
 
-**Examples:**
-*UD Examples:*
-  - **nsubj**: famous → artist in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **nsubj**: nice → girl in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
-  - **obl:unmarked**: sad → yesterday in "She was very sad yesterday." (basic_sentences_input.txt)
-  - **obl**: tall → brother in "She’s as tall as her brother." (compound_sentences_input.txt)
-
-*ROM Examples:*
-  - **Constraint**: heartfelt → tone in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Constraint**: vivid → details in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
-  - **constraint**: Many → others in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 8
-- Total ROM instances: 11
-- ROM/UD ratio: 1.38
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### ADJ → PART
-
-**UD Relations:**
-- advmod (3 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **advmod**: long → not in "The movie was not only long but also boring." (compound_sentences_input.txt)
-  - **advmod**: easy → not in "This task is not as easy as it looks." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 3
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADJ → PRON
-
-**UD Relations:**
-- nsubj (8 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **nsubj**: tired → she in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
-  - **nsubj**: sad → She in "She was very sad yesterday." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 8
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADJ → PUNCT
-
-**UD Relations:**
-- punct (15 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **punct**: famous → . in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **punct**: nice → . in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 15
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADJ → SCONJ
-
-**UD Relations:**
-- mark (3 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **mark**: tired → Although in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
-  - **mark**: obvious → That in "That he lied was obvious." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 3
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADJ → VERB
-
-**UD Relations:**
-- advcl (3 occurrences)
-- parataxis (2 occurrences)
-- xcomp (1 occurrences)
-- csubj (1 occurrences)
-- ccomp (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **parataxis**: clear → decided in "The sky was clear; we decided to go stargazing." (compound_sentences_input.txt)
-  - **parataxis**: tired → kept in "I was tired; however, I kept working." (compound_sentences_input.txt)
-  - **xcomp**: unsure → accept in "She’s unsure whether to accept the job or continue studying." (compound_sentences_input.txt)
-  - **advcl**: easy → looks in "This task is not as easy as it looks." (compound_sentences_input.txt)
-  - **advcl**: much → enjoys in "She enjoys painting as much as she enjoys dancing." (compound_sentences_input.txt)
-  - **csubj**: obvious → lied in "That he lied was obvious." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 8
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADP → ADJ
-
-**ROM Relations:**
-- Predicate (verb/preposition - object) (2 occurrences)
-- Constraint (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: To → upscale in "Upscale 5 MW wind turbine_1 to 10 MW wind turbine_2." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: As → tall in "She’s as tall as her brother." (compound_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: As → much in "He doesn’t eat as much chocolate as his brother." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 3
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADP → ADP
-
-**ROM Relations:**
-- Connection (1 occurrences)
-- Constraint (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Connection**: From → to in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-  - **Constraint**: Out → of in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 2
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADP → ADV
-
-**ROM Relations:**
-- Predicate (verb/preposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/preposition - object)**: As → quickly in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADP → NOUN
-
-**ROM Relations:**
-- Predicate (verb/preposition - object) (8 occurrences)
-- Predicate (preposition - object) (7 occurrences)
-- Predicate (verb/proposition - object) (4 occurrences)
-- Constraint (3 occurrences)
-- constraint (2 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/preposition - object)**: of → nostalgia, of → comfort in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: of → nostalgia, of → comfort in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Predicate (preposition - object)**: into → book in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-  - **Predicate (preposition - object)**: from → friend in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
-  - **Constraint**: from → letter in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
-  - **Constraint**: of → moments in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 24
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADP → NUM
-
-**ROM Relations:**
-- Constraint (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: of → one in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADP → PRON
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (1 occurrences)
-- Predicate (prep - object) (1 occurrences)
-- Predicate (verb/preposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: with → her in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
-  - **Predicate (prep - object)**: within → her in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: With → us in "You can either stay home or come with us." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 3
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADP → PROPN
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: To → Canada in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADP → VERB
-
-**ROM Relations:**
-- Constraint (8 occurrences)
-- constraint (6 occurrences)
-- Predicate (verb/preposition - object) (3 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **constraint**: into → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-  - **constraint**: with → filled in "The letter was filled with stories about their childhood adventures." (basic_sentences_input.txt)
-  - **Constraint**: from → received in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
-  - **Constraint**: from → Fly, To → fly in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Than → watch in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Than → drive in "He chose to walk rather than drive." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 17
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADV → ADJ
-
-**ROM Relations:**
-- Constraint (1 occurrences)
-- Predicate (verb/preposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: very → sad in "She was very sad yesterday." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Both → smart in "She is both smart and creative." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 2
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADV → ADP
-
-**UD Relations:**
-- fixed (2 occurrences)
-
-**ROM Relations:**
-- Connection (2 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **fixed**: rather → than in "He chose to walk rather than drive." (compound_sentences_input.txt)
-  - **fixed**: Rather → than in "Rather than complain, she took action." (compound_sentences_input.txt)
-
-*ROM Examples:*
-  - **Connection**: Rather → than in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
-  - **Connection**: Rather → than in "He chose to walk rather than drive." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 2
-- Total ROM instances: 2
-- ROM/UD ratio: 1.00
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### ADV → ADV
-
-**UD Relations:**
-- advmod (2 occurrences)
-- conj (1 occurrences)
-
-**ROM Relations:**
-- Constraint (2 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **conj**: effectively → efficiently in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-  - **advmod**: quickly → as in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
-  - **advmod**: sooner → No in "No sooner had she sat down than the phone rang." (compound_sentences_input.txt)
-
-*ROM Examples:*
-  - **Constraint**: Just → so in "Just as honesty builds trust, so does kindness." (compound_sentences_input.txt)
-  - **Constraint**: Just → so in "Just as we need water to survive, so do plants need sunlight." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 3
-- Total ROM instances: 2
-- ROM/UD ratio: 0.67
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### ADV → AUX
-
-**ROM Relations:**
-- Constraint (4 occurrences)
-- Predicate (subject - verb) (2 occurrences)
-- Connection (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: However → was in "I was tired; however, I kept working." (compound_sentences_input.txt)
-  - **Constraint**: both → is in "She is both smart and creative." (compound_sentences_input.txt)
-  - **Predicate (subject - verb)**: How → is in "How she managed to escape is still a mystery." (noun_clauses_sentences_input.txt)
-  - **Predicate (subject - verb)**: When → is in "When the meeting starts is still unknown." (noun_clauses_sentences_input.txt)
-  - **Connection**: How → is in "The problem is how we can get there." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 7
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADV → CCONJ
-
-**UD Relations:**
-- cc (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **cc**: efficiently → and in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADV → INTJ
-
-**UD Relations:**
-- discourse (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **discourse**: before → like in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADV → NOUN
-
-**ROM Relations:**
-- Constraint (5 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: When → year in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: When → day in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 5
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADV → PUNCT
-
-**UD Relations:**
-- punct (2 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **punct**: before → , in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-  - **punct**: however → , in "I was tired; however, I kept working." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 2
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### ADV → SCONJ
-
-**ROM Relations:**
-- Constraint (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: Just → as in "Just as the moon affects the tides, so does the sun influence them." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### ADV → VERB
-
-**ROM Relations:**
-- Constraint (16 occurrences)
-- Predicate (verb/proposition - object) (5 occurrences)
-- Predicate (verb/preposition - object) (4 occurrences)
-- constraint (3 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: When → moved in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: When → met in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **constraint**: together → built in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
-  - **constraint**: Never → happened in "But it never happened." (basic_sentences_input.txt)
-  - **Constraint**: again → broke in "That truth broke her heart again." (basic_sentences_input.txt)
-  - **Constraint**: deep → settled in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 28
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### AUX → ADJ
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (7 occurrences)
-- Predicate (verb/preposition - object) (7 occurrences)
-- Predicate (verb - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Is → famous in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: Is → nice in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb - object)**: was → sad in "She was very sad yesterday." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Was → clear in "The sky was clear; we decided to go stargazing." (compound_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Was → tired in "I was tired; however, I kept working." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 15
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### AUX → ADP
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Were → out in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### AUX → ADV
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Is → how in "The problem is how we can get there." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### AUX → NOUN
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (7 occurrences)
-- Predicate (verb - object) (1 occurrences)
-- Predicate (verb/preposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Is → friend in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: Is → doctor, Is → classmate in "The boy whose father is a doctor is my classmate." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb - object)**: was → moments in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Are → engineers in "Both my brother and sister are engineers." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 9
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### AUX → SCONJ
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (3 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Is → that in "The truth is that she never left." (noun_clauses_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: Is → that in "My suggestion is that we take a break." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 3
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### AUX → VERB
-
-**ROM Relations:**
-- Constraint (13 occurrences)
-- Predicate (verb/proposition - object) (5 occurrences)
-- Constraint (auxiliary - main verb) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Was → raining in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **Predicate (verb/proposition - object)**: Is → left in "The truth is that she never left." (noun_clauses_sentences_input.txt)
-  - **Constraint (auxiliary - main verb)**: would → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
-  - **Constraint**: Can → fly in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-  - **Constraint**: Can → stay, Can → come in "You can either stay home or come with us." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 19
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### CCONJ → ADJ
-
-**ROM Relations:**
-- connection (1 occurrences)
-- Predicate (verb/preposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **connection**: and → vivid in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: And → creative in "She is both smart and creative." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 2
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### CCONJ → AUX
-
-**ROM Relations:**
-- Constraint (3 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: and → is in "She is both smart and creative." (compound_sentences_input.txt)
-  - **Constraint**: both → are, and → are in "Both my brother and sister are engineers." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 3
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### CCONJ → CCONJ
-
-**ROM Relations:**
-- connection (2 occurrences)
-- Connection (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **connection**: both → and in "Both my brother and sister are engineers." (compound_sentences_input.txt)
-  - **connection**: Either → or in "You can either stay home or come with us." (compound_sentences_input.txt)
-  - **Connection**: Neither → Nor in "Neither did he apologize, nor did he show any regret." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 3
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### CCONJ → NOUN
-
-**ROM Relations:**
-- Predicate (verb/preposition - object) (3 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/preposition - object)**: Both → brother, And → sister in "Both my brother and sister are engineers." (compound_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Both → brother, And → sister in "Both my brother and sister are engineers." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 3
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### CCONJ → VERB
-
-**ROM Relations:**
-- Predicate (verb/preposition - object) (6 occurrences)
-- Constraint (3 occurrences)
-- connect (2 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: But → happened in "But it never happened." (basic_sentences_input.txt)
-  - **Constraint**: But → wanted in "She wanted to go for a walk, but it started raining." (compound_sentences_input.txt)
-  - **connect**: and → stop, and → slow in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-  - **connect**: and → stop, and → slow in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: But → started in "She wanted to go for a walk, but it started raining." (compound_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Either → stay, Or → come in "You can either stay home or come with us." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 11
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### DET → ADP
-
-**UD Relations:**
-- case (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **case**: another → to in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### DET → NOUN
-
-**ROM Relations:**
-- Constraint (60 occurrences)
-- constraint (4 occurrences)
-- Constraint (determiner - noun) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: The → boy, The → friend in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: The → boy, The → friend in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **constraint**: The → time in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
-  - **constraint**: That → truth in "That truth broke her heart again." (basic_sentences_input.txt)
-  - **Constraint (determiner - noun)**: a → treehouse in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 65
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### INTJ → ADV
-
-**ROM Relations:**
-- Predicate (prep - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (prep - object)**: Like → before in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### INTJ → NOUN
-
-**ROM Relations:**
-- constraint (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **constraint**: Like → pain in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### NOUN → ADJ
-
-**UD Relations:**
-- amod (12 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **amod**: tone → heartfelt in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **amod**: details → vivid in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 12
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### NOUN → ADP
-
-**UD Relations:**
-- case (22 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **case**: memories → by in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **case**: nostalgia → of in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 22
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### NOUN → ADV
-
-**UD Relations:**
-- advmod (5 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **advmod**: stories → only, emotions → also in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
-  - **advmod**: stories → only, emotions → also in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 5
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### NOUN → AUX
-
-**UD Relations:**
-- cop (9 occurrences)
-
-**ROM Relations:**
-- Predicate (subject - verb) (16 occurrences)
-- Constraint (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **cop**: friend → is in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **cop**: doctor → is, classmate → is in "The boy whose father is a doctor is my classmate." (adjective_clauses_sentences_input.txt)
-
-*ROM Examples:*
-  - **Predicate (subject - verb)**: Boy → is in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **Predicate (subject - verb)**: Artist → is in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: yesterday → was in "She was very sad yesterday." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 9
-- Total ROM instances: 17
-- ROM/UD ratio: 1.89
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### NOUN → CCONJ
-
-**UD Relations:**
-- cc (5 occurrences)
-- cc:preconj (1 occurrences)
-
-**ROM Relations:**
-- Connection (4 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **cc**: emotions → but in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
-  - **cc**: love → and in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **cc:preconj**: brother → Both in "Both my brother and sister are engineers." (compound_sentences_input.txt)
-
-*ROM Examples:*
-  - **Connection**: nostalgia → and, comfort → and in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Connection**: nostalgia → and, comfort → and in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 6
-- Total ROM instances: 4
-- ROM/UD ratio: 0.67
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### NOUN → DET
-
+#### NOUN → DET
 **UD Relations:**
 - det (65 occurrences)
 
 **Examples:**
-*UD Examples:*
-  - **det**: boy → The in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **det**: artist → The in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+*DET→NOUN ROM Examples:*
+  - **Constraint**: The → boy, The → friend in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **Constraint (Determiner - Noun)**: a → treehouse in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 65
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
+*NOUN→DET UD Examples:*
+  - **det**: boy → The in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- DET→NOUN: 0 UD, 65 ROM
+- NOUN→DET: 65 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- DET→NOUN Pattern 1 (Forward): 0.000
+- DET→NOUN Pattern 2 (Reverse): 0.000
+- DET→NOUN Max Overlap: 0.000
+- NOUN→DET Pattern 1 (Forward): 0.000
+- NOUN→DET Pattern 2 (Reverse): 0.000
+- NOUN→DET Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (DET→NOUN UD)/(NOUN→DET ROM): 0.00
+- Reverse cross ratio (NOUN→DET UD)/(DET→NOUN ROM): 1.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
-### NOUN → NOUN
+### NOUN ↔ NOUN (Max Overlap Rate: 0.000)
 
+#### NOUN → NOUN
+**UD Relations:**
+- nmod (7 occurrences)
+- compound (7 occurrences)
+- conj (5 occurrences)
+- nsubj (4 occurrences)
+- acl:relcl (1 occurrences)
+- acl (1 occurrences)
+
+**ROM Relations:**
+- Constraint (6 occurrences)
+
+#### NOUN → NOUN
 **UD Relations:**
 - nmod (7 occurrences)
 - compound (7 occurrences)
@@ -992,147 +116,114 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - Constraint (6 occurrences)
 
 **Examples:**
-*UD Examples:*
+*NOUN→NOUN UD Examples:*
   - **nsubj**: friend → boy in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **nsubj**: classmate → boy, doctor → father in "The boy whose father is a doctor is my classmate." (adjective_clauses_sentences_input.txt)
   - **acl:relcl**: boy → doctor in "The boy whose father is a doctor is my classmate." (adjective_clauses_sentences_input.txt)
   - **conj**: stories → emotions in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
-  - **conj**: nostalgia → comfort, nostalgia → love in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **nmod**: emotions → nostalgia in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
 
-*ROM Examples:*
+*NOUN→NOUN ROM Examples:*
   - **Constraint**: sincerity → details in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
-  - **Constraint**: childhood → adventures in "The letter was filled with stories about their childhood adventures." (basic_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 25
-- Total ROM instances: 6
-- ROM/UD ratio: 0.24
-- **Status: Both UD and ROM relations exist for this POS pair**
+*NOUN→NOUN UD Examples:*
+  - **nsubj**: friend → boy in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **acl:relcl**: boy → doctor in "The boy whose father is a doctor is my classmate." (adjective_clauses_sentences_input.txt)
+  - **conj**: stories → emotions in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
 
----
+*NOUN→NOUN ROM Examples:*
+  - **Constraint**: sincerity → details in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
 
-### NOUN → NUM
+**Mathematical Overlap Analysis:**
+- NOUN→NOUN: 25 UD, 6 ROM
+- NOUN→NOUN: 25 UD, 6 ROM
 
-**UD Relations:**
-- nummod (3 occurrences)
-- nsubj (1 occurrences)
+**Overlap Rates (Mathematical Formula):**
+- NOUN→NOUN Pattern 1 (Forward): 0.000
+- NOUN→NOUN Pattern 2 (Reverse): 0.000
+- NOUN→NOUN Max Overlap: 0.000
+- NOUN→NOUN Pattern 1 (Forward): 0.000
+- NOUN→NOUN Pattern 2 (Reverse): 0.000
+- NOUN→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
 
-**Examples:**
-*UD Examples:*
-  - **nsubj**: year → 2018 in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **nummod**: location → one in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-  - **nummod**: MW → 5, MW → 10 in "Upscale 5 MW wind turbine_1 to 10 MW wind turbine_2." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 4
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### NOUN → PART
-
-**UD Relations:**
-- advmod (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **advmod**: stories → not in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.24
+- Reverse ROM/UD ratio: 0.24
+- Cross ratio (NOUN→NOUN UD)/(NOUN→NOUN ROM): 4.17
+- Reverse cross ratio (NOUN→NOUN UD)/(NOUN→NOUN ROM): 4.17
+- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
-### NOUN → PRON
+### PRON ↔ VERB (Max Overlap Rate: 0.000)
 
+#### PRON → VERB
 **UD Relations:**
-- nmod:poss (17 occurrences)
-- nsubj (3 occurrences)
-- appos (2 occurrences)
+- acl:relcl (1 occurrences)
 
 **ROM Relations:**
-- Connection (2 occurrences)
-- connection (1 occurrences)
-- constraint (1 occurrences)
+- Predicate (Subject - Verb) (68 occurrences)
+- Constraint (1 occurrences)
+- Predicate (Subject - Verb) (Second Clause) (1 occurrences)
 
-**Examples:**
-*UD Examples:*
-  - **nmod:poss**: friend → my in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **nmod:poss**: car → whose in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
-  - **appos**: girl → whom in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
-  - **appos**: movie → that in "The movie (that) we watched was amazing." (adjective_clauses_sentences_input.txt)
-  - **nsubj**: place → This in "This is the place where we stayed." (adjective_clauses_sentences_input.txt)
-  - **nsubj**: lie → It in "It is a lie that you love her." (basic_sentences_input.txt)
-
-*ROM Examples:*
-  - **Connection**: tone → that in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Connection**: House → that in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-  - **connection**: friends → who in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
-  - **constraint**: story → her in "Nobody told her the full story." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 22
-- Total ROM instances: 4
-- ROM/UD ratio: 0.18
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### NOUN → PROPN
-
+#### VERB → PRON
 **UD Relations:**
-- compound (1 occurrences)
+- nsubj (67 occurrences)
+- obj (9 occurrences)
+- obl (3 occurrences)
+- iobj (2 occurrences)
+- nsubj:pass (1 occurrences)
+
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (8 occurrences)
+- Predicate (Verb/Preposition - Object) (2 occurrences)
+- Predicate (Verb - Object) (2 occurrences)
 
 **Examples:**
-*UD Examples:*
-  - **compound**: journal → JIDPS in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
+*PRON→VERB UD Examples:*
+  - **acl:relcl**: What → said in "What she said surprised everyone." (noun_clauses_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
+*PRON→VERB ROM Examples:*
+  - **Predicate (Subject - Verb)**: Who → sings in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **Constraint**: her → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Predicate (Subject - Verb) (Second Clause)**: She → enjoys in "She enjoys painting as much as she enjoys dancing." (compound_sentences_input.txt)
+
+*VERB→PRON UD Examples:*
+  - **nsubj**: sings → who in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **obj**: painted → this in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+  - **obl**: stayed → her in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
+
+*VERB→PRON ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Painted → this in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: surprised → her in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Predicate (Verb - Object)**: found → themselves in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- PRON→VERB: 1 UD, 70 ROM
+- VERB→PRON: 82 UD, 12 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- PRON→VERB Pattern 1 (Forward): 0.000
+- PRON→VERB Pattern 2 (Reverse): 0.000
+- PRON→VERB Max Overlap: 0.000
+- VERB→PRON Pattern 1 (Forward): 0.000
+- VERB→PRON Pattern 2 (Reverse): 0.000
+- VERB→PRON Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 70.00
+- Reverse ROM/UD ratio: 0.15
+- Cross ratio (PRON→VERB UD)/(VERB→PRON ROM): 0.08
+- Reverse cross ratio (VERB→PRON UD)/(PRON→VERB ROM): 1.17
+- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
-### NOUN → PUNCT
+### NOUN ↔ VERB (Max Overlap Rate: 0.000)
 
-**UD Relations:**
-- punct (15 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **punct**: friend → . in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **punct**: man → . in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 15
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### NOUN → SCONJ
-
-**UD Relations:**
-- mark (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **mark**: time → that in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### NOUN → VERB
-
+#### NOUN → VERB
 **UD Relations:**
 - acl:relcl (14 occurrences)
 - acl (3 occurrences)
@@ -1141,589 +232,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - csubj (1 occurrences)
 
 **ROM Relations:**
-- Predicate (subject - verb) (25 occurrences)
-- Constraint (2 occurrences)
-- constraint (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **acl:relcl**: boy → sings in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **acl:relcl**: artist → painted in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **advcl**: year → moved in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **amod**: memories → cherished in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **csubj**: mystery → managed in "How she managed to escape is still a mystery." (noun_clauses_sentences_input.txt)
-  - **acl**: news → married in "I heard the news that she got married." (noun_clauses_sentences_input.txt)
-
-*ROM Examples:*
-  - **Predicate (subject - verb)**: boy → sings in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **Predicate (subject - verb)**: artist → painted in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: week → received in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
-  - **Constraint**: Water → survive in "Just as we need water to survive, so do plants need sunlight." (compound_sentences_input.txt)
-  - **constraint**: time → built in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 20
-- Total ROM instances: 28
-- ROM/UD ratio: 1.40
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### NUM → AUX
-
-**UD Relations:**
-- cop (1 occurrences)
-
-**ROM Relations:**
-- Predicate (subject - verb) (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **cop**: one → was in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
-
-*ROM Examples:*
-  - **Predicate (subject - verb)**: 2018 → was in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 1
-- ROM/UD ratio: 1.00
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### NUM → NOUN
-
-**UD Relations:**
-- nmod (1 occurrences)
-
-**ROM Relations:**
-- Constraint (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **nmod**: one → moments in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
-
-*ROM Examples:*
-  - **Constraint**: One → location in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 1
-- ROM/UD ratio: 1.00
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### NUM → PRON
-
-**UD Relations:**
-- nsubj (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **nsubj**: one → It in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### NUM → PUNCT
-
-**UD Relations:**
-- punct (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **punct**: one → . in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### PART → ADJ
-
-**ROM Relations:**
-- Constraint (2 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: Not → easy in "This task is not as easy as it looks." (compound_sentences_input.txt)
-  - **Constraint**: Not → sure in "He’s not sure if he locked the door." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 2
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### PART → VERB
-
-**ROM Relations:**
-- Constraint (10 occurrences)
-- Predicate (verb/preposition - object) (6 occurrences)
-- Predicate (verb/proposition - object) (4 occurrences)
-- Predicate (preposition - object) (2 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: to → decided, to → decided in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Constraint**: to → decided, to → decided in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (preposition - object)**: to → preserve, to → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (preposition - object)**: to → preserve, to → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: To → manage in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: to → stop, To → slow in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 22
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### PRON → ADP
-
-**UD Relations:**
-- case (3 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **case**: her → with in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
-  - **case**: her → within in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 3
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### PRON → AUX
-
-**ROM Relations:**
-- Predicate (subject - verb) (11 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (subject - verb)**: This → is in "This is the place where we stayed." (adjective_clauses_sentences_input.txt)
-  - **Predicate (subject - verb)**: It → was in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 11
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### PRON → NOUN
-
-**ROM Relations:**
-- Constraint (16 occurrences)
-- Connection (7 occurrences)
-- connection (2 occurrences)
-- Predicate (subject - verb) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Connection**: Who → boy in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **Connection**: Who → artist in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: My → friend in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: Whose → car in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
-  - **connection**: its → journal in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
-  - **connection**: that → lie in "It is a lie that you love her." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 26
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### PRON → PRON
-
-**ROM Relations:**
-- Constraint (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: me → what in "She didn’t tell me what had happened." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### PRON → PUNCT
-
-**UD Relations:**
-- punct (4 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **punct**: whom → (, whom → ) in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
-  - **punct**: whom → (, whom → ) in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 4
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### PRON → VERB
-
-**UD Relations:**
-- acl:relcl (1 occurrences)
-
-**ROM Relations:**
-- Predicate (subject - verb) (68 occurrences)
-- constraint (1 occurrences)
-- Predicate (subject - verb) (second clause) (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **acl:relcl**: What → said in "What she said surprised everyone." (noun_clauses_sentences_input.txt)
-
-*ROM Examples:*
-  - **Predicate (subject - verb)**: Who → sings in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **Predicate (subject - verb)**: Who → painted in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **constraint**: her → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Predicate (subject - verb) (second clause)**: She → enjoys in "She enjoys painting as much as she enjoys dancing." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 70
-- ROM/UD ratio: 70.00
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### PROPN → ADP
-
-**UD Relations:**
-- case (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **case**: Canada → to in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### PROPN → NOUN
-
-**ROM Relations:**
-- Constraint (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: JIDPS → journal in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 1
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### PROPN → VERB
-
-**ROM Relations:**
-- Predicate (subject - verb) (5 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (subject - verb)**: Sarah → decided, Sarah → cherished in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (subject - verb)**: Sarah → decided, Sarah → cherished in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 5
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### SCONJ → ADJ
-
-**ROM Relations:**
-- Predicate (verb/preposition - object) (2 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/preposition - object)**: As → easy in "This task is not as easy as it looks." (compound_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: As → much in "She enjoys painting as much as she enjoys dancing." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 2
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### SCONJ → ADV
-
-**ROM Relations:**
-- Connection (3 occurrences)
-- Predicate (verb/proposition - object) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Connection**: As → so in "Just as the moon affects the tides, so does the sun influence them." (compound_sentences_input.txt)
-  - **Connection**: As → so in "Just as honesty builds trust, so does kindness." (compound_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: About → how in "We’re thinking about how we can solve the problem." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 4
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### SCONJ → AUX
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (4 occurrences)
-- Constraint (1 occurrences)
-- Predicate (subject - verb) (1 occurrences)
-- Connection (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Because → was in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **Predicate (verb/proposition - object)**: Although → was in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
-  - **Constraint**: As → is in "This task is not as easy as it looks." (compound_sentences_input.txt)
-  - **Predicate (subject - verb)**: That → was in "That he lied was obvious." (noun_clauses_sentences_input.txt)
-  - **Connection**: That → is in "I know that she is right." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 7
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### SCONJ → CCONJ
-
-**ROM Relations:**
-- Connection (2 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Connection**: Whether → Or in "I don't know whether he’ll call or text." (compound_sentences_input.txt)
-  - **Connection**: Whether → Or in "She’s unsure whether to accept the job or continue studying." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 2
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### SCONJ → NOUN
-
-**ROM Relations:**
-- Constraint (4 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: that → News in "I heard the news that she got married." (noun_clauses_sentences_input.txt)
-  - **Constraint**: That → idea in "The idea that hard work brings success is widely accepted." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 4
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### SCONJ → VERB
-
-**ROM Relations:**
-- Constraint (9 occurrences)
-- Predicate (verb/proposition - object) (5 occurrences)
-- Predicate (verb/preposition - object) (2 occurrences)
-- Connection (2 occurrences)
-- Predicate (verb - object) (1 occurrences)
-- connection (1 occurrences)
-- Predicate (subject - verb) (1 occurrences)
-
-**Examples:**
-*ROM Examples:*
-  - **Constraint**: Because → stayed in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **Constraint**: Although → finished in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
-  - **Predicate (verb - object)**: as → read in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Whether → call in "I don't know whether he’ll call or text." (compound_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Whether → accept in "She’s unsure whether to accept the job or continue studying." (compound_sentences_input.txt)
-  - **connection**: That → lied in "That he lied was obvious." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 0
-- Total ROM instances: 21
-- **Status: Only ROM relations exist (no UD match)**
-
----
-
-### VERB → ADJ
-
-**UD Relations:**
-- advcl (1 occurrences)
-- advmod (1 occurrences)
-- ccomp (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **advcl**: finished → tired in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
-  - **advmod**: enjoys → much in "She enjoys painting as much as she enjoys dancing." (compound_sentences_input.txt)
-  - **ccomp**: know → right in "I know that she is right." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 3
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### VERB → ADP
-
-**UD Relations:**
-- compound:prt (3 occurrences)
-- mark (1 occurrences)
-
-**ROM Relations:**
+- Predicate (Subject - Verb) (25 occurrences)
 - Constraint (3 occurrences)
 
-**Examples:**
-*UD Examples:*
-  - **compound:prt**: broke → down in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
-  - **compound:prt**: slow → down in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-  - **mark**: watch → than in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
-
-*ROM Examples:*
-  - **Constraint**: Broke → down in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: Moved → to in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 4
-- Total ROM instances: 3
-- ROM/UD ratio: 0.75
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### VERB → ADV
-
-**UD Relations:**
-- advmod (32 occurrences)
-- cc (1 occurrences)
-- mark (1 occurrences)
-
-**ROM Relations:**
-- Predicate (verb/proposition - object) (2 occurrences)
-- Constraint (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **advmod**: moved → when in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **advmod**: met → when in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **cc**: drive → rather in "He chose to walk rather than drive." (compound_sentences_input.txt)
-  - **mark**: complain → Rather in "Rather than complain, she took action." (compound_sentences_input.txt)
-
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Stayed → home in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **Predicate (verb/proposition - object)**: Get → there in "The problem is how we can get there." (noun_clauses_sentences_input.txt)
-  - **Constraint**: Stay → home in "You can either stay home or come with us." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 34
-- Total ROM instances: 3
-- ROM/UD ratio: 0.09
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### VERB → AUX
-
-**UD Relations:**
-- aux (24 occurrences)
-- cop (4 occurrences)
-- aux:pass (3 occurrences)
-
-**ROM Relations:**
-- Predicate (subject - verb) (1 occurrences)
-- Predicate (verb/proposition - object) (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **aux**: know → do in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
-  - **aux**: raining → was in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **aux:pass**: filled → was in "The letter was filled with stories about their childhood adventures." (basic_sentences_input.txt)
-  - **aux:pass**: married → got in "I heard the news that she got married." (noun_clauses_sentences_input.txt)
-  - **cop**: left → is in "The truth is that she never left." (noun_clauses_sentences_input.txt)
-  - **cop**: take → is in "My suggestion is that we take a break." (noun_clauses_sentences_input.txt)
-
-*ROM Examples:*
-  - **Predicate (subject - verb)**: lied → was in "That he lied was obvious." (noun_clauses_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: Know → is in "I know that she is right." (noun_clauses_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 31
-- Total ROM instances: 2
-- ROM/UD ratio: 0.06
-- **Status: Both UD and ROM relations exist for this POS pair**
-
----
-
-### VERB → CCONJ
-
-**UD Relations:**
-- cc (7 occurrences)
-- cc:preconj (2 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **cc**: happened → But in "But it never happened." (basic_sentences_input.txt)
-  - **cc**: slow → and in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-  - **cc:preconj**: stay → either in "You can either stay home or come with us." (compound_sentences_input.txt)
-  - **cc:preconj**: apologize → Neither in "Neither did he apologize, nor did he show any regret." (compound_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 9
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### VERB → DET
-
-**UD Relations:**
-- obl (1 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **obl**: fly → another in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 1
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
-
----
-
-### VERB → NOUN
-
+#### VERB → NOUN
 **UD Relations:**
 - obj (39 occurrences)
 - nsubj (17 occurrences)
@@ -1735,100 +247,562 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - conj (1 occurrences)
 
 **ROM Relations:**
-- Predicate (verb/preposition - object) (19 occurrences)
-- Predicate (verb/proposition - object) (18 occurrences)
-- Predicate (verb - object) (6 occurrences)
+- Predicate (Verb/Preposition - Object) (19 occurrences)
+- Predicate (Verb/Proposition - Object) (18 occurrences)
+- Predicate (Verb - Object) (6 occurrences)
 - Constraint (4 occurrences)
-- Predicate (preposition - object) (1 occurrences)
-- Predicate (verb/preposition - object) (second clause) (1 occurrences)
-- Predicate (verb/preposition - object) (implied) (1 occurrences)
+- Predicate (Preposition - Object) (1 occurrences)
+- Predicate (Verb/Preposition - Object) (Second Clause) (1 occurrences)
+- Predicate (Verb/Preposition - Object) (Implied) (1 occurrences)
 
 **Examples:**
-*UD Examples:*
+*NOUN→VERB UD Examples:*
+  - **acl:relcl**: boy → sings in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **advcl**: year → moved in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+  - **amod**: memories → cherished in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+
+*NOUN→VERB ROM Examples:*
+  - **Predicate (Subject - Verb)**: boy → sings in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **Constraint**: week → received in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
+
+*VERB→NOUN UD Examples:*
   - **nsubj**: broke → car in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
-  - **nsubj**: shared → grandmother in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
   - **obj**: remember → day in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **obj**: know → reason in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
   - **obl:agent**: Inspired → memories in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **obl:agent**: moved → sincerity in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
 
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Remember → day in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: Know → reason in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
+*VERB→NOUN ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Remember → day in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
   - **Constraint**: met → day in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: stayed → place in "This is the place where we stayed." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb - object)**: cherished → memories in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (verb - object)**: moved → friends, read → journal in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
+  - **Predicate (Verb - Object)**: cherished → memories in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 76
-- Total ROM instances: 50
-- ROM/UD ratio: 0.66
-- **Status: Both UD and ROM relations exist for this POS pair**
+**Mathematical Overlap Analysis:**
+- NOUN→VERB: 20 UD, 28 ROM
+- VERB→NOUN: 76 UD, 50 ROM
 
----
+**Overlap Rates (Mathematical Formula):**
+- NOUN→VERB Pattern 1 (Forward): 0.000
+- NOUN→VERB Pattern 2 (Reverse): 0.000
+- NOUN→VERB Max Overlap: 0.000
+- VERB→NOUN Pattern 1 (Forward): 0.000
+- VERB→NOUN Pattern 2 (Reverse): 0.000
+- VERB→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
 
-### VERB → PART
-
-**UD Relations:**
-- mark (11 occurrences)
-- advmod (6 occurrences)
-
-**Examples:**
-*UD Examples:*
-  - **advmod**: know → n’t in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
-  - **advmod**: win → Not in "Not only did he win, but he also broke the record." (compound_sentences_input.txt)
-  - **mark**: start → to, preserve → to in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **mark**: start → to, preserve → to in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-
-**Analysis:**
-- Total UD instances: 17
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 1.40
+- Reverse ROM/UD ratio: 0.66
+- Cross ratio (NOUN→VERB UD)/(VERB→NOUN ROM): 0.40
+- Reverse cross ratio (VERB→NOUN UD)/(NOUN→VERB ROM): 2.71
+- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
-### VERB → PRON
+### AUX ↔ NOUN (Max Overlap Rate: 0.000)
 
+#### AUX → NOUN
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (7 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+#### NOUN → AUX
 **UD Relations:**
-- nsubj (67 occurrences)
-- obj (9 occurrences)
-- obl (3 occurrences)
-- iobj (2 occurrences)
-- nsubj:pass (1 occurrences)
+- cop (9 occurrences)
 
 **ROM Relations:**
-- Predicate (verb/proposition - object) (8 occurrences)
-- Predicate (verb/preposition - object) (2 occurrences)
-- Predicate (verb - object) (2 occurrences)
+- Predicate (Subject - Verb) (16 occurrences)
+- Constraint (1 occurrences)
 
 **Examples:**
-*UD Examples:*
-  - **nsubj**: sings → who in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
-  - **nsubj**: painted → who in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **obj**: painted → this in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **obj**: preserve → them in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **obl**: stayed → her in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
-  - **obl**: settled → her in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+*AUX→NOUN ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Is → friend in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **Predicate (Verb - Object)**: was → moments in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Are → engineers in "Both my brother and sister are engineers." (compound_sentences_input.txt)
 
-*ROM Examples:*
-  - **Predicate (verb/proposition - object)**: Painted → this in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: Met → whom in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: surprised → her in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Influence → them in "Just as the moon affects the tides, so does the sun influence them." (compound_sentences_input.txt)
-  - **Predicate (verb - object)**: found → themselves in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
-  - **Predicate (verb - object)**: told → her in "Nobody told her the full story." (basic_sentences_input.txt)
+*NOUN→AUX UD Examples:*
+  - **cop**: friend → is in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 82
-- Total ROM instances: 12
-- ROM/UD ratio: 0.15
-- **Status: Both UD and ROM relations exist for this POS pair**
+*NOUN→AUX ROM Examples:*
+  - **Predicate (Subject - Verb)**: Boy → is in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **Constraint**: yesterday → was in "She was very sad yesterday." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- AUX→NOUN: 0 UD, 9 ROM
+- NOUN→AUX: 9 UD, 17 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- AUX→NOUN Pattern 1 (Forward): 0.000
+- AUX→NOUN Pattern 2 (Reverse): 0.000
+- AUX→NOUN Max Overlap: 0.000
+- NOUN→AUX Pattern 1 (Forward): 0.000
+- NOUN→AUX Pattern 2 (Reverse): 0.000
+- NOUN→AUX Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 1.89
+- Cross ratio (AUX→NOUN UD)/(NOUN→AUX ROM): 0.00
+- Reverse cross ratio (NOUN→AUX UD)/(AUX→NOUN ROM): 1.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
-### VERB → PROPN
+### NOUN ↔ PRON (Max Overlap Rate: 0.000)
 
+#### NOUN → PRON
+**UD Relations:**
+- nmod:poss (17 occurrences)
+- nsubj (3 occurrences)
+- appos (2 occurrences)
+
+**ROM Relations:**
+- Connection (3 occurrences)
+- Constraint (1 occurrences)
+
+#### PRON → NOUN
+**ROM Relations:**
+- Constraint (16 occurrences)
+- Connection (9 occurrences)
+- Predicate (Subject - Verb) (1 occurrences)
+
+**Examples:**
+*NOUN→PRON UD Examples:*
+  - **nmod:poss**: friend → my in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **appos**: girl → whom in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
+  - **nsubj**: place → This in "This is the place where we stayed." (adjective_clauses_sentences_input.txt)
+
+*NOUN→PRON ROM Examples:*
+  - **Connection**: tone → that in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Constraint**: story → her in "Nobody told her the full story." (basic_sentences_input.txt)
+
+*PRON→NOUN ROM Examples:*
+  - **Connection**: Who → boy in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **Constraint**: My → friend in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+  - **Predicate (Subject - Verb)**: He → text in "I don't know whether he’ll call or text." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→PRON: 22 UD, 4 ROM
+- PRON→NOUN: 0 UD, 26 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→PRON Pattern 1 (Forward): 0.000
+- NOUN→PRON Pattern 2 (Reverse): 0.000
+- NOUN→PRON Max Overlap: 0.000
+- PRON→NOUN Pattern 1 (Forward): 0.000
+- PRON→NOUN Pattern 2 (Reverse): 0.000
+- PRON→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.18
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NOUN→PRON UD)/(PRON→NOUN ROM): 0.85
+- Reverse cross ratio (PRON→NOUN UD)/(NOUN→PRON ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### NOUN ↔ PUNCT (Max Overlap Rate: 0.000)
+
+#### NOUN → PUNCT
+**UD Relations:**
+- punct (15 occurrences)
+
+#### PUNCT → NOUN
+**Examples:**
+*NOUN→PUNCT UD Examples:*
+  - **punct**: friend → . in "The boy who sings is my friend." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→PUNCT: 15 UD, 0 ROM
+- PUNCT→NOUN: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→PUNCT Pattern 1 (Forward): 0.000
+- NOUN→PUNCT Pattern 2 (Reverse): 0.000
+- NOUN→PUNCT Max Overlap: 0.000
+- PUNCT→NOUN Pattern 1 (Forward): 0.000
+- PUNCT→NOUN Pattern 2 (Reverse): 0.000
+- PUNCT→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NOUN→PUNCT UD)/(PUNCT→NOUN ROM): 0.00
+- Reverse cross ratio (PUNCT→NOUN UD)/(NOUN→PUNCT ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ NOUN (Max Overlap Rate: 0.000)
+
+#### ADJ → NOUN
+**UD Relations:**
+- nsubj (6 occurrences)
+- obl:unmarked (1 occurrences)
+- obl (1 occurrences)
+
+**ROM Relations:**
+- Constraint (11 occurrences)
+
+#### NOUN → ADJ
+**UD Relations:**
+- amod (12 occurrences)
+
+**Examples:**
+*ADJ→NOUN UD Examples:*
+  - **nsubj**: famous → artist in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+  - **obl:unmarked**: sad → yesterday in "She was very sad yesterday." (basic_sentences_input.txt)
+  - **obl**: tall → brother in "She’s as tall as her brother." (compound_sentences_input.txt)
+
+*ADJ→NOUN ROM Examples:*
+  - **Constraint**: heartfelt → tone in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+
+*NOUN→ADJ UD Examples:*
+  - **amod**: tone → heartfelt in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→NOUN: 8 UD, 11 ROM
+- NOUN→ADJ: 12 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→NOUN Pattern 1 (Forward): 0.000
+- ADJ→NOUN Pattern 2 (Reverse): 0.000
+- ADJ→NOUN Max Overlap: 0.000
+- NOUN→ADJ Pattern 1 (Forward): 0.000
+- NOUN→ADJ Pattern 2 (Reverse): 0.000
+- NOUN→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 1.38
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→NOUN UD)/(NOUN→ADJ ROM): 0.00
+- Reverse cross ratio (NOUN→ADJ UD)/(ADJ→NOUN ROM): 1.09
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ AUX (Max Overlap Rate: 0.000)
+
+#### ADJ → AUX
+**UD Relations:**
+- cop (16 occurrences)
+
+#### AUX → ADJ
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (7 occurrences)
+- Predicate (Verb/Preposition - Object) (7 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+
+**Examples:**
+*ADJ→AUX UD Examples:*
+  - **cop**: famous → is in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+
+*AUX→ADJ ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Is → famous in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+  - **Predicate (Verb - Object)**: was → sad in "She was very sad yesterday." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Was → clear in "The sky was clear; we decided to go stargazing." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→AUX: 16 UD, 0 ROM
+- AUX→ADJ: 0 UD, 15 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→AUX Pattern 1 (Forward): 0.000
+- ADJ→AUX Pattern 2 (Reverse): 0.000
+- ADJ→AUX Max Overlap: 0.000
+- AUX→ADJ Pattern 1 (Forward): 0.000
+- AUX→ADJ Pattern 2 (Reverse): 0.000
+- AUX→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→AUX UD)/(AUX→ADJ ROM): 1.07
+- Reverse cross ratio (AUX→ADJ UD)/(ADJ→AUX ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ PUNCT (Max Overlap Rate: 0.000)
+
+#### ADJ → PUNCT
+**UD Relations:**
+- punct (15 occurrences)
+
+#### PUNCT → ADJ
+**Examples:**
+*ADJ→PUNCT UD Examples:*
+  - **punct**: famous → . in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→PUNCT: 15 UD, 0 ROM
+- PUNCT→ADJ: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→PUNCT Pattern 1 (Forward): 0.000
+- ADJ→PUNCT Pattern 2 (Reverse): 0.000
+- ADJ→PUNCT Max Overlap: 0.000
+- PUNCT→ADJ Pattern 1 (Forward): 0.000
+- PUNCT→ADJ Pattern 2 (Reverse): 0.000
+- PUNCT→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→PUNCT UD)/(PUNCT→ADJ ROM): 0.00
+- Reverse cross ratio (PUNCT→ADJ UD)/(ADJ→PUNCT ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### PRON ↔ PUNCT (Max Overlap Rate: 0.000)
+
+#### PRON → PUNCT
+**UD Relations:**
+- punct (4 occurrences)
+
+#### PUNCT → PRON
+**Examples:**
+*PRON→PUNCT UD Examples:*
+  - **punct**: whom → (, whom → ) in "The girl (whom) I met is nice." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- PRON→PUNCT: 4 UD, 0 ROM
+- PUNCT→PRON: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- PRON→PUNCT Pattern 1 (Forward): 0.000
+- PRON→PUNCT Pattern 2 (Reverse): 0.000
+- PRON→PUNCT Max Overlap: 0.000
+- PUNCT→PRON Pattern 1 (Forward): 0.000
+- PUNCT→PRON Pattern 2 (Reverse): 0.000
+- PUNCT→PRON Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (PRON→PUNCT UD)/(PUNCT→PRON ROM): 0.00
+- Reverse cross ratio (PUNCT→PRON UD)/(PRON→PUNCT ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ VERB (Max Overlap Rate: 0.000)
+
+#### ADP → VERB
+**ROM Relations:**
+- Constraint (14 occurrences)
+- Predicate (Verb/Preposition - Object) (3 occurrences)
+
+#### VERB → ADP
+**UD Relations:**
+- compound:prt (3 occurrences)
+- mark (1 occurrences)
+
+**ROM Relations:**
+- Constraint (3 occurrences)
+
+**Examples:**
+*ADP→VERB ROM Examples:*
+  - **Constraint**: into → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Than → watch in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
+
+*VERB→ADP UD Examples:*
+  - **compound:prt**: broke → down in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
+  - **mark**: watch → than in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
+
+*VERB→ADP ROM Examples:*
+  - **Constraint**: Broke → down in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→VERB: 0 UD, 17 ROM
+- VERB→ADP: 4 UD, 3 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→VERB Pattern 1 (Forward): 0.000
+- ADP→VERB Pattern 2 (Reverse): 0.000
+- ADP→VERB Max Overlap: 0.000
+- VERB→ADP Pattern 1 (Forward): 0.000
+- VERB→ADP Pattern 2 (Reverse): 0.000
+- VERB→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.75
+- Cross ratio (ADP→VERB UD)/(VERB→ADP ROM): 0.00
+- Reverse cross ratio (VERB→ADP UD)/(ADP→VERB ROM): 0.24
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### NOUN ↔ NUM (Max Overlap Rate: 0.000)
+
+#### NOUN → NUM
+**UD Relations:**
+- nummod (3 occurrences)
+- nsubj (1 occurrences)
+
+#### NUM → NOUN
+**UD Relations:**
+- nmod (1 occurrences)
+
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+**Examples:**
+*NOUN→NUM UD Examples:*
+  - **nsubj**: year → 2018 in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+  - **nummod**: location → one in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+
+*NUM→NOUN UD Examples:*
+  - **nmod**: one → moments in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
+
+*NUM→NOUN ROM Examples:*
+  - **Constraint**: One → location in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→NUM: 4 UD, 0 ROM
+- NUM→NOUN: 1 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→NUM Pattern 1 (Forward): 0.000
+- NOUN→NUM Pattern 2 (Reverse): 0.000
+- NOUN→NUM Max Overlap: 0.000
+- NUM→NOUN Pattern 1 (Forward): 0.000
+- NUM→NOUN Pattern 2 (Reverse): 0.000
+- NUM→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 1.00
+- Cross ratio (NOUN→NUM UD)/(NUM→NOUN ROM): 4.00
+- Reverse cross ratio (NUM→NOUN UD)/(NOUN→NUM ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADV ↔ VERB (Max Overlap Rate: 0.000)
+
+#### ADV → VERB
+**ROM Relations:**
+- Constraint (19 occurrences)
+- Predicate (Verb/Proposition - Object) (5 occurrences)
+- Predicate (Verb/Preposition - Object) (4 occurrences)
+
+#### VERB → ADV
+**UD Relations:**
+- advmod (32 occurrences)
+- cc (1 occurrences)
+- mark (1 occurrences)
+
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (2 occurrences)
+- Constraint (1 occurrences)
+
+**Examples:**
+*ADV→VERB ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: When → moved in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+  - **Constraint**: together → built in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: However → kept in "I was tired; however, I kept working." (compound_sentences_input.txt)
+
+*VERB→ADV UD Examples:*
+  - **advmod**: moved → when in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+  - **cc**: drive → rather in "He chose to walk rather than drive." (compound_sentences_input.txt)
+  - **mark**: complain → Rather in "Rather than complain, she took action." (compound_sentences_input.txt)
+
+*VERB→ADV ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Stayed → home in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+  - **Constraint**: Stay → home in "You can either stay home or come with us." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→VERB: 0 UD, 28 ROM
+- VERB→ADV: 34 UD, 3 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→VERB Pattern 1 (Forward): 0.000
+- ADV→VERB Pattern 2 (Reverse): 0.000
+- ADV→VERB Max Overlap: 0.000
+- VERB→ADV Pattern 1 (Forward): 0.000
+- VERB→ADV Pattern 2 (Reverse): 0.000
+- VERB→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.09
+- Cross ratio (ADV→VERB UD)/(VERB→ADV ROM): 0.00
+- Reverse cross ratio (VERB→ADV UD)/(ADV→VERB ROM): 1.21
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ PROPN (Max Overlap Rate: 0.000)
+
+#### ADP → PROPN
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+
+#### PROPN → ADP
+**UD Relations:**
+- case (1 occurrences)
+
+**Examples:**
+*ADP→PROPN ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: To → Canada in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+
+*PROPN→ADP UD Examples:*
+  - **case**: Canada → to in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→PROPN: 0 UD, 1 ROM
+- PROPN→ADP: 1 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→PROPN Pattern 1 (Forward): 0.000
+- ADP→PROPN Pattern 2 (Reverse): 0.000
+- ADP→PROPN Max Overlap: 0.000
+- PROPN→ADP Pattern 1 (Forward): 0.000
+- PROPN→ADP Pattern 2 (Reverse): 0.000
+- PROPN→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→PROPN UD)/(PROPN→ADP ROM): 0.00
+- Reverse cross ratio (PROPN→ADP UD)/(ADP→PROPN ROM): 1.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### PROPN ↔ VERB (Max Overlap Rate: 0.000)
+
+#### PROPN → VERB
+**ROM Relations:**
+- Predicate (Subject - Verb) (5 occurrences)
+
+#### VERB → PROPN
 **UD Relations:**
 - nsubj (2 occurrences)
 - obl (1 occurrences)
@@ -1836,63 +810,127 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **ROM Relations:**
 - Constraint (1 occurrences)
-- Predicate (verb/proposition - object) (1 occurrences)
+- Predicate (Verb/Proposition - Object) (1 occurrences)
 
 **Examples:**
-*UD Examples:*
+*PROPN→VERB ROM Examples:*
+  - **Predicate (Subject - Verb)**: Sarah → decided, Sarah → cherished in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+
+*VERB→PROPN UD Examples:*
   - **obl**: moved → Canada in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
   - **nsubj**: decided → Sarah in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **nsubj**: received → Emily in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
   - **obj**: pushed → Sarah in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
 
-*ROM Examples:*
+*VERB→PROPN ROM Examples:*
   - **Constraint**: Inspired → Sarah in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: pushed → Sarah in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: pushed → Sarah in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 4
-- Total ROM instances: 2
-- ROM/UD ratio: 0.50
-- **Status: Both UD and ROM relations exist for this POS pair**
+**Mathematical Overlap Analysis:**
+- PROPN→VERB: 0 UD, 5 ROM
+- VERB→PROPN: 4 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- PROPN→VERB Pattern 1 (Forward): 0.000
+- PROPN→VERB Pattern 2 (Reverse): 0.000
+- PROPN→VERB Max Overlap: 0.000
+- VERB→PROPN Pattern 1 (Forward): 0.000
+- VERB→PROPN Pattern 2 (Reverse): 0.000
+- VERB→PROPN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.50
+- Cross ratio (PROPN→VERB UD)/(VERB→PROPN ROM): 0.00
+- Reverse cross ratio (VERB→PROPN UD)/(PROPN→VERB ROM): 0.80
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
-### VERB → PUNCT
+### AUX ↔ NUM (Max Overlap Rate: 0.000)
 
+#### AUX → NUM
+#### NUM → AUX
 **UD Relations:**
-- punct (61 occurrences)
+- cop (1 occurrences)
+
+**ROM Relations:**
+- Predicate (Subject - Verb) (1 occurrences)
 
 **Examples:**
-*UD Examples:*
-  - **punct**: remember → . in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **punct**: know → . in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
+*NUM→AUX UD Examples:*
+  - **cop**: one → was in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 61
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
+*NUM→AUX ROM Examples:*
+  - **Predicate (Subject - Verb)**: 2018 → was in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- AUX→NUM: 0 UD, 0 ROM
+- NUM→AUX: 1 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- AUX→NUM Pattern 1 (Forward): 0.000
+- AUX→NUM Pattern 2 (Reverse): 0.000
+- AUX→NUM Max Overlap: 0.000
+- NUM→AUX Pattern 1 (Forward): 0.000
+- NUM→AUX Pattern 2 (Reverse): 0.000
+- NUM→AUX Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 1.00
+- Cross ratio (AUX→NUM UD)/(NUM→AUX ROM): 0.00
+- Reverse cross ratio (NUM→AUX UD)/(AUX→NUM ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
-### VERB → SCONJ
+### ADV ↔ NOUN (Max Overlap Rate: 0.000)
 
+#### ADV → NOUN
+**ROM Relations:**
+- Constraint (5 occurrences)
+
+#### NOUN → ADV
 **UD Relations:**
-- mark (19 occurrences)
+- advmod (5 occurrences)
 
 **Examples:**
-*UD Examples:*
-  - **mark**: raining → because in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **mark**: read → as in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
+*ADV→NOUN ROM Examples:*
+  - **Constraint**: When → year in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 19
-- Total ROM instances: 0
-- **Status: Only UD relations exist (no ROM coverage)**
+*NOUN→ADV UD Examples:*
+  - **advmod**: stories → only, emotions → also in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→NOUN: 0 UD, 5 ROM
+- NOUN→ADV: 5 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→NOUN Pattern 1 (Forward): 0.000
+- ADV→NOUN Pattern 2 (Reverse): 0.000
+- ADV→NOUN Max Overlap: 0.000
+- NOUN→ADV Pattern 1 (Forward): 0.000
+- NOUN→ADV Pattern 2 (Reverse): 0.000
+- NOUN→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADV→NOUN UD)/(NOUN→ADV ROM): 0.00
+- Reverse cross ratio (NOUN→ADV UD)/(ADV→NOUN ROM): 1.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
-### VERB → VERB
+### VERB ↔ VERB (Max Overlap Rate: 0.000)
 
+#### VERB → VERB
 **UD Relations:**
 - advcl (17 occurrences)
 - xcomp (14 occurrences)
@@ -1900,35 +938,1677 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ccomp (3 occurrences)
 
 **ROM Relations:**
-- Predicate (verb/preposition - object) (6 occurrences)
-- Predicate (verb/proposition - object) (2 occurrences)
-- Predicate (verb - object) (1 occurrences)
-- constraint (1 occurrences)
-- Constraint (1 occurrences)
-- Predicate (subject - verb) (1 occurrences)
+- Predicate (Verb/Preposition - Object) (6 occurrences)
+- Predicate (Verb/Proposition - Object) (2 occurrences)
+- Constraint (2 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+- Predicate (Subject - Verb) (1 occurrences)
+
+#### VERB → VERB
+**UD Relations:**
+- advcl (17 occurrences)
+- xcomp (14 occurrences)
+- conj (7 occurrences)
+- ccomp (3 occurrences)
+
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (6 occurrences)
+- Predicate (Verb/Proposition - Object) (2 occurrences)
+- Constraint (2 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+- Predicate (Subject - Verb) (1 occurrences)
 
 **Examples:**
-*UD Examples:*
+*VERB→VERB UD Examples:*
   - **advcl**: remember → met in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **advcl**: stayed → raining in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
   - **xcomp**: decided → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **xcomp**: gave → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
   - **ccomp**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
-  - **ccomp**: know → call in "I don't know whether he’ll call or text." (compound_sentences_input.txt)
 
-*ROM Examples:*
-  - **Predicate (verb/preposition - object)**: gave → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Predicate (verb/preposition - object)**: Started → raining in "She wanted to go for a walk, but it started raining." (compound_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: consider → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-  - **Predicate (verb/proposition - object)**: Know → arrive in "I don’t know when the package will arrive." (noun_clauses_sentences_input.txt)
-  - **Predicate (verb - object)**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
-  - **constraint**: hoping → waited in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+*VERB→VERB ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: gave → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: consider → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Predicate (Verb - Object)**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
 
-**Analysis:**
-- Total UD instances: 41
-- Total ROM instances: 12
-- ROM/UD ratio: 0.29
-- **Status: Both UD and ROM relations exist for this POS pair**
+*VERB→VERB UD Examples:*
+  - **advcl**: remember → met in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
+  - **xcomp**: decided → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **ccomp**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+
+*VERB→VERB ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: gave → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: consider → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Predicate (Verb - Object)**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- VERB→VERB: 41 UD, 12 ROM
+- VERB→VERB: 41 UD, 12 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- VERB→VERB Pattern 1 (Forward): 0.000
+- VERB→VERB Pattern 2 (Reverse): 0.000
+- VERB→VERB Max Overlap: 0.000
+- VERB→VERB Pattern 1 (Forward): 0.000
+- VERB→VERB Pattern 2 (Reverse): 0.000
+- VERB→VERB Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.29
+- Reverse ROM/UD ratio: 0.29
+- Cross ratio (VERB→VERB UD)/(VERB→VERB ROM): 3.42
+- Reverse cross ratio (VERB→VERB UD)/(VERB→VERB ROM): 3.42
+- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### PUNCT ↔ VERB (Max Overlap Rate: 0.000)
+
+#### PUNCT → VERB
+#### VERB → PUNCT
+**UD Relations:**
+- punct (61 occurrences)
+
+**Examples:**
+*VERB→PUNCT UD Examples:*
+  - **punct**: remember → . in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- PUNCT→VERB: 0 UD, 0 ROM
+- VERB→PUNCT: 61 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- PUNCT→VERB Pattern 1 (Forward): 0.000
+- PUNCT→VERB Pattern 2 (Reverse): 0.000
+- PUNCT→VERB Max Overlap: 0.000
+- VERB→PUNCT Pattern 1 (Forward): 0.000
+- VERB→PUNCT Pattern 2 (Reverse): 0.000
+- VERB→PUNCT Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (PUNCT→VERB UD)/(VERB→PUNCT ROM): 0.00
+- Reverse cross ratio (VERB→PUNCT UD)/(PUNCT→VERB ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### AUX ↔ PRON (Max Overlap Rate: 0.000)
+
+#### AUX → PRON
+#### PRON → AUX
+**ROM Relations:**
+- Predicate (Subject - Verb) (11 occurrences)
+
+**Examples:**
+*PRON→AUX ROM Examples:*
+  - **Predicate (Subject - Verb)**: This → is in "This is the place where we stayed." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- AUX→PRON: 0 UD, 0 ROM
+- PRON→AUX: 0 UD, 11 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- AUX→PRON Pattern 1 (Forward): 0.000
+- AUX→PRON Pattern 2 (Reverse): 0.000
+- AUX→PRON Max Overlap: 0.000
+- PRON→AUX Pattern 1 (Forward): 0.000
+- PRON→AUX Pattern 2 (Reverse): 0.000
+- PRON→AUX Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (AUX→PRON UD)/(PRON→AUX ROM): 0.00
+- Reverse cross ratio (PRON→AUX UD)/(AUX→PRON ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### AUX ↔ VERB (Max Overlap Rate: 0.000)
+
+#### AUX → VERB
+**ROM Relations:**
+- Constraint (13 occurrences)
+- Predicate (Verb/Proposition - Object) (5 occurrences)
+- Constraint (Auxiliary - Main Verb) (1 occurrences)
+
+#### VERB → AUX
+**UD Relations:**
+- aux (24 occurrences)
+- cop (4 occurrences)
+- aux:pass (3 occurrences)
+
+**ROM Relations:**
+- Predicate (Subject - Verb) (1 occurrences)
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+
+**Examples:**
+*AUX→VERB ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Was → raining in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+  - **Constraint (Auxiliary - Main Verb)**: would → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+  - **Constraint**: Can → fly in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+
+*VERB→AUX UD Examples:*
+  - **aux**: know → do in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
+  - **aux:pass**: filled → was in "The letter was filled with stories about their childhood adventures." (basic_sentences_input.txt)
+  - **cop**: left → is in "The truth is that she never left." (noun_clauses_sentences_input.txt)
+
+*VERB→AUX ROM Examples:*
+  - **Predicate (Subject - Verb)**: lied → was in "That he lied was obvious." (noun_clauses_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: Know → is in "I know that she is right." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- AUX→VERB: 0 UD, 19 ROM
+- VERB→AUX: 31 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- AUX→VERB Pattern 1 (Forward): 0.000
+- AUX→VERB Pattern 2 (Reverse): 0.000
+- AUX→VERB Max Overlap: 0.000
+- VERB→AUX Pattern 1 (Forward): 0.000
+- VERB→AUX Pattern 2 (Reverse): 0.000
+- VERB→AUX Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.06
+- Cross ratio (AUX→VERB UD)/(VERB→AUX ROM): 0.00
+- Reverse cross ratio (VERB→AUX UD)/(AUX→VERB ROM): 1.63
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### PART ↔ VERB (Max Overlap Rate: 0.000)
+
+#### PART → VERB
+**ROM Relations:**
+- Constraint (10 occurrences)
+- Predicate (Verb/Preposition - Object) (6 occurrences)
+- Predicate (Verb/Proposition - Object) (4 occurrences)
+- Predicate (Preposition - Object) (2 occurrences)
+
+#### VERB → PART
+**UD Relations:**
+- mark (11 occurrences)
+- advmod (6 occurrences)
+
+**Examples:**
+*PART→VERB ROM Examples:*
+  - **Constraint**: to → decided, to → decided in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **Predicate (Preposition - Object)**: to → preserve, to → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: To → manage in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
+
+*VERB→PART UD Examples:*
+  - **advmod**: know → n’t in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
+  - **mark**: start → to, preserve → to in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- PART→VERB: 0 UD, 22 ROM
+- VERB→PART: 17 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- PART→VERB Pattern 1 (Forward): 0.000
+- PART→VERB Pattern 2 (Reverse): 0.000
+- PART→VERB Max Overlap: 0.000
+- VERB→PART Pattern 1 (Forward): 0.000
+- VERB→PART Pattern 2 (Reverse): 0.000
+- VERB→PART Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (PART→VERB UD)/(VERB→PART ROM): 0.00
+- Reverse cross ratio (VERB→PART UD)/(PART→VERB ROM): 0.77
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### SCONJ ↔ VERB (Max Overlap Rate: 0.000)
+
+#### SCONJ → VERB
+**ROM Relations:**
+- Constraint (9 occurrences)
+- Predicate (Verb/Proposition - Object) (5 occurrences)
+- Connection (3 occurrences)
+- Predicate (Verb/Preposition - Object) (2 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+- Predicate (Subject - Verb) (1 occurrences)
+
+#### VERB → SCONJ
+**UD Relations:**
+- mark (19 occurrences)
+
+**Examples:**
+*SCONJ→VERB ROM Examples:*
+  - **Constraint**: Because → stayed in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+  - **Predicate (Verb - Object)**: as → read in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Whether → call in "I don't know whether he’ll call or text." (compound_sentences_input.txt)
+
+*VERB→SCONJ UD Examples:*
+  - **mark**: raining → because in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+
+**Mathematical Overlap Analysis:**
+- SCONJ→VERB: 0 UD, 21 ROM
+- VERB→SCONJ: 19 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- SCONJ→VERB Pattern 1 (Forward): 0.000
+- SCONJ→VERB Pattern 2 (Reverse): 0.000
+- SCONJ→VERB Max Overlap: 0.000
+- VERB→SCONJ Pattern 1 (Forward): 0.000
+- VERB→SCONJ Pattern 2 (Reverse): 0.000
+- VERB→SCONJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (SCONJ→VERB UD)/(VERB→SCONJ ROM): 0.00
+- Reverse cross ratio (VERB→SCONJ UD)/(SCONJ→VERB ROM): 0.90
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### AUX ↔ SCONJ (Max Overlap Rate: 0.000)
+
+#### AUX → SCONJ
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (3 occurrences)
+
+#### SCONJ → AUX
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (4 occurrences)
+- Constraint (1 occurrences)
+- Predicate (Subject - Verb) (1 occurrences)
+- Connection (1 occurrences)
+
+**Examples:**
+*AUX→SCONJ ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Is → that in "The truth is that she never left." (noun_clauses_sentences_input.txt)
+
+*SCONJ→AUX ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Because → was in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+  - **Constraint**: As → is in "This task is not as easy as it looks." (compound_sentences_input.txt)
+  - **Predicate (Subject - Verb)**: That → was in "That he lied was obvious." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- AUX→SCONJ: 0 UD, 3 ROM
+- SCONJ→AUX: 0 UD, 7 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- AUX→SCONJ Pattern 1 (Forward): 0.000
+- AUX→SCONJ Pattern 2 (Reverse): 0.000
+- AUX→SCONJ Max Overlap: 0.000
+- SCONJ→AUX Pattern 1 (Forward): 0.000
+- SCONJ→AUX Pattern 2 (Reverse): 0.000
+- SCONJ→AUX Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (AUX→SCONJ UD)/(SCONJ→AUX ROM): 0.00
+- Reverse cross ratio (SCONJ→AUX UD)/(AUX→SCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ SCONJ (Max Overlap Rate: 0.000)
+
+#### ADJ → SCONJ
+**UD Relations:**
+- mark (3 occurrences)
+
+#### SCONJ → ADJ
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (2 occurrences)
+
+**Examples:**
+*ADJ→SCONJ UD Examples:*
+  - **mark**: tired → Although in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
+
+*SCONJ→ADJ ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: As → easy in "This task is not as easy as it looks." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→SCONJ: 3 UD, 0 ROM
+- SCONJ→ADJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→SCONJ Pattern 1 (Forward): 0.000
+- ADJ→SCONJ Pattern 2 (Reverse): 0.000
+- ADJ→SCONJ Max Overlap: 0.000
+- SCONJ→ADJ Pattern 1 (Forward): 0.000
+- SCONJ→ADJ Pattern 2 (Reverse): 0.000
+- SCONJ→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→SCONJ UD)/(SCONJ→ADJ ROM): 1.50
+- Reverse cross ratio (SCONJ→ADJ UD)/(ADJ→SCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ PRON (Max Overlap Rate: 0.000)
+
+#### ADJ → PRON
+**UD Relations:**
+- nsubj (8 occurrences)
+
+#### PRON → ADJ
+**Examples:**
+*ADJ→PRON UD Examples:*
+  - **nsubj**: tired → she in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→PRON: 8 UD, 0 ROM
+- PRON→ADJ: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→PRON Pattern 1 (Forward): 0.000
+- ADJ→PRON Pattern 2 (Reverse): 0.000
+- ADJ→PRON Max Overlap: 0.000
+- PRON→ADJ Pattern 1 (Forward): 0.000
+- PRON→ADJ Pattern 2 (Reverse): 0.000
+- PRON→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→PRON UD)/(PRON→ADJ ROM): 0.00
+- Reverse cross ratio (PRON→ADJ UD)/(ADJ→PRON ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ VERB (Max Overlap Rate: 0.000)
+
+#### ADJ → VERB
+**UD Relations:**
+- advcl (3 occurrences)
+- parataxis (2 occurrences)
+- xcomp (1 occurrences)
+- csubj (1 occurrences)
+- ccomp (1 occurrences)
+
+#### VERB → ADJ
+**UD Relations:**
+- advcl (1 occurrences)
+- advmod (1 occurrences)
+- ccomp (1 occurrences)
+
+**Examples:**
+*ADJ→VERB UD Examples:*
+  - **parataxis**: clear → decided in "The sky was clear; we decided to go stargazing." (compound_sentences_input.txt)
+  - **xcomp**: unsure → accept in "She’s unsure whether to accept the job or continue studying." (compound_sentences_input.txt)
+  - **advcl**: easy → looks in "This task is not as easy as it looks." (compound_sentences_input.txt)
+
+*VERB→ADJ UD Examples:*
+  - **advcl**: finished → tired in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
+  - **advmod**: enjoys → much in "She enjoys painting as much as she enjoys dancing." (compound_sentences_input.txt)
+  - **ccomp**: know → right in "I know that she is right." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→VERB: 8 UD, 0 ROM
+- VERB→ADJ: 3 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→VERB Pattern 1 (Forward): 0.000
+- ADJ→VERB Pattern 2 (Reverse): 0.000
+- ADJ→VERB Max Overlap: 0.000
+- VERB→ADJ Pattern 1 (Forward): 0.000
+- VERB→ADJ Pattern 2 (Reverse): 0.000
+- VERB→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→VERB UD)/(VERB→ADJ ROM): 0.00
+- Reverse cross ratio (VERB→ADJ UD)/(ADJ→VERB ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ NOUN (Max Overlap Rate: 0.000)
+
+#### ADP → NOUN
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (8 occurrences)
+- Predicate (Preposition - Object) (7 occurrences)
+- Constraint (5 occurrences)
+- Predicate (Verb/Proposition - Object) (4 occurrences)
+
+#### NOUN → ADP
+**UD Relations:**
+- case (22 occurrences)
+
+**Examples:**
+*ADP→NOUN ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: of → nostalgia, of → comfort in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Predicate (Preposition - Object)**: into → book in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Constraint**: from → letter in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
+
+*NOUN→ADP UD Examples:*
+  - **case**: memories → by in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→NOUN: 0 UD, 24 ROM
+- NOUN→ADP: 22 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→NOUN Pattern 1 (Forward): 0.000
+- ADP→NOUN Pattern 2 (Reverse): 0.000
+- ADP→NOUN Max Overlap: 0.000
+- NOUN→ADP Pattern 1 (Forward): 0.000
+- NOUN→ADP Pattern 2 (Reverse): 0.000
+- NOUN→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→NOUN UD)/(NOUN→ADP ROM): 0.00
+- Reverse cross ratio (NOUN→ADP UD)/(ADP→NOUN ROM): 0.92
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### NOUN ↔ PART (Max Overlap Rate: 0.000)
+
+#### NOUN → PART
+**UD Relations:**
+- advmod (1 occurrences)
+
+#### PART → NOUN
+**Examples:**
+*NOUN→PART UD Examples:*
+  - **advmod**: stories → not in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→PART: 1 UD, 0 ROM
+- PART→NOUN: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→PART Pattern 1 (Forward): 0.000
+- NOUN→PART Pattern 2 (Reverse): 0.000
+- NOUN→PART Max Overlap: 0.000
+- PART→NOUN Pattern 1 (Forward): 0.000
+- PART→NOUN Pattern 2 (Reverse): 0.000
+- PART→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NOUN→PART UD)/(PART→NOUN ROM): 0.00
+- Reverse cross ratio (PART→NOUN UD)/(NOUN→PART ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### CCONJ ↔ NOUN (Max Overlap Rate: 0.000)
+
+#### CCONJ → NOUN
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (3 occurrences)
+
+#### NOUN → CCONJ
+**UD Relations:**
+- cc (5 occurrences)
+- cc:preconj (1 occurrences)
+
+**ROM Relations:**
+- Connection (4 occurrences)
+
+**Examples:**
+*CCONJ→NOUN ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: Both → brother, And → sister in "Both my brother and sister are engineers." (compound_sentences_input.txt)
+
+*NOUN→CCONJ UD Examples:*
+  - **cc**: emotions → but in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
+  - **cc:preconj**: brother → Both in "Both my brother and sister are engineers." (compound_sentences_input.txt)
+
+*NOUN→CCONJ ROM Examples:*
+  - **Connection**: nostalgia → and, comfort → and in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- CCONJ→NOUN: 0 UD, 3 ROM
+- NOUN→CCONJ: 6 UD, 4 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- CCONJ→NOUN Pattern 1 (Forward): 0.000
+- CCONJ→NOUN Pattern 2 (Reverse): 0.000
+- CCONJ→NOUN Max Overlap: 0.000
+- NOUN→CCONJ Pattern 1 (Forward): 0.000
+- NOUN→CCONJ Pattern 2 (Reverse): 0.000
+- NOUN→CCONJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.67
+- Cross ratio (CCONJ→NOUN UD)/(NOUN→CCONJ ROM): 0.00
+- Reverse cross ratio (NOUN→CCONJ UD)/(CCONJ→NOUN ROM): 2.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ CCONJ (Max Overlap Rate: 0.000)
+
+#### ADJ → CCONJ
+**UD Relations:**
+- cc (2 occurrences)
+
+#### CCONJ → ADJ
+**ROM Relations:**
+- Connection (1 occurrences)
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+**Examples:**
+*ADJ→CCONJ UD Examples:*
+  - **cc**: creative → and in "She is both smart and creative." (compound_sentences_input.txt)
+
+*CCONJ→ADJ ROM Examples:*
+  - **Connection**: and → vivid in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: And → creative in "She is both smart and creative." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→CCONJ: 2 UD, 0 ROM
+- CCONJ→ADJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→CCONJ Pattern 1 (Forward): 0.000
+- ADJ→CCONJ Pattern 2 (Reverse): 0.000
+- ADJ→CCONJ Max Overlap: 0.000
+- CCONJ→ADJ Pattern 1 (Forward): 0.000
+- CCONJ→ADJ Pattern 2 (Reverse): 0.000
+- CCONJ→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→CCONJ UD)/(CCONJ→ADJ ROM): 1.00
+- Reverse cross ratio (CCONJ→ADJ UD)/(ADJ→CCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### NUM ↔ PRON (Max Overlap Rate: 0.000)
+
+#### NUM → PRON
+**UD Relations:**
+- nsubj (1 occurrences)
+
+#### PRON → NUM
+**Examples:**
+*NUM→PRON UD Examples:*
+  - **nsubj**: one → It in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NUM→PRON: 1 UD, 0 ROM
+- PRON→NUM: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NUM→PRON Pattern 1 (Forward): 0.000
+- NUM→PRON Pattern 2 (Reverse): 0.000
+- NUM→PRON Max Overlap: 0.000
+- PRON→NUM Pattern 1 (Forward): 0.000
+- PRON→NUM Pattern 2 (Reverse): 0.000
+- PRON→NUM Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NUM→PRON UD)/(PRON→NUM ROM): 0.00
+- Reverse cross ratio (PRON→NUM UD)/(NUM→PRON ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### NUM ↔ PUNCT (Max Overlap Rate: 0.000)
+
+#### NUM → PUNCT
+**UD Relations:**
+- punct (1 occurrences)
+
+#### PUNCT → NUM
+**Examples:**
+*NUM→PUNCT UD Examples:*
+  - **punct**: one → . in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NUM→PUNCT: 1 UD, 0 ROM
+- PUNCT→NUM: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NUM→PUNCT Pattern 1 (Forward): 0.000
+- NUM→PUNCT Pattern 2 (Reverse): 0.000
+- NUM→PUNCT Max Overlap: 0.000
+- PUNCT→NUM Pattern 1 (Forward): 0.000
+- PUNCT→NUM Pattern 2 (Reverse): 0.000
+- PUNCT→NUM Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NUM→PUNCT UD)/(PUNCT→NUM ROM): 0.00
+- Reverse cross ratio (PUNCT→NUM UD)/(NUM→PUNCT ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ NUM (Max Overlap Rate: 0.000)
+
+#### ADP → NUM
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+#### NUM → ADP
+**Examples:**
+*ADP→NUM ROM Examples:*
+  - **Constraint**: of → one in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→NUM: 0 UD, 1 ROM
+- NUM→ADP: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→NUM Pattern 1 (Forward): 0.000
+- ADP→NUM Pattern 2 (Reverse): 0.000
+- ADP→NUM Max Overlap: 0.000
+- NUM→ADP Pattern 1 (Forward): 0.000
+- NUM→ADP Pattern 2 (Reverse): 0.000
+- NUM→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→NUM UD)/(NUM→ADP ROM): 0.00
+- Reverse cross ratio (NUM→ADP UD)/(ADP→NUM ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ PRON (Max Overlap Rate: 0.000)
+
+#### ADP → PRON
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+- Predicate (Prep - Object) (1 occurrences)
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+#### PRON → ADP
+**UD Relations:**
+- case (3 occurrences)
+
+**Examples:**
+*ADP→PRON ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: with → her in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
+  - **Predicate (Prep - Object)**: within → her in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: With → us in "You can either stay home or come with us." (compound_sentences_input.txt)
+
+*PRON→ADP UD Examples:*
+  - **case**: her → with in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→PRON: 0 UD, 3 ROM
+- PRON→ADP: 3 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→PRON Pattern 1 (Forward): 0.000
+- ADP→PRON Pattern 2 (Reverse): 0.000
+- ADP→PRON Max Overlap: 0.000
+- PRON→ADP Pattern 1 (Forward): 0.000
+- PRON→ADP Pattern 2 (Reverse): 0.000
+- PRON→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→PRON UD)/(PRON→ADP ROM): 0.00
+- Reverse cross ratio (PRON→ADP UD)/(ADP→PRON ROM): 1.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ ADV (Max Overlap Rate: 0.000)
+
+#### ADJ → ADV
+**UD Relations:**
+- advmod (9 occurrences)
+
+#### ADV → ADJ
+**ROM Relations:**
+- Constraint (1 occurrences)
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+**Examples:**
+*ADJ→ADV UD Examples:*
+  - **advmod**: sad → very in "She was very sad yesterday." (basic_sentences_input.txt)
+
+*ADV→ADJ ROM Examples:*
+  - **Constraint**: very → sad in "She was very sad yesterday." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Both → smart in "She is both smart and creative." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→ADV: 9 UD, 0 ROM
+- ADV→ADJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→ADV Pattern 1 (Forward): 0.000
+- ADJ→ADV Pattern 2 (Reverse): 0.000
+- ADJ→ADV Max Overlap: 0.000
+- ADV→ADJ Pattern 1 (Forward): 0.000
+- ADV→ADJ Pattern 2 (Reverse): 0.000
+- ADV→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→ADV UD)/(ADV→ADJ ROM): 4.50
+- Reverse cross ratio (ADV→ADJ UD)/(ADJ→ADV ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### CCONJ ↔ VERB (Max Overlap Rate: 0.000)
+
+#### CCONJ → VERB
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (6 occurrences)
+- Constraint (3 occurrences)
+- Connect (2 occurrences)
+
+#### VERB → CCONJ
+**UD Relations:**
+- cc (7 occurrences)
+- cc:preconj (2 occurrences)
+
+**Examples:**
+*CCONJ→VERB ROM Examples:*
+  - **Constraint**: But → happened in "But it never happened." (basic_sentences_input.txt)
+  - **Connect**: and → stop, and → slow in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: But → started in "She wanted to go for a walk, but it started raining." (compound_sentences_input.txt)
+
+*VERB→CCONJ UD Examples:*
+  - **cc**: happened → But in "But it never happened." (basic_sentences_input.txt)
+  - **cc:preconj**: stay → either in "You can either stay home or come with us." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- CCONJ→VERB: 0 UD, 11 ROM
+- VERB→CCONJ: 9 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- CCONJ→VERB Pattern 1 (Forward): 0.000
+- CCONJ→VERB Pattern 2 (Reverse): 0.000
+- CCONJ→VERB Max Overlap: 0.000
+- VERB→CCONJ Pattern 1 (Forward): 0.000
+- VERB→CCONJ Pattern 2 (Reverse): 0.000
+- VERB→CCONJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (CCONJ→VERB UD)/(VERB→CCONJ ROM): 0.00
+- Reverse cross ratio (VERB→CCONJ UD)/(CCONJ→VERB ROM): 0.82
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADV ↔ INTJ (Max Overlap Rate: 0.000)
+
+#### ADV → INTJ
+**UD Relations:**
+- discourse (1 occurrences)
+
+#### INTJ → ADV
+**ROM Relations:**
+- Predicate (Prep - Object) (1 occurrences)
+
+**Examples:**
+*ADV→INTJ UD Examples:*
+  - **discourse**: before → like in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+
+*INTJ→ADV ROM Examples:*
+  - **Predicate (Prep - Object)**: Like → before in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→INTJ: 1 UD, 0 ROM
+- INTJ→ADV: 0 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→INTJ Pattern 1 (Forward): 0.000
+- ADV→INTJ Pattern 2 (Reverse): 0.000
+- ADV→INTJ Max Overlap: 0.000
+- INTJ→ADV Pattern 1 (Forward): 0.000
+- INTJ→ADV Pattern 2 (Reverse): 0.000
+- INTJ→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADV→INTJ UD)/(INTJ→ADV ROM): 1.00
+- Reverse cross ratio (INTJ→ADV UD)/(ADV→INTJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADV ↔ PUNCT (Max Overlap Rate: 0.000)
+
+#### ADV → PUNCT
+**UD Relations:**
+- punct (2 occurrences)
+
+#### PUNCT → ADV
+**Examples:**
+*ADV→PUNCT UD Examples:*
+  - **punct**: before → , in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→PUNCT: 2 UD, 0 ROM
+- PUNCT→ADV: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→PUNCT Pattern 1 (Forward): 0.000
+- ADV→PUNCT Pattern 2 (Reverse): 0.000
+- ADV→PUNCT Max Overlap: 0.000
+- PUNCT→ADV Pattern 1 (Forward): 0.000
+- PUNCT→ADV Pattern 2 (Reverse): 0.000
+- PUNCT→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADV→PUNCT UD)/(PUNCT→ADV ROM): 0.00
+- Reverse cross ratio (PUNCT→ADV UD)/(ADV→PUNCT ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### INTJ ↔ NOUN (Max Overlap Rate: 0.000)
+
+#### INTJ → NOUN
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+#### NOUN → INTJ
+**Examples:**
+*INTJ→NOUN ROM Examples:*
+  - **Constraint**: Like → pain in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- INTJ→NOUN: 0 UD, 1 ROM
+- NOUN→INTJ: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- INTJ→NOUN Pattern 1 (Forward): 0.000
+- INTJ→NOUN Pattern 2 (Reverse): 0.000
+- INTJ→NOUN Max Overlap: 0.000
+- NOUN→INTJ Pattern 1 (Forward): 0.000
+- NOUN→INTJ Pattern 2 (Reverse): 0.000
+- NOUN→INTJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (INTJ→NOUN UD)/(NOUN→INTJ ROM): 0.00
+- Reverse cross ratio (NOUN→INTJ UD)/(INTJ→NOUN ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ DET (Max Overlap Rate: 0.000)
+
+#### ADP → DET
+#### DET → ADP
+**UD Relations:**
+- case (1 occurrences)
+
+**Examples:**
+*DET→ADP UD Examples:*
+  - **case**: another → to in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→DET: 0 UD, 0 ROM
+- DET→ADP: 1 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→DET Pattern 1 (Forward): 0.000
+- ADP→DET Pattern 2 (Reverse): 0.000
+- ADP→DET Max Overlap: 0.000
+- DET→ADP Pattern 1 (Forward): 0.000
+- DET→ADP Pattern 2 (Reverse): 0.000
+- DET→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→DET UD)/(DET→ADP ROM): 0.00
+- Reverse cross ratio (DET→ADP UD)/(ADP→DET ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### DET ↔ VERB (Max Overlap Rate: 0.000)
+
+#### DET → VERB
+#### VERB → DET
+**UD Relations:**
+- obl (1 occurrences)
+
+**Examples:**
+*VERB→DET UD Examples:*
+  - **obl**: fly → another in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- DET→VERB: 0 UD, 0 ROM
+- VERB→DET: 1 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- DET→VERB Pattern 1 (Forward): 0.000
+- DET→VERB Pattern 2 (Reverse): 0.000
+- DET→VERB Max Overlap: 0.000
+- VERB→DET Pattern 1 (Forward): 0.000
+- VERB→DET Pattern 2 (Reverse): 0.000
+- VERB→DET Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (DET→VERB UD)/(VERB→DET ROM): 0.00
+- Reverse cross ratio (VERB→DET UD)/(DET→VERB ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ ADP (Max Overlap Rate: 0.000)
+
+#### ADP → ADP
+**ROM Relations:**
+- Connection (1 occurrences)
+- Constraint (1 occurrences)
+
+#### ADP → ADP
+**ROM Relations:**
+- Connection (1 occurrences)
+- Constraint (1 occurrences)
+
+**Examples:**
+*ADP→ADP ROM Examples:*
+  - **Connection**: From → to in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+  - **Constraint**: Out → of in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
+
+*ADP→ADP ROM Examples:*
+  - **Connection**: From → to in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+  - **Constraint**: Out → of in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→ADP: 0 UD, 2 ROM
+- ADP→ADP: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→ADP Pattern 1 (Forward): 0.000
+- ADP→ADP Pattern 2 (Reverse): 0.000
+- ADP→ADP Max Overlap: 0.000
+- ADP→ADP Pattern 1 (Forward): 0.000
+- ADP→ADP Pattern 2 (Reverse): 0.000
+- ADP→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→ADP UD)/(ADP→ADP ROM): 0.00
+- Reverse cross ratio (ADP→ADP UD)/(ADP→ADP ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ ADP (Max Overlap Rate: 0.000)
+
+#### ADJ → ADP
+#### ADP → ADJ
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (2 occurrences)
+- Constraint (1 occurrences)
+
+**Examples:**
+*ADP→ADJ ROM Examples:*
+  - **Constraint**: To → upscale in "Upscale 5 MW wind turbine_1 to 10 MW wind turbine_2." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: As → tall in "She’s as tall as her brother." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→ADP: 0 UD, 0 ROM
+- ADP→ADJ: 0 UD, 3 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→ADP Pattern 1 (Forward): 0.000
+- ADJ→ADP Pattern 2 (Reverse): 0.000
+- ADJ→ADP Max Overlap: 0.000
+- ADP→ADJ Pattern 1 (Forward): 0.000
+- ADP→ADJ Pattern 2 (Reverse): 0.000
+- ADP→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→ADP UD)/(ADP→ADJ ROM): 0.00
+- Reverse cross ratio (ADP→ADJ UD)/(ADJ→ADP ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### NOUN ↔ PROPN (Max Overlap Rate: 0.000)
+
+#### NOUN → PROPN
+**UD Relations:**
+- compound (1 occurrences)
+
+#### PROPN → NOUN
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+**Examples:**
+*NOUN→PROPN UD Examples:*
+  - **compound**: journal → JIDPS in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
+
+*PROPN→NOUN ROM Examples:*
+  - **Constraint**: JIDPS → journal in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→PROPN: 1 UD, 0 ROM
+- PROPN→NOUN: 0 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→PROPN Pattern 1 (Forward): 0.000
+- NOUN→PROPN Pattern 2 (Reverse): 0.000
+- NOUN→PROPN Max Overlap: 0.000
+- PROPN→NOUN Pattern 1 (Forward): 0.000
+- PROPN→NOUN Pattern 2 (Reverse): 0.000
+- PROPN→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NOUN→PROPN UD)/(PROPN→NOUN ROM): 1.00
+- Reverse cross ratio (PROPN→NOUN UD)/(NOUN→PROPN ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADV ↔ CCONJ (Max Overlap Rate: 0.000)
+
+#### ADV → CCONJ
+**UD Relations:**
+- cc (1 occurrences)
+
+#### CCONJ → ADV
+**Examples:**
+*ADV→CCONJ UD Examples:*
+  - **cc**: efficiently → and in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→CCONJ: 1 UD, 0 ROM
+- CCONJ→ADV: 0 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→CCONJ Pattern 1 (Forward): 0.000
+- ADV→CCONJ Pattern 2 (Reverse): 0.000
+- ADV→CCONJ Max Overlap: 0.000
+- CCONJ→ADV Pattern 1 (Forward): 0.000
+- CCONJ→ADV Pattern 2 (Reverse): 0.000
+- CCONJ→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADV→CCONJ UD)/(CCONJ→ADV ROM): 0.00
+- Reverse cross ratio (CCONJ→ADV UD)/(ADV→CCONJ ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADV ↔ ADV (Max Overlap Rate: 0.000)
+
+#### ADV → ADV
+**UD Relations:**
+- advmod (2 occurrences)
+- conj (1 occurrences)
+
+**ROM Relations:**
+- Constraint (2 occurrences)
+
+#### ADV → ADV
+**UD Relations:**
+- advmod (2 occurrences)
+- conj (1 occurrences)
+
+**ROM Relations:**
+- Constraint (2 occurrences)
+
+**Examples:**
+*ADV→ADV UD Examples:*
+  - **conj**: effectively → efficiently in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
+  - **advmod**: quickly → as in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
+
+*ADV→ADV ROM Examples:*
+  - **Constraint**: Just → so in "Just as honesty builds trust, so does kindness." (compound_sentences_input.txt)
+
+*ADV→ADV UD Examples:*
+  - **conj**: effectively → efficiently in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
+  - **advmod**: quickly → as in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
+
+*ADV→ADV ROM Examples:*
+  - **Constraint**: Just → so in "Just as honesty builds trust, so does kindness." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→ADV: 3 UD, 2 ROM
+- ADV→ADV: 3 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→ADV Pattern 1 (Forward): 0.000
+- ADV→ADV Pattern 2 (Reverse): 0.000
+- ADV→ADV Max Overlap: 0.000
+- ADV→ADV Pattern 1 (Forward): 0.000
+- ADV→ADV Pattern 2 (Reverse): 0.000
+- ADV→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.67
+- Reverse ROM/UD ratio: 0.67
+- Cross ratio (ADV→ADV UD)/(ADV→ADV ROM): 1.50
+- Reverse cross ratio (ADV→ADV UD)/(ADV→ADV ROM): 1.50
+- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADV ↔ AUX (Max Overlap Rate: 0.000)
+
+#### ADV → AUX
+**ROM Relations:**
+- Constraint (4 occurrences)
+- Predicate (Subject - Verb) (2 occurrences)
+- Connection (1 occurrences)
+
+#### AUX → ADV
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+
+**Examples:**
+*ADV→AUX ROM Examples:*
+  - **Constraint**: However → was in "I was tired; however, I kept working." (compound_sentences_input.txt)
+  - **Predicate (Subject - Verb)**: How → is in "How she managed to escape is still a mystery." (noun_clauses_sentences_input.txt)
+  - **Connection**: How → is in "The problem is how we can get there." (noun_clauses_sentences_input.txt)
+
+*AUX→ADV ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Is → how in "The problem is how we can get there." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→AUX: 0 UD, 7 ROM
+- AUX→ADV: 0 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→AUX Pattern 1 (Forward): 0.000
+- ADV→AUX Pattern 2 (Reverse): 0.000
+- ADV→AUX Max Overlap: 0.000
+- AUX→ADV Pattern 1 (Forward): 0.000
+- AUX→ADV Pattern 2 (Reverse): 0.000
+- AUX→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADV→AUX UD)/(AUX→ADV ROM): 0.00
+- Reverse cross ratio (AUX→ADV UD)/(ADV→AUX ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ ADJ (Max Overlap Rate: 0.000)
+
+#### ADJ → ADJ
+**UD Relations:**
+- conj (2 occurrences)
+
+#### ADJ → ADJ
+**UD Relations:**
+- conj (2 occurrences)
+
+**Examples:**
+*ADJ→ADJ UD Examples:*
+  - **conj**: smart → creative in "She is both smart and creative." (compound_sentences_input.txt)
+
+*ADJ→ADJ UD Examples:*
+  - **conj**: smart → creative in "She is both smart and creative." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→ADJ: 2 UD, 0 ROM
+- ADJ→ADJ: 2 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→ADJ Pattern 1 (Forward): 0.000
+- ADJ→ADJ Pattern 2 (Reverse): 0.000
+- ADJ→ADJ Max Overlap: 0.000
+- ADJ→ADJ Pattern 1 (Forward): 0.000
+- ADJ→ADJ Pattern 2 (Reverse): 0.000
+- ADJ→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→ADJ UD)/(ADJ→ADJ ROM): 0.00
+- Reverse cross ratio (ADJ→ADJ UD)/(ADJ→ADJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### AUX ↔ CCONJ (Max Overlap Rate: 0.000)
+
+#### AUX → CCONJ
+#### CCONJ → AUX
+**ROM Relations:**
+- Constraint (3 occurrences)
+
+**Examples:**
+*CCONJ→AUX ROM Examples:*
+  - **Constraint**: and → is in "She is both smart and creative." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- AUX→CCONJ: 0 UD, 0 ROM
+- CCONJ→AUX: 0 UD, 3 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- AUX→CCONJ Pattern 1 (Forward): 0.000
+- AUX→CCONJ Pattern 2 (Reverse): 0.000
+- AUX→CCONJ Max Overlap: 0.000
+- CCONJ→AUX Pattern 1 (Forward): 0.000
+- CCONJ→AUX Pattern 2 (Reverse): 0.000
+- CCONJ→AUX Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (AUX→CCONJ UD)/(CCONJ→AUX ROM): 0.00
+- Reverse cross ratio (CCONJ→AUX UD)/(AUX→CCONJ ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### CCONJ ↔ CCONJ (Max Overlap Rate: 0.000)
+
+#### CCONJ → CCONJ
+**ROM Relations:**
+- Connection (3 occurrences)
+
+#### CCONJ → CCONJ
+**ROM Relations:**
+- Connection (3 occurrences)
+
+**Examples:**
+*CCONJ→CCONJ ROM Examples:*
+  - **Connection**: both → and in "Both my brother and sister are engineers." (compound_sentences_input.txt)
+
+*CCONJ→CCONJ ROM Examples:*
+  - **Connection**: both → and in "Both my brother and sister are engineers." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- CCONJ→CCONJ: 0 UD, 3 ROM
+- CCONJ→CCONJ: 0 UD, 3 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- CCONJ→CCONJ Pattern 1 (Forward): 0.000
+- CCONJ→CCONJ Pattern 2 (Reverse): 0.000
+- CCONJ→CCONJ Max Overlap: 0.000
+- CCONJ→CCONJ Pattern 1 (Forward): 0.000
+- CCONJ→CCONJ Pattern 2 (Reverse): 0.000
+- CCONJ→CCONJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (CCONJ→CCONJ UD)/(CCONJ→CCONJ ROM): 0.00
+- Reverse cross ratio (CCONJ→CCONJ UD)/(CCONJ→CCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADJ ↔ PART (Max Overlap Rate: 0.000)
+
+#### ADJ → PART
+**UD Relations:**
+- advmod (3 occurrences)
+
+#### PART → ADJ
+**ROM Relations:**
+- Constraint (2 occurrences)
+
+**Examples:**
+*ADJ→PART UD Examples:*
+  - **advmod**: long → not in "The movie was not only long but also boring." (compound_sentences_input.txt)
+
+*PART→ADJ ROM Examples:*
+  - **Constraint**: Not → easy in "This task is not as easy as it looks." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→PART: 3 UD, 0 ROM
+- PART→ADJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→PART Pattern 1 (Forward): 0.000
+- ADJ→PART Pattern 2 (Reverse): 0.000
+- ADJ→PART Max Overlap: 0.000
+- PART→ADJ Pattern 1 (Forward): 0.000
+- PART→ADJ Pattern 2 (Reverse): 0.000
+- PART→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→PART UD)/(PART→ADJ ROM): 1.50
+- Reverse cross ratio (PART→ADJ UD)/(ADJ→PART ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### CCONJ ↔ SCONJ (Max Overlap Rate: 0.000)
+
+#### CCONJ → SCONJ
+#### SCONJ → CCONJ
+**ROM Relations:**
+- Connection (2 occurrences)
+
+**Examples:**
+*SCONJ→CCONJ ROM Examples:*
+  - **Connection**: Whether → Or in "I don't know whether he’ll call or text." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- CCONJ→SCONJ: 0 UD, 0 ROM
+- SCONJ→CCONJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- CCONJ→SCONJ Pattern 1 (Forward): 0.000
+- CCONJ→SCONJ Pattern 2 (Reverse): 0.000
+- CCONJ→SCONJ Max Overlap: 0.000
+- SCONJ→CCONJ Pattern 1 (Forward): 0.000
+- SCONJ→CCONJ Pattern 2 (Reverse): 0.000
+- SCONJ→CCONJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (CCONJ→SCONJ UD)/(SCONJ→CCONJ ROM): 0.00
+- Reverse cross ratio (SCONJ→CCONJ UD)/(CCONJ→SCONJ ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ ADV (Max Overlap Rate: 0.000)
+
+#### ADP → ADV
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+#### ADV → ADP
+**UD Relations:**
+- fixed (2 occurrences)
+
+**ROM Relations:**
+- Connection (2 occurrences)
+
+**Examples:**
+*ADP→ADV ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: As → quickly in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
+
+*ADV→ADP UD Examples:*
+  - **fixed**: rather → than in "He chose to walk rather than drive." (compound_sentences_input.txt)
+
+*ADV→ADP ROM Examples:*
+  - **Connection**: Rather → than in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→ADV: 0 UD, 1 ROM
+- ADV→ADP: 2 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→ADV Pattern 1 (Forward): 0.000
+- ADP→ADV Pattern 2 (Reverse): 0.000
+- ADP→ADV Max Overlap: 0.000
+- ADV→ADP Pattern 1 (Forward): 0.000
+- ADV→ADP Pattern 2 (Reverse): 0.000
+- ADV→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 1.00
+- Cross ratio (ADP→ADV UD)/(ADV→ADP ROM): 0.00
+- Reverse cross ratio (ADV→ADP UD)/(ADP→ADV ROM): 2.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADV ↔ SCONJ (Max Overlap Rate: 0.000)
+
+#### ADV → SCONJ
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+#### SCONJ → ADV
+**ROM Relations:**
+- Connection (3 occurrences)
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+
+**Examples:**
+*ADV→SCONJ ROM Examples:*
+  - **Constraint**: Just → as in "Just as the moon affects the tides, so does the sun influence them." (compound_sentences_input.txt)
+
+*SCONJ→ADV ROM Examples:*
+  - **Connection**: As → so in "Just as the moon affects the tides, so does the sun influence them." (compound_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: About → how in "We’re thinking about how we can solve the problem." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→SCONJ: 0 UD, 1 ROM
+- SCONJ→ADV: 0 UD, 4 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→SCONJ Pattern 1 (Forward): 0.000
+- ADV→SCONJ Pattern 2 (Reverse): 0.000
+- ADV→SCONJ Max Overlap: 0.000
+- SCONJ→ADV Pattern 1 (Forward): 0.000
+- SCONJ→ADV Pattern 2 (Reverse): 0.000
+- SCONJ→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADV→SCONJ UD)/(SCONJ→ADV ROM): 0.00
+- Reverse cross ratio (SCONJ→ADV UD)/(ADV→SCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### PRON ↔ PRON (Max Overlap Rate: 0.000)
+
+#### PRON → PRON
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+#### PRON → PRON
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+**Examples:**
+*PRON→PRON ROM Examples:*
+  - **Constraint**: me → what in "She didn’t tell me what had happened." (noun_clauses_sentences_input.txt)
+
+*PRON→PRON ROM Examples:*
+  - **Constraint**: me → what in "She didn’t tell me what had happened." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- PRON→PRON: 0 UD, 1 ROM
+- PRON→PRON: 0 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- PRON→PRON Pattern 1 (Forward): 0.000
+- PRON→PRON Pattern 2 (Reverse): 0.000
+- PRON→PRON Max Overlap: 0.000
+- PRON→PRON Pattern 1 (Forward): 0.000
+- PRON→PRON Pattern 2 (Reverse): 0.000
+- PRON→PRON Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (PRON→PRON UD)/(PRON→PRON ROM): 0.00
+- Reverse cross ratio (PRON→PRON UD)/(PRON→PRON ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### NOUN ↔ SCONJ (Max Overlap Rate: 0.000)
+
+#### NOUN → SCONJ
+**UD Relations:**
+- mark (1 occurrences)
+
+#### SCONJ → NOUN
+**ROM Relations:**
+- Constraint (4 occurrences)
+
+**Examples:**
+*NOUN→SCONJ UD Examples:*
+  - **mark**: time → that in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
+
+*SCONJ→NOUN ROM Examples:*
+  - **Constraint**: that → News in "I heard the news that she got married." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→SCONJ: 1 UD, 0 ROM
+- SCONJ→NOUN: 0 UD, 4 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→SCONJ Pattern 1 (Forward): 0.000
+- NOUN→SCONJ Pattern 2 (Reverse): 0.000
+- NOUN→SCONJ Max Overlap: 0.000
+- SCONJ→NOUN Pattern 1 (Forward): 0.000
+- SCONJ→NOUN Pattern 2 (Reverse): 0.000
+- SCONJ→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NOUN→SCONJ UD)/(SCONJ→NOUN ROM): 0.25
+- Reverse cross ratio (SCONJ→NOUN UD)/(NOUN→SCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: ⚫ No overlap**
+
+---
+
+### ADP ↔ AUX (Max Overlap Rate: 0.000)
+
+#### ADP → AUX
+#### AUX → ADP
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+
+**Examples:**
+*AUX→ADP ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Were → out in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→AUX: 0 UD, 0 ROM
+- AUX→ADP: 0 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→AUX Pattern 1 (Forward): 0.000
+- ADP→AUX Pattern 2 (Reverse): 0.000
+- ADP→AUX Max Overlap: 0.000
+- AUX→ADP Pattern 1 (Forward): 0.000
+- AUX→ADP Pattern 2 (Reverse): 0.000
+- AUX→ADP Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→AUX UD)/(AUX→ADP ROM): 0.00
+- Reverse cross ratio (AUX→ADP UD)/(ADP→AUX ROM): 0.00
+- **Status: Unidirectional coverage only**
+- **Overlap Assessment: ⚫ No overlap**
 
 ---
 
@@ -1976,22 +2656,20 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 ### ROM Relations Summary (All Files)
 | ROM Relation | Count | Percentage |
 |--------------|-------|------------|
-| Constraint | 196 | 34.4% |
-| Predicate (subject - verb) | 133 | 23.3% |
-| Predicate (verb/proposition - object) | 81 | 14.2% |
-| Predicate (verb/preposition - object) | 75 | 13.2% |
-| Connection | 26 | 4.6% |
-| constraint | 21 | 3.7% |
-| Predicate (verb - object) | 12 | 2.1% |
-| Predicate (preposition - object) | 10 | 1.8% |
-| connection | 7 | 1.2% |
-| Predicate (prep - object) | 2 | 0.4% |
-| connect | 2 | 0.4% |
-| Constraint (determiner - noun) | 1 | 0.2% |
-| Constraint (auxiliary - main verb) | 1 | 0.2% |
-| Predicate (subject - verb) (second clause) | 1 | 0.2% |
-| Predicate (verb/preposition - object) (second clause) | 1 | 0.2% |
-| Predicate (verb/preposition - object) (implied) | 1 | 0.2% |
+| Constraint | 217 | 38.1% |
+| Predicate (Subject - Verb) | 133 | 23.3% |
+| Predicate (Verb/Proposition - Object) | 81 | 14.2% |
+| Predicate (Verb/Preposition - Object) | 75 | 13.2% |
+| Connection | 33 | 5.8% |
+| Predicate (Verb - Object) | 12 | 2.1% |
+| Predicate (Preposition - Object) | 10 | 1.8% |
+| Predicate (Prep - Object) | 2 | 0.4% |
+| Connect | 2 | 0.4% |
+| Constraint (Determiner - Noun) | 1 | 0.2% |
+| Constraint (Auxiliary - Main Verb) | 1 | 0.2% |
+| Predicate (Subject - Verb) (Second Clause) | 1 | 0.2% |
+| Predicate (Verb/Preposition - Object) (Second Clause) | 1 | 0.2% |
+| Predicate (Verb/Preposition - Object) (Implied) | 1 | 0.2% |
 
 ### POS Pairs Distribution (All Files)
 | POS Pair | UD Count | ROM Count | Status |
@@ -2008,85 +2686,85 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 | VERB → AUX | 31 | 2 | Both |
 | NOUN → NOUN | 25 | 6 | Both |
 | ADV → VERB | 0 | 28 | ROM Only |
-| PRON → NOUN | 0 | 26 | ROM Only |
 | NOUN → PRON | 22 | 4 | Both |
 | NOUN → AUX | 9 | 17 | Both |
+| PRON → NOUN | 0 | 26 | ROM Only |
 | ADP → NOUN | 0 | 24 | ROM Only |
 | NOUN → ADP | 22 | 0 | UD Only |
 | PART → VERB | 0 | 22 | ROM Only |
 | SCONJ → VERB | 0 | 21 | ROM Only |
-| ADJ → NOUN | 8 | 11 | Both |
 | VERB → SCONJ | 19 | 0 | UD Only |
+| ADJ → NOUN | 8 | 11 | Both |
 | AUX → VERB | 0 | 19 | ROM Only |
 | VERB → PART | 17 | 0 | UD Only |
 | ADP → VERB | 0 | 17 | ROM Only |
 | ADJ → AUX | 16 | 0 | UD Only |
+| ADJ → PUNCT | 15 | 0 | UD Only |
 | NOUN → PUNCT | 15 | 0 | UD Only |
 | AUX → ADJ | 0 | 15 | ROM Only |
-| ADJ → PUNCT | 15 | 0 | UD Only |
 | NOUN → ADJ | 12 | 0 | UD Only |
-| CCONJ → VERB | 0 | 11 | ROM Only |
 | PRON → AUX | 0 | 11 | ROM Only |
+| CCONJ → VERB | 0 | 11 | ROM Only |
 | NOUN → CCONJ | 6 | 4 | Both |
+| ADJ → ADV | 9 | 0 | UD Only |
 | AUX → NOUN | 0 | 9 | ROM Only |
 | VERB → CCONJ | 9 | 0 | UD Only |
-| ADJ → ADV | 9 | 0 | UD Only |
 | ADJ → VERB | 8 | 0 | UD Only |
 | ADJ → PRON | 8 | 0 | UD Only |
 | VERB → ADP | 4 | 3 | Both |
-| SCONJ → AUX | 0 | 7 | ROM Only |
 | ADV → AUX | 0 | 7 | ROM Only |
+| SCONJ → AUX | 0 | 7 | ROM Only |
 | VERB → PROPN | 4 | 2 | Both |
 | PROPN → VERB | 0 | 5 | ROM Only |
-| ADV → NOUN | 0 | 5 | ROM Only |
-| ADV → ADV | 3 | 2 | Both |
 | NOUN → ADV | 5 | 0 | UD Only |
-| PRON → PUNCT | 4 | 0 | UD Only |
+| ADV → ADV | 3 | 2 | Both |
+| ADV → NOUN | 0 | 5 | ROM Only |
+| NOUN → NUM | 4 | 0 | UD Only |
+| SCONJ → ADV | 0 | 4 | ROM Only |
 | SCONJ → NOUN | 0 | 4 | ROM Only |
 | ADV → ADP | 2 | 2 | Both |
-| SCONJ → ADV | 0 | 4 | ROM Only |
-| NOUN → NUM | 4 | 0 | UD Only |
-| PRON → ADP | 3 | 0 | UD Only |
-| CCONJ → NOUN | 0 | 3 | ROM Only |
-| ADP → ADJ | 0 | 3 | ROM Only |
-| ADJ → SCONJ | 3 | 0 | UD Only |
-| ADJ → PART | 3 | 0 | UD Only |
-| ADP → PRON | 0 | 3 | ROM Only |
-| CCONJ → AUX | 0 | 3 | ROM Only |
-| AUX → SCONJ | 0 | 3 | ROM Only |
+| PRON → PUNCT | 4 | 0 | UD Only |
 | VERB → ADJ | 3 | 0 | UD Only |
+| ADJ → PART | 3 | 0 | UD Only |
+| CCONJ → NOUN | 0 | 3 | ROM Only |
+| AUX → SCONJ | 0 | 3 | ROM Only |
+| ADP → ADJ | 0 | 3 | ROM Only |
+| CCONJ → AUX | 0 | 3 | ROM Only |
+| PRON → ADP | 3 | 0 | UD Only |
+| ADJ → SCONJ | 3 | 0 | UD Only |
+| ADP → PRON | 0 | 3 | ROM Only |
 | CCONJ → CCONJ | 0 | 3 | ROM Only |
 | SCONJ → CCONJ | 0 | 2 | ROM Only |
 | ADP → ADP | 0 | 2 | ROM Only |
-| NUM → NOUN | 1 | 1 | Both |
-| ADJ → ADJ | 2 | 0 | UD Only |
 | ADJ → CCONJ | 2 | 0 | UD Only |
-| CCONJ → ADJ | 0 | 2 | ROM Only |
-| SCONJ → ADJ | 0 | 2 | ROM Only |
-| PART → ADJ | 0 | 2 | ROM Only |
 | ADV → ADJ | 0 | 2 | ROM Only |
-| NUM → AUX | 1 | 1 | Both |
+| SCONJ → ADJ | 0 | 2 | ROM Only |
+| ADJ → ADJ | 2 | 0 | UD Only |
+| NUM → NOUN | 1 | 1 | Both |
+| CCONJ → ADJ | 0 | 2 | ROM Only |
+| PART → ADJ | 0 | 2 | ROM Only |
 | ADV → PUNCT | 2 | 0 | UD Only |
-| NOUN → PART | 1 | 0 | UD Only |
-| INTJ → NOUN | 0 | 1 | ROM Only |
-| AUX → ADP | 0 | 1 | ROM Only |
-| VERB → DET | 1 | 0 | UD Only |
-| ADP → PROPN | 0 | 1 | ROM Only |
-| NOUN → PROPN | 1 | 0 | UD Only |
-| ADP → ADV | 0 | 1 | ROM Only |
-| ADV → SCONJ | 0 | 1 | ROM Only |
-| AUX → ADV | 0 | 1 | ROM Only |
-| NOUN → SCONJ | 1 | 0 | UD Only |
-| NUM → PRON | 1 | 0 | UD Only |
-| PROPN → NOUN | 0 | 1 | ROM Only |
-| ADV → INTJ | 1 | 0 | UD Only |
-| ADV → CCONJ | 1 | 0 | UD Only |
-| INTJ → ADV | 0 | 1 | ROM Only |
-| PRON → PRON | 0 | 1 | ROM Only |
-| DET → ADP | 1 | 0 | UD Only |
+| NUM → AUX | 1 | 1 | Both |
 | ADP → NUM | 0 | 1 | ROM Only |
+| ADV → SCONJ | 0 | 1 | ROM Only |
+| PRON → PRON | 0 | 1 | ROM Only |
+| INTJ → ADV | 0 | 1 | ROM Only |
+| ADV → CCONJ | 1 | 0 | UD Only |
+| INTJ → NOUN | 0 | 1 | ROM Only |
+| NOUN → PART | 1 | 0 | UD Only |
+| NOUN → PROPN | 1 | 0 | UD Only |
+| DET → ADP | 1 | 0 | UD Only |
+| AUX → ADP | 0 | 1 | ROM Only |
+| ADP → PROPN | 0 | 1 | ROM Only |
+| PROPN → NOUN | 0 | 1 | ROM Only |
+| AUX → ADV | 0 | 1 | ROM Only |
+| NUM → PRON | 1 | 0 | UD Only |
 | PROPN → ADP | 1 | 0 | UD Only |
+| NOUN → SCONJ | 1 | 0 | UD Only |
+| ADP → ADV | 0 | 1 | ROM Only |
+| ADV → INTJ | 1 | 0 | UD Only |
 | NUM → PUNCT | 1 | 0 | UD Only |
+| VERB → DET | 1 | 0 | UD Only |
 
 ## 📂 File-Specific Analysis
 
@@ -2108,8 +2786,8 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **Top ROM Relations:**
 - Constraint: 25
-- Predicate (subject - verb): 21
-- Predicate (verb/proposition - object): 18
+- Predicate (Subject - Verb): 21
+- Predicate (Verb/Proposition - Object): 18
 - Connection: 6
 
 ---
@@ -2131,8 +2809,8 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - advmod: 1
 
 **Top ROM Relations:**
-- Predicate (verb/proposition - object): 6
-- Predicate (subject - verb): 4
+- Predicate (Verb/Proposition - Object): 6
+- Predicate (Subject - Verb): 4
 - Constraint: 3
 
 ---
@@ -2154,11 +2832,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - case: 18
 
 **Top ROM Relations:**
-- Constraint: 69
-- Predicate (subject - verb): 36
-- constraint: 20
-- Predicate (verb/preposition - object): 16
-- Predicate (verb/proposition - object): 16
+- Constraint: 89
+- Predicate (Subject - Verb): 36
+- Predicate (Verb/Preposition - Object): 16
+- Predicate (Verb/Proposition - Object): 16
+- Predicate (Verb - Object): 12
 
 ---
 
@@ -2179,11 +2857,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - obj: 15
 
 **Top ROM Relations:**
-- Predicate (verb/preposition - object): 59
+- Predicate (Verb/Preposition - Object): 59
 - Constraint: 57
-- Predicate (subject - verb): 35
-- Connection: 8
-- connection: 2
+- Predicate (Subject - Verb): 35
+- Connection: 10
+- Predicate (Preposition - Object): 1
 
 ---
 
@@ -2204,11 +2882,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - advmod: 13
 
 **Top ROM Relations:**
-- Constraint: 42
-- Predicate (verb/proposition - object): 41
-- Predicate (subject - verb): 37
-- Connection: 4
-- connection: 1
+- Constraint: 43
+- Predicate (Verb/Proposition - Object): 41
+- Predicate (Subject - Verb): 37
+- Connection: 5
 
 ---
 
@@ -2232,10 +2909,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
 - PRON → NOUN: Connection
-- PRON → VERB: Predicate (subject - verb)
-- NOUN → VERB: Predicate (subject - verb)
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- NOUN → VERB: Predicate (Subject - Verb)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb/Proposition - Object)
 - PRON → NOUN: Constraint
 - DET → NOUN: Constraint
 
@@ -2254,11 +2931,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
 - PRON → NOUN: Connection
-- PRON → VERB: Predicate (subject - verb)
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/proposition - object)
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Proposition - Object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Proposition - Object)
 
 ### Sentence 3 (adjective_clauses_sentences_input.txt)
 **Input:** The girl (whom) I met is nice.
@@ -2277,10 +2954,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
 - PRON → NOUN: Connection
-- PRON → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/proposition - object)
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Proposition - Object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Proposition - Object)
 
 ### Sentence 4 (adjective_clauses_sentences_input.txt)
 **Input:** The movie (that) we watched was amazing.
@@ -2299,10 +2976,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
 - PRON → NOUN: Connection
-- PRON → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/proposition - object)
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Proposition - Object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Proposition - Object)
 
 ### Sentence 5 (adjective_clauses_sentences_input.txt)
 **Input:** The man whose car broke down.
@@ -2319,7 +2996,7 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - DET → NOUN: Constraint
 - PRON → NOUN: Connection
 - PRON → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
+- NOUN → VERB: Predicate (Subject - Verb)
 - VERB → ADP: Constraint
 
 ### Sentence 6 (adjective_clauses_sentences_input.txt)
@@ -2341,11 +3018,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - DET → NOUN: Constraint
 - PRON → NOUN: Connection
 - PRON → NOUN: Constraint
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb/proposition - object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb/proposition - object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb/Proposition - Object)
 - PRON → NOUN: Constraint
 
 ### Sentence 7 (adjective_clauses_sentences_input.txt)
@@ -2363,14 +3040,14 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - NOUN → PUNCT: punct
 
 **POS-ROM Relations:**
-- NUM → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb/proposition - object)
+- NUM → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - ADV → NOUN: Constraint
-- ADV → VERB: Predicate (verb/proposition - object)
-- PRON → VERB: Predicate (subject - verb)
+- ADV → VERB: Predicate (Verb/Proposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
 - VERB → ADP: Constraint
-- ADP → PROPN: Predicate (verb/proposition - object)
+- ADP → PROPN: Predicate (Verb/Proposition - Object)
 
 ### Sentence 8 (adjective_clauses_sentences_input.txt)
 **Input:** I remember the day when we met.
@@ -2385,13 +3062,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - ADV → NOUN: Constraint
-- ADV → VERB: Predicate (verb/proposition - object)
+- ADV → VERB: Predicate (Verb/Proposition - Object)
 - VERB → NOUN: Constraint
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 
 ### Sentence 9 (adjective_clauses_sentences_input.txt)
 **Input:** This is the place where we stayed.
@@ -2406,12 +3083,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - NOUN → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb/proposition - object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - ADV → NOUN: Constraint
-- PRON → VERB: Predicate (subject - verb)
-- ADV → VERB: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- ADV → VERB: Predicate (Verb/Proposition - Object)
 - VERB → NOUN: Constraint
 
 ### Sentence 10 (adjective_clauses_sentences_input.txt)
@@ -2429,12 +3106,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - ADV → NOUN: Constraint
-- PRON → VERB: Predicate (subject - verb)
-- ADV → VERB: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- ADV → VERB: Predicate (Verb/Proposition - Object)
 - VERB → NOUN: Constraint
 
 ---
@@ -2452,12 +3129,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → ADV: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → ADV: Predicate (Verb/Proposition - Object)
 - SCONJ → VERB: Constraint
-- SCONJ → AUX: Predicate (verb/proposition - object)
-- PRON → AUX: Predicate (subject - verb)
-- AUX → VERB: Predicate (verb/proposition - object)
+- SCONJ → AUX: Predicate (Verb/Proposition - Object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → VERB: Predicate (Verb/Proposition - Object)
 
 ### Sentence 12 (adverb_clauses_sentence_input.txt)
 **Input:** Although she was tired, she finished the report.
@@ -2474,12 +3151,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- SCONJ → AUX: Predicate (verb/proposition - object)
+- SCONJ → AUX: Predicate (Verb/Proposition - Object)
 - SCONJ → VERB: Constraint
-- PRON → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/proposition - object)
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Proposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 
 ### Sentence 13 (basic_sentences_input.txt)
@@ -2504,18 +3181,18 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - VERB → PROPN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
+- NOUN → VERB: Predicate (Subject - Verb)
 - DET → NOUN: Constraint
-- VERB → NOUN: Predicate (verb - object)
-- PROPN → VERB: Predicate (subject - verb)
-- PROPN → VERB: Predicate (subject - verb)
+- VERB → NOUN: Predicate (Verb - Object)
+- PROPN → VERB: Predicate (Subject - Verb)
+- PROPN → VERB: Predicate (Subject - Verb)
 - PART → VERB: Constraint
-- PART → VERB: Predicate (preposition - object)
-- VERB → NOUN: Predicate (preposition - object)
+- PART → VERB: Predicate (Preposition - Object)
+- VERB → NOUN: Predicate (Preposition - Object)
 - DET → NOUN: Constraint
 - PART → VERB: Constraint
-- PART → VERB: Predicate (preposition - object)
-- NOUN → VERB: Predicate (subject - verb)
+- PART → VERB: Predicate (Preposition - Object)
+- NOUN → VERB: Predicate (Subject - Verb)
 - PRON → NOUN: Connection
 
 ### Sentence 14 (basic_sentences_input.txt)
@@ -2540,16 +3217,16 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
 - PRON → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
-- VERB → NOUN: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
 
 ### Sentence 15 (basic_sentences_input.txt)
 **Input:** The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her.
@@ -2575,20 +3252,20 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → VERB: Predicate (verb/preposition - object)
-- PRON → VERB: constraint
-- VERB → NOUN: Predicate (verb/preposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → VERB: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Constraint
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
 - VERB → NOUN: Constraint
 - ADJ → NOUN: Constraint
 - NOUN → PRON: Connection
-- NOUN → VERB: Predicate (subject - verb)
-- PRON → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/preposition - object)
-- ADP → NOUN: Predicate (verb/preposition - object)
-- ADP → NOUN: Predicate (verb/preposition - object)
-- ADP → NOUN: Predicate (verb/preposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Preposition - Object)
+- ADP → NOUN: Predicate (Verb/Preposition - Object)
+- ADP → NOUN: Predicate (Verb/Preposition - Object)
+- ADP → NOUN: Predicate (Verb/Preposition - Object)
 - NOUN → CCONJ: Connection
 - NOUN → CCONJ: Connection
 - NOUN → CCONJ: Connection
@@ -2615,21 +3292,21 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - PRON → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb - object)
-- VERB → NOUN: Predicate (verb - object)
-- NOUN → VERB: Predicate (subject - verb)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb - Object)
+- VERB → NOUN: Predicate (Verb - Object)
+- NOUN → VERB: Predicate (Subject - Verb)
 - PRON → NOUN: Constraint
 - NOUN → CCONJ: Connection
 - NOUN → NOUN: Constraint
-- CCONJ → ADJ: connection
+- CCONJ → ADJ: Connection
 - ADJ → NOUN: Constraint
-- PRON → VERB: Predicate (subject - verb)
-- NOUN → VERB: Predicate (subject - verb)
-- NOUN → PRON: connection
-- VERB → NOUN: Predicate (verb - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- NOUN → VERB: Predicate (Subject - Verb)
+- NOUN → PRON: Connection
+- VERB → NOUN: Predicate (Verb - Object)
 - DET → NOUN: Constraint
-- PRON → NOUN: connection
+- PRON → NOUN: Connection
 
 ### Sentence 17 (basic_sentences_input.txt)
 **Input:** Their encouragement pushed Sarah to consider turning the journal into a book.
@@ -2650,15 +3327,15 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - PRON → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → PROPN: Predicate (verb/proposition - object)
-- PROPN → VERB: Predicate (subject - verb)
-- PROPN → VERB: Predicate (subject - verb)
-- VERB → VERB: Predicate (verb/proposition - object)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → PROPN: Predicate (Verb/Proposition - Object)
+- PROPN → VERB: Predicate (Subject - Verb)
+- PROPN → VERB: Predicate (Subject - Verb)
+- VERB → VERB: Predicate (Verb/Proposition - Object)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
-- ADP → VERB: constraint
-- ADP → NOUN: Predicate (preposition - object)
+- ADP → VERB: Constraint
+- ADP → NOUN: Predicate (Preposition - Object)
 - DET → NOUN: Constraint
 
 ### Sentence 18 (basic_sentences_input.txt)
@@ -2677,9 +3354,9 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PROPN → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb - object)
-- ADP → NOUN: Predicate (preposition - object)
+- PROPN → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb - Object)
+- ADP → NOUN: Predicate (Preposition - Object)
 - ADP → VERB: Constraint
 - ADP → NOUN: Constraint
 - NOUN → VERB: Constraint
@@ -2702,12 +3379,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
+- NOUN → VERB: Predicate (Subject - Verb)
 - DET → NOUN: Constraint
-- ADP → VERB: constraint
-- ADP → NOUN: Predicate (verb/preposition - object)
-- ADP → NOUN: constraint
-- ADP → NOUN: Predicate (verb/preposition - object)
+- ADP → VERB: Constraint
+- ADP → NOUN: Predicate (Verb/Preposition - Object)
+- ADP → NOUN: Constraint
+- ADP → NOUN: Predicate (Verb/Preposition - Object)
 - PRON → NOUN: Constraint
 - NOUN → NOUN: Constraint
 
@@ -2730,17 +3407,17 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- PRON → VERB: Predicate (subject - verb)
-- ADP → VERB: constraint
-- ADP → NOUN: Predicate (preposition - object)
-- DET → NOUN: constraint
-- NOUN → VERB: constraint
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb - object)
-- ADV → VERB: constraint
-- DET → NOUN: Constraint (determiner - noun)
-- SCONJ → VERB: Predicate (verb - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- PRON → VERB: Predicate (Subject - Verb)
+- ADP → VERB: Constraint
+- ADP → NOUN: Predicate (Preposition - Object)
+- DET → NOUN: Constraint
+- NOUN → VERB: Constraint
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb - Object)
+- ADV → VERB: Constraint
+- DET → NOUN: Constraint (Determiner - Noun)
+- SCONJ → VERB: Predicate (Verb - Object)
 - SCONJ → VERB: Constraint
 
 ---
@@ -2761,14 +3438,14 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - NUM → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb - object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb - Object)
 - ADP → NUM: Constraint
-- ADP → NOUN: Predicate (preposition - object)
+- ADP → NOUN: Predicate (Preposition - Object)
 - DET → NOUN: Constraint
 - ADJ → NOUN: Constraint
 - ADP → NOUN: Constraint
-- ADP → NOUN: Predicate (preposition - object)
+- ADP → NOUN: Predicate (Preposition - Object)
 - PRON → NOUN: Constraint
 
 ### Sentence 22 (basic_sentences_input.txt)
@@ -2790,13 +3467,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- ADP → VERB: constraint
-- ADP → PRON: Predicate (verb/proposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- ADP → VERB: Constraint
+- ADP → PRON: Predicate (Verb/Proposition - Object)
 - ADV → NOUN: Constraint
-- ADP → NOUN: constraint
-- ADP → NOUN: Predicate (verb/proposition - object)
-- ADJ → NOUN: constraint
+- ADP → NOUN: Constraint
+- ADP → NOUN: Predicate (Verb/Proposition - Object)
+- ADJ → NOUN: Constraint
 
 ### Sentence 23 (basic_sentences_input.txt)
 **Input:** She was very sad yesterday.
@@ -2809,8 +3486,8 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb - object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb - Object)
 - ADV → ADJ: Constraint
 - NOUN → AUX: Constraint
 
@@ -2828,12 +3505,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - NOUN → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb/proposition - object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
-- PRON → NOUN: connection
-- PRON → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/proposition - object)
+- PRON → NOUN: Connection
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Proposition - Object)
 
 ### Sentence 25 (basic_sentences_input.txt)
 **Input:** That truth broke her heart again.
@@ -2847,9 +3524,9 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- DET → NOUN: constraint
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- DET → NOUN: Constraint
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - PRON → NOUN: Constraint
 - ADV → VERB: Constraint
 
@@ -2865,10 +3542,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb - object)
-- VERB → NOUN: Predicate (verb - object)
-- NOUN → PRON: constraint
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb - Object)
+- VERB → NOUN: Predicate (Verb - Object)
+- NOUN → PRON: Constraint
 - DET → NOUN: Constraint
 - ADJ → NOUN: Constraint
 
@@ -2888,15 +3565,15 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- ADP → VERB: constraint
-- ADP → NOUN: Predicate (preposition - object)
-- DET → NOUN: constraint
-- PRON → VERB: Predicate (subject - verb)
-- VERB → VERB: Predicate (verb - object)
-- VERB → VERB: constraint
-- PRON → VERB: Predicate (subject - verb)
-- AUX → VERB: Constraint (auxiliary - main verb)
+- PRON → VERB: Predicate (Subject - Verb)
+- ADP → VERB: Constraint
+- ADP → NOUN: Predicate (Preposition - Object)
+- DET → NOUN: Constraint
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → VERB: Predicate (Verb - Object)
+- VERB → VERB: Constraint
+- PRON → VERB: Predicate (Subject - Verb)
+- AUX → VERB: Constraint (Auxiliary - Main Verb)
 
 ### Sentence 28 (basic_sentences_input.txt)
 **Input:** But it never happened.
@@ -2909,8 +3586,8 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - CCONJ → VERB: Constraint
-- PRON → VERB: Predicate (subject - verb)
-- ADV → VERB: constraint
+- PRON → VERB: Predicate (Subject - Verb)
+- ADV → VERB: Constraint
 
 ### Sentence 29 (basic_sentences_input.txt)
 **Input:** The pain, like before, settled deep within her.
@@ -2928,13 +3605,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- DET → NOUN: constraint
-- NOUN → VERB: Predicate (subject - verb)
-- INTJ → NOUN: constraint
-- INTJ → ADV: Predicate (prep - object)
+- DET → NOUN: Constraint
+- NOUN → VERB: Predicate (Subject - Verb)
+- INTJ → NOUN: Constraint
+- INTJ → ADV: Predicate (Prep - Object)
 - ADV → VERB: Constraint
-- ADP → VERB: constraint
-- ADP → PRON: Predicate (prep - object)
+- ADP → VERB: Constraint
+- ADP → PRON: Predicate (Prep - Object)
 
 ### Sentence 30 (basic_sentences_input.txt)
 **Input:** Design a vacation house that can fly easily from one location to another.
@@ -2955,17 +3632,17 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- VERB → NOUN: Predicate (verb/preposition - object)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
 - NOUN → NOUN: Constraint
 - NOUN → PRON: Connection
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
 - ADP → VERB: Constraint
-- ADP → NOUN: Predicate (verb/preposition - object)
+- ADP → NOUN: Predicate (Verb/Preposition - Object)
 - NUM → NOUN: Constraint
 - ADP → VERB: Constraint
-- ADP → NOUN: Predicate (verb/preposition - object)
+- ADP → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
 - ADP → ADP: Connection
 
@@ -2990,7 +3667,7 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - NOUN → NOUN: Constraint
 - NOUN → NOUN: Constraint
 - ADP → ADJ: Constraint
-- ADP → NOUN: Predicate (verb/preposition - object)
+- ADP → NOUN: Predicate (Verb/Preposition - Object)
 
 ### Sentence 32 (basic_sentences_input.txt)
 **Input:** Design a web system to manage the editorial workflow of the JIDPS journal.
@@ -3011,16 +3688,16 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- VERB → NOUN: Predicate (verb/proposition - object)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - NOUN → NOUN: Constraint
 - PART → VERB: Constraint
-- PART → VERB: Predicate (verb/proposition - object)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- PART → VERB: Predicate (Verb/Proposition - Object)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - ADJ → NOUN: Constraint
 - DET → NOUN: Constraint
 - ADP → NOUN: Constraint
-- ADP → NOUN: Predicate (verb/proposition - object)
+- ADP → NOUN: Predicate (Verb/Proposition - Object)
 - PROPN → NOUN: Constraint
 - DET → NOUN: Constraint
 
@@ -3042,19 +3719,19 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- NOUN → VERB: Predicate (subject - verb)
+- NOUN → VERB: Predicate (Subject - Verb)
 - PART → VERB: Constraint
-- PART → VERB: Predicate (verb/proposition - object)
+- PART → VERB: Predicate (Verb/Proposition - Object)
 - ADV → VERB: Constraint
 - ADV → VERB: Constraint
-- CCONJ → VERB: connect
-- CCONJ → VERB: connect
-- PART → VERB: Predicate (verb/proposition - object)
+- CCONJ → VERB: Connect
+- CCONJ → VERB: Connect
+- PART → VERB: Predicate (Verb/Proposition - Object)
 - ADP → VERB: Constraint
 - ADV → VERB: Constraint
 - ADV → VERB: Constraint
-- VERB → NOUN: Predicate (verb/proposition - object)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 
 ### Sentence 34 (compound_sentences_input.txt)
@@ -3075,18 +3752,18 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - PART → VERB: Constraint
-- PART → VERB: Predicate (verb/preposition - object)
+- PART → VERB: Predicate (Verb/Preposition - Object)
 - PART → VERB: Constraint
-- VERB → NOUN: Predicate (verb/preposition - object)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - ADP → VERB: Constraint
-- ADP → NOUN: Predicate (preposition - object)
+- ADP → NOUN: Predicate (Preposition - Object)
 - DET → NOUN: Constraint
-- PRON → VERB: Predicate (subject - verb)
-- VERB → VERB: Predicate (verb/preposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → VERB: Predicate (Verb/Preposition - Object)
 - CCONJ → VERB: Constraint
-- CCONJ → VERB: Predicate (verb/preposition - object)
+- CCONJ → VERB: Predicate (Verb/Preposition - Object)
 
 ### Sentence 35 (compound_sentences_input.txt)
 **Input:** The sky was clear; we decided to go stargazing.
@@ -3104,13 +3781,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/preposition - object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - PART → VERB: Constraint
-- PART → VERB: Predicate (verb/preposition - object)
-- VERB → VERB: Predicate (verb/preposition - object)
+- PART → VERB: Predicate (Verb/Preposition - Object)
+- VERB → VERB: Predicate (Verb/Preposition - Object)
 
 ### Sentence 36 (compound_sentences_input.txt)
 **Input:** I was tired; however, I kept working.
@@ -3127,12 +3804,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb)
-- VERB → VERB: Predicate (verb/preposition - object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → VERB: Predicate (Verb/Preposition - Object)
 - ADV → AUX: Constraint
-- ADV → VERB: Predicate (verb/preposition - object)
+- ADV → VERB: Predicate (Verb/Preposition - Object)
 
 ### Sentence 37 (compound_sentences_input.txt)
 **Input:** She is both smart and creative.
@@ -3146,11 +3823,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/preposition - object)
-- AUX → ADJ: Predicate (verb/preposition - object)
-- ADV → ADJ: Predicate (verb/preposition - object)
-- CCONJ → ADJ: Predicate (verb/preposition - object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Preposition - Object)
+- AUX → ADJ: Predicate (Verb/Preposition - Object)
+- ADV → ADJ: Predicate (Verb/Preposition - Object)
+- CCONJ → ADJ: Predicate (Verb/Preposition - Object)
 - ADV → AUX: Constraint
 - CCONJ → AUX: Constraint
 
@@ -3168,12 +3845,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - PRON → NOUN: Constraint
-- CCONJ → NOUN: Predicate (verb/preposition - object)
-- CCONJ → NOUN: Predicate (verb/preposition - object)
-- NOUN → AUX: Predicate (subject - verb)
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb/preposition - object)
-- CCONJ → CCONJ: connection
+- CCONJ → NOUN: Predicate (Verb/Preposition - Object)
+- CCONJ → NOUN: Predicate (Verb/Preposition - Object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb/Preposition - Object)
+- CCONJ → CCONJ: Connection
 - CCONJ → AUX: Constraint
 - CCONJ → AUX: Constraint
 
@@ -3195,8 +3872,8 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
 
 ### Sentence 40 (compound_sentences_input.txt)
@@ -3214,10 +3891,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- NOUN → AUX: Predicate (subject - verb)
+- NOUN → AUX: Predicate (Subject - Verb)
 - DET → NOUN: Constraint
-- AUX → ADJ: Predicate (verb/preposition - object)
-- AUX → ADJ: Predicate (verb/preposition - object)
+- AUX → ADJ: Predicate (Verb/Preposition - Object)
+- AUX → ADJ: Predicate (Verb/Preposition - Object)
 
 ---
 
@@ -3236,16 +3913,16 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
 - AUX → VERB: Constraint
 - VERB → ADV: Constraint
 - VERB → ADP: Constraint
-- ADP → PRON: Predicate (verb/preposition - object)
-- CCONJ → VERB: Predicate (verb/preposition - object)
-- CCONJ → VERB: Predicate (verb/preposition - object)
-- CCONJ → CCONJ: connection
+- ADP → PRON: Predicate (Verb/Preposition - Object)
+- CCONJ → VERB: Predicate (Verb/Preposition - Object)
+- CCONJ → VERB: Predicate (Verb/Preposition - Object)
+- CCONJ → CCONJ: Connection
 
 ### Sentence 42 (compound_sentences_input.txt)
 **Input:** Neither did he apologize, nor did he show any regret.
@@ -3264,14 +3941,14 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
-- CCONJ → VERB: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb)
+- CCONJ → VERB: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
-- VERB → NOUN: Predicate (verb/preposition - object)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
-- CCONJ → VERB: Predicate (verb/preposition - object)
+- CCONJ → VERB: Predicate (Verb/Preposition - Object)
 - CCONJ → CCONJ: Connection
 
 ### Sentence 43 (compound_sentences_input.txt)
@@ -3290,11 +3967,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- SCONJ → VERB: Predicate (verb/preposition - object)
-- CCONJ → NOUN: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb)
-- PRON → NOUN: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
+- SCONJ → VERB: Predicate (Verb/Preposition - Object)
+- CCONJ → NOUN: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
+- PRON → NOUN: Predicate (Subject - Verb)
 - SCONJ → CCONJ: Connection
 - SCONJ → VERB: Constraint
 - CCONJ → VERB: Constraint
@@ -3316,13 +3993,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- SCONJ → VERB: Predicate (verb/preposition - object)
-- CCONJ → VERB: Predicate (verb/preposition - object)
-- PART → VERB: Predicate (verb/preposition - object)
-- PART → VERB: Predicate (verb/preposition - object)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- SCONJ → VERB: Predicate (Verb/Preposition - Object)
+- CCONJ → VERB: Predicate (Verb/Preposition - Object)
+- PART → VERB: Predicate (Verb/Preposition - Object)
+- PART → VERB: Predicate (Verb/Preposition - Object)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
-- VERB → VERB: Predicate (verb/preposition - object)
+- VERB → VERB: Predicate (Verb/Preposition - Object)
 - SCONJ → CCONJ: Connection
 
 ### Sentence 45 (compound_sentences_input.txt)
@@ -3338,7 +4015,7 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- ADP → ADJ: Predicate (verb/preposition - object)
+- ADP → ADJ: Predicate (Verb/Preposition - Object)
 - PRON → NOUN: Constraint
 
 ### Sentence 46 (compound_sentences_input.txt)
@@ -3355,10 +4032,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - ADV → VERB: Constraint
 - ADP → VERB: Constraint
-- ADP → ADV: Predicate (verb/preposition - object)
+- ADP → ADV: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
 - ADJ → NOUN: Constraint
 
@@ -3377,13 +4054,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- NOUN → AUX: Predicate (subject - verb)
+- NOUN → AUX: Predicate (Subject - Verb)
 - DET → NOUN: Constraint
-- AUX → ADJ: Predicate (verb/preposition - object)
+- AUX → ADJ: Predicate (Verb/Preposition - Object)
 - PART → ADJ: Constraint
 - SCONJ → AUX: Constraint
-- SCONJ → ADJ: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb)
+- SCONJ → ADJ: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
 
 ### Sentence 48 (compound_sentences_input.txt)
 **Input:** He doesn’t eat as much chocolate as his brother.
@@ -3401,11 +4078,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - ADJ → NOUN: Constraint
 - ADP → VERB: Constraint
-- ADP → ADJ: Predicate (verb/preposition - object)
+- ADP → ADJ: Predicate (Verb/Preposition - Object)
 - PRON → NOUN: Constraint
 
 ### Sentence 49 (compound_sentences_input.txt)
@@ -3423,13 +4100,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb) (second clause)
-- VERB → NOUN: Predicate (verb/preposition - object) (second clause)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb) (Second Clause)
+- VERB → NOUN: Predicate (Verb/Preposition - Object) (Second Clause)
 - ADJ → NOUN: Constraint
 - SCONJ → VERB: Constraint
-- SCONJ → ADJ: Predicate (verb/preposition - object)
+- SCONJ → ADJ: Predicate (Verb/Preposition - Object)
 
 ### Sentence 50 (compound_sentences_input.txt)
 **Input:** Just as the moon affects the tides, so does the sun influence them.
@@ -3451,16 +4128,16 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
 - DET → NOUN: Constraint
 - ADV → SCONJ: Constraint
 - SCONJ → VERB: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/preposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
-- ADV → VERB: Predicate (verb/preposition - object)
+- ADV → VERB: Predicate (Verb/Preposition - Object)
 - AUX → VERB: Constraint
 - SCONJ → ADV: Connection
 
@@ -3481,13 +4158,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - ADV → ADV: Constraint
 - SCONJ → VERB: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object) (implied)
-- ADV → VERB: Predicate (verb/preposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object) (Implied)
+- ADV → VERB: Predicate (Verb/Preposition - Object)
 - VERB → VERB: Constraint
 - SCONJ → ADV: Connection
 
@@ -3510,15 +4187,15 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - NOUN → VERB: Constraint
 - PART → VERB: Constraint
 - ADV → ADV: Constraint
 - SCONJ → VERB: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
-- ADV → VERB: Predicate (verb/preposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
+- ADV → VERB: Predicate (Verb/Preposition - Object)
 - AUX → VERB: Constraint
 - SCONJ → ADV: Connection
 
@@ -3555,13 +4232,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - ADV → VERB: Constraint
-- VERB → NOUN: Predicate (verb/preposition - object)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - DET → NOUN: Constraint
-- ADP → VERB: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- ADP → VERB: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - ADV → ADP: Connection
 
 ### Sentence 55 (compound_sentences_input.txt)
@@ -3577,14 +4254,14 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → VERB: Predicate (verb/preposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → VERB: Predicate (Verb/Preposition - Object)
 - PART → VERB: Constraint
-- PART → VERB: Predicate (verb/preposition - object)
-- PART → VERB: Predicate (verb/preposition - object)
+- PART → VERB: Predicate (Verb/Preposition - Object)
+- PART → VERB: Predicate (Verb/Preposition - Object)
 - ADV → VERB: Constraint
-- ADP → VERB: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb)
+- ADP → VERB: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
 - ADV → ADP: Connection
 
 ### Sentence 56 (compound_sentences_input.txt)
@@ -3600,11 +4277,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/preposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Preposition - Object)
 - ADV → VERB: Constraint
-- ADP → VERB: Predicate (verb/preposition - object)
-- PRON → VERB: Predicate (subject - verb)
+- ADP → VERB: Predicate (Verb/Preposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
 
 ### Sentence 57 (noun_clauses_sentences_input.txt)
 **Input:** What she said surprised everyone.
@@ -3617,10 +4294,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/proposition - object)
-- PRON → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Proposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Proposition - Object)
 
 ### Sentence 58 (noun_clauses_sentences_input.txt)
 **Input:** That he lied was obvious.
@@ -3633,11 +4310,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - ADJ → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- SCONJ → VERB: connection
-- SCONJ → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/proposition - object)
-- VERB → AUX: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
+- SCONJ → VERB: Connection
+- SCONJ → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Proposition - Object)
+- VERB → AUX: Predicate (Subject - Verb)
 
 ### Sentence 59 (noun_clauses_sentences_input.txt)
 **Input:** Whether we will win depends on our effort.
@@ -3653,13 +4330,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
-- SCONJ → VERB: Predicate (verb/proposition - object)
-- SCONJ → VERB: Predicate (subject - verb)
-- VERB → VERB: Predicate (subject - verb)
+- SCONJ → VERB: Predicate (Verb/Proposition - Object)
+- SCONJ → VERB: Predicate (Subject - Verb)
+- VERB → VERB: Predicate (Subject - Verb)
 - ADP → VERB: Constraint
-- ADP → NOUN: Predicate (verb/proposition - object)
+- ADP → NOUN: Predicate (Verb/Proposition - Object)
 - PRON → NOUN: Constraint
 
 ### Sentence 60 (noun_clauses_sentences_input.txt)
@@ -3677,12 +4354,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - NOUN → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - PART → VERB: Constraint
-- PART → VERB: Predicate (verb/proposition - object)
+- PART → VERB: Predicate (Verb/Proposition - Object)
 - ADV → VERB: Constraint
-- ADV → AUX: Predicate (subject - verb)
-- AUX → NOUN: Predicate (verb/proposition - object)
+- ADV → AUX: Predicate (Subject - Verb)
+- AUX → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - ADV → AUX: Constraint
 
@@ -3702,10 +4379,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- ADV → VERB: constraint
-- ADV → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/proposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- ADV → VERB: Constraint
+- ADV → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Proposition - Object)
 - ADV → AUX: Constraint
 
 ### Sentence 62 (noun_clauses_sentences_input.txt)
@@ -3720,10 +4397,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → AUX: Predicate (verb/proposition - object)
-- PRON → AUX: Predicate (subject - verb)
-- AUX → ADJ: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → AUX: Predicate (Verb/Proposition - Object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → ADJ: Predicate (Verb/Proposition - Object)
 - SCONJ → AUX: Connection
 
 ### Sentence 63 (noun_clauses_sentences_input.txt)
@@ -3740,10 +4417,10 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → PRON: Predicate (verb/proposition - object)
-- VERB → PRON: Predicate (verb/proposition - object)
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → PRON: Predicate (Verb/Proposition - Object)
+- VERB → PRON: Predicate (Verb/Proposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
 - PRON → PRON: Constraint
 
@@ -3763,13 +4440,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - SCONJ → VERB: Constraint
-- SCONJ → ADV: Predicate (verb/proposition - object)
+- SCONJ → ADV: Predicate (Verb/Proposition - Object)
 - ADV → VERB: Constraint
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
-- VERB → NOUN: Predicate (verb/proposition - object)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 
 ### Sentence 65 (noun_clauses_sentences_input.txt)
@@ -3788,9 +4465,9 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - PART → ADJ: Constraint
-- SCONJ → VERB: Predicate (verb/proposition - object)
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- SCONJ → VERB: Predicate (Verb/Proposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 
 ### Sentence 66 (noun_clauses_sentences_input.txt)
@@ -3808,12 +4485,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → VERB: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → VERB: Predicate (Verb/Proposition - Object)
 - ADV → VERB: Constraint
-- ADV → VERB: Predicate (verb/proposition - object)
+- ADV → VERB: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
+- NOUN → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
 
 ### Sentence 67 (noun_clauses_sentences_input.txt)
@@ -3830,11 +4507,11 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → VERB: Predicate (verb/proposition - object)
-- AUX → SCONJ: Predicate (verb/proposition - object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → VERB: Predicate (Verb/Proposition - Object)
+- AUX → SCONJ: Predicate (Verb/Proposition - Object)
 - SCONJ → VERB: Connection
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - ADV → VERB: Constraint
 
 ### Sentence 68 (noun_clauses_sentences_input.txt)
@@ -3852,12 +4529,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - PRON → NOUN: Constraint
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → VERB: Predicate (verb/proposition - object)
-- AUX → SCONJ: Predicate (verb/proposition - object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → VERB: Predicate (Verb/Proposition - Object)
+- AUX → SCONJ: Predicate (Verb/Proposition - Object)
 - SCONJ → VERB: Connection
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 
 ### Sentence 69 (noun_clauses_sentences_input.txt)
@@ -3875,13 +4552,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → ADV: Predicate (verb/proposition - object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → ADV: Predicate (Verb/Proposition - Object)
 - ADV → VERB: Constraint
 - ADV → AUX: Connection
-- PRON → VERB: Predicate (subject - verb)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
-- VERB → ADV: Predicate (verb/proposition - object)
+- VERB → ADV: Predicate (Verb/Proposition - Object)
 
 ### Sentence 70 (noun_clauses_sentences_input.txt)
 **Input:** The question is whether he will accept the offer.
@@ -3899,12 +4576,12 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → SCONJ: Predicate (verb/proposition - object)
-- SCONJ → VERB: Predicate (verb/proposition - object)
-- PRON → VERB: Predicate (subject - verb)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → SCONJ: Predicate (Verb/Proposition - Object)
+- SCONJ → VERB: Predicate (Verb/Proposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
 - AUX → VERB: Constraint
-- VERB → NOUN: Predicate (verb/proposition - object)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 
 ---
@@ -3923,13 +4600,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - SCONJ → NOUN: Constraint
-- SCONJ → AUX: Predicate (verb/proposition - object)
-- PRON → AUX: Predicate (subject - verb)
-- AUX → VERB: Predicate (verb/proposition - object)
+- SCONJ → AUX: Predicate (Verb/Proposition - Object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → VERB: Predicate (Verb/Proposition - Object)
 
 ### Sentence 72 (noun_clauses_sentences_input.txt)
 **Input:** The idea that hard work brings success is widely accepted.
@@ -3948,14 +4625,14 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 
 **POS-ROM Relations:**
 - DET → NOUN: Constraint
-- NOUN → AUX: Predicate (subject - verb)
-- AUX → VERB: Predicate (verb/proposition - object)
+- NOUN → AUX: Predicate (Subject - Verb)
+- AUX → VERB: Predicate (Verb/Proposition - Object)
 - ADV → VERB: Constraint
 - SCONJ → NOUN: Constraint
-- SCONJ → VERB: Predicate (verb/proposition - object)
+- SCONJ → VERB: Predicate (Verb/Proposition - Object)
 - ADJ → NOUN: Constraint
-- NOUN → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- NOUN → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 
 ### Sentence 73 (noun_clauses_sentences_input.txt)
 **Input:** She rejected the suggestion that we cancel the meeting.
@@ -3972,13 +4649,13 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - SCONJ → NOUN: Constraint
-- SCONJ → VERB: Predicate (verb/proposition - object)
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- SCONJ → VERB: Predicate (Verb/Proposition - Object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 
 ### Sentence 74 (noun_clauses_sentences_input.txt)
@@ -3997,14 +4674,14 @@ This section shows for each POS pair what UD relations and ROM relations appeare
 - VERB → PUNCT: punct
 
 **POS-ROM Relations:**
-- PRON → VERB: Predicate (subject - verb)
-- VERB → NOUN: Predicate (verb/proposition - object)
+- PRON → VERB: Predicate (Subject - Verb)
+- VERB → NOUN: Predicate (Verb/Proposition - Object)
 - DET → NOUN: Constraint
 - SCONJ → NOUN: Constraint
-- SCONJ → AUX: Predicate (verb/proposition - object)
-- PRON → AUX: Predicate (subject - verb)
-- AUX → ADP: Predicate (verb/proposition - object)
+- SCONJ → AUX: Predicate (Verb/Proposition - Object)
+- PRON → AUX: Predicate (Subject - Verb)
+- AUX → ADP: Predicate (Verb/Proposition - Object)
 - ADP → ADP: Constraint
-- ADP → NOUN: Predicate (verb/proposition - object)
+- ADP → NOUN: Predicate (Verb/Proposition - Object)
 
 </details>

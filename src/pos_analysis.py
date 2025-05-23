@@ -134,13 +134,15 @@ def analyze_multiple_pos_ud_rom_relations(input_list: List[str], benchmark_list:
                         pos_ud_tuple = (head_word.upos, word.upos, word.deprel)
                         pos_ud_tuples.append(pos_ud_tuple)
 
-            # Extract POS-ROM tuples from benchmark
+            # Extract POS-ROM tuples from benchmark (normalize case)
             pos_rom_tuples = []
             for from_word, to_word, rom_relation in expected_relations:
                 from_pos = word_to_pos.get(from_word.lower())
                 to_pos = word_to_pos.get(to_word.lower())
                 if from_pos and to_pos:
-                    pos_rom_tuple = (from_pos, to_pos, rom_relation)
+                    # Normalize ROM relation to title case for consistent processing
+                    normalized_rom_relation = rom_relation.strip().title()
+                    pos_rom_tuple = (from_pos, to_pos, normalized_rom_relation)
                     pos_rom_tuples.append(pos_rom_tuple)
 
             # Store results for this sentence
@@ -277,14 +279,16 @@ def analyze_pos_ud_rom_relations(sentences: List[str], benchmark: str, save: str
                     pos_ud_tuple = (head_word.upos, word.upos, word.deprel)
                     pos_ud_tuples.append(pos_ud_tuple)
 
-        # Extract POS-ROM tuples from benchmark
+        # Extract POS-ROM tuples from benchmark (normalize case)
         pos_rom_tuples = []
         for from_word, to_word, rom_relation in expected_relations:
             from_pos = word_to_pos.get(from_word.lower())
             to_pos = word_to_pos.get(to_word.lower())
             if from_pos and to_pos:
+                # Normalize ROM relation to title case for consistent processing
+                normalized_rom_relation = rom_relation.strip().title()
                 # Create tuple as (from_POS, to_POS, ROM_relation) following benchmark direction
-                pos_rom_tuple = (from_pos, to_pos, rom_relation)
+                pos_rom_tuple = (from_pos, to_pos, normalized_rom_relation)
                 pos_rom_tuples.append(pos_rom_tuple)
 
         # Store results for this sentence
@@ -423,8 +427,12 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
     # Analyze POS pairs and their relations with examples
     pos_pair_analysis = _analyze_pos_pairs_with_examples(all_results)
 
-    # Calculate match rates
+    # Calculate match rates with overlap analysis
     match_statistics = _calculate_match_rates(all_pos_ud_tuples, all_pos_rom_tuples)
+
+    # Calculate overall overlap rates
+    overall_overlap_1, overall_overlap_2, overall_max_overlap = _calculate_global_overlap_rates(all_pos_rom_tuples,
+                                                                                                all_pos_ud_tuples)
 
     # Match Rate Analysis
     report.append("## 📈 Overall Match Rate Analysis")
@@ -436,43 +444,92 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
     report.append(f"| Common POS Pairs | {match_statistics['common_pairs']} |")
     report.append(f"| POS Pair Overlap Rate | {match_statistics['pair_overlap_rate']:.1f}% |")
     report.append("")
-
-    # POS Pair Analysis Section
-    report.append("## 🔍 Detailed POS Pair Analysis (Combined)")
+    report.append("### Global Overlap Rates (Mathematical Formula)")
+    report.append("| Pattern | Overlap Rate | Description |")
+    report.append("|---------|--------------|-------------|")
+    report.append(
+        f"| Forward Matching (Pattern 1) | {overall_overlap_1:.3f} | ROM pairs match UD pairs in same direction |")
+    report.append(
+        f"| Reverse Matching (Pattern 2) | {overall_overlap_2:.3f} | ROM pairs match UD pairs in reverse direction |")
+    report.append(
+        f"| **Maximum Overall Overlap** | **{overall_max_overlap:.3f}** | **Best matching pattern globally** |")
     report.append("")
-    report.append("This section shows for each POS pair what UD relations and ROM relations appeared across all files.")
+
+    # Enhanced bidirectional POS Pair Analysis Section
+    report.append("## 🔍 Detailed POS Pair Analysis (Combined) - Bidirectional")
+    report.append("")
+    report.append(
+        "This section shows bidirectional POS pair analysis with overlap rates calculated using mathematical formula:")
+    report.append("**overlap_rate_k = (∑_{i ∈ M_k} 1(R_i = U_{j(i)})) / |M_k|**")
+    report.append("- Pattern 1 (Forward): M₁ = {i : ∃j, (A_i, B_i) = (A_j', B_j')}")
+    report.append("- Pattern 2 (Reverse): M₂ = {i : ∃j, (A_i, B_i) = (B_j', A_j')}")
+    report.append("- **Max Overlap Rate = max{overlap_rate_1, overlap_rate_2}**")
+    report.append("Blocks are sorted by maximum overlap rate (highest first).")
     report.append("")
 
-    for pos_pair, data in sorted(pos_pair_analysis.items()):
-        report.append(f"### {pos_pair[0]} → {pos_pair[1]}")
+    # Group bidirectional pairs and calculate ratios
+    bidirectional_groups = _group_bidirectional_pairs(pos_pair_analysis, all_pos_ud_tuples, all_pos_rom_tuples)
+
+    for group_data in bidirectional_groups:
+        canonical_key = group_data['canonical_key']
+        pos1, pos2 = canonical_key
+        forward_data = group_data['forward_data']
+        reverse_data = group_data['reverse_data']
+        forward_ratio = group_data['forward_ratio']
+        reverse_ratio = group_data['reverse_ratio']
+        cross_ratio = group_data['cross_ratio']
+        reverse_cross_ratio = group_data['reverse_cross_ratio']
+        forward_overlap_1 = group_data['forward_overlap_1']
+        forward_overlap_2 = group_data['forward_overlap_2']
+        forward_max_overlap = group_data['forward_max_overlap']
+        reverse_overlap_1 = group_data['reverse_overlap_1']
+        reverse_overlap_2 = group_data['reverse_overlap_2']
+        reverse_max_overlap = group_data['reverse_max_overlap']
+        overall_max_overlap = group_data['overall_max_overlap']
+
+        report.append(f"### {pos1} ↔ {pos2} (Max Overlap Rate: {overall_max_overlap:.3f})")
         report.append("")
 
-        # UD Relations for this POS pair
-        if data['ud_relations']:
+        # Forward direction (A → B)
+        report.append(f"#### {pos1} → {pos2}")
+        if forward_data.get('ud_relations'):
             report.append("**UD Relations:**")
-            for ud_rel, count in sorted(data['ud_relations'].items(), key=lambda x: x[1], reverse=True):
+            for ud_rel, count in sorted(forward_data['ud_relations'].items(), key=lambda x: x[1], reverse=True):
                 report.append(f"- {ud_rel} ({count} occurrences)")
             report.append("")
 
-        # ROM Relations for this POS pair
-        if data['rom_relations']:
+        if forward_data.get('rom_relations'):
             report.append("**ROM Relations:**")
-            for rom_rel, count in sorted(data['rom_relations'].items(), key=lambda x: x[1], reverse=True):
+            for rom_rel, count in sorted(forward_data['rom_relations'].items(), key=lambda x: x[1], reverse=True):
                 report.append(f"- {rom_rel} ({count} occurrences)")
             report.append("")
 
-        # Examples section
+        # Reverse direction (B → A)
+        report.append(f"#### {pos2} → {pos1}")
+        if reverse_data.get('ud_relations'):
+            report.append("**UD Relations:**")
+            for ud_rel, count in sorted(reverse_data['ud_relations'].items(), key=lambda x: x[1], reverse=True):
+                report.append(f"- {ud_rel} ({count} occurrences)")
+            report.append("")
+
+        if reverse_data.get('rom_relations'):
+            report.append("**ROM Relations:**")
+            for rom_rel, count in sorted(reverse_data['rom_relations'].items(), key=lambda x: x[1], reverse=True):
+                report.append(f"- {rom_rel} ({count} occurrences)")
+            report.append("")
+
+        # Examples section (combined from both directions)
         report.append("**Examples:**")
 
-        # UD Examples
-        if data['ud_examples']:
-            report.append("*UD Examples:*")
+        # Forward UD Examples
+        if forward_data.get('ud_examples'):
+            report.append(f"*{pos1}→{pos2} UD Examples:*")
             example_count = 0
-            for ud_rel, examples in data['ud_examples'].items():
-                if example_count >= 6:  # Limit total examples per POS pair
+            for ud_rel, examples in forward_data['ud_examples'].items():
+                if example_count >= 3:
                     break
-                for example in examples[:2]:  # Max 2 examples per UD relation
-                    if example_count >= 6:
+                for example in examples[:1]:  # 1 example per UD relation
+                    if example_count >= 3:
                         break
                     word_pairs_str = ", ".join(example['word_pairs']) if example[
                         'word_pairs'] else "word pairs not identified"
@@ -481,15 +538,15 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
                     example_count += 1
             report.append("")
 
-        # ROM Examples
-        if data['rom_examples']:
-            report.append("*ROM Examples:*")
+        # Forward ROM Examples
+        if forward_data.get('rom_examples'):
+            report.append(f"*{pos1}→{pos2} ROM Examples:*")
             example_count = 0
-            for rom_rel, examples in data['rom_examples'].items():
-                if example_count >= 6:  # Limit total examples per POS pair
+            for rom_rel, examples in forward_data['rom_examples'].items():
+                if example_count >= 3:
                     break
-                for example in examples[:2]:  # Max 2 examples per ROM relation
-                    if example_count >= 6:
+                for example in examples[:1]:  # 1 example per ROM relation
+                    if example_count >= 3:
                         break
                     word_pairs_str = ", ".join(example['word_pairs']) if example[
                         'word_pairs'] else "word pairs not identified"
@@ -498,26 +555,86 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
                     example_count += 1
             report.append("")
 
-        if not data['ud_examples'] and not data['rom_examples']:
-            report.append("- No examples available")
+        # Reverse UD Examples
+        if reverse_data.get('ud_examples'):
+            report.append(f"*{pos2}→{pos1} UD Examples:*")
+            example_count = 0
+            for ud_rel, examples in reverse_data['ud_examples'].items():
+                if example_count >= 3:
+                    break
+                for example in examples[:1]:  # 1 example per UD relation
+                    if example_count >= 3:
+                        break
+                    word_pairs_str = ", ".join(example['word_pairs']) if example[
+                        'word_pairs'] else "word pairs not identified"
+                    report.append(
+                        f"  - **{ud_rel}**: {word_pairs_str} in \"{example['sentence']}\" ({example.get('file_source', 'unknown')})")
+                    example_count += 1
             report.append("")
 
-        # Match analysis
-        report.append("**Analysis:**")
-        ud_count = sum(data['ud_relations'].values())
-        rom_count = sum(data['rom_relations'].values())
+        # Reverse ROM Examples
+        if reverse_data.get('rom_examples'):
+            report.append(f"*{pos2}→{pos1} ROM Examples:*")
+            example_count = 0
+            for rom_rel, examples in reverse_data['rom_examples'].items():
+                if example_count >= 3:
+                    break
+                for example in examples[:1]:  # 1 example per ROM relation
+                    if example_count >= 3:
+                        break
+                    word_pairs_str = ", ".join(example['word_pairs']) if example[
+                        'word_pairs'] else "word pairs not identified"
+                    report.append(
+                        f"  - **{rom_rel}**: {word_pairs_str} in \"{example['sentence']}\" ({example.get('file_source', 'unknown')})")
+                    example_count += 1
+            report.append("")
 
-        report.append(f"- Total UD instances: {ud_count}")
-        report.append(f"- Total ROM instances: {rom_count}")
+        # Comprehensive analysis with overlap rates
+        report.append("**Mathematical Overlap Analysis:**")
+        forward_ud_count = sum(forward_data.get('ud_relations', {}).values())
+        forward_rom_count = sum(forward_data.get('rom_relations', {}).values())
+        reverse_ud_count = sum(reverse_data.get('ud_relations', {}).values())
+        reverse_rom_count = sum(reverse_data.get('rom_relations', {}).values())
 
-        if ud_count > 0 and rom_count > 0:
-            ratio = rom_count / ud_count
-            report.append(f"- ROM/UD ratio: {ratio:.2f}")
-            report.append("- **Status: Both UD and ROM relations exist for this POS pair**")
-        elif ud_count > 0:
-            report.append("- **Status: Only UD relations exist (no ROM coverage)**")
-        elif rom_count > 0:
-            report.append("- **Status: Only ROM relations exist (no UD match)**")
+        report.append(f"- {pos1}→{pos2}: {forward_ud_count} UD, {forward_rom_count} ROM")
+        report.append(f"- {pos2}→{pos1}: {reverse_ud_count} UD, {reverse_rom_count} ROM")
+        report.append("")
+        report.append("**Overlap Rates (Mathematical Formula):**")
+        report.append(f"- {pos1}→{pos2} Pattern 1 (Forward): {forward_overlap_1:.3f}")
+        report.append(f"- {pos1}→{pos2} Pattern 2 (Reverse): {forward_overlap_2:.3f}")
+        report.append(f"- {pos1}→{pos2} Max Overlap: {forward_max_overlap:.3f}")
+        report.append(f"- {pos2}→{pos1} Pattern 1 (Forward): {reverse_overlap_1:.3f}")
+        report.append(f"- {pos2}→{pos1} Pattern 2 (Reverse): {reverse_overlap_2:.3f}")
+        report.append(f"- {pos2}→{pos1} Max Overlap: {reverse_max_overlap:.3f}")
+        report.append(f"- **Overall Maximum Overlap Rate: {overall_max_overlap:.3f}**")
+        report.append("")
+        report.append("**Traditional Ratios (for reference):**")
+        report.append(f"- Forward ROM/UD ratio: {forward_ratio:.2f}")
+        report.append(f"- Reverse ROM/UD ratio: {reverse_ratio:.2f}")
+        report.append(f"- Cross ratio ({pos1}→{pos2} UD)/({pos2}→{pos1} ROM): {cross_ratio:.2f}")
+        report.append(f"- Reverse cross ratio ({pos2}→{pos1} UD)/({pos1}→{pos2} ROM): {reverse_cross_ratio:.2f}")
+
+        # Status analysis
+        if forward_ud_count > 0 and forward_rom_count > 0 and reverse_ud_count > 0 and reverse_rom_count > 0:
+            report.append("- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**")
+        elif (forward_ud_count > 0 or forward_rom_count > 0) and (reverse_ud_count > 0 or reverse_rom_count > 0):
+            report.append("- **Status: Partial bidirectional coverage**")
+        else:
+            report.append("- **Status: Unidirectional coverage only**")
+
+        # Overlap rate interpretation
+        if overall_max_overlap >= 0.8:
+            overlap_status = "🟢 Excellent overlap"
+        elif overall_max_overlap >= 0.6:
+            overlap_status = "🟡 Good overlap"
+        elif overall_max_overlap >= 0.3:
+            overlap_status = "🟠 Moderate overlap"
+        elif overall_max_overlap > 0:
+            overlap_status = "🔴 Low overlap"
+        else:
+            overlap_status = "⚫ No overlap"
+
+        report.append(f"- **Overlap Assessment: {overlap_status}**")
 
         report.append("")
         report.append("---")
@@ -545,7 +662,9 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
     report.append("### ROM Relations Summary (All Files)")
     rom_summary = defaultdict(int)
     for _, _, rom_rel in all_pos_rom_tuples:
-        rom_summary[rom_rel] += 1
+        # Normalize case for consistent grouping
+        normalized_rom_rel = rom_rel.strip().title()
+        rom_summary[normalized_rom_rel] += 1
 
     report.append("| ROM Relation | Count | Percentage |")
     report.append("|--------------|-------|------------|")
@@ -562,7 +681,8 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
         pos_pair_counts[(pos1, pos2)] += 1
 
     rom_pair_counts = defaultdict(int)
-    for pos1, pos2, _ in all_pos_rom_tuples:
+    for pos1, pos2, rom_rel in all_pos_rom_tuples:
+        # Note: ROM relations are already normalized during tuple creation
         rom_pair_counts[(pos1, pos2)] += 1
 
     report.append("| POS Pair | UD Count | ROM Count | Status |")
@@ -621,7 +741,9 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
         # Top ROM relations for this file
         file_rom_summary = defaultdict(int)
         for _, _, rom_rel in file_pos_rom:
-            file_rom_summary[rom_rel] += 1
+            # Normalize case for consistent grouping
+            normalized_rom_rel = rom_rel.strip().title()
+            file_rom_summary[normalized_rom_rel] += 1
 
         if file_rom_summary:
             report.append("**Top ROM Relations:**")
@@ -680,6 +802,221 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
     return "\n".join(report)
 
 
+def _group_bidirectional_pairs(pos_pair_analysis: Dict, all_pos_ud_tuples: List[Tuple],
+                               all_pos_rom_tuples: List[Tuple]) -> List[Dict]:
+    """
+    Group POS pairs into bidirectional pairs and calculate overlap rates using mathematical formula.
+
+    Uses the formula:
+    重合率_k = (∑_{i ∈ M_k} 1(R_i = U_{j(i)})) / |M_k|
+
+    Where:
+    - M₁ = {i : ∃j, (A_i, B_i) = (A_j', B_j')} (forward matching)
+    - M₂ = {i : ∃j, (A_i, B_i) = (B_j', A_j')} (reverse matching)
+    - 最大重合率 = max{重合率_1, 重合率_2}
+
+    Args:
+        pos_pair_analysis: Dictionary with POS pair analysis
+        all_pos_ud_tuples: All POS-UD tuples (S₂)
+        all_pos_rom_tuples: All POS-ROM tuples (S₁)
+
+    Returns:
+        List of dictionaries with bidirectional group data, sorted by max overlap rate
+    """
+    bidirectional_groups = {}
+
+    # Group pairs into bidirectional sets
+    for pos_pair, data in pos_pair_analysis.items():
+        canonical_key = tuple(sorted([pos_pair[0], pos_pair[1]]))
+        if canonical_key not in bidirectional_groups:
+            bidirectional_groups[canonical_key] = {}
+        bidirectional_groups[canonical_key][pos_pair] = data
+
+    # Create data structures for overlap rate calculation
+    # S₁ (ROM): (A_i, B_i, R_i)
+    rom_data = [(pos1, pos2, rel) for pos1, pos2, rel in all_pos_rom_tuples]
+    # S₂ (UD): (A_j', B_j', U_j)
+    ud_data = [(pos1, pos2, rel) for pos1, pos2, rel in all_pos_ud_tuples]
+
+    # Calculate overlap rates and prepare sorting data
+    group_data_list = []
+
+    for canonical_key, pair_data in bidirectional_groups.items():
+        pos1, pos2 = canonical_key
+
+        # Get data for both directions
+        forward_data = pair_data.get((pos1, pos2), {'ud_relations': {}, 'rom_relations': {}})
+        reverse_data = pair_data.get((pos2, pos1), {'ud_relations': {}, 'rom_relations': {}})
+
+        # Calculate traditional ratios for backward compatibility
+        forward_ud_count = sum(forward_data.get('ud_relations', {}).values())
+        forward_rom_count = sum(forward_data.get('rom_relations', {}).values())
+        reverse_ud_count = sum(reverse_data.get('ud_relations', {}).values())
+        reverse_rom_count = sum(reverse_data.get('rom_relations', {}).values())
+
+        forward_ratio = forward_rom_count / forward_ud_count if forward_ud_count > 0 else 0
+        reverse_ratio = reverse_rom_count / reverse_ud_count if reverse_ud_count > 0 else 0
+        cross_ratio = forward_ud_count / reverse_rom_count if reverse_rom_count > 0 else 0
+        reverse_cross_ratio = reverse_ud_count / forward_rom_count if forward_rom_count > 0 else 0
+
+        # Calculate overlap rates using the mathematical formula
+        # Calculate for both directions separately
+        forward_overlap_1, forward_overlap_2, forward_max_overlap = _calculate_overlap_rates(
+            rom_data, ud_data, pos1, pos2
+        )
+        reverse_overlap_1, reverse_overlap_2, reverse_max_overlap = _calculate_overlap_rates(
+            rom_data, ud_data, pos2, pos1
+        )
+
+        # Overall maximum overlap rate for this bidirectional pair
+        overall_max_overlap = max(forward_max_overlap, reverse_max_overlap)
+
+        # Use overall max overlap rate as primary sorting criterion
+        max_ratio = overall_max_overlap
+
+        group_data_list.append({
+            'canonical_key': canonical_key,
+            'forward_data': forward_data,
+            'reverse_data': reverse_data,
+            'forward_ratio': forward_ratio,
+            'reverse_ratio': reverse_ratio,
+            'cross_ratio': cross_ratio,
+            'reverse_cross_ratio': reverse_cross_ratio,
+            'forward_overlap_1': forward_overlap_1,
+            'forward_overlap_2': forward_overlap_2,
+            'forward_max_overlap': forward_max_overlap,
+            'reverse_overlap_1': reverse_overlap_1,
+            'reverse_overlap_2': reverse_overlap_2,
+            'reverse_max_overlap': reverse_max_overlap,
+            'overall_max_overlap': overall_max_overlap,
+            'max_ratio': max_ratio
+        })
+
+    # Sort by overall max overlap rate (descending)
+    group_data_list.sort(key=lambda x: x['overall_max_overlap'], reverse=True)
+
+    return group_data_list
+
+
+def _calculate_global_overlap_rates(rom_data: List[Tuple], ud_data: List[Tuple]) -> Tuple[float, float, float]:
+    """
+    Calculate global overlap rates across all POS pairs using the mathematical formula.
+
+    Args:
+        rom_data: List of (A_i, B_i, R_i) tuples from ROM data (S₁)
+        ud_data: List of (A_j', B_j', U_j) tuples from UD data (S₂)
+
+    Returns:
+        Tuple of (global_overlap_rate_1, global_overlap_rate_2, max_global_overlap_rate)
+    """
+    if not rom_data:
+        return 0.0, 0.0, 0.0
+
+    # Create UD lookup dictionaries for efficient matching
+    ud_forward_dict = defaultdict(list)  # (A', B') -> [U₁, U₂, ...]
+    ud_reverse_dict = defaultdict(list)  # (B', A') -> [U₁, U₂, ...]
+
+    for a, b, u in ud_data:
+        ud_forward_dict[(a, b)].append(u)
+        ud_reverse_dict[(b, a)].append(u)
+
+    # Pattern 1: Forward matching M₁ = {i : ∃j, (A_i, B_i) = (A_j', B_j')}
+    m1_matches = 0
+    m1_total = 0
+
+    for a_i, b_i, r_i in rom_data:
+        # Check if there exists j such that (A_i, B_i) = (A_j', B_j')
+        if (a_i, b_i) in ud_forward_dict:
+            m1_total += 1
+            # Check if R_i = U_j for any matching UD relation
+            if r_i in ud_forward_dict[(a_i, b_i)]:
+                m1_matches += 1
+
+    # Pattern 2: Reverse matching M₂ = {i : ∃j, (A_i, B_i) = (B_j', A_j')}
+    m2_matches = 0
+    m2_total = 0
+
+    for a_i, b_i, r_i in rom_data:
+        # Check if there exists j such that (A_i, B_i) = (B_j', A_j')
+        if (a_i, b_i) in ud_reverse_dict:
+            m2_total += 1
+            # Check if R_i = U_j for any matching UD relation
+            if r_i in ud_reverse_dict[(a_i, b_i)]:
+                m2_matches += 1
+
+    # Calculate global overlap rates
+    global_overlap_rate_1 = m1_matches / m1_total if m1_total > 0 else 0.0
+    global_overlap_rate_2 = m2_matches / m2_total if m2_total > 0 else 0.0
+    max_global_overlap_rate = max(global_overlap_rate_1, global_overlap_rate_2)
+
+    return global_overlap_rate_1, global_overlap_rate_2, max_global_overlap_rate
+
+
+def _calculate_overlap_rates(rom_data: List[Tuple], ud_data: List[Tuple], pos1: str, pos2: str) -> Tuple[
+    float, float, float]:
+    """
+    Calculate overlap rates using the mathematical formula.
+
+    Formula:
+    重合率_k = (∑_{i ∈ M_k} 1(R_i = U_{j(i)})) / |M_k|
+
+    Args:
+        rom_data: List of (A_i, B_i, R_i) tuples from ROM data (S₁)
+        ud_data: List of (A_j', B_j', U_j) tuples from UD data (S₂)
+        pos1: First POS tag of the canonical pair
+        pos2: Second POS tag of the canonical pair
+
+    Returns:
+        Tuple of (overlap_rate_1, overlap_rate_2, max_overlap_rate)
+    """
+    # Filter ROM data for current POS pair (both directions)
+    rom_forward = [(a, b, r) for a, b, r in rom_data if (a, b) == (pos1, pos2)]
+    rom_reverse = [(a, b, r) for a, b, r in rom_data if (a, b) == (pos2, pos1)]
+    all_rom_current = rom_forward + rom_reverse
+
+    if not all_rom_current:
+        return 0.0, 0.0, 0.0
+
+    # Create UD lookup dictionaries for efficient matching
+    ud_forward_dict = defaultdict(list)  # (A', B') -> [U₁, U₂, ...]
+    ud_reverse_dict = defaultdict(list)  # (B', A') -> [U₁, U₂, ...]
+
+    for a, b, u in ud_data:
+        ud_forward_dict[(a, b)].append(u)
+        ud_reverse_dict[(b, a)].append(u)
+
+    # Pattern 1: Forward matching M₁ = {i : ∃j, (A_i, B_i) = (A_j', B_j')}
+    m1_matches = 0
+    m1_total = 0
+
+    for a_i, b_i, r_i in all_rom_current:
+        # Check if there exists j such that (A_i, B_i) = (A_j', B_j')
+        if (a_i, b_i) in ud_forward_dict:
+            m1_total += 1
+            # Check if R_i = U_j for any matching UD relation
+            if r_i in ud_forward_dict[(a_i, b_i)]:
+                m1_matches += 1
+
+    # Pattern 2: Reverse matching M₂ = {i : ∃j, (A_i, B_i) = (B_j', A_j')}
+    m2_matches = 0
+    m2_total = 0
+
+    for a_i, b_i, r_i in all_rom_current:
+        # Check if there exists j such that (A_i, B_i) = (B_j', A_j')
+        if (a_i, b_i) in ud_reverse_dict:
+            m2_total += 1
+            # Check if R_i = U_j for any matching UD relation
+            if r_i in ud_reverse_dict[(a_i, b_i)]:
+                m2_matches += 1
+
+    # Calculate overlap rates
+    overlap_rate_1 = m1_matches / m1_total if m1_total > 0 else 0.0
+    overlap_rate_2 = m2_matches / m2_total if m2_total > 0 else 0.0
+    max_overlap_rate = max(overlap_rate_1, overlap_rate_2)
+
+    return overlap_rate_1, overlap_rate_2, max_overlap_rate
+
+
 def _generate_pos_analysis_report(all_results: List[Dict], skipped_sentences: List[str],
                                   all_pos_ud_tuples: List[Tuple], all_pos_rom_tuples: List[Tuple]) -> str:
     """
@@ -717,8 +1054,12 @@ def _generate_pos_analysis_report(all_results: List[Dict], skipped_sentences: Li
     # Analyze POS pairs and their relations with examples
     pos_pair_analysis = _analyze_pos_pairs_with_examples(all_results)
 
-    # Calculate match rates
+    # Calculate match rates with overlap analysis
     match_statistics = _calculate_match_rates(all_pos_ud_tuples, all_pos_rom_tuples)
+
+    # Calculate overall overlap rates
+    overall_overlap_1, overall_overlap_2, overall_max_overlap = _calculate_global_overlap_rates(all_pos_rom_tuples,
+                                                                                                all_pos_ud_tuples)
 
     # Match Rate Analysis
     report.append("## 📈 Overall Match Rate Analysis")
@@ -730,15 +1071,39 @@ def _generate_pos_analysis_report(all_results: List[Dict], skipped_sentences: Li
     report.append(f"| Common POS Pairs | {match_statistics['common_pairs']} |")
     report.append(f"| POS Pair Overlap Rate | {match_statistics['pair_overlap_rate']:.1f}% |")
     report.append("")
+    report.append("### Global Overlap Rates (Mathematical Formula)")
+    report.append("| Pattern | Overlap Rate | Description |")
+    report.append("|---------|--------------|-------------|")
+    report.append(
+        f"| Forward Matching (Pattern 1) | {overall_overlap_1:.3f} | ROM pairs match UD pairs in same direction |")
+    report.append(
+        f"| Reverse Matching (Pattern 2) | {overall_overlap_2:.3f} | ROM pairs match UD pairs in reverse direction |")
+    report.append(
+        f"| **Maximum Overall Overlap** | **{overall_max_overlap:.3f}** | **Best matching pattern globally** |")
+    report.append("")
 
-    # POS Pair Analysis Section
+    # POS Pair Analysis Section with Mathematical Overlap Rates
     report.append("## 🔍 Detailed POS Pair Analysis")
     report.append("")
     report.append("This section shows for each POS pair what UD relations and ROM relations appeared.")
+    report.append("Overlap rates are calculated using the mathematical formula:")
+    report.append("**overlap_rate_k = (∑_{i ∈ M_k} 1(R_i = U_{j(i)})) / |M_k|**")
     report.append("")
 
-    for pos_pair, data in sorted(pos_pair_analysis.items()):
-        report.append(f"### {pos_pair[0]} → {pos_pair[1]}")
+    # Create a list of pos pairs with their overlap rates for sorting
+    pos_pairs_with_overlap = []
+    for pos_pair, data in pos_pair_analysis.items():
+        pos1, pos2 = pos_pair
+        overlap_rate_1, overlap_rate_2, max_overlap_rate = _calculate_overlap_rates(
+            all_pos_rom_tuples, all_pos_ud_tuples, pos1, pos2
+        )
+        pos_pairs_with_overlap.append((pos_pair, data, overlap_rate_1, overlap_rate_2, max_overlap_rate))
+
+    # Sort by max overlap rate (descending)
+    pos_pairs_with_overlap.sort(key=lambda x: x[4], reverse=True)
+
+    for pos_pair, data, overlap_rate_1, overlap_rate_2, max_overlap_rate in pos_pairs_with_overlap:
+        report.append(f"### {pos_pair[0]} → {pos_pair[1]} (Max Overlap Rate: {max_overlap_rate:.3f})")
         report.append("")
 
         # UD Relations for this POS pair
@@ -794,7 +1159,7 @@ def _generate_pos_analysis_report(all_results: List[Dict], skipped_sentences: Li
             report.append("- No examples available")
             report.append("")
 
-        # Match analysis
+        # Match analysis with overlap rates
         report.append("**Analysis:**")
         ud_count = sum(data['ud_relations'].values())
         rom_count = sum(data['rom_relations'].values())
@@ -802,14 +1167,35 @@ def _generate_pos_analysis_report(all_results: List[Dict], skipped_sentences: Li
         report.append(f"- Total UD instances: {ud_count}")
         report.append(f"- Total ROM instances: {rom_count}")
 
+        # Add overlap rate analysis
+        report.append("")
+        report.append("**Overlap Rate Analysis:**")
+        report.append(f"- Pattern 1 (Forward Matching): {overlap_rate_1:.3f}")
+        report.append(f"- Pattern 2 (Reverse Matching): {overlap_rate_2:.3f}")
+        report.append(f"- **Maximum Overlap Rate: {max_overlap_rate:.3f}**")
+
         if ud_count > 0 and rom_count > 0:
             ratio = rom_count / ud_count
-            report.append(f"- ROM/UD ratio: {ratio:.2f}")
+            report.append(f"- Traditional ROM/UD ratio: {ratio:.2f}")
             report.append("- **Status: Both UD and ROM relations exist for this POS pair**")
         elif ud_count > 0:
             report.append("- **Status: Only UD relations exist (no ROM coverage)**")
         elif rom_count > 0:
             report.append("- **Status: Only ROM relations exist (no UD match)**")
+
+        # Overlap rate interpretation
+        if max_overlap_rate >= 0.8:
+            overlap_status = "🟢 Excellent overlap"
+        elif max_overlap_rate >= 0.6:
+            overlap_status = "🟡 Good overlap"
+        elif max_overlap_rate >= 0.3:
+            overlap_status = "🟠 Moderate overlap"
+        elif max_overlap_rate > 0:
+            overlap_status = "🔴 Low overlap"
+        else:
+            overlap_status = "⚫ No overlap"
+
+        report.append(f"- **Overlap Assessment: {overlap_status}**")
 
         report.append("")
         report.append("---")
@@ -837,7 +1223,9 @@ def _generate_pos_analysis_report(all_results: List[Dict], skipped_sentences: Li
     report.append("### ROM Relations Summary")
     rom_summary = defaultdict(int)
     for _, _, rom_rel in all_pos_rom_tuples:
-        rom_summary[rom_rel] += 1
+        # Normalize case for consistent grouping
+        normalized_rom_rel = rom_rel.strip().title()
+        rom_summary[normalized_rom_rel] += 1
 
     report.append("| ROM Relation | Count | Percentage |")
     report.append("|--------------|-------|------------|")
@@ -857,7 +1245,8 @@ def _generate_pos_analysis_report(all_results: List[Dict], skipped_sentences: Li
     report.append("|----------|----------|-----------|--------|")
 
     rom_pair_counts = defaultdict(int)
-    for pos1, pos2, _ in all_pos_rom_tuples:
+    for pos1, pos2, rom_rel in all_pos_rom_tuples:
+        # Note: ROM relations are already normalized during tuple creation
         rom_pair_counts[(pos1, pos2)] += 1
 
     all_pairs = set(pos_pair_counts.keys()) | set(rom_pair_counts.keys())
@@ -994,15 +1383,18 @@ def _analyze_pos_pairs_with_examples(all_results: List[Dict]) -> Dict:
                 }
                 analysis[pos_pair]['ud_examples'][ud_rel].append(example_info)
 
-        # Process ROM relations with examples
+        # Process ROM relations with examples (normalize case)
         for pos1, pos2, rom_rel in result['pos_rom_tuples']:
             pos_pair = (pos1, pos2)
-            analysis[pos_pair]['rom_relations'][rom_rel] += 1
+            # Normalize ROM relation to title case for consistent grouping
+            normalized_rom_rel = rom_rel.strip().title()
+            analysis[pos_pair]['rom_relations'][normalized_rom_rel] += 1
 
             # Find actual word examples from expected relations
             matching_word_pairs = []
             for from_word, to_word, expected_rom_rel in result['expected_relations']:
-                if expected_rom_rel == rom_rel:
+                # Normalize both for comparison
+                if expected_rom_rel.strip().title() == normalized_rom_rel:
                     from_pos = result['word_to_pos'].get(from_word.lower())
                     to_pos = result['word_to_pos'].get(to_word.lower())
                     if from_pos == pos1 and to_pos == pos2:
@@ -1010,15 +1402,15 @@ def _analyze_pos_pairs_with_examples(all_results: List[Dict]) -> Dict:
                         if len(matching_word_pairs) >= 2:  # Limit to 2 examples
                             break
 
-            if matching_word_pairs and len(analysis[pos_pair]['rom_examples'][rom_rel]) < 2:
+            if matching_word_pairs and len(analysis[pos_pair]['rom_examples'][normalized_rom_rel]) < 2:
                 example_info = {
                     'sentence': sentence,
                     'word_pairs': matching_word_pairs,
                     'pos_pair': f"{pos1} → {pos2}",
-                    'rom_relation': rom_rel,
+                    'rom_relation': normalized_rom_rel,
                     'file_source': result.get('file_source', 'unknown')
                 }
-                analysis[pos_pair]['rom_examples'][rom_rel].append(example_info)
+                analysis[pos_pair]['rom_examples'][normalized_rom_rel].append(example_info)
 
     return dict(analysis)
 
