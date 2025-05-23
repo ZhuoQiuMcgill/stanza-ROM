@@ -1,6 +1,6 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 23:09:43
+**Date:** 2025-05-23 14:13:42
 **Total Sentences:** 23
 **Processed Sentences:** 23
 **Skipped Sentences:** 0
@@ -12,17 +12,17 @@
 |--------|-------|
 | Total Sentences Processed | 23 |
 | Total Expected Relations | 223 |
-| Total Generated Relations | 203 |
+| Total Generated Relations | 193 |
 | Total Correct Relations | 60 |
 | Total Missing Relations | 163 |
-| Total Over-specified Relations | 143 |
+| Total Over-specified Relations | 133 |
 
 ### Overall Performance
 | Metric | Percentage |
 |--------|------------|
 | **Correct Rate** | **26.9%** |
 | **Missing Rate** | **73.1%** |
-| **Over-specification Rate** | **70.4%** |
+| **Over-specification Rate** | **68.9%** |
 
 ### Performance Interpretation
 **Overall Performance:** 🔴 Needs Improvement
@@ -30,9 +30,9 @@
 ### Additional Metrics
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Precision | 29.6% | Percentage of generated relations that are correct |
+| Precision | 31.1% | Percentage of generated relations that are correct |
 | Recall | 26.9% | Percentage of expected relations that were found |
-| F1-Score | 28.2% | Harmonic mean of precision and recall |
+| F1-Score | 28.8% | Harmonic mean of precision and recall |
 
 ---
 
@@ -45,13 +45,14 @@
 |--------|-------|------|
 | Expected Relations | 11 | - |
 | Generated Relations | 11 | - |
-| Correct Relations | 5 | 45.5% |
-| Missing Relations | 6 | 54.5% |
-| Over-specified Relations | 6 | 54.5% |
+| Correct Relations | 6 | 54.5% |
+| Missing Relations | 5 | 45.5% |
+| Over-specified Relations | 5 | 45.5% |
 
 **✅ Correct Relations:**
 - a → walk: constraint
 - for → walk: predicate (preposition - object)
+- go → walk: predicate (verb/preposition - object)
 - it → started: predicate (subject - verb)
 - she → wanted: predicate (subject - verb)
 - to → wanted: constraint
@@ -60,13 +61,11 @@
 - but → started: predicate (verb/preposition - object)
 - but → wanted: constraint
 - for → go: constraint
-- go → walk: predicate (verb/preposition - object)
 - started → raining: predicate (verb/preposition - object)
 - to → go: predicate (verb/preposition - object)
 
 **➕ Over-specified Relations:**
-- but → started: connection
-- go → walk: predicate (verb - oblique)
+- but → started: constraint
 - started → raining: predicate (verb/proposition - object)
 - started → wanted: connection
 - to → go: predicate (preposition - object)
@@ -89,18 +88,18 @@
 - to → wanted: constraint
 
 **Generated Relations:**
-- She → wanted: Predicate (subject - verb) (UD: nsubj)
+- She → wanted: Predicate (Subject - Verb) (UD: nsubj)
 - a → walk: Constraint (UD: det)
-- but → started: Connection (UD: cc)
-- for → walk: Predicate (preposition - object) (UD: case)
-- go → walk: Predicate (verb - oblique) (UD: obl)
-- it → started: Predicate (subject - verb) (UD: nsubj)
-- started → raining: Predicate (verb/proposition - object) (UD: xcomp)
+- but → started: Constraint (UD: cc)
+- for → walk: Predicate (Preposition - Object) (UD: case)
+- go → walk: Predicate (Verb/Preposition - Object) (UD: obl)
+- it → started: Predicate (Subject - Verb) (UD: nsubj)
+- started → raining: Predicate (Verb/Proposition - Object) (UD: xcomp)
 - started → wanted: Connection (UD: conj)
-- to → go: Predicate (preposition - object) (UD: mark)
-- to → go: Predicate (preposition - object) (UD: mark(to)→inf_verb)
+- to → go: Predicate (Preposition - Object) (UD: mark)
+- to → go: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
 - to → wanted: Constraint (UD: mark(to)→main_verb_of(xcomp))
-- wanted → go: Predicate (verb/proposition - object) (UD: xcomp)
+- wanted → go: Predicate (Verb/Proposition - Object) (UD: xcomp)
 
 </details>
 
@@ -154,14 +153,14 @@
 **Generated Relations:**
 - The → sky: Constraint (UD: det)
 - decided → clear: Connection (UD: parataxis)
-- decided → go: Predicate (verb/proposition - object) (UD: xcomp)
-- go → stargazing: Predicate (verb/proposition - object) (UD: xcomp)
-- sky → was: Predicate (subject - verb) (UD: nsubj→cop)
+- decided → go: Predicate (Verb/Proposition - Object) (UD: xcomp)
+- go → stargazing: Predicate (Verb/Proposition - Object) (UD: xcomp)
+- sky → was: Predicate (Subject - Verb) (UD: nsubj→cop)
 - to → decided: Constraint (UD: mark(to)→main_verb_of(xcomp))
-- to → go: Predicate (preposition - object) (UD: mark)
-- to → go: Predicate (preposition - object) (UD: mark(to)→inf_verb)
-- was → clear: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- we → decided: Predicate (subject - verb) (UD: nsubj)
+- to → go: Predicate (Preposition - Object) (UD: mark)
+- to → go: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
+- was → clear: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
+- we → decided: Predicate (Subject - Verb) (UD: nsubj)
 
 </details>
 
@@ -206,12 +205,12 @@
 - was → tired: predicate (verb/preposition - object)
 
 **Generated Relations:**
-- I → kept: Predicate (subject - verb) (UD: nsubj)
-- I → was: Predicate (subject - verb) (UD: nsubj→cop)
+- I → kept: Predicate (Subject - Verb) (UD: nsubj)
+- I → was: Predicate (Subject - Verb) (UD: nsubj→cop)
 - however → kept: Constraint (UD: advmod)
 - kept → tired: Connection (UD: parataxis)
-- kept → working: Predicate (verb/proposition - object) (UD: xcomp)
-- was → tired: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- kept → working: Predicate (Verb/Proposition - Object) (UD: xcomp)
+- was → tired: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 
 </details>
 
@@ -259,12 +258,12 @@
 - she → is: predicate (subject - verb)
 
 **Generated Relations:**
-- She → is: Predicate (subject - verb) (UD: nsubj→cop)
+- She → is: Predicate (Subject - Verb) (UD: nsubj→cop)
 - and → creative: Connection (UD: cc)
 - both → and: Connection (UD: correlative_both_and)
 - both → smart: Constraint (UD: advmod)
 - creative → smart: Connection (UD: conj)
-- is → smart: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- is → smart: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 
 </details>
 
@@ -297,7 +296,7 @@
 **➕ Over-specified Relations:**
 - and → sister: connection
 - are → engineers: predicate (verb/proposition - object)
-- both → brother: constraint
+- both → brother: connection
 - sister → brother: connection
 
 <details>
@@ -316,10 +315,10 @@
 
 **Generated Relations:**
 - Both → and: Connection (UD: correlative_both_and)
-- Both → brother: Constraint (UD: cc:preconj)
+- Both → brother: Connection (UD: cc:preconj)
 - and → sister: Connection (UD: cc)
-- are → engineers: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- brother → are: Predicate (subject - verb) (UD: nsubj→cop)
+- are → engineers: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
+- brother → are: Predicate (Subject - Verb) (UD: nsubj→cop)
 - my → brother: Constraint (UD: nmod:poss)
 - sister → brother: Connection (UD: conj)
 
@@ -353,7 +352,7 @@
 - also → broke: constraint
 - broke → record: predicate (verb/proposition - object)
 - broke → win: connection
-- but → broke: connection
+- but → broke: constraint
 - did → win: constraint
 - he → win: predicate (subject - verb)
 - not → win: constraint
@@ -374,12 +373,12 @@
 **Generated Relations:**
 - Not → win: Constraint (UD: advmod)
 - also → broke: Constraint (UD: advmod)
-- broke → record: Predicate (verb/proposition - object) (UD: obj)
+- broke → record: Predicate (Verb/Proposition - Object) (UD: obj)
 - broke → win: Connection (UD: conj)
-- but → broke: Connection (UD: cc)
+- but → broke: Constraint (UD: cc)
 - did → win: Constraint (UD: aux)
-- he → broke: Predicate (subject - verb) (UD: nsubj)
-- he → win: Predicate (subject - verb) (UD: nsubj)
+- he → broke: Predicate (Subject - Verb) (UD: nsubj)
+- he → win: Predicate (Subject - Verb) (UD: nsubj)
 - only → win: Constraint (UD: advmod)
 - the → record: Constraint (UD: det)
 
@@ -393,10 +392,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 9 | - |
-| Generated Relations | 8 | - |
+| Generated Relations | 7 | - |
 | Correct Relations | 2 | 22.2% |
 | Missing Relations | 7 | 77.8% |
-| Over-specified Relations | 6 | 75.0% |
+| Over-specified Relations | 5 | 71.4% |
 
 **✅ Correct Relations:**
 - movie → was: predicate (subject - verb)
@@ -414,8 +413,7 @@
 **➕ Over-specified Relations:**
 - also → boring: constraint
 - boring → long: connection
-- but → boring: connection
-- not → long: constraint
+- but → boring: predicate (conjunction - element)
 - only → long: constraint
 - was → long: predicate (verb/proposition - object)
 
@@ -437,11 +435,10 @@
 - The → movie: Constraint (UD: det)
 - also → boring: Constraint (UD: advmod)
 - boring → long: Connection (UD: conj)
-- but → boring: Connection (UD: cc)
-- movie → was: Predicate (subject - verb) (UD: nsubj→cop)
-- not → long: Constraint (UD: advmod)
+- but → boring: Predicate (Conjunction - Element) (UD: cc)
+- movie → was: Predicate (Subject - Verb) (UD: nsubj→cop)
 - only → long: Constraint (UD: advmod)
-- was → long: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- was → long: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 
 </details>
 
@@ -483,8 +480,8 @@
 
 **➕ Over-specified Relations:**
 - come → stay: connection
-- come → us: predicate (verb - oblique)
-- either → stay: constraint
+- come → us: predicate (verb/preposition - object)
+- either → stay: connection
 - home → stay: constraint
 - or → come: connection
 - with → us: predicate (preposition - object)
@@ -514,15 +511,15 @@
 - you → stay: predicate (subject - verb)
 
 **Generated Relations:**
-- You → stay: Predicate (subject - verb) (UD: nsubj)
+- You → stay: Predicate (Subject - Verb) (UD: nsubj)
 - can → stay: Constraint (UD: aux)
 - come → stay: Connection (UD: conj)
-- come → us: Predicate (verb - oblique) (UD: obl)
+- come → us: Predicate (Verb/Preposition - Object) (UD: obl)
 - either → or: Connection (UD: correlative_either_or)
-- either → stay: Constraint (UD: cc:preconj)
+- either → stay: Connection (UD: cc:preconj)
 - home → stay: Constraint (UD: advmod)
 - or → come: Connection (UD: cc)
-- with → us: Predicate (preposition - object) (UD: case)
+- with → us: Predicate (Preposition - Object) (UD: case)
 
 </details>
 
@@ -555,7 +552,7 @@
 - show → regret: predicate (verb/preposition - object)
 
 **➕ Over-specified Relations:**
-- neither → apologize: constraint
+- neither → apologize: connection
 - nor → show: connection
 - show → apologize: connection
 - show → regret: predicate (verb/proposition - object)
@@ -577,15 +574,15 @@
 - show → regret: predicate (verb/preposition - object)
 
 **Generated Relations:**
-- Neither → apologize: Constraint (UD: cc:preconj)
+- Neither → apologize: Connection (UD: cc:preconj)
 - any → regret: Constraint (UD: det)
 - did → apologize: Constraint (UD: aux)
 - did → show: Constraint (UD: aux)
-- he → apologize: Predicate (subject - verb) (UD: nsubj)
-- he → show: Predicate (subject - verb) (UD: nsubj)
+- he → apologize: Predicate (Subject - Verb) (UD: nsubj)
+- he → show: Predicate (Subject - Verb) (UD: nsubj)
 - nor → show: Connection (UD: cc)
 - show → apologize: Connection (UD: conj)
-- show → regret: Predicate (verb/proposition - object) (UD: obj)
+- show → regret: Predicate (Verb/Proposition - Object) (UD: obj)
 
 </details>
 
@@ -643,10 +640,10 @@
 - will → text: constraint
 
 **Generated Relations:**
-- I → know: Predicate (subject - verb) (UD: nsubj)
+- I → know: Predicate (Subject - Verb) (UD: nsubj)
 - do → know: Constraint (UD: aux)
-- he → call: Predicate (subject - verb) (UD: nsubj)
-- know → call: Predicate (verb/proposition - object) (UD: ccomp)
+- he → call: Predicate (Subject - Verb) (UD: nsubj)
+- know → call: Predicate (Verb/Proposition - Object) (UD: ccomp)
 - n't → know: Constraint (UD: advmod)
 - or → text: Connection (UD: cc)
 - text → call: Connection (UD: conj)
@@ -663,10 +660,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 12 | - |
-| Generated Relations | 10 | - |
+| Generated Relations | 9 | - |
 | Correct Relations | 1 | 8.3% |
 | Missing Relations | 11 | 91.7% |
-| Over-specified Relations | 9 | 90.0% |
+| Over-specified Relations | 8 | 88.9% |
 
 **✅ Correct Relations:**
 - the → job: constraint
@@ -691,7 +688,6 @@
 - or → continue: connection
 - she → ’s: predicate (subject - verb)
 - to → accept: predicate (preposition - object)
-- unsure → accept: predicate (verb/proposition - object)
 - whether → accept: connection
 - ’s → unsure: predicate (verb/proposition - object)
 
@@ -713,17 +709,16 @@
 - whether → or: connection
 
 **Generated Relations:**
-- She → ’s: Predicate (subject - verb) (UD: nsubj→cop)
-- accept → job: Predicate (verb/proposition - object) (UD: obj)
+- She → ’s: Predicate (Subject - Verb) (UD: nsubj→cop)
+- accept → job: Predicate (Verb/Proposition - Object) (UD: obj)
 - continue → accept: Connection (UD: conj)
-- continue → studying: Predicate (verb/proposition - object) (UD: xcomp)
+- continue → studying: Predicate (Verb/Proposition - Object) (UD: xcomp)
 - or → continue: Connection (UD: cc)
 - the → job: Constraint (UD: det)
-- to → accept: Predicate (preposition - object) (UD: mark)
-- to → accept: Predicate (preposition - object) (UD: mark(to)→inf_verb)
-- unsure → accept: Predicate (verb/proposition - object) (UD: xcomp)
+- to → accept: Predicate (Preposition - Object) (UD: mark)
+- to → accept: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
 - whether → accept: Connection (UD: mark)
-- ’s → unsure: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- ’s → unsure: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 
 </details>
 
@@ -735,10 +730,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 9 | - |
-| Generated Relations | 8 | - |
+| Generated Relations | 7 | - |
 | Correct Relations | 1 | 11.1% |
 | Missing Relations | 8 | 88.9% |
-| Over-specified Relations | 7 | 87.5% |
+| Over-specified Relations | 6 | 85.7% |
 
 **✅ Correct Relations:**
 - her → brother: constraint
@@ -759,7 +754,6 @@
 - as → tall: constraint
 - as → tall: predicate (verb/proposition - object)
 - she → ’s: predicate (subject - verb)
-- tall → brother: predicate (verb - oblique)
 - ’s → tall: predicate (verb/proposition - object)
 
 <details>
@@ -777,15 +771,14 @@
 - she → is: predicate (subject - verb)
 
 **Generated Relations:**
-- She → ’s: Predicate (subject - verb) (UD: nsubj→cop)
+- She → ’s: Predicate (Subject - Verb) (UD: nsubj→cop)
 - as → as: Connection (UD: as...as_correlative)
-- as → brother: Predicate (preposition - object) (UD: case)
-- as → brother: Predicate (preposition - object) (UD: as→noun)
+- as → brother: Predicate (Preposition - Object) (UD: case)
+- as → brother: Predicate (Preposition - Object) (UD: as→noun)
 - as → tall: Constraint (UD: advmod)
-- as → tall: Predicate (verb/proposition - object) (UD: as→adj/adv)
+- as → tall: Predicate (Verb/Proposition - Object) (UD: as→adj/adv)
 - her → brother: Constraint (UD: nmod:poss)
-- tall → brother: Predicate (verb - oblique) (UD: obl)
-- ’s → tall: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- ’s → tall: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 
 </details>
 
@@ -797,10 +790,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 10 | - |
-| Generated Relations | 9 | - |
+| Generated Relations | 8 | - |
 | Correct Relations | 4 | 40.0% |
 | Missing Relations | 6 | 60.0% |
-| Over-specified Relations | 5 | 55.6% |
+| Over-specified Relations | 4 | 50.0% |
 
 **✅ Correct Relations:**
 - a → athlete: constraint
@@ -819,9 +812,8 @@
 **➕ Over-specified Relations:**
 - as → as: connection
 - as → athlete: predicate (preposition - object)
-- as → quickly: constraint
 - as → quickly: predicate (verb/proposition - object)
-- ran → athlete: predicate (verb - oblique)
+- ran → athlete: predicate (verb/preposition - object)
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -839,16 +831,15 @@
 - quickly → ran: constraint
 
 **Generated Relations:**
-- He → ran: Predicate (subject - verb) (UD: nsubj)
+- He → ran: Predicate (Subject - Verb) (UD: nsubj)
 - a → athlete: Constraint (UD: det)
 - as → as: Connection (UD: as...as_correlative)
-- as → athlete: Predicate (preposition - object) (UD: case)
-- as → athlete: Predicate (preposition - object) (UD: as→noun)
-- as → quickly: Constraint (UD: advmod)
-- as → quickly: Predicate (verb/proposition - object) (UD: as→adj/adv)
+- as → athlete: Predicate (Preposition - Object) (UD: case)
+- as → athlete: Predicate (Preposition - Object) (UD: as→noun)
+- as → quickly: Predicate (Verb/Proposition - Object) (UD: as→adj/adv)
 - professional → athlete: Constraint (UD: amod)
 - quickly → ran: Constraint (UD: advmod)
-- ran → athlete: Predicate (verb - oblique) (UD: obl)
+- ran → athlete: Predicate (Verb/Preposition - Object) (UD: obl)
 
 </details>
 
@@ -860,14 +851,13 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 10 | - |
-| Generated Relations | 10 | - |
-| Correct Relations | 4 | 40.0% |
-| Missing Relations | 6 | 60.0% |
-| Over-specified Relations | 6 | 60.0% |
+| Generated Relations | 8 | - |
+| Correct Relations | 3 | 30.0% |
+| Missing Relations | 7 | 70.0% |
+| Over-specified Relations | 5 | 62.5% |
 
 **✅ Correct Relations:**
 - it → looks: predicate (subject - verb)
-- not → easy: constraint
 - task → is: predicate (subject - verb)
 - this → task: constraint
 
@@ -878,6 +868,7 @@
 - as (2) → easy: constraint
 - as (2) → looks: predicate (verb/preposition - object)
 - is → easy: predicate (verb/preposition - object)
+- not → easy: constraint
 
 **➕ Over-specified Relations:**
 - as → as: connection
@@ -885,7 +876,6 @@
 - as → easy: predicate (verb/proposition - object)
 - as → looks: predicate (conjunction - clause_verb)
 - is → easy: predicate (verb/proposition - object)
-- looks → easy: constraint
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -906,14 +896,12 @@
 - This → task: Constraint (UD: det)
 - as → as: Connection (UD: as...as_correlative)
 - as → easy: Constraint (UD: advmod)
-- as → easy: Predicate (verb/proposition - object) (UD: as→adj/adv)
+- as → easy: Predicate (Verb/Proposition - Object) (UD: as→adj/adv)
 - as → easy: Constraint (UD: mark→main_verb (mark))
-- as → looks: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
-- is → easy: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- it → looks: Predicate (subject - verb) (UD: nsubj)
-- looks → easy: Constraint (UD: advcl)
-- not → easy: Constraint (UD: advmod)
-- task → is: Predicate (subject - verb) (UD: nsubj→cop)
+- as → looks: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
+- is → easy: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
+- it → looks: Predicate (Subject - Verb) (UD: nsubj)
+- task → is: Predicate (Subject - Verb) (UD: nsubj→cop)
 
 </details>
 
@@ -950,7 +938,7 @@
 - as → much: constraint
 - as → much: predicate (verb/proposition - object)
 - does → eat: constraint
-- eat → brother: predicate (verb - oblique)
+- eat → brother: predicate (verb/preposition - object)
 - eat → chocolate: predicate (verb/proposition - object)
 - n’t → eat: constraint
 
@@ -970,15 +958,15 @@
 - much → chocolate: constraint
 
 **Generated Relations:**
-- He → eat: Predicate (subject - verb) (UD: nsubj)
+- He → eat: Predicate (Subject - Verb) (UD: nsubj)
 - as → as: Connection (UD: as...as_correlative)
-- as → brother: Predicate (preposition - object) (UD: case)
-- as → brother: Predicate (preposition - object) (UD: as→noun)
+- as → brother: Predicate (Preposition - Object) (UD: case)
+- as → brother: Predicate (Preposition - Object) (UD: as→noun)
 - as → much: Constraint (UD: advmod)
-- as → much: Predicate (verb/proposition - object) (UD: as→adj/adv)
+- as → much: Predicate (Verb/Proposition - Object) (UD: as→adj/adv)
 - does → eat: Constraint (UD: aux)
-- eat → brother: Predicate (verb - oblique) (UD: obl)
-- eat → chocolate: Predicate (verb/proposition - object) (UD: obj)
+- eat → brother: Predicate (Verb/Preposition - Object) (UD: obl)
+- eat → chocolate: Predicate (Verb/Proposition - Object) (UD: obj)
 - his → brother: Constraint (UD: nmod:poss)
 - much → chocolate: Constraint (UD: amod)
 - n’t → eat: Constraint (UD: advmod)
@@ -993,10 +981,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 10 | - |
-| Generated Relations | 9 | - |
+| Generated Relations | 7 | - |
 | Correct Relations | 1 | 10.0% |
 | Missing Relations | 9 | 90.0% |
-| Over-specified Relations | 8 | 88.9% |
+| Over-specified Relations | 6 | 85.7% |
 
 **✅ Correct Relations:**
 - she → enjoys: predicate (subject - verb)
@@ -1018,9 +1006,7 @@
 - as → much: constraint
 - as → much: predicate (verb/proposition - object)
 - enjoys → dancing: predicate (verb/proposition - object)
-- enjoys → much: constraint
 - enjoys → painting: predicate (verb/proposition - object)
-- much → enjoys: constraint
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -1038,17 +1024,15 @@
 - she → enjoys: predicate (subject - verb) (second clause)
 
 **Generated Relations:**
-- She → enjoys: Predicate (subject - verb) (UD: nsubj)
+- She → enjoys: Predicate (Subject - Verb) (UD: nsubj)
 - as → as: Connection (UD: as...as_correlative)
-- as → enjoys: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
+- as → enjoys: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
 - as → much: Constraint (UD: advmod)
-- as → much: Predicate (verb/proposition - object) (UD: as→adj/adv)
+- as → much: Predicate (Verb/Proposition - Object) (UD: as→adj/adv)
 - as → much: Constraint (UD: mark→main_verb (mark))
-- enjoys → dancing: Predicate (verb/proposition - object) (UD: obj)
-- enjoys → much: Constraint (UD: advcl)
-- enjoys → painting: Predicate (verb/proposition - object) (UD: obj)
-- much → enjoys: Constraint (UD: advmod)
-- she → enjoys: Predicate (subject - verb) (UD: nsubj)
+- enjoys → dancing: Predicate (Verb/Proposition - Object) (UD: obj)
+- enjoys → painting: Predicate (Verb/Proposition - Object) (UD: obj)
+- she → enjoys: Predicate (Subject - Verb) (UD: nsubj)
 
 </details>
 
@@ -1110,14 +1094,14 @@
 **Generated Relations:**
 - Just → affects: Constraint (UD: advmod)
 - affects → influence: Constraint (UD: advcl)
-- affects → tides: Predicate (verb/proposition - object) (UD: obj)
-- as → affects: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
+- affects → tides: Predicate (Verb/Proposition - Object) (UD: obj)
+- as → affects: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
 - as → influence: Constraint (UD: mark→main_verb (mark))
 - does → influence: Constraint (UD: aux)
-- influence → them: Predicate (verb/proposition - object) (UD: obj)
-- moon → affects: Predicate (subject - verb) (UD: nsubj)
+- influence → them: Predicate (Verb/Proposition - Object) (UD: obj)
+- moon → affects: Predicate (Subject - Verb) (UD: nsubj)
 - so → influence: Constraint (UD: advmod)
-- sun → influence: Predicate (subject - verb) (UD: nsubj)
+- sun → influence: Predicate (Subject - Verb) (UD: nsubj)
 - the → moon: Constraint (UD: det)
 - the → sun: Constraint (UD: det)
 - the → tides: Constraint (UD: det)
@@ -1175,12 +1159,12 @@
 
 **Generated Relations:**
 - Just → builds: Constraint (UD: advmod)
-- as → builds: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
+- as → builds: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
 - as → does: Constraint (UD: mark→main_verb (mark))
 - builds → does: Constraint (UD: advcl)
-- builds → trust: Predicate (verb/proposition - object) (UD: obj)
-- does → kindness: Predicate (verb/proposition - object) (UD: obj)
-- honesty → builds: Predicate (subject - verb) (UD: nsubj)
+- builds → trust: Predicate (Verb/Proposition - Object) (UD: obj)
+- does → kindness: Predicate (Verb/Proposition - Object) (UD: obj)
+- honesty → builds: Predicate (Subject - Verb) (UD: nsubj)
 - so → does: Constraint (UD: advmod)
 
 </details>
@@ -1242,19 +1226,19 @@
 
 **Generated Relations:**
 - Just → need: Constraint (UD: advmod)
-- as → need: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
+- as → need: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
 - as → need: Constraint (UD: mark→main_verb (mark))
 - do → need: Constraint (UD: aux)
 - need → need: Constraint (UD: advcl)
-- need → sunlight: Predicate (verb/proposition - object) (UD: obj)
-- need → survive: Predicate (verb/proposition - object) (UD: xcomp)
-- need → water: Predicate (verb/proposition - object) (UD: obj)
-- plants → need: Predicate (subject - verb) (UD: nsubj)
+- need → sunlight: Predicate (Verb/Proposition - Object) (UD: obj)
+- need → survive: Predicate (Verb/Proposition - Object) (UD: xcomp)
+- need → water: Predicate (Verb/Proposition - Object) (UD: obj)
+- plants → need: Predicate (Subject - Verb) (UD: nsubj)
 - so → need: Constraint (UD: advmod)
 - to → need: Constraint (UD: mark(to)→main_verb_of(xcomp))
-- to → survive: Predicate (preposition - object) (UD: mark)
-- to → survive: Predicate (preposition - object) (UD: mark(to)→inf_verb)
-- we → need: Predicate (subject - verb) (UD: nsubj)
+- to → survive: Predicate (Preposition - Object) (UD: mark)
+- to → survive: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
+- we → need: Predicate (Subject - Verb) (UD: nsubj)
 
 </details>
 
@@ -1266,10 +1250,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 8 | - |
-| Generated Relations | 10 | - |
+| Generated Relations | 9 | - |
 | Correct Relations | 0 | 0.0% |
 | Missing Relations | 8 | 100.0% |
-| Over-specified Relations | 10 | 100.0% |
+| Over-specified Relations | 9 | 100.0% |
 
 **❌ Missing Relations:**
 - had → arrived: constraint
@@ -1283,7 +1267,6 @@
 
 **➕ Over-specified Relations:**
 - had → sat: constraint
-- no → sooner: constraint
 - phone → rang: predicate (subject - verb)
 - rang → sat: constraint
 - sat → down: constraint
@@ -1307,14 +1290,13 @@
 - we → arrived: predicate (subject - verb)
 
 **Generated Relations:**
-- No → sooner: Constraint (UD: advmod)
 - had → sat: Constraint (UD: aux)
-- phone → rang: Predicate (subject - verb) (UD: nsubj)
+- phone → rang: Predicate (Subject - Verb) (UD: nsubj)
 - rang → sat: Constraint (UD: advcl)
 - sat → down: Constraint (UD: compound:prt)
-- she → sat: Predicate (subject - verb) (UD: nsubj)
+- she → sat: Predicate (Subject - Verb) (UD: nsubj)
 - sooner → sat: Constraint (UD: advmod)
-- than → rang: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
+- than → rang: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
 - than → sat: Constraint (UD: mark→main_verb (mark))
 - the → phone: Constraint (UD: det)
 
@@ -1367,11 +1349,11 @@
 - would → read: constraint
 
 **Generated Relations:**
-- I → read: Predicate (subject - verb) (UD: nsubj)
+- I → read: Predicate (Subject - Verb) (UD: nsubj)
 - a → book: Constraint (UD: det)
 - rather → read: Constraint (UD: advmod)
-- read → book: Predicate (verb/proposition - object) (UD: obj)
-- watch → TV: Predicate (verb/proposition - object) (UD: obj)
+- read → book: Predicate (Verb/Proposition - Object) (UD: obj)
+- watch → TV: Predicate (Verb/Proposition - Object) (UD: obj)
 - watch → read: Constraint (UD: advcl)
 - ’d → read: Constraint (UD: aux)
 
@@ -1385,10 +1367,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 9 | - |
-| Generated Relations | 7 | - |
+| Generated Relations | 6 | - |
 | Correct Relations | 2 | 22.2% |
 | Missing Relations | 7 | 77.8% |
-| Over-specified Relations | 5 | 71.4% |
+| Over-specified Relations | 4 | 66.7% |
 
 **✅ Correct Relations:**
 - he → chose: predicate (subject - verb)
@@ -1406,8 +1388,7 @@
 **➕ Over-specified Relations:**
 - chose → walk: predicate (verb/proposition - object)
 - drive → walk: connection
-- rather → drive: connection
-- than → rather: constraint
+- than → rather: connection
 - to → walk: predicate (preposition - object)
 
 <details>
@@ -1425,14 +1406,13 @@
 - to → walk: predicate (verb/preposition - object)
 
 **Generated Relations:**
-- He → chose: Predicate (subject - verb) (UD: nsubj)
-- chose → walk: Predicate (verb/proposition - object) (UD: xcomp)
+- He → chose: Predicate (Subject - Verb) (UD: nsubj)
+- chose → walk: Predicate (Verb/Proposition - Object) (UD: xcomp)
 - drive → walk: Connection (UD: conj)
-- rather → drive: Connection (UD: cc)
-- than → rather: Constraint (UD: fixed)
+- than → rather: Connection (UD: fixed)
 - to → chose: Constraint (UD: mark(to)→main_verb_of(xcomp))
-- to → walk: Predicate (preposition - object) (UD: mark)
-- to → walk: Predicate (preposition - object) (UD: mark(to)→inf_verb)
+- to → walk: Predicate (Preposition - Object) (UD: mark)
+- to → walk: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
 
 </details>
 
@@ -1460,7 +1440,7 @@
 
 **➕ Over-specified Relations:**
 - complain → took: constraint
-- than → rather: constraint
+- than → rather: connection
 - took → action: predicate (verb/proposition - object)
 
 <details>
@@ -1475,9 +1455,9 @@
 
 **Generated Relations:**
 - complain → took: Constraint (UD: advcl)
-- she → took: Predicate (subject - verb) (UD: nsubj)
-- than → Rather: Constraint (UD: fixed)
-- took → action: Predicate (verb/proposition - object) (UD: obj)
+- she → took: Predicate (Subject - Verb) (UD: nsubj)
+- than → Rather: Connection (UD: fixed)
+- took → action: Predicate (Verb/Proposition - Object) (UD: obj)
 
 </details>
 

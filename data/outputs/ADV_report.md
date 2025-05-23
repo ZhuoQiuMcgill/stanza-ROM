@@ -1,6 +1,6 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 23:09:34
+**Date:** 2025-05-23 14:13:34
 **Total Sentences:** 2
 **Processed Sentences:** 2
 **Skipped Sentences:** 0
@@ -78,11 +78,11 @@
 - was → raining: predicate (verb/proposition - object)
 
 **Generated Relations:**
-- I → stayed: Predicate (subject - verb) (UD: nsubj)
-- because → raining: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
+- I → stayed: Predicate (Subject - Verb) (UD: nsubj)
+- because → raining: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
 - because → stayed: Constraint (UD: mark→main_verb (mark))
 - home → stayed: Constraint (UD: advmod)
-- it → raining: Predicate (subject - verb) (UD: nsubj)
+- it → raining: Predicate (Subject - Verb) (UD: nsubj)
 - raining → stayed: Constraint (UD: advcl)
 - was → raining: Constraint (UD: aux)
 
@@ -130,13 +130,13 @@
 
 **Generated Relations:**
 - Although → finished: Constraint (UD: mark→main_verb (mark))
-- Although → tired: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
-- finished → report: Predicate (verb/proposition - object) (UD: obj)
-- she → finished: Predicate (subject - verb) (UD: nsubj)
-- she → was: Predicate (subject - verb) (UD: nsubj→cop)
+- Although → tired: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
+- finished → report: Predicate (Verb/Proposition - Object) (UD: obj)
+- she → finished: Predicate (Subject - Verb) (UD: nsubj)
+- she → was: Predicate (Subject - Verb) (UD: nsubj→cop)
 - the → report: Constraint (UD: det)
 - tired → finished: Constraint (UD: advcl)
-- was → tired: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- was → tired: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 
 </details>
 

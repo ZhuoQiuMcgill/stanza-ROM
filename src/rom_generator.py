@@ -1,15 +1,16 @@
 """
-Complete ROM to UD Relations Mapper - ENHANCED WITH POS VERSION
+Complete ROM to UD Relations Mapper - ENHANCED WITH POS-BASED ANALYSIS
 
 Maps Universal Dependencies from Stanza to 4 ROM relation types and outputs
 in a clean format showing word relationships with corrected semantic directions.
-Incorporates comprehensive POS analysis for more accurate ROM relation generation.
+Incorporates comprehensive POS analysis based on bidirectional coverage analysis
+for more accurate ROM relation generation.
 
-MAJOR ENHANCEMENTS based on ROM rules document:
-- Enhanced POS-based mapping logic
-- Implemented specific ROM rules for different word classes
-- Better handling of verb phrases, auxiliaries, and modals
-- Improved preposition and determiner handling
+MAJOR ENHANCEMENTS based on POS Pair Analysis:
+- Enhanced bidirectional POS-based mapping logic
+- Implemented specific ROM rules for high-coverage POS pairs
+- Better handling based on empirical analysis results
+- Improved accuracy for DET-NOUN, ADP-PRON, PRON-VERB, and other pairs
 - Enhanced clause linking and connective analysis
 """
 
@@ -21,7 +22,8 @@ class ROMGenerator:
     A class for mapping Universal Dependencies relations to ROM (Relational Ontology Model) types.
 
     This class handles the initialization of the Stanza pipeline and provides methods
-    to analyze sentences and extract ROM relations from UD parsing with enhanced POS analysis.
+    to analyze sentences and extract ROM relations from UD parsing with enhanced POS analysis
+    based on bidirectional coverage analysis.
     """
 
     def __init__(self, lang: str = 'en', verbose: bool = False):
@@ -43,7 +45,7 @@ class ROMGenerator:
     def get_rom_mapping(ud_relation: str, word_text: str = None, word_pos: str = None,
                         head_pos: str = None, head_lemma: str = None, head_text: str = None) -> tuple:
         """
-        Map UD relation to ROM type with enhanced POS-based logic
+        Map UD relation to ROM type with enhanced POS-based logic based on bidirectional analysis
 
         Args:
             ud_relation: Universal Dependencies relation type
@@ -59,142 +61,238 @@ class ROMGenerator:
         word_lower = word_text.lower() if word_text else ""
         head_lower = head_text.lower() if head_text else ""
 
-        # R1: Connection (Semantic/Functional Link)
-        if ud_relation in {'cc', 'conj', 'parataxis', 'list', 'appos', 'dislocated',
-                           'vocative', 'discourse', 'goeswith', 'reparandum'}:
-            return 'Connection', False
+        # =============================================================================
+        # ENHANCED POS-BASED MAPPINGS (Based on Bidirectional Analysis)
+        # =============================================================================
 
-        # Special Connection cases based on POS and word content
-        elif ud_relation in {'nsubj:relcl', 'obj:relcl'} or \
-                (ud_relation == 'nmod' and word_pos == 'PRON') or \
-                (ud_relation == 'mark' and word_lower in {'that', 'whether', 'if'} and word_pos in {'SCONJ', 'PRON'}):
-            return 'Connection', False
+        # DET ↔ NOUN (Perfect 1.000 coverage) - DET→NOUN: Constraint, NOUN→DET: det
+        if ud_relation == 'det' and word_pos == 'DET' and head_pos in {'NOUN', 'PROPN'}:
+            return 'Constraint', False  # det → noun
 
-        # R3: Predicate (Subject → Verb) - Enhanced with POS validation
-        elif ud_relation in {'nsubj', 'nsubj:pass', 'nsubj:outer', 'csubj', 'csubj:pass', 'csubj:outer'}:
-            # Validate that head is actually a verb or predicate
-            if head_pos in {'VERB', 'AUX'} or (head_pos == 'ADJ' and ud_relation.startswith('nsubj')):
-                return 'Predicate (subject - verb)', False
+        # ADP ↔ PROPN (Perfect 1.000 coverage) - ADP→PROPN: Predicate, PROPN→ADP: case
+        elif ud_relation == 'case' and word_pos == 'ADP' and head_pos == 'PROPN':
+            return 'Predicate (Preposition - Object)', False  # prep → propn
+
+        # ADP ↔ PRON (Perfect 1.000 coverage) - ADP→PRON: Predicate, PRON→ADP: case
+        elif ud_relation == 'case' and word_pos == 'ADP' and head_pos == 'PRON':
+            return 'Predicate (Preposition - Object)', False  # prep → pron
+
+        # ADP ↔ NOUN (High 0.917 coverage) - ADP→NOUN: Predicate, NOUN→ADP: case
+        elif ud_relation == 'case' and word_pos == 'ADP' and head_pos in {'NOUN', 'PROPN'}:
+            return 'Predicate (Preposition - Object)', False  # prep → noun
+
+        # ADV ↔ NOUN (Perfect 1.000 coverage) - ADV→NOUN: Constraint, NOUN→ADV: advmod
+        elif ud_relation == 'advmod' and word_pos == 'ADV' and head_pos in {'NOUN', 'PROPN'}:
+            return 'Constraint', False  # adv → noun
+
+        # ADJ ↔ CCONJ (Perfect 1.000 coverage) - ADJ→CCONJ: cc, CCONJ→ADJ: Connection/Predicate
+        elif ud_relation == 'cc' and word_pos == 'CCONJ' and head_pos == 'ADJ':
+            if word_lower in {'and', 'or'}:
+                return 'Connection', False  # conj → adj
             else:
-                # If head is not a verb, might be a nominal predicate
-                return 'Predicate (subject - verb)', False
+                return 'Predicate (Conjunction - Element)', False  # conj → adj
 
-        # R4: Predicate (Verb/Prep → Object) - Enhanced with POS validation
-        elif ud_relation in {'obj', 'iobj', 'ccomp', 'xcomp'}:
-            if head_pos in {'VERB', 'AUX'}:
-                return 'Predicate (verb/proposition - object)', True  # head → dependent
-            elif head_pos in {'NOUN', 'PRON', 'ADJ'}:  # Nominal or adjectival head taking complement
-                return 'Predicate (verb/proposition - object)', True
+        # NOUN ↔ PROPN (Perfect 1.000 coverage) - NOUN→PROPN: compound, PROPN→NOUN: Constraint
+        elif ud_relation == 'compound' and word_pos == 'PROPN' and head_pos == 'NOUN':
+            return 'Constraint', True  # head → modifier (PROPN → NOUN)
+
+        # =============================================================================
+        # PRON ↔ VERB (High 0.988 coverage) - Complex bidirectional mapping
+        # =============================================================================
+
+        # PRON → VERB: nsubj/obj patterns
+        elif ud_relation in {'nsubj', 'nsubj:pass', 'nsubj:outer'} and word_pos == 'PRON' and head_pos in {'VERB',
+                                                                                                           'AUX'}:
+            return 'Predicate (Subject - Verb)', False  # pron → verb
+
+        elif ud_relation in {'obj', 'iobj'} and word_pos == 'PRON' and head_pos == 'VERB':
+            return 'Predicate (Verb/Proposition - Object)', True  # verb → pron
+
+        elif ud_relation == 'obl' and word_pos == 'PRON' and head_pos == 'VERB':
+            return 'Predicate (Verb/Preposition - Object)', True  # verb → pron
+
+        # =============================================================================
+        # ADJ ↔ AUX (High 0.938 coverage) - ADJ→AUX: cop, AUX→ADJ: Predicate
+        # =============================================================================
+
+        elif ud_relation == 'cop' and word_pos == 'AUX' and head_pos == 'ADJ':
+            return 'Predicate (Verb/Proposition - Object)', False  # aux → adj
+
+        # =============================================================================
+        # ADV ↔ VERB (High 0.912 coverage) - Complex patterns
+        # =============================================================================
+
+        elif ud_relation == 'advmod' and word_pos == 'ADV' and head_pos == 'VERB':
+            # Special cases based on adverb type
+            if word_lower in {'when', 'where', 'how', 'why'}:
+                return 'Predicate (Verb/Proposition - Object)', False  # wh-adv → verb
             else:
-                return 'Predicate (verb/proposition - object)', True
+                return 'Constraint', False  # adv → verb
 
-        # Preposition handling - Enhanced with POS validation
-        elif ud_relation == 'case':
-            if word_pos == 'ADP':  # Preposition
-                return 'Predicate (preposition - object)', False  # prep → object
+        elif ud_relation == 'mark' and word_pos == 'ADV' and head_pos == 'VERB':
+            return 'Predicate (Verb/Proposition - Object)', False  # wh-adv → verb
+
+        # =============================================================================
+        # SCONJ ↔ VERB (High 0.905 coverage) - SCONJ→VERB: Constraint/Predicate, VERB→SCONJ: mark
+        # =============================================================================
+
+        elif ud_relation == 'mark' and word_pos == 'SCONJ' and head_pos == 'VERB':
+            if word_lower in {'because', 'although', 'since', 'while', 'unless', 'until', 'before', 'after'}:
+                return 'Constraint', False  # subordinating conj → verb (constrains main verb)
+            elif word_lower in {'that', 'whether', 'if'}:
+                return 'Connection', False  # complementizer
             else:
-                return 'Constraint', False  # Other case markers
+                return 'Predicate (Conjunction - Clause_Verb)', False  # other subordinating conjunctions
 
-        # Oblique relations - verb governs prepositional phrase or nominal
-        elif ud_relation in {'obl', 'obl:agent', 'obl:arg', 'obl:tmod', 'obl:lmod'}:
-            return 'Predicate (verb - oblique)', True  # head → dependent
+        # =============================================================================
+        # CCONJ patterns (High coverage for NOUN and VERB)
+        # =============================================================================
 
-        # R2: Constraint - Auxiliary and Modal handling (per ROM rules)
-        elif ud_relation in {'aux', 'aux:pass'}:
-            # Per ROM rules: auxiliaries/modals are modifiers using R2: Constraint
-            if word_pos in {'AUX', 'VERB'} and word_lower in {'is', 'was', 'will', 'would', 'can', 'could', 'should',
-                                                              'must', 'do', 'does', 'did', 'have', 'has', 'had'}:
-                return 'Constraint', False  # aux → main_verb
+        elif ud_relation == 'cc' and word_pos == 'CCONJ':
+            if word_lower in {'and', 'or'}:
+                return 'Connection', False  # standard coordination
+            elif word_lower in {'but', 'however', 'yet'}:
+                return 'Constraint', False  # contrastive
             else:
-                return 'Constraint', False
+                return 'Connection', False  # default coordination
 
-        # Copula verbs - Enhanced with POS validation
-        elif ud_relation == 'cop':
-            if word_pos == 'AUX' and word_lower in {'is', 'am', 'are', 'was', 'were', 'be', 'being', 'been'}:
-                return 'Predicate (verb/proposition - object)', False  # copula → predicate
+        # =============================================================================
+        # NOUN ↔ VERB (High 0.812 coverage) - Complex bidirectional patterns
+        # =============================================================================
+
+        elif ud_relation in {'nsubj', 'nsubj:pass', 'nsubj:outer'} and word_pos == 'NOUN' and head_pos in {'VERB',
+                                                                                                           'AUX'}:
+            return 'Predicate (Subject - Verb)', False  # noun → verb
+
+        elif ud_relation in {'obj', 'iobj'} and word_pos == 'NOUN' and head_pos == 'VERB':
+            return 'Predicate (Verb/Proposition - Object)', True  # verb → noun
+
+        elif ud_relation in {'obl', 'obl:agent', 'obl:unmarked'} and word_pos == 'NOUN' and head_pos == 'VERB':
+            return 'Predicate (Verb/Preposition - Object)', True  # verb → noun
+
+        elif ud_relation == 'acl:relcl' and word_pos == 'VERB' and head_pos in {'NOUN', 'PROPN'}:
+            return 'Constraint', False  # relative clause verb → antecedent
+
+        elif ud_relation == 'acl' and word_pos == 'VERB' and head_pos in {'NOUN', 'PROPN'}:
+            return 'Constraint', False  # adjectival clause
+
+        # =============================================================================
+        # PART ↔ VERB (Good 0.773 coverage) - PART→VERB: Constraint/Predicate, VERB→PART: mark/advmod
+        # =============================================================================
+
+        elif ud_relation == 'mark' and word_pos == 'PART' and head_pos == 'VERB':
+            if word_lower == 'to':
+                return 'Predicate (Preposition - Object)', False  # to → infinitive verb
             else:
-                return 'Predicate (verb/proposition - object)', False
+                return 'Constraint', False  # other particles
 
-        # Mark relations - Enhanced with POS and content analysis
-        elif ud_relation == 'mark':
-            if word_lower == 'to' and word_pos in {'PART', 'ADP'}:
-                # Infinitive marker or intention marker
-                if head_pos == 'VERB':
-                    return 'Predicate (preposition - object)', False  # to → verb (R4 use)
-                else:
-                    return 'Constraint', False  # to → matrix_verb (R2 use)
-            elif word_lower in {'because', 'although', 'since', 'while', 'unless', 'until', 'before',
-                                'after'} and word_pos == 'SCONJ':
-                # Subordinating conjunctions - per ROM rules: conjunction → subordinate verb (R4), constrains main verb (R2)
-                return 'Predicate (conjunction - clause_verb)', False  # Will be handled by special handlers for main verb constraint
-            elif word_lower in {'when', 'where', 'why', 'how'} and word_pos in {'SCONJ', 'ADV'}:
-                # Relative adverbs/temporal markers
-                return 'Predicate (verb/proposition - object)', False  # marker → verb (R4)
-            elif word_lower in {'that', 'whether', 'if'} and word_pos in {'SCONJ', 'PRON'}:
-                # Complementizers
-                return 'Connection', False  # that → verb equivalence
+        elif ud_relation == 'advmod' and word_pos == 'PART' and head_pos == 'VERB':
+            if word_lower in {"n't", 'not'}:
+                return 'Constraint', False  # negation particle
             else:
-                return 'Constraint', False
+                return 'Constraint', False  # other particles
 
-        # Skip acl:relcl - let handlers deal with them
-        elif ud_relation == 'acl:relcl':
-            return None, False
+        # =============================================================================
+        # AUX ↔ VERB (Good 0.677 coverage) - AUX→VERB: Constraint, VERB→AUX: aux/cop
+        # =============================================================================
 
-        # Adjectival clause (non-relative)
-        elif ud_relation == 'acl':
-            return 'Constraint', False
+        elif ud_relation in {'aux', 'aux:pass'} and word_pos == 'AUX' and head_pos == 'VERB':
+            return 'Constraint', False  # aux → main verb
 
-        # R2: Constraint (Modifier/Qualifier) - Enhanced with POS validation
-        elif ud_relation in {'det', 'amod', 'advmod', 'advmod:emph', 'advmod:lmod',
-                             'nmod', 'nmod:poss', 'nmod:tmod', 'nummod', 'nummod:gov',
-                             'fixed', 'flat', 'flat:foreign', 'flat:name',
-                             'det:numgov', 'det:nummod', 'det:poss', 'clf', 'cc:preconj'}:
+        elif ud_relation == 'cop' and word_pos == 'AUX' and head_pos in {'NOUN', 'ADJ', 'NUM'}:
+            return 'Predicate (Verb/Proposition - Object)', False  # copula → predicate
 
-            # Enhanced logic based on POS
-            if ud_relation == 'det' and word_pos == 'DET':
-                # Articles and determiners
-                return 'Constraint', False  # det → noun
-            elif ud_relation == 'amod' and word_pos == 'ADJ':
-                # Adjective modifying noun
-                return 'Constraint', False  # adj → noun
-            elif ud_relation.startswith('advmod') and word_pos == 'ADV':
-                # Adverb modifying verb/adj/adv
-                return 'Constraint', False  # adv → head
-            elif ud_relation.startswith('nmod'):
-                # Nominal modifier
-                if word_pos in {'NOUN', 'PRON', 'PROPN'}:
-                    return 'Constraint', False  # nom_mod → head
-                else:
-                    return 'Constraint', False
-            else:
-                return 'Constraint', False
+        # =============================================================================
+        # ADJ patterns
+        # =============================================================================
 
-        # Compound words - Enhanced with POS validation
-        elif ud_relation in {'compound', 'compound:lvc', 'compound:prt', 'compound:redup', 'compound:svc'}:
-            if ud_relation == 'compound:prt' and word_pos in {'ADP', 'ADV'}:
-                # Particle verbs (e.g., "break down")
-                return 'Constraint', True  # head → particle
-            else:
-                return 'Constraint', True  # head → modifier_part
+        elif ud_relation == 'amod' and word_pos == 'ADJ' and head_pos in {'NOUN', 'PROPN'}:
+            return 'Constraint', False  # adj → noun
 
-        # Adverbial clause relation
-        elif ud_relation in {'advcl', 'advcl:relcl'}:
-            return 'Constraint', False  # dependent_clause_verb → main_clause_verb
+        elif ud_relation == 'advmod' and word_pos == 'ADV' and head_pos == 'ADJ':
+            return 'Constraint', False  # adv → adj
 
-        # Negation - Enhanced with POS validation
+        # =============================================================================
+        # Compound and fixed expressions
+        # =============================================================================
+
+        elif ud_relation in {'compound', 'compound:prt'} and word_pos in {'NOUN', 'PROPN'} and head_pos in {'NOUN',
+                                                                                                            'PROPN'}:
+            return 'Constraint', True  # head → modifier
+
+        elif ud_relation == 'compound:prt' and word_pos in {'ADP', 'ADV'} and head_pos == 'VERB':
+            return 'Constraint', True  # verb → particle
+
+        elif ud_relation == 'fixed' and word_pos == 'ADP' and head_pos == 'ADV':
+            return 'Connection', False  # fixed expression (like "rather than")
+
+        # =============================================================================
+        # Possession and modification patterns
+        # =============================================================================
+
+        elif ud_relation == 'nmod:poss' and word_pos == 'PRON' and head_pos in {'NOUN', 'PROPN'}:
+            return 'Constraint', False  # possessive pronoun → noun
+
+        elif ud_relation == 'nmod' and word_pos in {'NOUN', 'PROPN'} and head_pos in {'NOUN', 'PROPN'}:
+            return 'Constraint', False  # noun modifier
+
+        elif ud_relation == 'nummod' and word_pos == 'NUM' and head_pos in {'NOUN', 'PROPN'}:
+            return 'Constraint', False  # number → noun
+
+        # =============================================================================
+        # Coordination and conjunction patterns
+        # =============================================================================
+
+        elif ud_relation == 'conj':
+            return 'Connection', False  # coordinated elements
+
+        elif ud_relation == 'cc:preconj' and word_pos == 'CCONJ':
+            return 'Connection', False  # pre-correlative conjunction
+
+        # =============================================================================
+        # Clausal patterns
+        # =============================================================================
+
+        elif ud_relation == 'ccomp' and head_pos == 'VERB':
+            return 'Predicate (Verb/Proposition - Object)', True  # verb → complement clause
+
+        elif ud_relation == 'xcomp' and head_pos == 'VERB':
+            return 'Predicate (Verb/Proposition - Object)', True  # verb → controlled complement
+
+        elif ud_relation == 'advcl' and head_pos == 'VERB':
+            return 'Constraint', False  # adverbial clause
+
+        elif ud_relation == 'csubj' and word_pos == 'VERB' and head_pos in {'VERB', 'ADJ'}:
+            return 'Predicate (Subject - Verb)', False  # clausal subject
+
+        # =============================================================================
+        # Negation patterns
+        # =============================================================================
+
         elif ud_relation == 'neg':
-            if word_pos in {'PART', 'ADV'} or word_lower in {'not', "n't", 'no', 'never'}:
-                return 'Constraint', False  # neg_word → modified_word
-            else:
-                return 'Constraint', False
+            return 'Constraint', False  # negation
 
-        # Default: skip unknown relations
+        # =============================================================================
+        # Discourse and other patterns
+        # =============================================================================
+
+        elif ud_relation in {'discourse', 'vocative', 'dislocated'}:
+            return 'Connection', False  # discourse elements
+
+        elif ud_relation in {'parataxis', 'list', 'appos'}:
+            return 'Connection', False  # paratactic elements
+
+        # =============================================================================
+        # Default fallback patterns
+        # =============================================================================
+
+        # Default for unknown relations
         return None, False
 
     def analyze_sentence(self, sentence: str) -> list:
         """
         Analyze a sentence and extract ROM relations from UD parsing.
-        Enhanced with comprehensive POS-based analysis.
+        Enhanced with comprehensive POS-based analysis based on bidirectional coverage analysis.
 
         Args:
             sentence: Input sentence to analyze
@@ -337,7 +435,7 @@ class ROMGenerator:
                         })
                         self._add_relation_if_new(new_relations, {
                             "from": coordinator, "to": conjunct2.text,
-                            "rom relation": "Predicate (conjunction - clause_element)",
+                            "rom relation": "Predicate (Conjunction - Clause_Element)",
                             "stanza ud": f"cc({coordinator})→conj2"
                         })
                     elif coordinator in {'and', 'or'}:
@@ -400,7 +498,7 @@ class ROMGenerator:
                 if first_head.upos in {'ADJ', 'ADV'}:  # as → adjective/adverb
                     self._add_relation_if_new(new_relations, {
                         "from": first_as.text, "to": first_head.text,
-                        "rom relation": "Predicate (verb/proposition - object)", "stanza ud": "as→adj/adv"
+                        "rom relation": "Predicate (Verb/Proposition - Object)", "stanza ud": "as→adj/adv"
                     })
                 elif first_head.upos == 'VERB':  # as → verb
                     self._add_relation_if_new(new_relations, {
@@ -413,7 +511,7 @@ class ROMGenerator:
                 if second_head.upos in {'NOUN', 'PRON', 'PROPN'}:  # as → noun/pronoun
                     self._add_relation_if_new(new_relations, {
                         "from": second_as.text, "to": second_head.text,
-                        "rom relation": "Predicate (preposition - object)", "stanza ud": "as→noun"
+                        "rom relation": "Predicate (Preposition - Object)", "stanza ud": "as→noun"
                     })
 
         return new_relations
@@ -441,14 +539,14 @@ class ROMGenerator:
                         # Object relative: verb → relative pronoun
                         self._add_relation_if_new(new_relations, {
                             "from": word.text, "to": relative_pronoun_word.text,
-                            "rom relation": "Predicate (verb/proposition - object)",
+                            "rom relation": "Predicate (Verb/Proposition - Object)",
                             "stanza ud": f"relcl_verb→obj_pronoun({word.deprel})"
                         })
                     elif rel_pronoun_role == 'nsubj':
                         # Subject relative: antecedent → verb
                         self._add_relation_if_new(new_relations, {
                             "from": antecedent.text, "to": word.text,
-                            "rom relation": "Predicate (subject - verb)",
+                            "rom relation": "Predicate (Subject - Verb)",
                             "stanza ud": f"antecedent→relcl_verb({word.deprel})"
                         })
 
@@ -468,14 +566,14 @@ class ROMGenerator:
                         # Object relative with implicit pronoun
                         self._add_relation_if_new(new_relations, {
                             "from": word.text, "to": antecedent.text,
-                            "rom relation": "Predicate (verb/proposition - object)",
+                            "rom relation": "Predicate (Verb/Proposition - Object)",
                             "stanza ud": f"relcl_verb→implicit_obj({word.deprel})"
                         })
                     elif not has_explicit_subject:
                         # Subject relative with implicit pronoun
                         self._add_relation_if_new(new_relations, {
                             "from": antecedent.text, "to": word.text,
-                            "rom relation": "Predicate (subject - verb)",
+                            "rom relation": "Predicate (Subject - Verb)",
                             "stanza ud": f"antecedent→relcl_verb({word.deprel})"
                         })
 
@@ -539,7 +637,7 @@ class ROMGenerator:
                     # Per ROM rules: marker → verb (R4), marker → antecedent (R2)
                     self._add_relation_if_new(new_relations, {
                         "from": word.text, "to": verb_of_relcl.text,
-                        "rom relation": "Predicate (verb/proposition - object)",
+                        "rom relation": "Predicate (Verb/Proposition - Object)",
                         "stanza ud": f"{word.lemma}→verb_of_relcl"
                     })
 
@@ -578,7 +676,7 @@ class ROMGenerator:
                     self._add_relation_if_new(new_relations, {
                         "from": marker_word.text,
                         "to": verb_to_link_marker_to.text,
-                        "rom relation": "Predicate (conjunction - clause_verb)",
+                        "rom relation": "Predicate (Conjunction - Clause_Verb)",
                         "stanza ud": f"mark→verb_of_advcl ({marker_word.deprel})"
                     })
 
@@ -615,7 +713,7 @@ class ROMGenerator:
                     # Per ROM rules: "to" → verb (R4 for intention), "to" → matrix verb (R2 for modal/intent)
                     self._add_relation_if_new(new_relations, {
                         "from": word.text, "to": infinitive_verb.text,
-                        "rom relation": "Predicate (preposition - object)",
+                        "rom relation": "Predicate (Preposition - Object)",
                         "stanza ud": "mark(to)→inf_verb"
                     })
 
@@ -667,12 +765,12 @@ class ROMGenerator:
                     # Subject → Copula (R3)
                     self._add_relation_if_new(new_relations, {
                         "from": subject_word.text, "to": copula_word.text,
-                        "rom relation": "Predicate (subject - verb)", "stanza ud": f"{subject_word.deprel}→cop"
+                        "rom relation": "Predicate (Subject - Verb)", "stanza ud": f"{subject_word.deprel}→cop"
                     })
                     # Copula → Predicative Complement (R4)
                     self._add_relation_if_new(new_relations, {
                         "from": copula_word.text, "to": predicative_complement_candidate.text,
-                        "rom relation": "Predicate (verb/proposition - object)", "stanza ud": "cop→pred_complement"
+                        "rom relation": "Predicate (Verb/Proposition - Object)", "stanza ud": "cop→pred_complement"
                     })
         return new_relations
 

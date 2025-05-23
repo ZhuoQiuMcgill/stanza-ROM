@@ -147,4 +147,4 @@ def batch_analys():
 
 
 if __name__ == "__main__":
-    batch_analys()
+    comparison()

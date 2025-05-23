@@ -1,6 +1,6 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 23:09:47
+**Date:** 2025-05-23 14:13:45
 **Total Sentences:** 18
 **Processed Sentences:** 18
 **Skipped Sentences:** 0
@@ -12,17 +12,17 @@
 |--------|-------|
 | Total Sentences Processed | 18 |
 | Total Expected Relations | 132 |
-| Total Generated Relations | 131 |
-| Total Correct Relations | 75 |
-| Total Missing Relations | 57 |
-| Total Over-specified Relations | 56 |
+| Total Generated Relations | 123 |
+| Total Correct Relations | 70 |
+| Total Missing Relations | 62 |
+| Total Over-specified Relations | 53 |
 
 ### Overall Performance
 | Metric | Percentage |
 |--------|------------|
-| **Correct Rate** | **56.8%** |
-| **Missing Rate** | **43.2%** |
-| **Over-specification Rate** | **42.7%** |
+| **Correct Rate** | **53.0%** |
+| **Missing Rate** | **47.0%** |
+| **Over-specification Rate** | **43.1%** |
 
 ### Performance Interpretation
 **Overall Performance:** 🟠 Fair
@@ -30,9 +30,9 @@
 ### Additional Metrics
 | Metric | Value | Description |
 |--------|-------|-------------|
-| Precision | 57.3% | Percentage of generated relations that are correct |
-| Recall | 56.8% | Percentage of expected relations that were found |
-| F1-Score | 57.0% | Harmonic mean of precision and recall |
+| Precision | 56.9% | Percentage of generated relations that are correct |
+| Recall | 53.0% | Percentage of expected relations that were found |
+| F1-Score | 54.9% | Harmonic mean of precision and recall |
 
 ---
 
@@ -65,10 +65,10 @@
 - what → surprised: predicate (subject - verb)
 
 **Generated Relations:**
-- What → surprised: Predicate (subject - verb) (UD: nsubj)
-- said → What: Predicate (verb/proposition - object) (UD: relcl_verb→implicit_obj(acl:relcl))
-- she → said: Predicate (subject - verb) (UD: nsubj)
-- surprised → everyone: Predicate (verb/proposition - object) (UD: obj)
+- What → surprised: Predicate (Subject - Verb) (UD: nsubj)
+- said → What: Predicate (Verb/Proposition - Object) (UD: relcl_verb→implicit_obj(acl:relcl))
+- she → said: Predicate (Subject - Verb) (UD: nsubj)
+- surprised → everyone: Predicate (Verb/Proposition - Object) (UD: obj)
 
 </details>
 
@@ -80,10 +80,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 5 | - |
-| Generated Relations | 3 | - |
+| Generated Relations | 2 | - |
 | Correct Relations | 1 | 20.0% |
 | Missing Relations | 4 | 80.0% |
-| Over-specified Relations | 2 | 66.7% |
+| Over-specified Relations | 1 | 50.0% |
 
 **✅ Correct Relations:**
 - he → lied: predicate (subject - verb)
@@ -96,7 +96,6 @@
 
 **➕ Over-specified Relations:**
 - lied → obvious: predicate (subject - verb)
-- that → obvious: connection
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -109,9 +108,8 @@
 - was → obvious: predicate (verb/proposition - object)
 
 **Generated Relations:**
-- That → obvious: Connection (UD: mark)
-- he → lied: Predicate (subject - verb) (UD: nsubj)
-- lied → obvious: Predicate (subject - verb) (UD: csubj)
+- he → lied: Predicate (Subject - Verb) (UD: nsubj)
+- lied → obvious: Predicate (Subject - Verb) (UD: csubj)
 
 </details>
 
@@ -141,7 +139,7 @@
 - win → depends: predicate (subject - verb)
 
 **➕ Over-specified Relations:**
-- depends → effort: predicate (verb - oblique)
+- depends → effort: predicate (verb/preposition - object)
 - on → effort: predicate (preposition - object)
 - whether → depends: constraint
 - whether → win: predicate (conjunction - clause_verb)
@@ -162,11 +160,11 @@
 
 **Generated Relations:**
 - Whether → depends: Constraint (UD: mark→main_verb (mark))
-- Whether → win: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
-- depends → effort: Predicate (verb - oblique) (UD: obl)
-- on → effort: Predicate (preposition - object) (UD: case)
+- Whether → win: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
+- depends → effort: Predicate (Verb/Preposition - Object) (UD: obl)
+- on → effort: Predicate (Preposition - Object) (UD: case)
 - our → effort: Constraint (UD: nmod:poss)
-- we → win: Predicate (subject - verb) (UD: nsubj)
+- we → win: Predicate (Subject - Verb) (UD: nsubj)
 - will → win: Constraint (UD: aux)
 - win → depends: Constraint (UD: advcl)
 
@@ -180,10 +178,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 8 | - |
-| Generated Relations | 8 | - |
+| Generated Relations | 7 | - |
 | Correct Relations | 3 | 37.5% |
 | Missing Relations | 5 | 62.5% |
-| Over-specified Relations | 5 | 62.5% |
+| Over-specified Relations | 4 | 57.1% |
 
 **✅ Correct Relations:**
 - a → mystery: constraint
@@ -200,7 +198,6 @@
 **➕ Over-specified Relations:**
 - how → mystery: constraint
 - managed → escape: predicate (verb/proposition - object)
-- managed → mystery: predicate (subject - verb)
 - still → mystery: constraint
 - to → escape: predicate (preposition - object)
 
@@ -220,12 +217,11 @@
 **Generated Relations:**
 - How → mystery: Constraint (UD: advmod)
 - a → mystery: Constraint (UD: det)
-- managed → escape: Predicate (verb/proposition - object) (UD: xcomp)
-- managed → mystery: Predicate (subject - verb) (UD: csubj)
-- she → managed: Predicate (subject - verb) (UD: nsubj)
+- managed → escape: Predicate (Verb/Proposition - Object) (UD: xcomp)
+- she → managed: Predicate (Subject - Verb) (UD: nsubj)
 - still → mystery: Constraint (UD: advmod)
-- to → escape: Predicate (preposition - object) (UD: mark)
-- to → escape: Predicate (preposition - object) (UD: mark(to)→inf_verb)
+- to → escape: Predicate (Preposition - Object) (UD: mark)
+- to → escape: Predicate (Preposition - Object) (UD: mark(to)→inf_verb)
 - to → managed: Constraint (UD: mark(to)→main_verb_of(xcomp))
 
 </details>
@@ -238,24 +234,24 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 6 | - |
-| Generated Relations | 5 | - |
-| Correct Relations | 3 | 50.0% |
-| Missing Relations | 3 | 50.0% |
-| Over-specified Relations | 2 | 40.0% |
+| Generated Relations | 4 | - |
+| Correct Relations | 2 | 33.3% |
+| Missing Relations | 4 | 66.7% |
+| Over-specified Relations | 2 | 50.0% |
 
 **✅ Correct Relations:**
 - meeting → starts: predicate (subject - verb)
 - the → meeting: constraint
-- when → starts: constraint
 
 **❌ Missing Relations:**
 - is → unknown: predicate (verb/proposition - object)
 - still → is: constraint
 - when → is: predicate (subject - verb)
+- when → starts: constraint
 
 **➕ Over-specified Relations:**
-- starts → unknown: constraint
 - still → unknown: constraint
+- when → starts: predicate (verb/proposition - object)
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -269,9 +265,8 @@
 - when → starts: constraint
 
 **Generated Relations:**
-- When → starts: Constraint (UD: advmod)
-- meeting → starts: Predicate (subject - verb) (UD: nsubj)
-- starts → unknown: Constraint (UD: advcl)
+- When → starts: Predicate (Verb/Proposition - Object) (UD: advmod)
+- meeting → starts: Predicate (Subject - Verb) (UD: nsubj)
 - still → unknown: Constraint (UD: advmod)
 - the → meeting: Constraint (UD: det)
 
@@ -285,10 +280,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 5 | - |
-| Generated Relations | 5 | - |
+| Generated Relations | 4 | - |
 | Correct Relations | 3 | 60.0% |
 | Missing Relations | 2 | 40.0% |
-| Over-specified Relations | 2 | 40.0% |
+| Over-specified Relations | 1 | 25.0% |
 
 **✅ Correct Relations:**
 - i → know: predicate (subject - verb)
@@ -301,7 +296,6 @@
 
 **➕ Over-specified Relations:**
 - know → right: predicate (verb/proposition - object)
-- that → right: connection
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -314,11 +308,10 @@
 - that → is: connection
 
 **Generated Relations:**
-- I → know: Predicate (subject - verb) (UD: nsubj)
-- is → right: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- know → right: Predicate (verb/proposition - object) (UD: ccomp)
-- she → is: Predicate (subject - verb) (UD: nsubj→cop)
-- that → right: Connection (UD: mark)
+- I → know: Predicate (Subject - Verb) (UD: nsubj)
+- is → right: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
+- know → right: Predicate (Verb/Proposition - Object) (UD: ccomp)
+- she → is: Predicate (Subject - Verb) (UD: nsubj→cop)
 
 </details>
 
@@ -364,13 +357,13 @@
 - what → happened: predicate (subject - verb)
 
 **Generated Relations:**
-- She → tell: Predicate (subject - verb) (UD: nsubj)
+- She → tell: Predicate (Subject - Verb) (UD: nsubj)
 - did → tell: Constraint (UD: aux)
 - had → happened: Constraint (UD: aux)
 - n’t → tell: Constraint (UD: advmod)
-- tell → happened: Predicate (verb/proposition - object) (UD: ccomp)
-- tell → me: Predicate (verb/proposition - object) (UD: iobj)
-- what → happened: Predicate (subject - verb) (UD: nsubj)
+- tell → happened: Predicate (Verb/Proposition - Object) (UD: ccomp)
+- tell → me: Predicate (Verb/Proposition - Object) (UD: iobj)
+- what → happened: Predicate (Subject - Verb) (UD: nsubj)
 
 </details>
 
@@ -383,14 +376,13 @@
 |--------|-------|------|
 | Expected Relations | 9 | - |
 | Generated Relations | 10 | - |
-| Correct Relations | 7 | 77.8% |
-| Missing Relations | 2 | 22.2% |
-| Over-specified Relations | 3 | 30.0% |
+| Correct Relations | 6 | 66.7% |
+| Missing Relations | 3 | 33.3% |
+| Over-specified Relations | 4 | 40.0% |
 
 **✅ Correct Relations:**
 - about → thinking: constraint
 - can → solve: constraint
-- how → solve: constraint
 - solve → problem: predicate (verb/proposition - object)
 - the → problem: constraint
 - we → solve: predicate (subject - verb)
@@ -399,9 +391,11 @@
 **❌ Missing Relations:**
 - about → how: predicate (verb/proposition - object)
 - are → thinking: constraint
+- how → solve: constraint
 
 **➕ Over-specified Relations:**
 - about → solve: predicate (conjunction - clause_verb)
+- how → solve: predicate (verb/proposition - object)
 - solve → thinking: constraint
 - ’re → thinking: constraint
 
@@ -420,15 +414,15 @@
 - we → thinking: predicate (subject - verb)
 
 **Generated Relations:**
-- We → thinking: Predicate (subject - verb) (UD: nsubj)
-- about → solve: Predicate (conjunction - clause_verb) (UD: mark→verb_of_advcl (mark))
+- We → thinking: Predicate (Subject - Verb) (UD: nsubj)
+- about → solve: Predicate (Conjunction - Clause_Verb) (UD: mark→verb_of_advcl (mark))
 - about → thinking: Constraint (UD: mark→main_verb (mark))
 - can → solve: Constraint (UD: aux)
-- how → solve: Constraint (UD: advmod)
-- solve → problem: Predicate (verb/proposition - object) (UD: obj)
+- how → solve: Predicate (Verb/Proposition - Object) (UD: advmod)
+- solve → problem: Predicate (Verb/Proposition - Object) (UD: obj)
 - solve → thinking: Constraint (UD: advcl)
 - the → problem: Constraint (UD: det)
-- we → solve: Predicate (subject - verb) (UD: nsubj)
+- we → solve: Predicate (Subject - Verb) (UD: nsubj)
 - ’re → thinking: Constraint (UD: aux)
 
 </details>
@@ -441,15 +435,14 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 8 | - |
-| Generated Relations | 8 | - |
-| Correct Relations | 4 | 50.0% |
-| Missing Relations | 4 | 50.0% |
-| Over-specified Relations | 4 | 50.0% |
+| Generated Relations | 6 | - |
+| Correct Relations | 3 | 37.5% |
+| Missing Relations | 5 | 62.5% |
+| Over-specified Relations | 3 | 50.0% |
 
 **✅ Correct Relations:**
 - he → locked: predicate (subject - verb)
 - locked → door: predicate (verb/proposition - object)
-- not → sure: constraint
 - the → door: constraint
 
 **❌ Missing Relations:**
@@ -457,11 +450,11 @@
 - if → is: constraint
 - if → locked: predicate (verb/proposition - object)
 - is → sure: predicate (verb/proposition - object)
+- not → sure: constraint
 
 **➕ Over-specified Relations:**
 - he → ’s: predicate (subject - verb)
 - if → locked: connection
-- sure → locked: predicate (verb/proposition - object)
 - ’s → sure: predicate (verb/proposition - object)
 
 <details>
@@ -478,14 +471,12 @@
 - the → door: constraint
 
 **Generated Relations:**
-- He → ’s: Predicate (subject - verb) (UD: nsubj→cop)
-- he → locked: Predicate (subject - verb) (UD: nsubj)
+- He → ’s: Predicate (Subject - Verb) (UD: nsubj→cop)
+- he → locked: Predicate (Subject - Verb) (UD: nsubj)
 - if → locked: Connection (UD: mark)
-- locked → door: Predicate (verb/proposition - object) (UD: obj)
-- not → sure: Constraint (UD: advmod)
-- sure → locked: Predicate (verb/proposition - object) (UD: ccomp)
+- locked → door: Predicate (Verb/Proposition - Object) (UD: obj)
 - the → door: Constraint (UD: det)
-- ’s → sure: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- ’s → sure: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 
 </details>
 
@@ -498,26 +489,27 @@
 |--------|-------|------|
 | Expected Relations | 8 | - |
 | Generated Relations | 8 | - |
-| Correct Relations | 5 | 62.5% |
-| Missing Relations | 3 | 37.5% |
-| Over-specified Relations | 3 | 37.5% |
+| Correct Relations | 4 | 50.0% |
+| Missing Relations | 4 | 50.0% |
+| Over-specified Relations | 4 | 50.0% |
 
 **✅ Correct Relations:**
 - i → know: predicate (subject - verb)
 - package → arrive: predicate (subject - verb)
 - the → package: constraint
-- when → arrive: constraint
 - will → arrive: constraint
 
 **❌ Missing Relations:**
 - don’t → know: constraint
 - know → arrive: predicate (verb/proposition - object)
+- when → arrive: constraint
 - when → know: predicate (verb/proposition - object)
 
 **➕ Over-specified Relations:**
 - arrive → know: constraint
 - do → know: constraint
 - n’t → know: constraint
+- when → arrive: predicate (verb/proposition - object)
 
 <details>
 <summary>Detailed Comparison</summary>
@@ -533,13 +525,13 @@
 - will → arrive: constraint
 
 **Generated Relations:**
-- I → know: Predicate (subject - verb) (UD: nsubj)
+- I → know: Predicate (Subject - Verb) (UD: nsubj)
 - arrive → know: Constraint (UD: advcl)
 - do → know: Constraint (UD: aux)
 - n’t → know: Constraint (UD: advmod)
-- package → arrive: Predicate (subject - verb) (UD: nsubj)
+- package → arrive: Predicate (Subject - Verb) (UD: nsubj)
 - the → package: Constraint (UD: det)
-- when → arrive: Constraint (UD: advmod)
+- when → arrive: Predicate (Verb/Proposition - Object) (UD: advmod)
 - will → arrive: Constraint (UD: aux)
 
 </details>
@@ -586,12 +578,12 @@
 
 **Generated Relations:**
 - The → truth: Constraint (UD: det)
-- is → left: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- is → left: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 - never → left: Constraint (UD: advmod)
-- she → is: Predicate (subject - verb) (UD: nsubj→cop)
+- she → is: Predicate (Subject - Verb) (UD: nsubj→cop)
 - that → left: Connection (UD: mark)
-- truth → is: Predicate (subject - verb) (UD: nsubj:outer→cop)
-- truth → left: Predicate (subject - verb) (UD: nsubj:outer)
+- truth → is: Predicate (Subject - Verb) (UD: nsubj:outer→cop)
+- truth → left: Predicate (Subject - Verb) (UD: nsubj:outer)
 
 </details>
 
@@ -640,12 +632,12 @@
 **Generated Relations:**
 - My → suggestion: Constraint (UD: nmod:poss)
 - a → break: Constraint (UD: det)
-- is → take: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- suggestion → is: Predicate (subject - verb) (UD: nsubj:outer→cop)
-- suggestion → take: Predicate (subject - verb) (UD: nsubj:outer)
-- take → break: Predicate (verb/proposition - object) (UD: obj)
+- is → take: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
+- suggestion → is: Predicate (Subject - Verb) (UD: nsubj:outer→cop)
+- suggestion → take: Predicate (Subject - Verb) (UD: nsubj:outer)
+- take → break: Predicate (Verb/Proposition - Object) (UD: obj)
 - that → take: Connection (UD: mark)
-- we → is: Predicate (subject - verb) (UD: nsubj→cop)
+- we → is: Predicate (Subject - Verb) (UD: nsubj→cop)
 
 </details>
 
@@ -658,23 +650,24 @@
 |--------|-------|------|
 | Expected Relations | 8 | - |
 | Generated Relations | 8 | - |
-| Correct Relations | 4 | 50.0% |
-| Missing Relations | 4 | 50.0% |
-| Over-specified Relations | 4 | 50.0% |
+| Correct Relations | 3 | 37.5% |
+| Missing Relations | 5 | 62.5% |
+| Over-specified Relations | 5 | 62.5% |
 
 **✅ Correct Relations:**
 - can → get: constraint
-- how → get: constraint
 - problem → is: predicate (subject - verb)
 - the → problem: constraint
 
 **❌ Missing Relations:**
 - get → there: predicate (verb/proposition - object)
+- how → get: constraint
 - how → is: connection
 - is → how: predicate (verb/proposition - object)
 - we → get: predicate (subject - verb)
 
 **➕ Over-specified Relations:**
+- how → get: predicate (verb/proposition - object)
 - is → get: predicate (verb/proposition - object)
 - problem → get: predicate (subject - verb)
 - there → get: constraint
@@ -696,12 +689,12 @@
 **Generated Relations:**
 - The → problem: Constraint (UD: det)
 - can → get: Constraint (UD: aux)
-- how → get: Constraint (UD: advmod)
-- is → get: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- problem → get: Predicate (subject - verb) (UD: nsubj:outer)
-- problem → is: Predicate (subject - verb) (UD: nsubj:outer→cop)
+- how → get: Predicate (Verb/Proposition - Object) (UD: advmod)
+- is → get: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
+- problem → get: Predicate (Subject - Verb) (UD: nsubj:outer)
+- problem → is: Predicate (Subject - Verb) (UD: nsubj:outer→cop)
 - there → get: Constraint (UD: advmod)
-- we → is: Predicate (subject - verb) (UD: nsubj→cop)
+- we → is: Predicate (Subject - Verb) (UD: nsubj→cop)
 
 </details>
 
@@ -751,11 +744,11 @@
 
 **Generated Relations:**
 - The → question: Constraint (UD: det)
-- accept → offer: Predicate (verb/proposition - object) (UD: obj)
-- he → is: Predicate (subject - verb) (UD: nsubj→cop)
-- is → accept: Predicate (verb/proposition - object) (UD: cop→pred_complement)
-- question → accept: Predicate (subject - verb) (UD: nsubj:outer)
-- question → is: Predicate (subject - verb) (UD: nsubj:outer→cop)
+- accept → offer: Predicate (Verb/Proposition - Object) (UD: obj)
+- he → is: Predicate (Subject - Verb) (UD: nsubj→cop)
+- is → accept: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
+- question → accept: Predicate (Subject - Verb) (UD: nsubj:outer)
+- question → is: Predicate (Subject - Verb) (UD: nsubj:outer→cop)
 - the → offer: Constraint (UD: det)
 - whether → accept: Connection (UD: mark)
 - will → accept: Constraint (UD: aux)
@@ -805,11 +798,11 @@
 - the → news: constraint
 
 **Generated Relations:**
-- I → heard: Predicate (subject - verb) (UD: nsubj)
+- I → heard: Predicate (Subject - Verb) (UD: nsubj)
 - got → married: Constraint (UD: aux:pass)
-- heard → news: Predicate (verb/proposition - object) (UD: obj)
+- heard → news: Predicate (Verb/Proposition - Object) (UD: obj)
 - married → news: Constraint (UD: acl)
-- she → married: Predicate (subject - verb) (UD: nsubj:pass)
+- she → married: Predicate (Subject - Verb) (UD: nsubj:pass)
 - that → married: Connection (UD: mark)
 - the → news: Constraint (UD: det)
 
@@ -864,13 +857,13 @@
 **Generated Relations:**
 - The → idea: Constraint (UD: det)
 - brings → idea: Constraint (UD: acl)
-- brings → success: Predicate (verb/proposition - object) (UD: obj)
+- brings → success: Predicate (Verb/Proposition - Object) (UD: obj)
 - hard → work: Constraint (UD: amod)
-- idea → accepted: Predicate (subject - verb) (UD: nsubj:pass)
+- idea → accepted: Predicate (Subject - Verb) (UD: nsubj:pass)
 - is → accepted: Constraint (UD: aux:pass)
 - that → brings: Connection (UD: mark)
 - widely → accepted: Constraint (UD: advmod)
-- work → brings: Predicate (subject - verb) (UD: nsubj)
+- work → brings: Predicate (Subject - Verb) (UD: nsubj)
 
 </details>
 
@@ -917,14 +910,14 @@
 - we → cancel: predicate (subject - verb)
 
 **Generated Relations:**
-- She → rejected: Predicate (subject - verb) (UD: nsubj)
-- cancel → meeting: Predicate (verb/proposition - object) (UD: obj)
+- She → rejected: Predicate (Subject - Verb) (UD: nsubj)
+- cancel → meeting: Predicate (Verb/Proposition - Object) (UD: obj)
 - cancel → suggestion: Constraint (UD: acl)
-- rejected → suggestion: Predicate (verb/proposition - object) (UD: obj)
+- rejected → suggestion: Predicate (Verb/Proposition - Object) (UD: obj)
 - that → cancel: Connection (UD: mark)
 - the → meeting: Constraint (UD: det)
 - the → suggestion: Constraint (UD: det)
-- we → cancel: Predicate (subject - verb) (UD: nsubj)
+- we → cancel: Predicate (Subject - Verb) (UD: nsubj)
 
 </details>
 
@@ -936,10 +929,10 @@
 | Metric | Count | Rate |
 |--------|-------|------|
 | Expected Relations | 9 | - |
-| Generated Relations | 9 | - |
+| Generated Relations | 7 | - |
 | Correct Relations | 4 | 44.4% |
 | Missing Relations | 5 | 55.6% |
-| Over-specified Relations | 5 | 55.6% |
+| Over-specified Relations | 3 | 42.9% |
 
 **✅ Correct Relations:**
 - faced → fact: predicate (verb/proposition - object)
@@ -957,8 +950,6 @@
 **➕ Over-specified Relations:**
 - of → time: predicate (preposition - object)
 - out → time: predicate (preposition - object)
-- that → time: connection
-- time → fact: constraint
 - were → time: predicate (verb/proposition - object)
 
 <details>
@@ -976,15 +967,13 @@
 - were → out: predicate (verb/proposition - object)
 
 **Generated Relations:**
-- We → faced: Predicate (subject - verb) (UD: nsubj)
-- faced → fact: Predicate (verb/proposition - object) (UD: obj)
-- of → time: Predicate (preposition - object) (UD: case)
-- out → time: Predicate (preposition - object) (UD: case)
-- that → time: Connection (UD: mark)
+- We → faced: Predicate (Subject - Verb) (UD: nsubj)
+- faced → fact: Predicate (Verb/Proposition - Object) (UD: obj)
+- of → time: Predicate (Preposition - Object) (UD: case)
+- out → time: Predicate (Preposition - Object) (UD: case)
 - the → fact: Constraint (UD: det)
-- time → fact: Constraint (UD: acl)
-- we → were: Predicate (subject - verb) (UD: nsubj→cop)
-- were → time: Predicate (verb/proposition - object) (UD: cop→pred_complement)
+- we → were: Predicate (Subject - Verb) (UD: nsubj→cop)
+- were → time: Predicate (Verb/Proposition - Object) (UD: cop→pred_complement)
 
 </details>
 
