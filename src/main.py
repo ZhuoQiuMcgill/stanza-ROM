@@ -6,8 +6,10 @@ and extract ROM relations from Universal Dependencies parsing.
 """
 
 import json
-from rom_generator import ROMGenerator
+import os.path
 
+from rom_generator import ROMGenerator
+from utils import evaluate_rom, read_txt_lines
 
 def main():
     """
@@ -51,5 +53,18 @@ def main():
     print("Analysis complete!")
 
 
+def comparison():
+    input_dir = os.path.join(os.getcwd(), 'data', 'inputs')
+    output_dir = os.path.join(os.getcwd(), 'data', 'outputs')
+    benchmark_dir = os.path.join(os.getcwd(), 'data', 'benchmark')
+
+    input_file = os.path.join(input_dir, 'adjective_clauses_sentences_input.txt')
+    output_file = os.path.join(output_dir, 'ADJ_report.md')
+    benchmark_file = os.path.join(benchmark_dir, 'Adjective clauses.md')
+    sentences = read_txt_lines(input_file)
+
+    evaluate_rom(sentences, benchmark_file, save=output_file)
+
+
 if __name__ == "__main__":
-    main()
+    comparison()
