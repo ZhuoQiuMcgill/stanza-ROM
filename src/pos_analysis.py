@@ -805,15 +805,12 @@ def _generate_combined_pos_analysis_report(all_results: List[Dict], file_breakdo
 def _group_bidirectional_pairs(pos_pair_analysis: Dict, all_pos_ud_tuples: List[Tuple],
                                all_pos_rom_tuples: List[Tuple]) -> List[Dict]:
     """
-    Group POS pairs into bidirectional pairs and calculate overlap rates using mathematical formula.
+    Group POS pairs into bidirectional pairs and calculate overlap rates using cross ratios.
 
-    Uses the formula:
-    重合率_k = (∑_{i ∈ M_k} 1(R_i = U_{j(i)})) / |M_k|
-
-    Where:
-    - M₁ = {i : ∃j, (A_i, B_i) = (A_j', B_j')} (forward matching)
-    - M₂ = {i : ∃j, (A_i, B_i) = (B_j', A_j')} (reverse matching)
-    - 最大重合率 = max{重合率_1, 重合率_2}
+    The overlap rate is now calculated as the maximum of cross ratios:
+    - Cross ratio = min(1.0, forward_ud_count / reverse_rom_count)
+    - Reverse cross ratio = min(1.0, reverse_ud_count / forward_rom_count)
+    - Max Overlap Rate = max(cross_ratio, reverse_cross_ratio)
 
     Args:
         pos_pair_analysis: Dictionary with POS pair analysis
@@ -832,12 +829,6 @@ def _group_bidirectional_pairs(pos_pair_analysis: Dict, all_pos_ud_tuples: List[
             bidirectional_groups[canonical_key] = {}
         bidirectional_groups[canonical_key][pos_pair] = data
 
-    # Create data structures for overlap rate calculation
-    # S₁ (ROM): (A_i, B_i, R_i)
-    rom_data = [(pos1, pos2, rel) for pos1, pos2, rel in all_pos_rom_tuples]
-    # S₂ (UD): (A_j', B_j', U_j)
-    ud_data = [(pos1, pos2, rel) for pos1, pos2, rel in all_pos_ud_tuples]
-
     # Calculate overlap rates and prepare sorting data
     group_data_list = []
 
@@ -848,31 +839,36 @@ def _group_bidirectional_pairs(pos_pair_analysis: Dict, all_pos_ud_tuples: List[
         forward_data = pair_data.get((pos1, pos2), {'ud_relations': {}, 'rom_relations': {}})
         reverse_data = pair_data.get((pos2, pos1), {'ud_relations': {}, 'rom_relations': {}})
 
-        # Calculate traditional ratios for backward compatibility
+        # Calculate counts
         forward_ud_count = sum(forward_data.get('ud_relations', {}).values())
         forward_rom_count = sum(forward_data.get('rom_relations', {}).values())
         reverse_ud_count = sum(reverse_data.get('ud_relations', {}).values())
         reverse_rom_count = sum(reverse_data.get('rom_relations', {}).values())
 
+        # Calculate traditional ratios for backward compatibility
         forward_ratio = forward_rom_count / forward_ud_count if forward_ud_count > 0 else 0
         reverse_ratio = reverse_rom_count / reverse_ud_count if reverse_ud_count > 0 else 0
         cross_ratio = forward_ud_count / reverse_rom_count if reverse_rom_count > 0 else 0
         reverse_cross_ratio = reverse_ud_count / forward_rom_count if forward_rom_count > 0 else 0
 
-        # Calculate overlap rates using the mathematical formula
-        # Calculate for both directions separately
-        forward_overlap_1, forward_overlap_2, forward_max_overlap = _calculate_overlap_rates(
-            rom_data, ud_data, pos1, pos2
-        )
-        reverse_overlap_1, reverse_overlap_2, reverse_max_overlap = _calculate_overlap_rates(
-            rom_data, ud_data, pos2, pos1
-        )
+        # NEW OVERLAP CALCULATION: Use cross ratios capped at 1.0
+        # This measures structural alignment between UD and ROM patterns
+        cross_alignment = min(1.0, cross_ratio) if reverse_rom_count > 0 else 0
+        reverse_cross_alignment = min(1.0, reverse_cross_ratio) if forward_rom_count > 0 else 0
+
+        # The maximum overlap rate is the best structural alignment
+        max_overlap_rate = max(cross_alignment, reverse_cross_alignment)
+
+        # For individual direction analysis, calculate direct alignment rates
+        forward_direct_alignment = min(1.0, forward_rom_count / forward_ud_count) if forward_ud_count > 0 else 0
+        reverse_direct_alignment = min(1.0, reverse_rom_count / reverse_ud_count) if reverse_ud_count > 0 else 0
+
+        # Calculate per-direction max overlap (combining direct and cross alignments)
+        forward_max_overlap = max(forward_direct_alignment, cross_alignment)
+        reverse_max_overlap = max(reverse_direct_alignment, reverse_cross_alignment)
 
         # Overall maximum overlap rate for this bidirectional pair
-        overall_max_overlap = max(forward_max_overlap, reverse_max_overlap)
-
-        # Use overall max overlap rate as primary sorting criterion
-        max_ratio = overall_max_overlap
+        overall_max_overlap = max_overlap_rate
 
         group_data_list.append({
             'canonical_key': canonical_key,
@@ -882,14 +878,14 @@ def _group_bidirectional_pairs(pos_pair_analysis: Dict, all_pos_ud_tuples: List[
             'reverse_ratio': reverse_ratio,
             'cross_ratio': cross_ratio,
             'reverse_cross_ratio': reverse_cross_ratio,
-            'forward_overlap_1': forward_overlap_1,
-            'forward_overlap_2': forward_overlap_2,
+            'forward_overlap_1': forward_direct_alignment,  # Renamed for clarity
+            'forward_overlap_2': cross_alignment,  # Cross alignment for forward direction
             'forward_max_overlap': forward_max_overlap,
-            'reverse_overlap_1': reverse_overlap_1,
-            'reverse_overlap_2': reverse_overlap_2,
+            'reverse_overlap_1': reverse_direct_alignment,  # Direct alignment for reverse direction
+            'reverse_overlap_2': reverse_cross_alignment,  # Cross alignment for reverse direction
             'reverse_max_overlap': reverse_max_overlap,
             'overall_max_overlap': overall_max_overlap,
-            'max_ratio': max_ratio
+            'max_ratio': overall_max_overlap  # Use overlap rate as sorting criterion
         })
 
     # Sort by overall max overlap rate (descending)
@@ -900,65 +896,79 @@ def _group_bidirectional_pairs(pos_pair_analysis: Dict, all_pos_ud_tuples: List[
 
 def _calculate_global_overlap_rates(rom_data: List[Tuple], ud_data: List[Tuple]) -> Tuple[float, float, float]:
     """
-    Calculate global overlap rates across all POS pairs using the mathematical formula.
+    Calculate global overlap rates using cross ratio approach.
 
     Args:
         rom_data: List of (A_i, B_i, R_i) tuples from ROM data (S₁)
         ud_data: List of (A_j', B_j', U_j) tuples from UD data (S₂)
 
     Returns:
-        Tuple of (global_overlap_rate_1, global_overlap_rate_2, max_global_overlap_rate)
+        Tuple of (cross_alignment, reverse_cross_alignment, max_global_overlap_rate)
     """
-    if not rom_data:
+    if not rom_data or not ud_data:
         return 0.0, 0.0, 0.0
 
-    # Create UD lookup dictionaries for efficient matching
-    ud_forward_dict = defaultdict(list)  # (A', B') -> [U₁, U₂, ...]
-    ud_reverse_dict = defaultdict(list)  # (B', A') -> [U₁, U₂, ...]
+    # Count by direction
+    rom_forward_count = {}
+    rom_reverse_count = {}
+    ud_forward_count = {}
+    ud_reverse_count = {}
 
+    # Count ROM relations by direction
+    for a, b, r in rom_data:
+        pair_key = (a, b)
+        rom_forward_count[pair_key] = rom_forward_count.get(pair_key, 0) + 1
+
+        reverse_pair_key = (b, a)
+        rom_reverse_count[reverse_pair_key] = rom_reverse_count.get(reverse_pair_key, 0) + 1
+
+    # Count UD relations by direction
     for a, b, u in ud_data:
-        ud_forward_dict[(a, b)].append(u)
-        ud_reverse_dict[(b, a)].append(u)
+        pair_key = (a, b)
+        ud_forward_count[pair_key] = ud_forward_count.get(pair_key, 0) + 1
 
-    # Pattern 1: Forward matching M₁ = {i : ∃j, (A_i, B_i) = (A_j', B_j')}
-    m1_matches = 0
-    m1_total = 0
+        reverse_pair_key = (b, a)
+        ud_reverse_count[reverse_pair_key] = ud_reverse_count.get(reverse_pair_key, 0) + 1
 
-    for a_i, b_i, r_i in rom_data:
-        # Check if there exists j such that (A_i, B_i) = (A_j', B_j')
-        if (a_i, b_i) in ud_forward_dict:
-            m1_total += 1
-            # Check if R_i = U_j for any matching UD relation
-            if r_i in ud_forward_dict[(a_i, b_i)]:
-                m1_matches += 1
+    # Calculate cross alignments
+    total_cross_alignment = 0
+    total_reverse_cross_alignment = 0
+    cross_pairs = 0
+    reverse_cross_pairs = 0
 
-    # Pattern 2: Reverse matching M₂ = {i : ∃j, (A_i, B_i) = (B_j', A_j')}
-    m2_matches = 0
-    m2_total = 0
+    all_pairs = set(rom_forward_count.keys()) | set(ud_forward_count.keys())
 
-    for a_i, b_i, r_i in rom_data:
-        # Check if there exists j such that (A_i, B_i) = (B_j', A_j')
-        if (a_i, b_i) in ud_reverse_dict:
-            m2_total += 1
-            # Check if R_i = U_j for any matching UD relation
-            if r_i in ud_reverse_dict[(a_i, b_i)]:
-                m2_matches += 1
+    for pair in all_pairs:
+        rom_forward = rom_forward_count.get(pair, 0)
+        ud_forward = ud_forward_count.get(pair, 0)
 
-    # Calculate global overlap rates
-    global_overlap_rate_1 = m1_matches / m1_total if m1_total > 0 else 0.0
-    global_overlap_rate_2 = m2_matches / m2_total if m2_total > 0 else 0.0
-    max_global_overlap_rate = max(global_overlap_rate_1, global_overlap_rate_2)
+        reverse_pair = (pair[1], pair[0])
+        rom_reverse = rom_reverse_count.get(pair, 0)  # This is rom_forward_count for reverse_pair
+        ud_reverse = ud_reverse_count.get(pair, 0)  # This is ud_forward_count for reverse_pair
 
-    return global_overlap_rate_1, global_overlap_rate_2, max_global_overlap_rate
+        # Cross alignment: UD forward vs ROM reverse
+        if rom_reverse > 0:
+            cross_alignment = min(1.0, ud_forward / rom_reverse)
+            total_cross_alignment += cross_alignment
+            cross_pairs += 1
+
+        # Reverse cross alignment: UD reverse vs ROM forward
+        if rom_forward > 0:
+            reverse_cross_alignment = min(1.0, ud_reverse / rom_forward)
+            total_reverse_cross_alignment += reverse_cross_alignment
+            reverse_cross_pairs += 1
+
+    global_cross_alignment = total_cross_alignment / cross_pairs if cross_pairs > 0 else 0.0
+    global_reverse_cross_alignment = total_reverse_cross_alignment / reverse_cross_pairs if reverse_cross_pairs > 0 else 0.0
+    max_global_overlap_rate = max(global_cross_alignment, global_reverse_cross_alignment)
+
+    return global_cross_alignment, global_reverse_cross_alignment, max_global_overlap_rate
 
 
 def _calculate_overlap_rates(rom_data: List[Tuple], ud_data: List[Tuple], pos1: str, pos2: str) -> Tuple[
     float, float, float]:
     """
-    Calculate overlap rates using the mathematical formula.
-
-    Formula:
-    重合率_k = (∑_{i ∈ M_k} 1(R_i = U_{j(i)})) / |M_k|
+    Calculate overlap rates using cross ratio approach for a specific POS pair.
 
     Args:
         rom_data: List of (A_i, B_i, R_i) tuples from ROM data (S₁)
@@ -967,54 +977,24 @@ def _calculate_overlap_rates(rom_data: List[Tuple], ud_data: List[Tuple], pos1: 
         pos2: Second POS tag of the canonical pair
 
     Returns:
-        Tuple of (overlap_rate_1, overlap_rate_2, max_overlap_rate)
+        Tuple of (direct_alignment, cross_alignment, max_overlap_rate)
     """
-    # Filter ROM data for current POS pair (both directions)
-    rom_forward = [(a, b, r) for a, b, r in rom_data if (a, b) == (pos1, pos2)]
-    rom_reverse = [(a, b, r) for a, b, r in rom_data if (a, b) == (pos2, pos1)]
-    all_rom_current = rom_forward + rom_reverse
+    # Count relations for this specific POS pair in both directions
+    rom_forward_count = sum(1 for a, b, r in rom_data if (a, b) == (pos1, pos2))
+    rom_reverse_count = sum(1 for a, b, r in rom_data if (a, b) == (pos2, pos1))
+    ud_forward_count = sum(1 for a, b, u in ud_data if (a, b) == (pos1, pos2))
+    ud_reverse_count = sum(1 for a, b, u in ud_data if (a, b) == (pos2, pos1))
 
-    if not all_rom_current:
-        return 0.0, 0.0, 0.0
+    # Direct alignment: same direction
+    direct_alignment = min(1.0, rom_forward_count / ud_forward_count) if ud_forward_count > 0 else 0
 
-    # Create UD lookup dictionaries for efficient matching
-    ud_forward_dict = defaultdict(list)  # (A', B') -> [U₁, U₂, ...]
-    ud_reverse_dict = defaultdict(list)  # (B', A') -> [U₁, U₂, ...]
+    # Cross alignment: opposite directions
+    cross_alignment = min(1.0, ud_forward_count / rom_reverse_count) if rom_reverse_count > 0 else 0
 
-    for a, b, u in ud_data:
-        ud_forward_dict[(a, b)].append(u)
-        ud_reverse_dict[(b, a)].append(u)
+    # Max alignment for this POS pair
+    max_overlap_rate = max(direct_alignment, cross_alignment)
 
-    # Pattern 1: Forward matching M₁ = {i : ∃j, (A_i, B_i) = (A_j', B_j')}
-    m1_matches = 0
-    m1_total = 0
-
-    for a_i, b_i, r_i in all_rom_current:
-        # Check if there exists j such that (A_i, B_i) = (A_j', B_j')
-        if (a_i, b_i) in ud_forward_dict:
-            m1_total += 1
-            # Check if R_i = U_j for any matching UD relation
-            if r_i in ud_forward_dict[(a_i, b_i)]:
-                m1_matches += 1
-
-    # Pattern 2: Reverse matching M₂ = {i : ∃j, (A_i, B_i) = (B_j', A_j')}
-    m2_matches = 0
-    m2_total = 0
-
-    for a_i, b_i, r_i in all_rom_current:
-        # Check if there exists j such that (A_i, B_i) = (B_j', A_j')
-        if (a_i, b_i) in ud_reverse_dict:
-            m2_total += 1
-            # Check if R_i = U_j for any matching UD relation
-            if r_i in ud_reverse_dict[(a_i, b_i)]:
-                m2_matches += 1
-
-    # Calculate overlap rates
-    overlap_rate_1 = m1_matches / m1_total if m1_total > 0 else 0.0
-    overlap_rate_2 = m2_matches / m2_total if m2_total > 0 else 0.0
-    max_overlap_rate = max(overlap_rate_1, overlap_rate_2)
-
-    return overlap_rate_1, overlap_rate_2, max_overlap_rate
+    return direct_alignment, cross_alignment, max_overlap_rate
 
 
 def _generate_pos_analysis_report(all_results: List[Dict], skipped_sentences: List[str],

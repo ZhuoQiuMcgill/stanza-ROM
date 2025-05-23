@@ -1,6 +1,6 @@
 # Combined POS-based UD vs ROM Relations Analysis Report
 
-**Date:** 2025-05-23 11:58:16
+**Date:** 2025-05-23 12:05:11
 **Total Files Processed:** 5
 **Total Sentences Processed:** 74
 **Total Sentences Skipped:** 0
@@ -34,9 +34,9 @@
 ### Global Overlap Rates (Mathematical Formula)
 | Pattern | Overlap Rate | Description |
 |---------|--------------|-------------|
-| Forward Matching (Pattern 1) | 0.000 | ROM pairs match UD pairs in same direction |
-| Reverse Matching (Pattern 2) | 0.000 | ROM pairs match UD pairs in reverse direction |
-| **Maximum Overall Overlap** | **0.000** | **Best matching pattern globally** |
+| Forward Matching (Pattern 1) | 0.581 | ROM pairs match UD pairs in same direction |
+| Reverse Matching (Pattern 2) | 0.500 | ROM pairs match UD pairs in reverse direction |
+| **Maximum Overall Overlap** | **0.581** | **Best matching pattern globally** |
 
 ## 🔍 Detailed POS Pair Analysis (Combined) - Bidirectional
 
@@ -47,7 +47,7 @@ This section shows bidirectional POS pair analysis with overlap rates calculated
 - **Max Overlap Rate = max{overlap_rate_1, overlap_rate_2}**
 Blocks are sorted by maximum overlap rate (highest first).
 
-### DET ↔ NOUN (Max Overlap Rate: 0.000)
+### DET ↔ NOUN (Max Overlap Rate: 1.000)
 
 #### DET → NOUN
 **ROM Relations:**
@@ -75,9 +75,9 @@ Blocks are sorted by maximum overlap rate (highest first).
 - DET→NOUN Pattern 2 (Reverse): 0.000
 - DET→NOUN Max Overlap: 0.000
 - NOUN→DET Pattern 1 (Forward): 0.000
-- NOUN→DET Pattern 2 (Reverse): 0.000
-- NOUN→DET Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
+- NOUN→DET Pattern 2 (Reverse): 1.000
+- NOUN→DET Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
 
 **Traditional Ratios (for reference):**
 - Forward ROM/UD ratio: 0.00
@@ -85,11 +85,11 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (DET→NOUN UD)/(NOUN→DET ROM): 0.00
 - Reverse cross ratio (NOUN→DET UD)/(DET→NOUN ROM): 1.00
 - **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
+- **Overlap Assessment: 🟢 Excellent overlap**
 
 ---
 
-### NOUN ↔ NOUN (Max Overlap Rate: 0.000)
+### NOUN ↔ NOUN (Max Overlap Rate: 1.000)
 
 #### NOUN → NOUN
 **UD Relations:**
@@ -137,13 +137,13 @@ Blocks are sorted by maximum overlap rate (highest first).
 - NOUN→NOUN: 25 UD, 6 ROM
 
 **Overlap Rates (Mathematical Formula):**
-- NOUN→NOUN Pattern 1 (Forward): 0.000
-- NOUN→NOUN Pattern 2 (Reverse): 0.000
-- NOUN→NOUN Max Overlap: 0.000
-- NOUN→NOUN Pattern 1 (Forward): 0.000
-- NOUN→NOUN Pattern 2 (Reverse): 0.000
-- NOUN→NOUN Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
+- NOUN→NOUN Pattern 1 (Forward): 0.240
+- NOUN→NOUN Pattern 2 (Reverse): 1.000
+- NOUN→NOUN Max Overlap: 1.000
+- NOUN→NOUN Pattern 1 (Forward): 0.240
+- NOUN→NOUN Pattern 2 (Reverse): 1.000
+- NOUN→NOUN Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
 
 **Traditional Ratios (for reference):**
 - Forward ROM/UD ratio: 0.24
@@ -151,11 +151,11 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (NOUN→NOUN UD)/(NOUN→NOUN ROM): 4.17
 - Reverse cross ratio (NOUN→NOUN UD)/(NOUN→NOUN ROM): 4.17
 - **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
-- **Overlap Assessment: ⚫ No overlap**
+- **Overlap Assessment: 🟢 Excellent overlap**
 
 ---
 
-### PRON ↔ VERB (Max Overlap Rate: 0.000)
+### PRON ↔ VERB (Max Overlap Rate: 1.000)
 
 #### PRON → VERB
 **UD Relations:**
@@ -203,13 +203,13 @@ Blocks are sorted by maximum overlap rate (highest first).
 - VERB→PRON: 82 UD, 12 ROM
 
 **Overlap Rates (Mathematical Formula):**
-- PRON→VERB Pattern 1 (Forward): 0.000
-- PRON→VERB Pattern 2 (Reverse): 0.000
-- PRON→VERB Max Overlap: 0.000
-- VERB→PRON Pattern 1 (Forward): 0.000
-- VERB→PRON Pattern 2 (Reverse): 0.000
-- VERB→PRON Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
+- PRON→VERB Pattern 1 (Forward): 1.000
+- PRON→VERB Pattern 2 (Reverse): 0.083
+- PRON→VERB Max Overlap: 1.000
+- VERB→PRON Pattern 1 (Forward): 0.146
+- VERB→PRON Pattern 2 (Reverse): 1.000
+- VERB→PRON Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
 
 **Traditional Ratios (for reference):**
 - Forward ROM/UD ratio: 70.00
@@ -217,11 +217,11 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (PRON→VERB UD)/(VERB→PRON ROM): 0.08
 - Reverse cross ratio (VERB→PRON UD)/(PRON→VERB ROM): 1.17
 - **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
-- **Overlap Assessment: ⚫ No overlap**
+- **Overlap Assessment: 🟢 Excellent overlap**
 
 ---
 
-### NOUN ↔ VERB (Max Overlap Rate: 0.000)
+### NOUN ↔ VERB (Max Overlap Rate: 1.000)
 
 #### NOUN → VERB
 **UD Relations:**
@@ -280,13 +280,13 @@ Blocks are sorted by maximum overlap rate (highest first).
 - VERB→NOUN: 76 UD, 50 ROM
 
 **Overlap Rates (Mathematical Formula):**
-- NOUN→VERB Pattern 1 (Forward): 0.000
-- NOUN→VERB Pattern 2 (Reverse): 0.000
-- NOUN→VERB Max Overlap: 0.000
-- VERB→NOUN Pattern 1 (Forward): 0.000
-- VERB→NOUN Pattern 2 (Reverse): 0.000
-- VERB→NOUN Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
+- NOUN→VERB Pattern 1 (Forward): 1.000
+- NOUN→VERB Pattern 2 (Reverse): 0.400
+- NOUN→VERB Max Overlap: 1.000
+- VERB→NOUN Pattern 1 (Forward): 0.658
+- VERB→NOUN Pattern 2 (Reverse): 1.000
+- VERB→NOUN Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
 
 **Traditional Ratios (for reference):**
 - Forward ROM/UD ratio: 1.40
@@ -294,11 +294,11 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (NOUN→VERB UD)/(VERB→NOUN ROM): 0.40
 - Reverse cross ratio (VERB→NOUN UD)/(NOUN→VERB ROM): 2.71
 - **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
-- **Overlap Assessment: ⚫ No overlap**
+- **Overlap Assessment: 🟢 Excellent overlap**
 
 ---
 
-### AUX ↔ NOUN (Max Overlap Rate: 0.000)
+### AUX ↔ NOUN (Max Overlap Rate: 1.000)
 
 #### AUX → NOUN
 **ROM Relations:**
@@ -335,10 +335,10 @@ Blocks are sorted by maximum overlap rate (highest first).
 - AUX→NOUN Pattern 1 (Forward): 0.000
 - AUX→NOUN Pattern 2 (Reverse): 0.000
 - AUX→NOUN Max Overlap: 0.000
-- NOUN→AUX Pattern 1 (Forward): 0.000
-- NOUN→AUX Pattern 2 (Reverse): 0.000
-- NOUN→AUX Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
+- NOUN→AUX Pattern 1 (Forward): 1.000
+- NOUN→AUX Pattern 2 (Reverse): 1.000
+- NOUN→AUX Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
 
 **Traditional Ratios (for reference):**
 - Forward ROM/UD ratio: 0.00
@@ -346,11 +346,949 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (AUX→NOUN UD)/(NOUN→AUX ROM): 0.00
 - Reverse cross ratio (NOUN→AUX UD)/(AUX→NOUN ROM): 1.00
 - **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
+- **Overlap Assessment: 🟢 Excellent overlap**
 
 ---
 
-### NOUN ↔ PRON (Max Overlap Rate: 0.000)
+### ADJ ↔ NOUN (Max Overlap Rate: 1.000)
+
+#### ADJ → NOUN
+**UD Relations:**
+- nsubj (6 occurrences)
+- obl:unmarked (1 occurrences)
+- obl (1 occurrences)
+
+**ROM Relations:**
+- Constraint (11 occurrences)
+
+#### NOUN → ADJ
+**UD Relations:**
+- amod (12 occurrences)
+
+**Examples:**
+*ADJ→NOUN UD Examples:*
+  - **nsubj**: famous → artist in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+  - **obl:unmarked**: sad → yesterday in "She was very sad yesterday." (basic_sentences_input.txt)
+  - **obl**: tall → brother in "She’s as tall as her brother." (compound_sentences_input.txt)
+
+*ADJ→NOUN ROM Examples:*
+  - **Constraint**: heartfelt → tone in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+
+*NOUN→ADJ UD Examples:*
+  - **amod**: tone → heartfelt in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→NOUN: 8 UD, 11 ROM
+- NOUN→ADJ: 12 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→NOUN Pattern 1 (Forward): 1.000
+- ADJ→NOUN Pattern 2 (Reverse): 0.000
+- ADJ→NOUN Max Overlap: 1.000
+- NOUN→ADJ Pattern 1 (Forward): 0.000
+- NOUN→ADJ Pattern 2 (Reverse): 1.000
+- NOUN→ADJ Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 1.38
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→NOUN UD)/(NOUN→ADJ ROM): 0.00
+- Reverse cross ratio (NOUN→ADJ UD)/(ADJ→NOUN ROM): 1.09
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADJ ↔ AUX (Max Overlap Rate: 1.000)
+
+#### ADJ → AUX
+**UD Relations:**
+- cop (16 occurrences)
+
+#### AUX → ADJ
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (7 occurrences)
+- Predicate (Verb/Preposition - Object) (7 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+
+**Examples:**
+*ADJ→AUX UD Examples:*
+  - **cop**: famous → is in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+
+*AUX→ADJ ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Is → famous in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
+  - **Predicate (Verb - Object)**: was → sad in "She was very sad yesterday." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Was → clear in "The sky was clear; we decided to go stargazing." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→AUX: 16 UD, 0 ROM
+- AUX→ADJ: 0 UD, 15 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→AUX Pattern 1 (Forward): 0.000
+- ADJ→AUX Pattern 2 (Reverse): 1.000
+- ADJ→AUX Max Overlap: 1.000
+- AUX→ADJ Pattern 1 (Forward): 0.000
+- AUX→ADJ Pattern 2 (Reverse): 0.000
+- AUX→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→AUX UD)/(AUX→ADJ ROM): 1.07
+- Reverse cross ratio (AUX→ADJ UD)/(ADJ→AUX ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### NOUN ↔ NUM (Max Overlap Rate: 1.000)
+
+#### NOUN → NUM
+**UD Relations:**
+- nummod (3 occurrences)
+- nsubj (1 occurrences)
+
+#### NUM → NOUN
+**UD Relations:**
+- nmod (1 occurrences)
+
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+**Examples:**
+*NOUN→NUM UD Examples:*
+  - **nsubj**: year → 2018 in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+  - **nummod**: location → one in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+
+*NUM→NOUN UD Examples:*
+  - **nmod**: one → moments in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
+
+*NUM→NOUN ROM Examples:*
+  - **Constraint**: One → location in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→NUM: 4 UD, 0 ROM
+- NUM→NOUN: 1 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→NUM Pattern 1 (Forward): 0.000
+- NOUN→NUM Pattern 2 (Reverse): 1.000
+- NOUN→NUM Max Overlap: 1.000
+- NUM→NOUN Pattern 1 (Forward): 1.000
+- NUM→NOUN Pattern 2 (Reverse): 0.000
+- NUM→NOUN Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 1.00
+- Cross ratio (NOUN→NUM UD)/(NUM→NOUN ROM): 4.00
+- Reverse cross ratio (NUM→NOUN UD)/(NOUN→NUM ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADV ↔ VERB (Max Overlap Rate: 1.000)
+
+#### ADV → VERB
+**ROM Relations:**
+- Constraint (19 occurrences)
+- Predicate (Verb/Proposition - Object) (5 occurrences)
+- Predicate (Verb/Preposition - Object) (4 occurrences)
+
+#### VERB → ADV
+**UD Relations:**
+- advmod (32 occurrences)
+- cc (1 occurrences)
+- mark (1 occurrences)
+
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (2 occurrences)
+- Constraint (1 occurrences)
+
+**Examples:**
+*ADV→VERB ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: When → moved in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+  - **Constraint**: together → built in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: However → kept in "I was tired; however, I kept working." (compound_sentences_input.txt)
+
+*VERB→ADV UD Examples:*
+  - **advmod**: moved → when in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+  - **cc**: drive → rather in "He chose to walk rather than drive." (compound_sentences_input.txt)
+  - **mark**: complain → Rather in "Rather than complain, she took action." (compound_sentences_input.txt)
+
+*VERB→ADV ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Stayed → home in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+  - **Constraint**: Stay → home in "You can either stay home or come with us." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→VERB: 0 UD, 28 ROM
+- VERB→ADV: 34 UD, 3 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→VERB Pattern 1 (Forward): 0.000
+- ADV→VERB Pattern 2 (Reverse): 0.000
+- ADV→VERB Max Overlap: 0.000
+- VERB→ADV Pattern 1 (Forward): 0.088
+- VERB→ADV Pattern 2 (Reverse): 1.000
+- VERB→ADV Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.09
+- Cross ratio (ADV→VERB UD)/(VERB→ADV ROM): 0.00
+- Reverse cross ratio (VERB→ADV UD)/(ADV→VERB ROM): 1.21
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADP ↔ PROPN (Max Overlap Rate: 1.000)
+
+#### ADP → PROPN
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+
+#### PROPN → ADP
+**UD Relations:**
+- case (1 occurrences)
+
+**Examples:**
+*ADP→PROPN ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: To → Canada in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+
+*PROPN→ADP UD Examples:*
+  - **case**: Canada → to in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→PROPN: 0 UD, 1 ROM
+- PROPN→ADP: 1 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→PROPN Pattern 1 (Forward): 0.000
+- ADP→PROPN Pattern 2 (Reverse): 0.000
+- ADP→PROPN Max Overlap: 0.000
+- PROPN→ADP Pattern 1 (Forward): 0.000
+- PROPN→ADP Pattern 2 (Reverse): 1.000
+- PROPN→ADP Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→PROPN UD)/(PROPN→ADP ROM): 0.00
+- Reverse cross ratio (PROPN→ADP UD)/(ADP→PROPN ROM): 1.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADV ↔ NOUN (Max Overlap Rate: 1.000)
+
+#### ADV → NOUN
+**ROM Relations:**
+- Constraint (5 occurrences)
+
+#### NOUN → ADV
+**UD Relations:**
+- advmod (5 occurrences)
+
+**Examples:**
+*ADV→NOUN ROM Examples:*
+  - **Constraint**: When → year in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+
+*NOUN→ADV UD Examples:*
+  - **advmod**: stories → only, emotions → also in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→NOUN: 0 UD, 5 ROM
+- NOUN→ADV: 5 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→NOUN Pattern 1 (Forward): 0.000
+- ADV→NOUN Pattern 2 (Reverse): 0.000
+- ADV→NOUN Max Overlap: 0.000
+- NOUN→ADV Pattern 1 (Forward): 0.000
+- NOUN→ADV Pattern 2 (Reverse): 1.000
+- NOUN→ADV Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADV→NOUN UD)/(NOUN→ADV ROM): 0.00
+- Reverse cross ratio (NOUN→ADV UD)/(ADV→NOUN ROM): 1.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### VERB ↔ VERB (Max Overlap Rate: 1.000)
+
+#### VERB → VERB
+**UD Relations:**
+- advcl (17 occurrences)
+- xcomp (14 occurrences)
+- conj (7 occurrences)
+- ccomp (3 occurrences)
+
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (6 occurrences)
+- Predicate (Verb/Proposition - Object) (2 occurrences)
+- Constraint (2 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+- Predicate (Subject - Verb) (1 occurrences)
+
+#### VERB → VERB
+**UD Relations:**
+- advcl (17 occurrences)
+- xcomp (14 occurrences)
+- conj (7 occurrences)
+- ccomp (3 occurrences)
+
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (6 occurrences)
+- Predicate (Verb/Proposition - Object) (2 occurrences)
+- Constraint (2 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+- Predicate (Subject - Verb) (1 occurrences)
+
+**Examples:**
+*VERB→VERB UD Examples:*
+  - **advcl**: remember → met in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
+  - **xcomp**: decided → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **ccomp**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+
+*VERB→VERB ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: gave → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: consider → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Predicate (Verb - Object)**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+
+*VERB→VERB UD Examples:*
+  - **advcl**: remember → met in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
+  - **xcomp**: decided → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **ccomp**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+
+*VERB→VERB ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: gave → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: consider → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Predicate (Verb - Object)**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- VERB→VERB: 41 UD, 12 ROM
+- VERB→VERB: 41 UD, 12 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- VERB→VERB Pattern 1 (Forward): 0.293
+- VERB→VERB Pattern 2 (Reverse): 1.000
+- VERB→VERB Max Overlap: 1.000
+- VERB→VERB Pattern 1 (Forward): 0.293
+- VERB→VERB Pattern 2 (Reverse): 1.000
+- VERB→VERB Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.29
+- Reverse ROM/UD ratio: 0.29
+- Cross ratio (VERB→VERB UD)/(VERB→VERB ROM): 3.42
+- Reverse cross ratio (VERB→VERB UD)/(VERB→VERB ROM): 3.42
+- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### AUX ↔ VERB (Max Overlap Rate: 1.000)
+
+#### AUX → VERB
+**ROM Relations:**
+- Constraint (13 occurrences)
+- Predicate (Verb/Proposition - Object) (5 occurrences)
+- Constraint (Auxiliary - Main Verb) (1 occurrences)
+
+#### VERB → AUX
+**UD Relations:**
+- aux (24 occurrences)
+- cop (4 occurrences)
+- aux:pass (3 occurrences)
+
+**ROM Relations:**
+- Predicate (Subject - Verb) (1 occurrences)
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+
+**Examples:**
+*AUX→VERB ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: Was → raining in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+  - **Constraint (Auxiliary - Main Verb)**: would → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
+  - **Constraint**: Can → fly in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
+
+*VERB→AUX UD Examples:*
+  - **aux**: know → do in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
+  - **aux:pass**: filled → was in "The letter was filled with stories about their childhood adventures." (basic_sentences_input.txt)
+  - **cop**: left → is in "The truth is that she never left." (noun_clauses_sentences_input.txt)
+
+*VERB→AUX ROM Examples:*
+  - **Predicate (Subject - Verb)**: lied → was in "That he lied was obvious." (noun_clauses_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: Know → is in "I know that she is right." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- AUX→VERB: 0 UD, 19 ROM
+- VERB→AUX: 31 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- AUX→VERB Pattern 1 (Forward): 0.000
+- AUX→VERB Pattern 2 (Reverse): 0.000
+- AUX→VERB Max Overlap: 0.000
+- VERB→AUX Pattern 1 (Forward): 0.065
+- VERB→AUX Pattern 2 (Reverse): 1.000
+- VERB→AUX Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.06
+- Cross ratio (AUX→VERB UD)/(VERB→AUX ROM): 0.00
+- Reverse cross ratio (VERB→AUX UD)/(AUX→VERB ROM): 1.63
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADJ ↔ SCONJ (Max Overlap Rate: 1.000)
+
+#### ADJ → SCONJ
+**UD Relations:**
+- mark (3 occurrences)
+
+#### SCONJ → ADJ
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (2 occurrences)
+
+**Examples:**
+*ADJ→SCONJ UD Examples:*
+  - **mark**: tired → Although in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
+
+*SCONJ→ADJ ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: As → easy in "This task is not as easy as it looks." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→SCONJ: 3 UD, 0 ROM
+- SCONJ→ADJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→SCONJ Pattern 1 (Forward): 0.000
+- ADJ→SCONJ Pattern 2 (Reverse): 1.000
+- ADJ→SCONJ Max Overlap: 1.000
+- SCONJ→ADJ Pattern 1 (Forward): 0.000
+- SCONJ→ADJ Pattern 2 (Reverse): 0.000
+- SCONJ→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→SCONJ UD)/(SCONJ→ADJ ROM): 1.50
+- Reverse cross ratio (SCONJ→ADJ UD)/(ADJ→SCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### CCONJ ↔ NOUN (Max Overlap Rate: 1.000)
+
+#### CCONJ → NOUN
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (3 occurrences)
+
+#### NOUN → CCONJ
+**UD Relations:**
+- cc (5 occurrences)
+- cc:preconj (1 occurrences)
+
+**ROM Relations:**
+- Connection (4 occurrences)
+
+**Examples:**
+*CCONJ→NOUN ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: Both → brother, And → sister in "Both my brother and sister are engineers." (compound_sentences_input.txt)
+
+*NOUN→CCONJ UD Examples:*
+  - **cc**: emotions → but in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
+  - **cc:preconj**: brother → Both in "Both my brother and sister are engineers." (compound_sentences_input.txt)
+
+*NOUN→CCONJ ROM Examples:*
+  - **Connection**: nostalgia → and, comfort → and in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- CCONJ→NOUN: 0 UD, 3 ROM
+- NOUN→CCONJ: 6 UD, 4 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- CCONJ→NOUN Pattern 1 (Forward): 0.000
+- CCONJ→NOUN Pattern 2 (Reverse): 0.000
+- CCONJ→NOUN Max Overlap: 0.000
+- NOUN→CCONJ Pattern 1 (Forward): 0.667
+- NOUN→CCONJ Pattern 2 (Reverse): 1.000
+- NOUN→CCONJ Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.67
+- Cross ratio (CCONJ→NOUN UD)/(NOUN→CCONJ ROM): 0.00
+- Reverse cross ratio (NOUN→CCONJ UD)/(CCONJ→NOUN ROM): 2.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADJ ↔ CCONJ (Max Overlap Rate: 1.000)
+
+#### ADJ → CCONJ
+**UD Relations:**
+- cc (2 occurrences)
+
+#### CCONJ → ADJ
+**ROM Relations:**
+- Connection (1 occurrences)
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+**Examples:**
+*ADJ→CCONJ UD Examples:*
+  - **cc**: creative → and in "She is both smart and creative." (compound_sentences_input.txt)
+
+*CCONJ→ADJ ROM Examples:*
+  - **Connection**: and → vivid in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: And → creative in "She is both smart and creative." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→CCONJ: 2 UD, 0 ROM
+- CCONJ→ADJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→CCONJ Pattern 1 (Forward): 0.000
+- ADJ→CCONJ Pattern 2 (Reverse): 1.000
+- ADJ→CCONJ Max Overlap: 1.000
+- CCONJ→ADJ Pattern 1 (Forward): 0.000
+- CCONJ→ADJ Pattern 2 (Reverse): 0.000
+- CCONJ→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→CCONJ UD)/(CCONJ→ADJ ROM): 1.00
+- Reverse cross ratio (CCONJ→ADJ UD)/(ADJ→CCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADP ↔ PRON (Max Overlap Rate: 1.000)
+
+#### ADP → PRON
+**ROM Relations:**
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+- Predicate (Prep - Object) (1 occurrences)
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+#### PRON → ADP
+**UD Relations:**
+- case (3 occurrences)
+
+**Examples:**
+*ADP→PRON ROM Examples:*
+  - **Predicate (Verb/Proposition - Object)**: with → her in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
+  - **Predicate (Prep - Object)**: within → her in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: With → us in "You can either stay home or come with us." (compound_sentences_input.txt)
+
+*PRON→ADP UD Examples:*
+  - **case**: her → with in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→PRON: 0 UD, 3 ROM
+- PRON→ADP: 3 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→PRON Pattern 1 (Forward): 0.000
+- ADP→PRON Pattern 2 (Reverse): 0.000
+- ADP→PRON Max Overlap: 0.000
+- PRON→ADP Pattern 1 (Forward): 0.000
+- PRON→ADP Pattern 2 (Reverse): 1.000
+- PRON→ADP Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→PRON UD)/(PRON→ADP ROM): 0.00
+- Reverse cross ratio (PRON→ADP UD)/(ADP→PRON ROM): 1.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADJ ↔ ADV (Max Overlap Rate: 1.000)
+
+#### ADJ → ADV
+**UD Relations:**
+- advmod (9 occurrences)
+
+#### ADV → ADJ
+**ROM Relations:**
+- Constraint (1 occurrences)
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+**Examples:**
+*ADJ→ADV UD Examples:*
+  - **advmod**: sad → very in "She was very sad yesterday." (basic_sentences_input.txt)
+
+*ADV→ADJ ROM Examples:*
+  - **Constraint**: very → sad in "She was very sad yesterday." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Both → smart in "She is both smart and creative." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→ADV: 9 UD, 0 ROM
+- ADV→ADJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→ADV Pattern 1 (Forward): 0.000
+- ADJ→ADV Pattern 2 (Reverse): 1.000
+- ADJ→ADV Max Overlap: 1.000
+- ADV→ADJ Pattern 1 (Forward): 0.000
+- ADV→ADJ Pattern 2 (Reverse): 0.000
+- ADV→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→ADV UD)/(ADV→ADJ ROM): 4.50
+- Reverse cross ratio (ADV→ADJ UD)/(ADJ→ADV ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADV ↔ INTJ (Max Overlap Rate: 1.000)
+
+#### ADV → INTJ
+**UD Relations:**
+- discourse (1 occurrences)
+
+#### INTJ → ADV
+**ROM Relations:**
+- Predicate (Prep - Object) (1 occurrences)
+
+**Examples:**
+*ADV→INTJ UD Examples:*
+  - **discourse**: before → like in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+
+*INTJ→ADV ROM Examples:*
+  - **Predicate (Prep - Object)**: Like → before in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→INTJ: 1 UD, 0 ROM
+- INTJ→ADV: 0 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→INTJ Pattern 1 (Forward): 0.000
+- ADV→INTJ Pattern 2 (Reverse): 1.000
+- ADV→INTJ Max Overlap: 1.000
+- INTJ→ADV Pattern 1 (Forward): 0.000
+- INTJ→ADV Pattern 2 (Reverse): 0.000
+- INTJ→ADV Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADV→INTJ UD)/(INTJ→ADV ROM): 1.00
+- Reverse cross ratio (INTJ→ADV UD)/(ADV→INTJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### NOUN ↔ PROPN (Max Overlap Rate: 1.000)
+
+#### NOUN → PROPN
+**UD Relations:**
+- compound (1 occurrences)
+
+#### PROPN → NOUN
+**ROM Relations:**
+- Constraint (1 occurrences)
+
+**Examples:**
+*NOUN→PROPN UD Examples:*
+  - **compound**: journal → JIDPS in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
+
+*PROPN→NOUN ROM Examples:*
+  - **Constraint**: JIDPS → journal in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→PROPN: 1 UD, 0 ROM
+- PROPN→NOUN: 0 UD, 1 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→PROPN Pattern 1 (Forward): 0.000
+- NOUN→PROPN Pattern 2 (Reverse): 1.000
+- NOUN→PROPN Max Overlap: 1.000
+- PROPN→NOUN Pattern 1 (Forward): 0.000
+- PROPN→NOUN Pattern 2 (Reverse): 0.000
+- PROPN→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NOUN→PROPN UD)/(PROPN→NOUN ROM): 1.00
+- Reverse cross ratio (PROPN→NOUN UD)/(NOUN→PROPN ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADV ↔ ADV (Max Overlap Rate: 1.000)
+
+#### ADV → ADV
+**UD Relations:**
+- advmod (2 occurrences)
+- conj (1 occurrences)
+
+**ROM Relations:**
+- Constraint (2 occurrences)
+
+#### ADV → ADV
+**UD Relations:**
+- advmod (2 occurrences)
+- conj (1 occurrences)
+
+**ROM Relations:**
+- Constraint (2 occurrences)
+
+**Examples:**
+*ADV→ADV UD Examples:*
+  - **conj**: effectively → efficiently in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
+  - **advmod**: quickly → as in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
+
+*ADV→ADV ROM Examples:*
+  - **Constraint**: Just → so in "Just as honesty builds trust, so does kindness." (compound_sentences_input.txt)
+
+*ADV→ADV UD Examples:*
+  - **conj**: effectively → efficiently in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
+  - **advmod**: quickly → as in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
+
+*ADV→ADV ROM Examples:*
+  - **Constraint**: Just → so in "Just as honesty builds trust, so does kindness." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADV→ADV: 3 UD, 2 ROM
+- ADV→ADV: 3 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADV→ADV Pattern 1 (Forward): 0.667
+- ADV→ADV Pattern 2 (Reverse): 1.000
+- ADV→ADV Max Overlap: 1.000
+- ADV→ADV Pattern 1 (Forward): 0.667
+- ADV→ADV Pattern 2 (Reverse): 1.000
+- ADV→ADV Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.67
+- Reverse ROM/UD ratio: 0.67
+- Cross ratio (ADV→ADV UD)/(ADV→ADV ROM): 1.50
+- Reverse cross ratio (ADV→ADV UD)/(ADV→ADV ROM): 1.50
+- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADJ ↔ PART (Max Overlap Rate: 1.000)
+
+#### ADJ → PART
+**UD Relations:**
+- advmod (3 occurrences)
+
+#### PART → ADJ
+**ROM Relations:**
+- Constraint (2 occurrences)
+
+**Examples:**
+*ADJ→PART UD Examples:*
+  - **advmod**: long → not in "The movie was not only long but also boring." (compound_sentences_input.txt)
+
+*PART→ADJ ROM Examples:*
+  - **Constraint**: Not → easy in "This task is not as easy as it looks." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADJ→PART: 3 UD, 0 ROM
+- PART→ADJ: 0 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADJ→PART Pattern 1 (Forward): 0.000
+- ADJ→PART Pattern 2 (Reverse): 1.000
+- ADJ→PART Max Overlap: 1.000
+- PART→ADJ Pattern 1 (Forward): 0.000
+- PART→ADJ Pattern 2 (Reverse): 0.000
+- PART→ADJ Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADJ→PART UD)/(PART→ADJ ROM): 1.50
+- Reverse cross ratio (PART→ADJ UD)/(ADJ→PART ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADP ↔ ADV (Max Overlap Rate: 1.000)
+
+#### ADP → ADV
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (1 occurrences)
+
+#### ADV → ADP
+**UD Relations:**
+- fixed (2 occurrences)
+
+**ROM Relations:**
+- Connection (2 occurrences)
+
+**Examples:**
+*ADP→ADV ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: As → quickly in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
+
+*ADV→ADP UD Examples:*
+  - **fixed**: rather → than in "He chose to walk rather than drive." (compound_sentences_input.txt)
+
+*ADV→ADP ROM Examples:*
+  - **Connection**: Rather → than in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→ADV: 0 UD, 1 ROM
+- ADV→ADP: 2 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→ADV Pattern 1 (Forward): 0.000
+- ADP→ADV Pattern 2 (Reverse): 0.000
+- ADP→ADV Max Overlap: 0.000
+- ADV→ADP Pattern 1 (Forward): 1.000
+- ADV→ADP Pattern 2 (Reverse): 1.000
+- ADV→ADP Max Overlap: 1.000
+- **Overall Maximum Overlap Rate: 1.000**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 1.00
+- Cross ratio (ADP→ADV UD)/(ADV→ADP ROM): 0.00
+- Reverse cross ratio (ADV→ADP UD)/(ADP→ADV ROM): 2.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### ADP ↔ NOUN (Max Overlap Rate: 0.917)
+
+#### ADP → NOUN
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (8 occurrences)
+- Predicate (Preposition - Object) (7 occurrences)
+- Constraint (5 occurrences)
+- Predicate (Verb/Proposition - Object) (4 occurrences)
+
+#### NOUN → ADP
+**UD Relations:**
+- case (22 occurrences)
+
+**Examples:**
+*ADP→NOUN ROM Examples:*
+  - **Predicate (Verb/Preposition - Object)**: of → nostalgia, of → comfort in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
+  - **Predicate (Preposition - Object)**: into → book in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Constraint**: from → letter in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
+
+*NOUN→ADP UD Examples:*
+  - **case**: memories → by in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→NOUN: 0 UD, 24 ROM
+- NOUN→ADP: 22 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→NOUN Pattern 1 (Forward): 0.000
+- ADP→NOUN Pattern 2 (Reverse): 0.000
+- ADP→NOUN Max Overlap: 0.000
+- NOUN→ADP Pattern 1 (Forward): 0.000
+- NOUN→ADP Pattern 2 (Reverse): 0.917
+- NOUN→ADP Max Overlap: 0.917
+- **Overall Maximum Overlap Rate: 0.917**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (ADP→NOUN UD)/(NOUN→ADP ROM): 0.00
+- Reverse cross ratio (NOUN→ADP UD)/(ADP→NOUN ROM): 0.92
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### SCONJ ↔ VERB (Max Overlap Rate: 0.905)
+
+#### SCONJ → VERB
+**ROM Relations:**
+- Constraint (9 occurrences)
+- Predicate (Verb/Proposition - Object) (5 occurrences)
+- Connection (3 occurrences)
+- Predicate (Verb/Preposition - Object) (2 occurrences)
+- Predicate (Verb - Object) (1 occurrences)
+- Predicate (Subject - Verb) (1 occurrences)
+
+#### VERB → SCONJ
+**UD Relations:**
+- mark (19 occurrences)
+
+**Examples:**
+*SCONJ→VERB ROM Examples:*
+  - **Constraint**: Because → stayed in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+  - **Predicate (Verb - Object)**: as → read in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Whether → call in "I don't know whether he’ll call or text." (compound_sentences_input.txt)
+
+*VERB→SCONJ UD Examples:*
+  - **mark**: raining → because in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
+
+**Mathematical Overlap Analysis:**
+- SCONJ→VERB: 0 UD, 21 ROM
+- VERB→SCONJ: 19 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- SCONJ→VERB Pattern 1 (Forward): 0.000
+- SCONJ→VERB Pattern 2 (Reverse): 0.000
+- SCONJ→VERB Max Overlap: 0.000
+- VERB→SCONJ Pattern 1 (Forward): 0.000
+- VERB→SCONJ Pattern 2 (Reverse): 0.905
+- VERB→SCONJ Max Overlap: 0.905
+- **Overall Maximum Overlap Rate: 0.905**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (SCONJ→VERB UD)/(VERB→SCONJ ROM): 0.00
+- Reverse cross ratio (VERB→SCONJ UD)/(SCONJ→VERB ROM): 0.90
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### NOUN ↔ PRON (Max Overlap Rate: 0.846)
 
 #### NOUN → PRON
 **UD Relations:**
@@ -388,13 +1326,13 @@ Blocks are sorted by maximum overlap rate (highest first).
 - PRON→NOUN: 0 UD, 26 ROM
 
 **Overlap Rates (Mathematical Formula):**
-- NOUN→PRON Pattern 1 (Forward): 0.000
-- NOUN→PRON Pattern 2 (Reverse): 0.000
-- NOUN→PRON Max Overlap: 0.000
+- NOUN→PRON Pattern 1 (Forward): 0.182
+- NOUN→PRON Pattern 2 (Reverse): 0.846
+- NOUN→PRON Max Overlap: 0.846
 - PRON→NOUN Pattern 1 (Forward): 0.000
 - PRON→NOUN Pattern 2 (Reverse): 0.000
 - PRON→NOUN Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
+- **Overall Maximum Overlap Rate: 0.846**
 
 **Traditional Ratios (for reference):**
 - Forward ROM/UD ratio: 0.18
@@ -402,7 +1340,242 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (NOUN→PRON UD)/(PRON→NOUN ROM): 0.85
 - Reverse cross ratio (PRON→NOUN UD)/(NOUN→PRON ROM): 0.00
 - **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### CCONJ ↔ VERB (Max Overlap Rate: 0.818)
+
+#### CCONJ → VERB
+**ROM Relations:**
+- Predicate (Verb/Preposition - Object) (6 occurrences)
+- Constraint (3 occurrences)
+- Connect (2 occurrences)
+
+#### VERB → CCONJ
+**UD Relations:**
+- cc (7 occurrences)
+- cc:preconj (2 occurrences)
+
+**Examples:**
+*CCONJ→VERB ROM Examples:*
+  - **Constraint**: But → happened in "But it never happened." (basic_sentences_input.txt)
+  - **Connect**: and → stop, and → slow in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: But → started in "She wanted to go for a walk, but it started raining." (compound_sentences_input.txt)
+
+*VERB→CCONJ UD Examples:*
+  - **cc**: happened → But in "But it never happened." (basic_sentences_input.txt)
+  - **cc:preconj**: stay → either in "You can either stay home or come with us." (compound_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- CCONJ→VERB: 0 UD, 11 ROM
+- VERB→CCONJ: 9 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- CCONJ→VERB Pattern 1 (Forward): 0.000
+- CCONJ→VERB Pattern 2 (Reverse): 0.000
+- CCONJ→VERB Max Overlap: 0.000
+- VERB→CCONJ Pattern 1 (Forward): 0.000
+- VERB→CCONJ Pattern 2 (Reverse): 0.818
+- VERB→CCONJ Max Overlap: 0.818
+- **Overall Maximum Overlap Rate: 0.818**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (CCONJ→VERB UD)/(VERB→CCONJ ROM): 0.00
+- Reverse cross ratio (VERB→CCONJ UD)/(CCONJ→VERB ROM): 0.82
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### PROPN ↔ VERB (Max Overlap Rate: 0.800)
+
+#### PROPN → VERB
+**ROM Relations:**
+- Predicate (Subject - Verb) (5 occurrences)
+
+#### VERB → PROPN
+**UD Relations:**
+- nsubj (2 occurrences)
+- obl (1 occurrences)
+- obj (1 occurrences)
+
+**ROM Relations:**
+- Constraint (1 occurrences)
+- Predicate (Verb/Proposition - Object) (1 occurrences)
+
+**Examples:**
+*PROPN→VERB ROM Examples:*
+  - **Predicate (Subject - Verb)**: Sarah → decided, Sarah → cherished in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+
+*VERB→PROPN UD Examples:*
+  - **obl**: moved → Canada in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
+  - **nsubj**: decided → Sarah in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **obj**: pushed → Sarah in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+
+*VERB→PROPN ROM Examples:*
+  - **Constraint**: Inspired → Sarah in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: pushed → Sarah in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- PROPN→VERB: 0 UD, 5 ROM
+- VERB→PROPN: 4 UD, 2 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- PROPN→VERB Pattern 1 (Forward): 0.000
+- PROPN→VERB Pattern 2 (Reverse): 0.000
+- PROPN→VERB Max Overlap: 0.000
+- VERB→PROPN Pattern 1 (Forward): 0.500
+- VERB→PROPN Pattern 2 (Reverse): 0.800
+- VERB→PROPN Max Overlap: 0.800
+- **Overall Maximum Overlap Rate: 0.800**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.50
+- Cross ratio (PROPN→VERB UD)/(VERB→PROPN ROM): 0.00
+- Reverse cross ratio (VERB→PROPN UD)/(PROPN→VERB ROM): 0.80
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟢 Excellent overlap**
+
+---
+
+### PART ↔ VERB (Max Overlap Rate: 0.773)
+
+#### PART → VERB
+**ROM Relations:**
+- Constraint (10 occurrences)
+- Predicate (Verb/Preposition - Object) (6 occurrences)
+- Predicate (Verb/Proposition - Object) (4 occurrences)
+- Predicate (Preposition - Object) (2 occurrences)
+
+#### VERB → PART
+**UD Relations:**
+- mark (11 occurrences)
+- advmod (6 occurrences)
+
+**Examples:**
+*PART→VERB ROM Examples:*
+  - **Constraint**: to → decided, to → decided in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **Predicate (Preposition - Object)**: to → preserve, to → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+  - **Predicate (Verb/Proposition - Object)**: To → manage in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
+
+*VERB→PART UD Examples:*
+  - **advmod**: know → n’t in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
+  - **mark**: start → to, preserve → to in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- PART→VERB: 0 UD, 22 ROM
+- VERB→PART: 17 UD, 0 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- PART→VERB Pattern 1 (Forward): 0.000
+- PART→VERB Pattern 2 (Reverse): 0.000
+- PART→VERB Max Overlap: 0.000
+- VERB→PART Pattern 1 (Forward): 0.000
+- VERB→PART Pattern 2 (Reverse): 0.773
+- VERB→PART Max Overlap: 0.773
+- **Overall Maximum Overlap Rate: 0.773**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (PART→VERB UD)/(VERB→PART ROM): 0.00
+- Reverse cross ratio (VERB→PART UD)/(PART→VERB ROM): 0.77
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🟡 Good overlap**
+
+---
+
+### NOUN ↔ SCONJ (Max Overlap Rate: 0.250)
+
+#### NOUN → SCONJ
+**UD Relations:**
+- mark (1 occurrences)
+
+#### SCONJ → NOUN
+**ROM Relations:**
+- Constraint (4 occurrences)
+
+**Examples:**
+*NOUN→SCONJ UD Examples:*
+  - **mark**: time → that in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
+
+*SCONJ→NOUN ROM Examples:*
+  - **Constraint**: that → News in "I heard the news that she got married." (noun_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- NOUN→SCONJ: 1 UD, 0 ROM
+- SCONJ→NOUN: 0 UD, 4 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- NOUN→SCONJ Pattern 1 (Forward): 0.000
+- NOUN→SCONJ Pattern 2 (Reverse): 0.250
+- NOUN→SCONJ Max Overlap: 0.250
+- SCONJ→NOUN Pattern 1 (Forward): 0.000
+- SCONJ→NOUN Pattern 2 (Reverse): 0.000
+- SCONJ→NOUN Max Overlap: 0.000
+- **Overall Maximum Overlap Rate: 0.250**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.00
+- Cross ratio (NOUN→SCONJ UD)/(SCONJ→NOUN ROM): 0.25
+- Reverse cross ratio (SCONJ→NOUN UD)/(NOUN→SCONJ ROM): 0.00
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🔴 Low overlap**
+
+---
+
+### ADP ↔ VERB (Max Overlap Rate: 0.235)
+
+#### ADP → VERB
+**ROM Relations:**
+- Constraint (14 occurrences)
+- Predicate (Verb/Preposition - Object) (3 occurrences)
+
+#### VERB → ADP
+**UD Relations:**
+- compound:prt (3 occurrences)
+- mark (1 occurrences)
+
+**ROM Relations:**
+- Constraint (3 occurrences)
+
+**Examples:**
+*ADP→VERB ROM Examples:*
+  - **Constraint**: into → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
+  - **Predicate (Verb/Preposition - Object)**: Than → watch in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
+
+*VERB→ADP UD Examples:*
+  - **compound:prt**: broke → down in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
+  - **mark**: watch → than in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
+
+*VERB→ADP ROM Examples:*
+  - **Constraint**: Broke → down in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
+
+**Mathematical Overlap Analysis:**
+- ADP→VERB: 0 UD, 17 ROM
+- VERB→ADP: 4 UD, 3 ROM
+
+**Overlap Rates (Mathematical Formula):**
+- ADP→VERB Pattern 1 (Forward): 0.000
+- ADP→VERB Pattern 2 (Reverse): 0.000
+- ADP→VERB Max Overlap: 0.000
+- VERB→ADP Pattern 1 (Forward): 0.750
+- VERB→ADP Pattern 2 (Reverse): 0.235
+- VERB→ADP Max Overlap: 0.750
+- **Overall Maximum Overlap Rate: 0.235**
+
+**Traditional Ratios (for reference):**
+- Forward ROM/UD ratio: 0.00
+- Reverse ROM/UD ratio: 0.75
+- Cross ratio (ADP→VERB UD)/(VERB→ADP ROM): 0.00
+- Reverse cross ratio (VERB→ADP UD)/(ADP→VERB ROM): 0.24
+- **Status: Partial bidirectional coverage**
+- **Overlap Assessment: 🔴 Low overlap**
 
 ---
 
@@ -436,100 +1609,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (NOUN→PUNCT UD)/(PUNCT→NOUN ROM): 0.00
 - Reverse cross ratio (PUNCT→NOUN UD)/(NOUN→PUNCT ROM): 0.00
 - **Status: Unidirectional coverage only**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADJ ↔ NOUN (Max Overlap Rate: 0.000)
-
-#### ADJ → NOUN
-**UD Relations:**
-- nsubj (6 occurrences)
-- obl:unmarked (1 occurrences)
-- obl (1 occurrences)
-
-**ROM Relations:**
-- Constraint (11 occurrences)
-
-#### NOUN → ADJ
-**UD Relations:**
-- amod (12 occurrences)
-
-**Examples:**
-*ADJ→NOUN UD Examples:*
-  - **nsubj**: famous → artist in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **obl:unmarked**: sad → yesterday in "She was very sad yesterday." (basic_sentences_input.txt)
-  - **obl**: tall → brother in "She’s as tall as her brother." (compound_sentences_input.txt)
-
-*ADJ→NOUN ROM Examples:*
-  - **Constraint**: heartfelt → tone in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-
-*NOUN→ADJ UD Examples:*
-  - **amod**: tone → heartfelt in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADJ→NOUN: 8 UD, 11 ROM
-- NOUN→ADJ: 12 UD, 0 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADJ→NOUN Pattern 1 (Forward): 0.000
-- ADJ→NOUN Pattern 2 (Reverse): 0.000
-- ADJ→NOUN Max Overlap: 0.000
-- NOUN→ADJ Pattern 1 (Forward): 0.000
-- NOUN→ADJ Pattern 2 (Reverse): 0.000
-- NOUN→ADJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 1.38
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADJ→NOUN UD)/(NOUN→ADJ ROM): 0.00
-- Reverse cross ratio (NOUN→ADJ UD)/(ADJ→NOUN ROM): 1.09
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADJ ↔ AUX (Max Overlap Rate: 0.000)
-
-#### ADJ → AUX
-**UD Relations:**
-- cop (16 occurrences)
-
-#### AUX → ADJ
-**ROM Relations:**
-- Predicate (Verb/Proposition - Object) (7 occurrences)
-- Predicate (Verb/Preposition - Object) (7 occurrences)
-- Predicate (Verb - Object) (1 occurrences)
-
-**Examples:**
-*ADJ→AUX UD Examples:*
-  - **cop**: famous → is in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-
-*AUX→ADJ ROM Examples:*
-  - **Predicate (Verb/Proposition - Object)**: Is → famous in "The artist who painted this is famous." (adjective_clauses_sentences_input.txt)
-  - **Predicate (Verb - Object)**: was → sad in "She was very sad yesterday." (basic_sentences_input.txt)
-  - **Predicate (Verb/Preposition - Object)**: Was → clear in "The sky was clear; we decided to go stargazing." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADJ→AUX: 16 UD, 0 ROM
-- AUX→ADJ: 0 UD, 15 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADJ→AUX Pattern 1 (Forward): 0.000
-- ADJ→AUX Pattern 2 (Reverse): 0.000
-- ADJ→AUX Max Overlap: 0.000
-- AUX→ADJ Pattern 1 (Forward): 0.000
-- AUX→ADJ Pattern 2 (Reverse): 0.000
-- AUX→ADJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADJ→AUX UD)/(AUX→ADJ ROM): 1.07
-- Reverse cross ratio (AUX→ADJ UD)/(ADJ→AUX ROM): 0.00
-- **Status: Partial bidirectional coverage**
 - **Overlap Assessment: ⚫ No overlap**
 
 ---
@@ -602,252 +1681,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 
 ---
 
-### ADP ↔ VERB (Max Overlap Rate: 0.000)
-
-#### ADP → VERB
-**ROM Relations:**
-- Constraint (14 occurrences)
-- Predicate (Verb/Preposition - Object) (3 occurrences)
-
-#### VERB → ADP
-**UD Relations:**
-- compound:prt (3 occurrences)
-- mark (1 occurrences)
-
-**ROM Relations:**
-- Constraint (3 occurrences)
-
-**Examples:**
-*ADP→VERB ROM Examples:*
-  - **Constraint**: into → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-  - **Predicate (Verb/Preposition - Object)**: Than → watch in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
-
-*VERB→ADP UD Examples:*
-  - **compound:prt**: broke → down in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
-  - **mark**: watch → than in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
-
-*VERB→ADP ROM Examples:*
-  - **Constraint**: Broke → down in "The man whose car broke down." (adjective_clauses_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADP→VERB: 0 UD, 17 ROM
-- VERB→ADP: 4 UD, 3 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADP→VERB Pattern 1 (Forward): 0.000
-- ADP→VERB Pattern 2 (Reverse): 0.000
-- ADP→VERB Max Overlap: 0.000
-- VERB→ADP Pattern 1 (Forward): 0.000
-- VERB→ADP Pattern 2 (Reverse): 0.000
-- VERB→ADP Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.75
-- Cross ratio (ADP→VERB UD)/(VERB→ADP ROM): 0.00
-- Reverse cross ratio (VERB→ADP UD)/(ADP→VERB ROM): 0.24
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### NOUN ↔ NUM (Max Overlap Rate: 0.000)
-
-#### NOUN → NUM
-**UD Relations:**
-- nummod (3 occurrences)
-- nsubj (1 occurrences)
-
-#### NUM → NOUN
-**UD Relations:**
-- nmod (1 occurrences)
-
-**ROM Relations:**
-- Constraint (1 occurrences)
-
-**Examples:**
-*NOUN→NUM UD Examples:*
-  - **nsubj**: year → 2018 in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **nummod**: location → one in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-
-*NUM→NOUN UD Examples:*
-  - **nmod**: one → moments in "It was one of the happiest moments of her life." (basic_sentences_input.txt)
-
-*NUM→NOUN ROM Examples:*
-  - **Constraint**: One → location in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- NOUN→NUM: 4 UD, 0 ROM
-- NUM→NOUN: 1 UD, 1 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- NOUN→NUM Pattern 1 (Forward): 0.000
-- NOUN→NUM Pattern 2 (Reverse): 0.000
-- NOUN→NUM Max Overlap: 0.000
-- NUM→NOUN Pattern 1 (Forward): 0.000
-- NUM→NOUN Pattern 2 (Reverse): 0.000
-- NUM→NOUN Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 1.00
-- Cross ratio (NOUN→NUM UD)/(NUM→NOUN ROM): 4.00
-- Reverse cross ratio (NUM→NOUN UD)/(NOUN→NUM ROM): 0.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADV ↔ VERB (Max Overlap Rate: 0.000)
-
-#### ADV → VERB
-**ROM Relations:**
-- Constraint (19 occurrences)
-- Predicate (Verb/Proposition - Object) (5 occurrences)
-- Predicate (Verb/Preposition - Object) (4 occurrences)
-
-#### VERB → ADV
-**UD Relations:**
-- advmod (32 occurrences)
-- cc (1 occurrences)
-- mark (1 occurrences)
-
-**ROM Relations:**
-- Predicate (Verb/Proposition - Object) (2 occurrences)
-- Constraint (1 occurrences)
-
-**Examples:**
-*ADV→VERB ROM Examples:*
-  - **Predicate (Verb/Proposition - Object)**: When → moved in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **Constraint**: together → built in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
-  - **Predicate (Verb/Preposition - Object)**: However → kept in "I was tired; however, I kept working." (compound_sentences_input.txt)
-
-*VERB→ADV UD Examples:*
-  - **advmod**: moved → when in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **cc**: drive → rather in "He chose to walk rather than drive." (compound_sentences_input.txt)
-  - **mark**: complain → Rather in "Rather than complain, she took action." (compound_sentences_input.txt)
-
-*VERB→ADV ROM Examples:*
-  - **Predicate (Verb/Proposition - Object)**: Stayed → home in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **Constraint**: Stay → home in "You can either stay home or come with us." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADV→VERB: 0 UD, 28 ROM
-- VERB→ADV: 34 UD, 3 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADV→VERB Pattern 1 (Forward): 0.000
-- ADV→VERB Pattern 2 (Reverse): 0.000
-- ADV→VERB Max Overlap: 0.000
-- VERB→ADV Pattern 1 (Forward): 0.000
-- VERB→ADV Pattern 2 (Reverse): 0.000
-- VERB→ADV Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.09
-- Cross ratio (ADV→VERB UD)/(VERB→ADV ROM): 0.00
-- Reverse cross ratio (VERB→ADV UD)/(ADV→VERB ROM): 1.21
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADP ↔ PROPN (Max Overlap Rate: 0.000)
-
-#### ADP → PROPN
-**ROM Relations:**
-- Predicate (Verb/Proposition - Object) (1 occurrences)
-
-#### PROPN → ADP
-**UD Relations:**
-- case (1 occurrences)
-
-**Examples:**
-*ADP→PROPN ROM Examples:*
-  - **Predicate (Verb/Proposition - Object)**: To → Canada in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-
-*PROPN→ADP UD Examples:*
-  - **case**: Canada → to in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADP→PROPN: 0 UD, 1 ROM
-- PROPN→ADP: 1 UD, 0 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADP→PROPN Pattern 1 (Forward): 0.000
-- ADP→PROPN Pattern 2 (Reverse): 0.000
-- ADP→PROPN Max Overlap: 0.000
-- PROPN→ADP Pattern 1 (Forward): 0.000
-- PROPN→ADP Pattern 2 (Reverse): 0.000
-- PROPN→ADP Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADP→PROPN UD)/(PROPN→ADP ROM): 0.00
-- Reverse cross ratio (PROPN→ADP UD)/(ADP→PROPN ROM): 1.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### PROPN ↔ VERB (Max Overlap Rate: 0.000)
-
-#### PROPN → VERB
-**ROM Relations:**
-- Predicate (Subject - Verb) (5 occurrences)
-
-#### VERB → PROPN
-**UD Relations:**
-- nsubj (2 occurrences)
-- obl (1 occurrences)
-- obj (1 occurrences)
-
-**ROM Relations:**
-- Constraint (1 occurrences)
-- Predicate (Verb/Proposition - Object) (1 occurrences)
-
-**Examples:**
-*PROPN→VERB ROM Examples:*
-  - **Predicate (Subject - Verb)**: Sarah → decided, Sarah → cherished in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-
-*VERB→PROPN UD Examples:*
-  - **obl**: moved → Canada in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-  - **nsubj**: decided → Sarah in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **obj**: pushed → Sarah in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-
-*VERB→PROPN ROM Examples:*
-  - **Constraint**: Inspired → Sarah in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (Verb/Proposition - Object)**: pushed → Sarah in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- PROPN→VERB: 0 UD, 5 ROM
-- VERB→PROPN: 4 UD, 2 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- PROPN→VERB Pattern 1 (Forward): 0.000
-- PROPN→VERB Pattern 2 (Reverse): 0.000
-- PROPN→VERB Max Overlap: 0.000
-- VERB→PROPN Pattern 1 (Forward): 0.000
-- VERB→PROPN Pattern 2 (Reverse): 0.000
-- VERB→PROPN Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.50
-- Cross ratio (PROPN→VERB UD)/(VERB→PROPN ROM): 0.00
-- Reverse cross ratio (VERB→PROPN UD)/(PROPN→VERB ROM): 0.80
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
 ### AUX ↔ NUM (Max Overlap Rate: 0.000)
 
 #### AUX → NUM
@@ -873,9 +1706,9 @@ Blocks are sorted by maximum overlap rate (highest first).
 - AUX→NUM Pattern 1 (Forward): 0.000
 - AUX→NUM Pattern 2 (Reverse): 0.000
 - AUX→NUM Max Overlap: 0.000
-- NUM→AUX Pattern 1 (Forward): 0.000
+- NUM→AUX Pattern 1 (Forward): 1.000
 - NUM→AUX Pattern 2 (Reverse): 0.000
-- NUM→AUX Max Overlap: 0.000
+- NUM→AUX Max Overlap: 1.000
 - **Overall Maximum Overlap Rate: 0.000**
 
 **Traditional Ratios (for reference):**
@@ -884,120 +1717,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (AUX→NUM UD)/(NUM→AUX ROM): 0.00
 - Reverse cross ratio (NUM→AUX UD)/(AUX→NUM ROM): 0.00
 - **Status: Unidirectional coverage only**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADV ↔ NOUN (Max Overlap Rate: 0.000)
-
-#### ADV → NOUN
-**ROM Relations:**
-- Constraint (5 occurrences)
-
-#### NOUN → ADV
-**UD Relations:**
-- advmod (5 occurrences)
-
-**Examples:**
-*ADV→NOUN ROM Examples:*
-  - **Constraint**: When → year in "2018 was the year when I moved to Canada." (adjective_clauses_sentences_input.txt)
-
-*NOUN→ADV UD Examples:*
-  - **advmod**: stories → only, emotions → also in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADV→NOUN: 0 UD, 5 ROM
-- NOUN→ADV: 5 UD, 0 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADV→NOUN Pattern 1 (Forward): 0.000
-- ADV→NOUN Pattern 2 (Reverse): 0.000
-- ADV→NOUN Max Overlap: 0.000
-- NOUN→ADV Pattern 1 (Forward): 0.000
-- NOUN→ADV Pattern 2 (Reverse): 0.000
-- NOUN→ADV Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADV→NOUN UD)/(NOUN→ADV ROM): 0.00
-- Reverse cross ratio (NOUN→ADV UD)/(ADV→NOUN ROM): 1.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### VERB ↔ VERB (Max Overlap Rate: 0.000)
-
-#### VERB → VERB
-**UD Relations:**
-- advcl (17 occurrences)
-- xcomp (14 occurrences)
-- conj (7 occurrences)
-- ccomp (3 occurrences)
-
-**ROM Relations:**
-- Predicate (Verb/Preposition - Object) (6 occurrences)
-- Predicate (Verb/Proposition - Object) (2 occurrences)
-- Constraint (2 occurrences)
-- Predicate (Verb - Object) (1 occurrences)
-- Predicate (Subject - Verb) (1 occurrences)
-
-#### VERB → VERB
-**UD Relations:**
-- advcl (17 occurrences)
-- xcomp (14 occurrences)
-- conj (7 occurrences)
-- ccomp (3 occurrences)
-
-**ROM Relations:**
-- Predicate (Verb/Preposition - Object) (6 occurrences)
-- Predicate (Verb/Proposition - Object) (2 occurrences)
-- Constraint (2 occurrences)
-- Predicate (Verb - Object) (1 occurrences)
-- Predicate (Subject - Verb) (1 occurrences)
-
-**Examples:**
-*VERB→VERB UD Examples:*
-  - **advcl**: remember → met in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **xcomp**: decided → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **ccomp**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
-
-*VERB→VERB ROM Examples:*
-  - **Predicate (Verb/Preposition - Object)**: gave → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Predicate (Verb/Proposition - Object)**: consider → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-  - **Predicate (Verb - Object)**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
-
-*VERB→VERB UD Examples:*
-  - **advcl**: remember → met in "I remember the day when we met." (adjective_clauses_sentences_input.txt)
-  - **xcomp**: decided → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **ccomp**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
-
-*VERB→VERB ROM Examples:*
-  - **Predicate (Verb/Preposition - Object)**: gave → writing in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Predicate (Verb/Proposition - Object)**: consider → turning in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-  - **Predicate (Verb - Object)**: hoping → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- VERB→VERB: 41 UD, 12 ROM
-- VERB→VERB: 41 UD, 12 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- VERB→VERB Pattern 1 (Forward): 0.000
-- VERB→VERB Pattern 2 (Reverse): 0.000
-- VERB→VERB Max Overlap: 0.000
-- VERB→VERB Pattern 1 (Forward): 0.000
-- VERB→VERB Pattern 2 (Reverse): 0.000
-- VERB→VERB Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.29
-- Reverse ROM/UD ratio: 0.29
-- Cross ratio (VERB→VERB UD)/(VERB→VERB ROM): 3.42
-- Reverse cross ratio (VERB→VERB UD)/(VERB→VERB ROM): 3.42
-- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
 - **Overlap Assessment: ⚫ No overlap**
 
 ---
@@ -1070,156 +1789,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 
 ---
 
-### AUX ↔ VERB (Max Overlap Rate: 0.000)
-
-#### AUX → VERB
-**ROM Relations:**
-- Constraint (13 occurrences)
-- Predicate (Verb/Proposition - Object) (5 occurrences)
-- Constraint (Auxiliary - Main Verb) (1 occurrences)
-
-#### VERB → AUX
-**UD Relations:**
-- aux (24 occurrences)
-- cop (4 occurrences)
-- aux:pass (3 occurrences)
-
-**ROM Relations:**
-- Predicate (Subject - Verb) (1 occurrences)
-- Predicate (Verb/Proposition - Object) (1 occurrences)
-
-**Examples:**
-*AUX→VERB ROM Examples:*
-  - **Predicate (Verb/Proposition - Object)**: Was → raining in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **Constraint (Auxiliary - Main Verb)**: would → return in "She waited by the window, hoping you would return." (basic_sentences_input.txt)
-  - **Constraint**: Can → fly in "Design a vacation house that can fly easily from one location to another." (basic_sentences_input.txt)
-
-*VERB→AUX UD Examples:*
-  - **aux**: know → do in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
-  - **aux:pass**: filled → was in "The letter was filled with stories about their childhood adventures." (basic_sentences_input.txt)
-  - **cop**: left → is in "The truth is that she never left." (noun_clauses_sentences_input.txt)
-
-*VERB→AUX ROM Examples:*
-  - **Predicate (Subject - Verb)**: lied → was in "That he lied was obvious." (noun_clauses_sentences_input.txt)
-  - **Predicate (Verb/Proposition - Object)**: Know → is in "I know that she is right." (noun_clauses_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- AUX→VERB: 0 UD, 19 ROM
-- VERB→AUX: 31 UD, 2 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- AUX→VERB Pattern 1 (Forward): 0.000
-- AUX→VERB Pattern 2 (Reverse): 0.000
-- AUX→VERB Max Overlap: 0.000
-- VERB→AUX Pattern 1 (Forward): 0.000
-- VERB→AUX Pattern 2 (Reverse): 0.000
-- VERB→AUX Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.06
-- Cross ratio (AUX→VERB UD)/(VERB→AUX ROM): 0.00
-- Reverse cross ratio (VERB→AUX UD)/(AUX→VERB ROM): 1.63
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### PART ↔ VERB (Max Overlap Rate: 0.000)
-
-#### PART → VERB
-**ROM Relations:**
-- Constraint (10 occurrences)
-- Predicate (Verb/Preposition - Object) (6 occurrences)
-- Predicate (Verb/Proposition - Object) (4 occurrences)
-- Predicate (Preposition - Object) (2 occurrences)
-
-#### VERB → PART
-**UD Relations:**
-- mark (11 occurrences)
-- advmod (6 occurrences)
-
-**Examples:**
-*PART→VERB ROM Examples:*
-  - **Constraint**: to → decided, to → decided in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (Preposition - Object)**: to → preserve, to → start in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-  - **Predicate (Verb/Proposition - Object)**: To → manage in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
-
-*VERB→PART UD Examples:*
-  - **advmod**: know → n’t in "I don’t know the reason why he left." (adjective_clauses_sentences_input.txt)
-  - **mark**: start → to, preserve → to in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- PART→VERB: 0 UD, 22 ROM
-- VERB→PART: 17 UD, 0 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- PART→VERB Pattern 1 (Forward): 0.000
-- PART→VERB Pattern 2 (Reverse): 0.000
-- PART→VERB Max Overlap: 0.000
-- VERB→PART Pattern 1 (Forward): 0.000
-- VERB→PART Pattern 2 (Reverse): 0.000
-- VERB→PART Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (PART→VERB UD)/(VERB→PART ROM): 0.00
-- Reverse cross ratio (VERB→PART UD)/(PART→VERB ROM): 0.77
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### SCONJ ↔ VERB (Max Overlap Rate: 0.000)
-
-#### SCONJ → VERB
-**ROM Relations:**
-- Constraint (9 occurrences)
-- Predicate (Verb/Proposition - Object) (5 occurrences)
-- Connection (3 occurrences)
-- Predicate (Verb/Preposition - Object) (2 occurrences)
-- Predicate (Verb - Object) (1 occurrences)
-- Predicate (Subject - Verb) (1 occurrences)
-
-#### VERB → SCONJ
-**UD Relations:**
-- mark (19 occurrences)
-
-**Examples:**
-*SCONJ→VERB ROM Examples:*
-  - **Constraint**: Because → stayed in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-  - **Predicate (Verb - Object)**: as → read in "She smiled as she read about the time they built a treehouse together." (basic_sentences_input.txt)
-  - **Predicate (Verb/Preposition - Object)**: Whether → call in "I don't know whether he’ll call or text." (compound_sentences_input.txt)
-
-*VERB→SCONJ UD Examples:*
-  - **mark**: raining → because in "I stayed home because it was raining." (adverb_clauses_sentence_input.txt)
-
-**Mathematical Overlap Analysis:**
-- SCONJ→VERB: 0 UD, 21 ROM
-- VERB→SCONJ: 19 UD, 0 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- SCONJ→VERB Pattern 1 (Forward): 0.000
-- SCONJ→VERB Pattern 2 (Reverse): 0.000
-- SCONJ→VERB Max Overlap: 0.000
-- VERB→SCONJ Pattern 1 (Forward): 0.000
-- VERB→SCONJ Pattern 2 (Reverse): 0.000
-- VERB→SCONJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (SCONJ→VERB UD)/(VERB→SCONJ ROM): 0.00
-- Reverse cross ratio (VERB→SCONJ UD)/(SCONJ→VERB ROM): 0.90
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
 ### AUX ↔ SCONJ (Max Overlap Rate: 0.000)
 
 #### AUX → SCONJ
@@ -1260,46 +1829,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Reverse ROM/UD ratio: 0.00
 - Cross ratio (AUX→SCONJ UD)/(SCONJ→AUX ROM): 0.00
 - Reverse cross ratio (SCONJ→AUX UD)/(AUX→SCONJ ROM): 0.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADJ ↔ SCONJ (Max Overlap Rate: 0.000)
-
-#### ADJ → SCONJ
-**UD Relations:**
-- mark (3 occurrences)
-
-#### SCONJ → ADJ
-**ROM Relations:**
-- Predicate (Verb/Preposition - Object) (2 occurrences)
-
-**Examples:**
-*ADJ→SCONJ UD Examples:*
-  - **mark**: tired → Although in "Although she was tired, she finished the report." (adverb_clauses_sentence_input.txt)
-
-*SCONJ→ADJ ROM Examples:*
-  - **Predicate (Verb/Preposition - Object)**: As → easy in "This task is not as easy as it looks." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADJ→SCONJ: 3 UD, 0 ROM
-- SCONJ→ADJ: 0 UD, 2 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADJ→SCONJ Pattern 1 (Forward): 0.000
-- ADJ→SCONJ Pattern 2 (Reverse): 0.000
-- ADJ→SCONJ Max Overlap: 0.000
-- SCONJ→ADJ Pattern 1 (Forward): 0.000
-- SCONJ→ADJ Pattern 2 (Reverse): 0.000
-- SCONJ→ADJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADJ→SCONJ UD)/(SCONJ→ADJ ROM): 1.50
-- Reverse cross ratio (SCONJ→ADJ UD)/(ADJ→SCONJ ROM): 0.00
 - **Status: Partial bidirectional coverage**
 - **Overlap Assessment: ⚫ No overlap**
 
@@ -1389,51 +1918,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 
 ---
 
-### ADP ↔ NOUN (Max Overlap Rate: 0.000)
-
-#### ADP → NOUN
-**ROM Relations:**
-- Predicate (Verb/Preposition - Object) (8 occurrences)
-- Predicate (Preposition - Object) (7 occurrences)
-- Constraint (5 occurrences)
-- Predicate (Verb/Proposition - Object) (4 occurrences)
-
-#### NOUN → ADP
-**UD Relations:**
-- case (22 occurrences)
-
-**Examples:**
-*ADP→NOUN ROM Examples:*
-  - **Predicate (Verb/Preposition - Object)**: of → nostalgia, of → comfort in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-  - **Predicate (Preposition - Object)**: into → book in "Their encouragement pushed Sarah to consider turning the journal into a book." (basic_sentences_input.txt)
-  - **Constraint**: from → letter in "Emily received a letter from her best friend last week." (basic_sentences_input.txt)
-
-*NOUN→ADP UD Examples:*
-  - **case**: memories → by in "Inspired by those cherished memories, Sarah decided to start a journal to preserve them." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADP→NOUN: 0 UD, 24 ROM
-- NOUN→ADP: 22 UD, 0 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADP→NOUN Pattern 1 (Forward): 0.000
-- ADP→NOUN Pattern 2 (Reverse): 0.000
-- ADP→NOUN Max Overlap: 0.000
-- NOUN→ADP Pattern 1 (Forward): 0.000
-- NOUN→ADP Pattern 2 (Reverse): 0.000
-- NOUN→ADP Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADP→NOUN UD)/(NOUN→ADP ROM): 0.00
-- Reverse cross ratio (NOUN→ADP UD)/(ADP→NOUN ROM): 0.92
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
 ### NOUN ↔ PART (Max Overlap Rate: 0.000)
 
 #### NOUN → PART
@@ -1464,96 +1948,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (NOUN→PART UD)/(PART→NOUN ROM): 0.00
 - Reverse cross ratio (PART→NOUN UD)/(NOUN→PART ROM): 0.00
 - **Status: Unidirectional coverage only**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### CCONJ ↔ NOUN (Max Overlap Rate: 0.000)
-
-#### CCONJ → NOUN
-**ROM Relations:**
-- Predicate (Verb/Preposition - Object) (3 occurrences)
-
-#### NOUN → CCONJ
-**UD Relations:**
-- cc (5 occurrences)
-- cc:preconj (1 occurrences)
-
-**ROM Relations:**
-- Connection (4 occurrences)
-
-**Examples:**
-*CCONJ→NOUN ROM Examples:*
-  - **Predicate (Verb/Preposition - Object)**: Both → brother, And → sister in "Both my brother and sister are engineers." (compound_sentences_input.txt)
-
-*NOUN→CCONJ UD Examples:*
-  - **cc**: emotions → but in "She described not only the stories her grandmother shared, but also the emotions they stirred." (basic_sentences_input.txt)
-  - **cc:preconj**: brother → Both in "Both my brother and sister are engineers." (compound_sentences_input.txt)
-
-*NOUN→CCONJ ROM Examples:*
-  - **Connection**: nostalgia → and, comfort → and in "The emotions of nostalgia, comfort, and love gave her writing a heartfelt tone that surprised her." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- CCONJ→NOUN: 0 UD, 3 ROM
-- NOUN→CCONJ: 6 UD, 4 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- CCONJ→NOUN Pattern 1 (Forward): 0.000
-- CCONJ→NOUN Pattern 2 (Reverse): 0.000
-- CCONJ→NOUN Max Overlap: 0.000
-- NOUN→CCONJ Pattern 1 (Forward): 0.000
-- NOUN→CCONJ Pattern 2 (Reverse): 0.000
-- NOUN→CCONJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.67
-- Cross ratio (CCONJ→NOUN UD)/(NOUN→CCONJ ROM): 0.00
-- Reverse cross ratio (NOUN→CCONJ UD)/(CCONJ→NOUN ROM): 2.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADJ ↔ CCONJ (Max Overlap Rate: 0.000)
-
-#### ADJ → CCONJ
-**UD Relations:**
-- cc (2 occurrences)
-
-#### CCONJ → ADJ
-**ROM Relations:**
-- Connection (1 occurrences)
-- Predicate (Verb/Preposition - Object) (1 occurrences)
-
-**Examples:**
-*ADJ→CCONJ UD Examples:*
-  - **cc**: creative → and in "She is both smart and creative." (compound_sentences_input.txt)
-
-*CCONJ→ADJ ROM Examples:*
-  - **Connection**: and → vivid in "Her friends who read the journal found themselves moved by its sincerity and vivid details." (basic_sentences_input.txt)
-  - **Predicate (Verb/Preposition - Object)**: And → creative in "She is both smart and creative." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADJ→CCONJ: 2 UD, 0 ROM
-- CCONJ→ADJ: 0 UD, 2 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADJ→CCONJ Pattern 1 (Forward): 0.000
-- ADJ→CCONJ Pattern 2 (Reverse): 0.000
-- ADJ→CCONJ Max Overlap: 0.000
-- CCONJ→ADJ Pattern 1 (Forward): 0.000
-- CCONJ→ADJ Pattern 2 (Reverse): 0.000
-- CCONJ→ADJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADJ→CCONJ UD)/(CCONJ→ADJ ROM): 1.00
-- Reverse cross ratio (CCONJ→ADJ UD)/(ADJ→CCONJ ROM): 0.00
-- **Status: Partial bidirectional coverage**
 - **Overlap Assessment: ⚫ No overlap**
 
 ---
@@ -1656,178 +2050,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (ADP→NUM UD)/(NUM→ADP ROM): 0.00
 - Reverse cross ratio (NUM→ADP UD)/(ADP→NUM ROM): 0.00
 - **Status: Unidirectional coverage only**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADP ↔ PRON (Max Overlap Rate: 0.000)
-
-#### ADP → PRON
-**ROM Relations:**
-- Predicate (Verb/Proposition - Object) (1 occurrences)
-- Predicate (Prep - Object) (1 occurrences)
-- Predicate (Verb/Preposition - Object) (1 occurrences)
-
-#### PRON → ADP
-**UD Relations:**
-- case (3 occurrences)
-
-**Examples:**
-*ADP→PRON ROM Examples:*
-  - **Predicate (Verb/Proposition - Object)**: with → her in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
-  - **Predicate (Prep - Object)**: within → her in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-  - **Predicate (Verb/Preposition - Object)**: With → us in "You can either stay home or come with us." (compound_sentences_input.txt)
-
-*PRON→ADP UD Examples:*
-  - **case**: her → with in "That memory, like many others, stayed with her even today." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADP→PRON: 0 UD, 3 ROM
-- PRON→ADP: 3 UD, 0 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADP→PRON Pattern 1 (Forward): 0.000
-- ADP→PRON Pattern 2 (Reverse): 0.000
-- ADP→PRON Max Overlap: 0.000
-- PRON→ADP Pattern 1 (Forward): 0.000
-- PRON→ADP Pattern 2 (Reverse): 0.000
-- PRON→ADP Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADP→PRON UD)/(PRON→ADP ROM): 0.00
-- Reverse cross ratio (PRON→ADP UD)/(ADP→PRON ROM): 1.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADJ ↔ ADV (Max Overlap Rate: 0.000)
-
-#### ADJ → ADV
-**UD Relations:**
-- advmod (9 occurrences)
-
-#### ADV → ADJ
-**ROM Relations:**
-- Constraint (1 occurrences)
-- Predicate (Verb/Preposition - Object) (1 occurrences)
-
-**Examples:**
-*ADJ→ADV UD Examples:*
-  - **advmod**: sad → very in "She was very sad yesterday." (basic_sentences_input.txt)
-
-*ADV→ADJ ROM Examples:*
-  - **Constraint**: very → sad in "She was very sad yesterday." (basic_sentences_input.txt)
-  - **Predicate (Verb/Preposition - Object)**: Both → smart in "She is both smart and creative." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADJ→ADV: 9 UD, 0 ROM
-- ADV→ADJ: 0 UD, 2 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADJ→ADV Pattern 1 (Forward): 0.000
-- ADJ→ADV Pattern 2 (Reverse): 0.000
-- ADJ→ADV Max Overlap: 0.000
-- ADV→ADJ Pattern 1 (Forward): 0.000
-- ADV→ADJ Pattern 2 (Reverse): 0.000
-- ADV→ADJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADJ→ADV UD)/(ADV→ADJ ROM): 4.50
-- Reverse cross ratio (ADV→ADJ UD)/(ADJ→ADV ROM): 0.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### CCONJ ↔ VERB (Max Overlap Rate: 0.000)
-
-#### CCONJ → VERB
-**ROM Relations:**
-- Predicate (Verb/Preposition - Object) (6 occurrences)
-- Constraint (3 occurrences)
-- Connect (2 occurrences)
-
-#### VERB → CCONJ
-**UD Relations:**
-- cc (7 occurrences)
-- cc:preconj (2 occurrences)
-
-**Examples:**
-*CCONJ→VERB ROM Examples:*
-  - **Constraint**: But → happened in "But it never happened." (basic_sentences_input.txt)
-  - **Connect**: and → stop, and → slow in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-  - **Predicate (Verb/Preposition - Object)**: But → started in "She wanted to go for a walk, but it started raining." (compound_sentences_input.txt)
-
-*VERB→CCONJ UD Examples:*
-  - **cc**: happened → But in "But it never happened." (basic_sentences_input.txt)
-  - **cc:preconj**: stay → either in "You can either stay home or come with us." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- CCONJ→VERB: 0 UD, 11 ROM
-- VERB→CCONJ: 9 UD, 0 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- CCONJ→VERB Pattern 1 (Forward): 0.000
-- CCONJ→VERB Pattern 2 (Reverse): 0.000
-- CCONJ→VERB Max Overlap: 0.000
-- VERB→CCONJ Pattern 1 (Forward): 0.000
-- VERB→CCONJ Pattern 2 (Reverse): 0.000
-- VERB→CCONJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (CCONJ→VERB UD)/(VERB→CCONJ ROM): 0.00
-- Reverse cross ratio (VERB→CCONJ UD)/(CCONJ→VERB ROM): 0.82
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADV ↔ INTJ (Max Overlap Rate: 0.000)
-
-#### ADV → INTJ
-**UD Relations:**
-- discourse (1 occurrences)
-
-#### INTJ → ADV
-**ROM Relations:**
-- Predicate (Prep - Object) (1 occurrences)
-
-**Examples:**
-*ADV→INTJ UD Examples:*
-  - **discourse**: before → like in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-
-*INTJ→ADV ROM Examples:*
-  - **Predicate (Prep - Object)**: Like → before in "The pain, like before, settled deep within her." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADV→INTJ: 1 UD, 0 ROM
-- INTJ→ADV: 0 UD, 1 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADV→INTJ Pattern 1 (Forward): 0.000
-- ADV→INTJ Pattern 2 (Reverse): 0.000
-- ADV→INTJ Max Overlap: 0.000
-- INTJ→ADV Pattern 1 (Forward): 0.000
-- INTJ→ADV Pattern 2 (Reverse): 0.000
-- INTJ→ADV Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADV→INTJ UD)/(INTJ→ADV ROM): 1.00
-- Reverse cross ratio (INTJ→ADV UD)/(ADV→INTJ ROM): 0.00
-- **Status: Partial bidirectional coverage**
 - **Overlap Assessment: ⚫ No overlap**
 
 ---
@@ -2048,46 +2270,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 
 ---
 
-### NOUN ↔ PROPN (Max Overlap Rate: 0.000)
-
-#### NOUN → PROPN
-**UD Relations:**
-- compound (1 occurrences)
-
-#### PROPN → NOUN
-**ROM Relations:**
-- Constraint (1 occurrences)
-
-**Examples:**
-*NOUN→PROPN UD Examples:*
-  - **compound**: journal → JIDPS in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
-
-*PROPN→NOUN ROM Examples:*
-  - **Constraint**: JIDPS → journal in "Design a web system to manage the editorial workflow of the JIDPS journal." (basic_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- NOUN→PROPN: 1 UD, 0 ROM
-- PROPN→NOUN: 0 UD, 1 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- NOUN→PROPN Pattern 1 (Forward): 0.000
-- NOUN→PROPN Pattern 2 (Reverse): 0.000
-- NOUN→PROPN Max Overlap: 0.000
-- PROPN→NOUN Pattern 1 (Forward): 0.000
-- PROPN→NOUN Pattern 2 (Reverse): 0.000
-- PROPN→NOUN Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (NOUN→PROPN UD)/(PROPN→NOUN ROM): 1.00
-- Reverse cross ratio (PROPN→NOUN UD)/(NOUN→PROPN ROM): 0.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
 ### ADV ↔ CCONJ (Max Overlap Rate: 0.000)
 
 #### ADV → CCONJ
@@ -2118,62 +2300,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (ADV→CCONJ UD)/(CCONJ→ADV ROM): 0.00
 - Reverse cross ratio (CCONJ→ADV UD)/(ADV→CCONJ ROM): 0.00
 - **Status: Unidirectional coverage only**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADV ↔ ADV (Max Overlap Rate: 0.000)
-
-#### ADV → ADV
-**UD Relations:**
-- advmod (2 occurrences)
-- conj (1 occurrences)
-
-**ROM Relations:**
-- Constraint (2 occurrences)
-
-#### ADV → ADV
-**UD Relations:**
-- advmod (2 occurrences)
-- conj (1 occurrences)
-
-**ROM Relations:**
-- Constraint (2 occurrences)
-
-**Examples:**
-*ADV→ADV UD Examples:*
-  - **conj**: effectively → efficiently in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-  - **advmod**: quickly → as in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
-
-*ADV→ADV ROM Examples:*
-  - **Constraint**: Just → so in "Just as honesty builds trust, so does kindness." (compound_sentences_input.txt)
-
-*ADV→ADV UD Examples:*
-  - **conj**: effectively → efficiently in "Driver needs to stop and slow down a vehicle effectively and efficiently." (basic_sentences_input.txt)
-  - **advmod**: quickly → as in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
-
-*ADV→ADV ROM Examples:*
-  - **Constraint**: Just → so in "Just as honesty builds trust, so does kindness." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADV→ADV: 3 UD, 2 ROM
-- ADV→ADV: 3 UD, 2 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADV→ADV Pattern 1 (Forward): 0.000
-- ADV→ADV Pattern 2 (Reverse): 0.000
-- ADV→ADV Max Overlap: 0.000
-- ADV→ADV Pattern 1 (Forward): 0.000
-- ADV→ADV Pattern 2 (Reverse): 0.000
-- ADV→ADV Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.67
-- Reverse ROM/UD ratio: 0.67
-- Cross ratio (ADV→ADV UD)/(ADV→ADV ROM): 1.50
-- Reverse cross ratio (ADV→ADV UD)/(ADV→ADV ROM): 1.50
-- **Status: Full bidirectional coverage (both directions have UD and ROM relations)**
 - **Overlap Assessment: ⚫ No overlap**
 
 ---
@@ -2336,46 +2462,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 
 ---
 
-### ADJ ↔ PART (Max Overlap Rate: 0.000)
-
-#### ADJ → PART
-**UD Relations:**
-- advmod (3 occurrences)
-
-#### PART → ADJ
-**ROM Relations:**
-- Constraint (2 occurrences)
-
-**Examples:**
-*ADJ→PART UD Examples:*
-  - **advmod**: long → not in "The movie was not only long but also boring." (compound_sentences_input.txt)
-
-*PART→ADJ ROM Examples:*
-  - **Constraint**: Not → easy in "This task is not as easy as it looks." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADJ→PART: 3 UD, 0 ROM
-- PART→ADJ: 0 UD, 2 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADJ→PART Pattern 1 (Forward): 0.000
-- ADJ→PART Pattern 2 (Reverse): 0.000
-- ADJ→PART Max Overlap: 0.000
-- PART→ADJ Pattern 1 (Forward): 0.000
-- PART→ADJ Pattern 2 (Reverse): 0.000
-- PART→ADJ Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (ADJ→PART UD)/(PART→ADJ ROM): 1.50
-- Reverse cross ratio (PART→ADJ UD)/(ADJ→PART ROM): 0.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
 ### CCONJ ↔ SCONJ (Max Overlap Rate: 0.000)
 
 #### CCONJ → SCONJ
@@ -2406,52 +2492,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Cross ratio (CCONJ→SCONJ UD)/(SCONJ→CCONJ ROM): 0.00
 - Reverse cross ratio (SCONJ→CCONJ UD)/(CCONJ→SCONJ ROM): 0.00
 - **Status: Unidirectional coverage only**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### ADP ↔ ADV (Max Overlap Rate: 0.000)
-
-#### ADP → ADV
-**ROM Relations:**
-- Predicate (Verb/Preposition - Object) (1 occurrences)
-
-#### ADV → ADP
-**UD Relations:**
-- fixed (2 occurrences)
-
-**ROM Relations:**
-- Connection (2 occurrences)
-
-**Examples:**
-*ADP→ADV ROM Examples:*
-  - **Predicate (Verb/Preposition - Object)**: As → quickly in "He ran as quickly as a professional athlete." (compound_sentences_input.txt)
-
-*ADV→ADP UD Examples:*
-  - **fixed**: rather → than in "He chose to walk rather than drive." (compound_sentences_input.txt)
-
-*ADV→ADP ROM Examples:*
-  - **Connection**: Rather → than in "I’d rather read a book than watch TV." (compound_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- ADP→ADV: 0 UD, 1 ROM
-- ADV→ADP: 2 UD, 2 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- ADP→ADV Pattern 1 (Forward): 0.000
-- ADP→ADV Pattern 2 (Reverse): 0.000
-- ADP→ADV Max Overlap: 0.000
-- ADV→ADP Pattern 1 (Forward): 0.000
-- ADV→ADP Pattern 2 (Reverse): 0.000
-- ADV→ADP Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 1.00
-- Cross ratio (ADP→ADV UD)/(ADV→ADP ROM): 0.00
-- Reverse cross ratio (ADV→ADP UD)/(ADP→ADV ROM): 2.00
-- **Status: Partial bidirectional coverage**
 - **Overlap Assessment: ⚫ No overlap**
 
 ---
@@ -2533,46 +2573,6 @@ Blocks are sorted by maximum overlap rate (highest first).
 - Reverse ROM/UD ratio: 0.00
 - Cross ratio (PRON→PRON UD)/(PRON→PRON ROM): 0.00
 - Reverse cross ratio (PRON→PRON UD)/(PRON→PRON ROM): 0.00
-- **Status: Partial bidirectional coverage**
-- **Overlap Assessment: ⚫ No overlap**
-
----
-
-### NOUN ↔ SCONJ (Max Overlap Rate: 0.000)
-
-#### NOUN → SCONJ
-**UD Relations:**
-- mark (1 occurrences)
-
-#### SCONJ → NOUN
-**ROM Relations:**
-- Constraint (4 occurrences)
-
-**Examples:**
-*NOUN→SCONJ UD Examples:*
-  - **mark**: time → that in "We faced the fact that we were out of time." (noun_clauses_sentences_input.txt)
-
-*SCONJ→NOUN ROM Examples:*
-  - **Constraint**: that → News in "I heard the news that she got married." (noun_clauses_sentences_input.txt)
-
-**Mathematical Overlap Analysis:**
-- NOUN→SCONJ: 1 UD, 0 ROM
-- SCONJ→NOUN: 0 UD, 4 ROM
-
-**Overlap Rates (Mathematical Formula):**
-- NOUN→SCONJ Pattern 1 (Forward): 0.000
-- NOUN→SCONJ Pattern 2 (Reverse): 0.000
-- NOUN→SCONJ Max Overlap: 0.000
-- SCONJ→NOUN Pattern 1 (Forward): 0.000
-- SCONJ→NOUN Pattern 2 (Reverse): 0.000
-- SCONJ→NOUN Max Overlap: 0.000
-- **Overall Maximum Overlap Rate: 0.000**
-
-**Traditional Ratios (for reference):**
-- Forward ROM/UD ratio: 0.00
-- Reverse ROM/UD ratio: 0.00
-- Cross ratio (NOUN→SCONJ UD)/(SCONJ→NOUN ROM): 0.25
-- Reverse cross ratio (SCONJ→NOUN UD)/(NOUN→SCONJ ROM): 0.00
 - **Status: Partial bidirectional coverage**
 - **Overlap Assessment: ⚫ No overlap**
 
@@ -2677,8 +2677,8 @@ Blocks are sorted by maximum overlap rate (highest first).
 | VERB → NOUN | 76 | 50 | Both |
 | VERB → PRON | 82 | 12 | Both |
 | PRON → VERB | 1 | 70 | Both |
-| NOUN → DET | 65 | 0 | UD Only |
 | DET → NOUN | 0 | 65 | ROM Only |
+| NOUN → DET | 65 | 0 | UD Only |
 | VERB → PUNCT | 61 | 0 | UD Only |
 | VERB → VERB | 41 | 12 | Both |
 | NOUN → VERB | 20 | 28 | Both |
@@ -2686,8 +2686,8 @@ Blocks are sorted by maximum overlap rate (highest first).
 | VERB → AUX | 31 | 2 | Both |
 | NOUN → NOUN | 25 | 6 | Both |
 | ADV → VERB | 0 | 28 | ROM Only |
-| NOUN → PRON | 22 | 4 | Both |
 | NOUN → AUX | 9 | 17 | Both |
+| NOUN → PRON | 22 | 4 | Both |
 | PRON → NOUN | 0 | 26 | ROM Only |
 | ADP → NOUN | 0 | 24 | ROM Only |
 | NOUN → ADP | 22 | 0 | UD Only |
@@ -2696,75 +2696,75 @@ Blocks are sorted by maximum overlap rate (highest first).
 | VERB → SCONJ | 19 | 0 | UD Only |
 | ADJ → NOUN | 8 | 11 | Both |
 | AUX → VERB | 0 | 19 | ROM Only |
-| VERB → PART | 17 | 0 | UD Only |
 | ADP → VERB | 0 | 17 | ROM Only |
+| VERB → PART | 17 | 0 | UD Only |
 | ADJ → AUX | 16 | 0 | UD Only |
-| ADJ → PUNCT | 15 | 0 | UD Only |
 | NOUN → PUNCT | 15 | 0 | UD Only |
 | AUX → ADJ | 0 | 15 | ROM Only |
+| ADJ → PUNCT | 15 | 0 | UD Only |
 | NOUN → ADJ | 12 | 0 | UD Only |
-| PRON → AUX | 0 | 11 | ROM Only |
 | CCONJ → VERB | 0 | 11 | ROM Only |
+| PRON → AUX | 0 | 11 | ROM Only |
 | NOUN → CCONJ | 6 | 4 | Both |
-| ADJ → ADV | 9 | 0 | UD Only |
 | AUX → NOUN | 0 | 9 | ROM Only |
 | VERB → CCONJ | 9 | 0 | UD Only |
+| ADJ → ADV | 9 | 0 | UD Only |
 | ADJ → VERB | 8 | 0 | UD Only |
 | ADJ → PRON | 8 | 0 | UD Only |
-| VERB → ADP | 4 | 3 | Both |
 | ADV → AUX | 0 | 7 | ROM Only |
+| VERB → ADP | 4 | 3 | Both |
 | SCONJ → AUX | 0 | 7 | ROM Only |
 | VERB → PROPN | 4 | 2 | Both |
-| PROPN → VERB | 0 | 5 | ROM Only |
-| NOUN → ADV | 5 | 0 | UD Only |
-| ADV → ADV | 3 | 2 | Both |
 | ADV → NOUN | 0 | 5 | ROM Only |
+| ADV → ADV | 3 | 2 | Both |
+| NOUN → ADV | 5 | 0 | UD Only |
+| PROPN → VERB | 0 | 5 | ROM Only |
+| ADV → ADP | 2 | 2 | Both |
+| PRON → PUNCT | 4 | 0 | UD Only |
 | NOUN → NUM | 4 | 0 | UD Only |
 | SCONJ → ADV | 0 | 4 | ROM Only |
 | SCONJ → NOUN | 0 | 4 | ROM Only |
-| ADV → ADP | 2 | 2 | Both |
-| PRON → PUNCT | 4 | 0 | UD Only |
-| VERB → ADJ | 3 | 0 | UD Only |
-| ADJ → PART | 3 | 0 | UD Only |
-| CCONJ → NOUN | 0 | 3 | ROM Only |
-| AUX → SCONJ | 0 | 3 | ROM Only |
-| ADP → ADJ | 0 | 3 | ROM Only |
-| CCONJ → AUX | 0 | 3 | ROM Only |
-| PRON → ADP | 3 | 0 | UD Only |
-| ADJ → SCONJ | 3 | 0 | UD Only |
 | ADP → PRON | 0 | 3 | ROM Only |
+| ADJ → PART | 3 | 0 | UD Only |
+| AUX → SCONJ | 0 | 3 | ROM Only |
+| CCONJ → AUX | 0 | 3 | ROM Only |
+| ADJ → SCONJ | 3 | 0 | UD Only |
 | CCONJ → CCONJ | 0 | 3 | ROM Only |
-| SCONJ → CCONJ | 0 | 2 | ROM Only |
-| ADP → ADP | 0 | 2 | ROM Only |
-| ADJ → CCONJ | 2 | 0 | UD Only |
-| ADV → ADJ | 0 | 2 | ROM Only |
-| SCONJ → ADJ | 0 | 2 | ROM Only |
-| ADJ → ADJ | 2 | 0 | UD Only |
-| NUM → NOUN | 1 | 1 | Both |
-| CCONJ → ADJ | 0 | 2 | ROM Only |
-| PART → ADJ | 0 | 2 | ROM Only |
-| ADV → PUNCT | 2 | 0 | UD Only |
+| PRON → ADP | 3 | 0 | UD Only |
+| CCONJ → NOUN | 0 | 3 | ROM Only |
+| ADP → ADJ | 0 | 3 | ROM Only |
+| VERB → ADJ | 3 | 0 | UD Only |
 | NUM → AUX | 1 | 1 | Both |
-| ADP → NUM | 0 | 1 | ROM Only |
-| ADV → SCONJ | 0 | 1 | ROM Only |
-| PRON → PRON | 0 | 1 | ROM Only |
-| INTJ → ADV | 0 | 1 | ROM Only |
-| ADV → CCONJ | 1 | 0 | UD Only |
-| INTJ → NOUN | 0 | 1 | ROM Only |
-| NOUN → PART | 1 | 0 | UD Only |
-| NOUN → PROPN | 1 | 0 | UD Only |
-| DET → ADP | 1 | 0 | UD Only |
-| AUX → ADP | 0 | 1 | ROM Only |
-| ADP → PROPN | 0 | 1 | ROM Only |
-| PROPN → NOUN | 0 | 1 | ROM Only |
+| ADV → ADJ | 0 | 2 | ROM Only |
+| SCONJ → CCONJ | 0 | 2 | ROM Only |
+| ADV → PUNCT | 2 | 0 | UD Only |
+| ADJ → ADJ | 2 | 0 | UD Only |
+| PART → ADJ | 0 | 2 | ROM Only |
+| NUM → NOUN | 1 | 1 | Both |
+| ADJ → CCONJ | 2 | 0 | UD Only |
+| CCONJ → ADJ | 0 | 2 | ROM Only |
+| SCONJ → ADJ | 0 | 2 | ROM Only |
+| ADP → ADP | 0 | 2 | ROM Only |
 | AUX → ADV | 0 | 1 | ROM Only |
-| NUM → PRON | 1 | 0 | UD Only |
+| PRON → PRON | 0 | 1 | ROM Only |
 | PROPN → ADP | 1 | 0 | UD Only |
-| NOUN → SCONJ | 1 | 0 | UD Only |
+| NOUN → PART | 1 | 0 | UD Only |
+| DET → ADP | 1 | 0 | UD Only |
+| INTJ → ADV | 0 | 1 | ROM Only |
+| NUM → PRON | 1 | 0 | UD Only |
+| PROPN → NOUN | 0 | 1 | ROM Only |
+| ADV → SCONJ | 0 | 1 | ROM Only |
 | ADP → ADV | 0 | 1 | ROM Only |
-| ADV → INTJ | 1 | 0 | UD Only |
+| ADV → CCONJ | 1 | 0 | UD Only |
+| NOUN → SCONJ | 1 | 0 | UD Only |
+| AUX → ADP | 0 | 1 | ROM Only |
+| INTJ → NOUN | 0 | 1 | ROM Only |
 | NUM → PUNCT | 1 | 0 | UD Only |
+| ADP → PROPN | 0 | 1 | ROM Only |
 | VERB → DET | 1 | 0 | UD Only |
+| ADV → INTJ | 1 | 0 | UD Only |
+| ADP → NUM | 0 | 1 | ROM Only |
+| NOUN → PROPN | 1 | 0 | UD Only |
 
 ## 📂 File-Specific Analysis
 
