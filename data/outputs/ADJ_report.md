@@ -1,9 +1,40 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 22:13:52
+**Date:** 2025-05-22 22:17:57
 **Total Sentences:** 10
 **Processed Sentences:** 10
 **Skipped Sentences:** 0
+
+## 📊 Overall Performance Metrics
+
+### Summary Statistics
+| Metric | Value |
+|--------|-------|
+| Total Sentences Processed | 10 |
+| Total Expected Relations | 72 |
+| Total Generated Relations | 70 |
+| Total Correct Relations | 55 |
+| Total Missing Relations | 17 |
+| Total Over-specified Relations | 15 |
+
+### Overall Performance
+| Metric | Percentage |
+|--------|------------|
+| **Correct Rate** | **76.4%** |
+| **Missing Rate** | **23.6%** |
+| **Over-specification Rate** | **21.4%** |
+
+### Performance Interpretation
+**Overall Performance:** 🟡 Good
+
+### Additional Metrics
+| Metric | Value | Description |
+|--------|-------|-------------|
+| Precision | 78.6% | Percentage of generated relations that are correct |
+| Recall | 76.4% | Percentage of expected relations that were found |
+| F1-Score | 77.5% | Harmonic mean of precision and recall |
+
+---
 
 ## Individual Sentence Results
 
@@ -505,32 +536,3 @@
 </details>
 
 ---
-
-## 📊 Total Data Metrics
-
-### Summary Statistics
-| Metric | Value |
-|--------|-------|
-| Total Sentences Processed | 10 |
-| Total Expected Relations | 72 |
-| Total Generated Relations | 70 |
-| Total Correct Relations | 55 |
-| Total Missing Relations | 17 |
-| Total Over-specified Relations | 15 |
-
-### Overall Performance
-| Metric | Percentage |
-|--------|------------|
-| **Correct Rate** | **76.4%** |
-| **Missing Rate** | **23.6%** |
-| **Over-specification Rate** | **21.4%** |
-
-### Performance Interpretation
-**Overall Performance:** 🟡 Good
-
-### Additional Metrics
-| Metric | Value | Description |
-|--------|-------|-------------|
-| Precision | 78.6% | Percentage of generated relations that are correct |
-| Recall | 76.4% | Percentage of expected relations that were found |
-| F1-Score | 77.5% | Harmonic mean of precision and recall |

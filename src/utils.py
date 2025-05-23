@@ -6,7 +6,7 @@ and evaluating ROM generator performance against benchmark data.
 """
 
 from typing import List, Dict, Any
-
+import logging
 
 def read_txt_lines(filepath: str) -> List[str]:
     """
@@ -100,7 +100,7 @@ def format_rom_relations(relations: List[Dict[str, Any]]) -> str:
     return "\n".join(formatted_lines)
 
 
-def evaluate_rom(sentences: List[str], benchmark: str, save: str = None) -> tuple:
+def evaluate_rom(sentences: List[str], benchmark: str, save: str = None, log: bool = False) -> tuple:
     """
     Evaluate ROM generator results against benchmark data for multiple sentences.
 
@@ -108,6 +108,7 @@ def evaluate_rom(sentences: List[str], benchmark: str, save: str = None) -> tupl
         sentences: List of input sentences to analyze
         benchmark: Path to the benchmark .md file containing expected relations
         save: Optional path to save the evaluation report as a markdown file
+        log: Whether to print the report to console (default: False)
 
     Returns:
         tuple: (correct_rate, missing_rate, over_spec_rate) as percentages (0-100) for all sentences combined
@@ -218,15 +219,16 @@ def evaluate_rom(sentences: List[str], benchmark: str, save: str = None) -> tupl
                                        total_missing, total_over_spec, processed_count,
                                        correct_rate, missing_rate, over_spec_rate)
 
-    # Print report to console
-    print(report)
+    # Print report to console only if log is True
+    if log:
+        print(report)
 
     # Save report if path provided
     if save:
         try:
             with open(save, 'w', encoding='utf-8') as file:
                 file.write(report)
-            print(f"\nReport saved to: {save}")
+                logging.info(f"\nReport saved to: {save}")
         except IOError as e:
             raise IOError(f"Error writing report to file {save}: {e}")
 
@@ -259,6 +261,60 @@ def _generate_markdown_report(all_results: List[Dict], skipped_sentences: List[s
     report.append(f"**Total Sentences:** {len(all_results) + len(skipped_sentences)}")
     report.append(f"**Processed Sentences:** {processed_count}")
     report.append(f"**Skipped Sentences:** {len(skipped_sentences)}")
+    report.append("")
+
+    # MOVED UP: Total metrics at the top
+    report.append("## 📊 Overall Performance Metrics")
+    report.append("")
+
+    # Summary Statistics
+    report.append("### Summary Statistics")
+    report.append("| Metric | Value |")
+    report.append("|--------|-------|")
+    report.append(f"| Total Sentences Processed | {processed_count} |")
+    report.append(f"| Total Expected Relations | {total_expected} |")
+    report.append(f"| Total Generated Relations | {total_generated} |")
+    report.append(f"| Total Correct Relations | {total_correct} |")
+    report.append(f"| Total Missing Relations | {total_missing} |")
+    report.append(f"| Total Over-specified Relations | {total_over_spec} |")
+    report.append("")
+
+    # Overall Performance
+    report.append("### Overall Performance")
+    report.append("| Metric | Percentage |")
+    report.append("|--------|------------|")
+    report.append(f"| **Correct Rate** | **{correct_rate:.1f}%** |")
+    report.append(f"| **Missing Rate** | **{missing_rate:.1f}%** |")
+    report.append(f"| **Over-specification Rate** | **{over_spec_rate:.1f}%** |")
+    report.append("")
+
+    # Performance interpretation
+    report.append("### Performance Interpretation")
+    if correct_rate >= 90:
+        performance = "🟢 Excellent"
+    elif correct_rate >= 75:
+        performance = "🟡 Good"
+    elif correct_rate >= 50:
+        performance = "🟠 Fair"
+    else:
+        performance = "🔴 Needs Improvement"
+
+    report.append(f"**Overall Performance:** {performance}")
+    report.append("")
+
+    precision = (total_correct / total_generated * 100) if total_generated > 0 else 0
+    recall = correct_rate  # Same as correct rate
+    f1_score = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0
+
+    # Additional Metrics
+    report.append("### Additional Metrics")
+    report.append("| Metric | Value | Description |")
+    report.append("|--------|-------|-------------|")
+    report.append(f"| Precision | {precision:.1f}% | Percentage of generated relations that are correct |")
+    report.append(f"| Recall | {recall:.1f}% | Percentage of expected relations that were found |")
+    report.append(f"| F1-Score | {f1_score:.1f}% | Harmonic mean of precision and recall |")
+    report.append("")
+    report.append("---")
     report.append("")
 
     # Skipped sentences section
@@ -336,53 +392,6 @@ def _generate_markdown_report(all_results: List[Dict], skipped_sentences: List[s
         report.append("")
         report.append("---")
         report.append("")
-
-    # Total metrics
-    report.append("## 📊 Total Data Metrics")
-    report.append("")
-    report.append("### Summary Statistics")
-    report.append("| Metric | Value |")
-    report.append("|--------|-------|")
-    report.append(f"| Total Sentences Processed | {processed_count} |")
-    report.append(f"| Total Expected Relations | {total_expected} |")
-    report.append(f"| Total Generated Relations | {total_generated} |")
-    report.append(f"| Total Correct Relations | {total_correct} |")
-    report.append(f"| Total Missing Relations | {total_missing} |")
-    report.append(f"| Total Over-specified Relations | {total_over_spec} |")
-    report.append("")
-
-    report.append("### Overall Performance")
-    report.append("| Metric | Percentage |")
-    report.append("|--------|------------|")
-    report.append(f"| **Correct Rate** | **{correct_rate:.1f}%** |")
-    report.append(f"| **Missing Rate** | **{missing_rate:.1f}%** |")
-    report.append(f"| **Over-specification Rate** | **{over_spec_rate:.1f}%** |")
-    report.append("")
-
-    # Performance interpretation
-    report.append("### Performance Interpretation")
-    if correct_rate >= 90:
-        performance = "🟢 Excellent"
-    elif correct_rate >= 75:
-        performance = "🟡 Good"
-    elif correct_rate >= 50:
-        performance = "🟠 Fair"
-    else:
-        performance = "🔴 Needs Improvement"
-
-    report.append(f"**Overall Performance:** {performance}")
-    report.append("")
-
-    precision = (total_correct / total_generated * 100) if total_generated > 0 else 0
-    recall = correct_rate  # Same as correct rate
-    f1_score = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0
-
-    report.append("### Additional Metrics")
-    report.append("| Metric | Value | Description |")
-    report.append("|--------|-------|-------------|")
-    report.append(f"| Precision | {precision:.1f}% | Percentage of generated relations that are correct |")
-    report.append(f"| Recall | {recall:.1f}% | Percentage of expected relations that were found |")
-    report.append(f"| F1-Score | {f1_score:.1f}% | Harmonic mean of precision and recall |")
 
     return "\n".join(report)
 

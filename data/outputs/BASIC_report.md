@@ -1,9 +1,40 @@
 # ROM Evaluation Report
 
-**Date:** 2025-05-22 22:13:59
+**Date:** 2025-05-22 22:18:03
 **Total Sentences:** 21
 **Processed Sentences:** 21
 **Skipped Sentences:** 0
+
+## 📊 Overall Performance Metrics
+
+### Summary Statistics
+| Metric | Value |
+|--------|-------|
+| Total Sentences Processed | 21 |
+| Total Expected Relations | 202 |
+| Total Generated Relations | 203 |
+| Total Correct Relations | 85 |
+| Total Missing Relations | 117 |
+| Total Over-specified Relations | 118 |
+
+### Overall Performance
+| Metric | Percentage |
+|--------|------------|
+| **Correct Rate** | **42.1%** |
+| **Missing Rate** | **57.9%** |
+| **Over-specification Rate** | **58.1%** |
+
+### Performance Interpretation
+**Overall Performance:** 🔴 Needs Improvement
+
+### Additional Metrics
+| Metric | Value | Description |
+|--------|-------|-------------|
+| Precision | 41.9% | Percentage of generated relations that are correct |
+| Recall | 42.1% | Percentage of expected relations that were found |
+| F1-Score | 42.0% | Harmonic mean of precision and recall |
+
+---
 
 ## Individual Sentence Results
 
@@ -1311,32 +1342,3 @@
 </details>
 
 ---
-
-## 📊 Total Data Metrics
-
-### Summary Statistics
-| Metric | Value |
-|--------|-------|
-| Total Sentences Processed | 21 |
-| Total Expected Relations | 202 |
-| Total Generated Relations | 203 |
-| Total Correct Relations | 85 |
-| Total Missing Relations | 117 |
-| Total Over-specified Relations | 118 |
-
-### Overall Performance
-| Metric | Percentage |
-|--------|------------|
-| **Correct Rate** | **42.1%** |
-| **Missing Rate** | **57.9%** |
-| **Over-specification Rate** | **58.1%** |
-
-### Performance Interpretation
-**Overall Performance:** 🔴 Needs Improvement
-
-### Additional Metrics
-| Metric | Value | Description |
-|--------|-------|-------------|
-| Precision | 41.9% | Percentage of generated relations that are correct |
-| Recall | 42.1% | Percentage of expected relations that were found |
-| F1-Score | 42.0% | Harmonic mean of precision and recall |
