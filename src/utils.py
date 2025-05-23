@@ -8,6 +8,7 @@ and evaluating ROM generator performance against benchmark data.
 from typing import List, Dict, Any
 import logging
 
+
 def read_txt_lines(filepath: str) -> List[str]:
     """
     Read a .txt file line by line and return a list containing each line as elements.
@@ -159,11 +160,20 @@ def evaluate_rom(sentences: List[str], benchmark: str, save: str = None, log: bo
         def normalize_relation(from_word, to_word, relation_type):
             return (from_word.lower().strip(), to_word.lower().strip(), relation_type.lower().strip())
 
-        # Convert generated relations to normalized tuples
+        # Convert generated relations to normalized tuples for comparison
         generated_set = set()
+        generated_with_ud = []  # Keep original relations with UD info
         for rel in generated_relations:
             normalized = normalize_relation(rel["from"], rel["to"], rel["rom relation"])
             generated_set.add(normalized)
+            # Store full relation info including UD
+            generated_with_ud.append({
+                'from': rel["from"],
+                'to': rel["to"],
+                'rom_relation': rel["rom relation"],
+                'stanza_ud': rel["stanza ud"],
+                'normalized': normalized
+            })
 
         # Convert expected relations to normalized tuples
         expected_set = set()
@@ -188,7 +198,8 @@ def evaluate_rom(sentences: List[str], benchmark: str, save: str = None, log: bo
             'missing_relations': missing_relations,
             'over_spec_relations': over_spec_relations,
             'expected_set': expected_set,
-            'generated_set': generated_set
+            'generated_set': generated_set,
+            'generated_with_ud': generated_with_ud  # Include UD information
         }
         all_results.append(sentence_result)
 
@@ -384,10 +395,14 @@ def _generate_markdown_report(all_results: List[Dict], skipped_sentences: List[s
         for rel in sorted(result['expected_set']):
             report.append(f"- {rel[0]} → {rel[1]}: {rel[2]}")
         report.append("")
+
+        # Updated Generated Relations section to include UD information
         report.append("**Generated Relations:**")
-        for rel in sorted(result['generated_set']):
-            report.append(f"- {rel[0]} → {rel[1]}: {rel[2]}")
+        for rel_info in sorted(result['generated_with_ud'], key=lambda x: (x['from'], x['to'])):
+            report.append(
+                f"- {rel_info['from']} → {rel_info['to']}: {rel_info['rom_relation']} (UD: {rel_info['stanza_ud']})")
         report.append("")
+
         report.append("</details>")
         report.append("")
         report.append("---")
